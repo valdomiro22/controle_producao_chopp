@@ -4,4 +4,5 @@ class AppRoutesNames {
   static const String cadastro = '/cadastro';
   static const String home = '/home';
   static const String recuperarSenha = '/recuperar-senha';
+  static const String configuracoes = '/configuracoes';
 }

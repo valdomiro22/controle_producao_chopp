@@ -26,7 +26,6 @@ final appNavigation = Provider<GoRouter>((ref) {
         final isGoingToLogin = state.matchedLocation == AppRoutesNames.login;
         final isGoingToSplash = state.matchedLocation == AppRoutesNames.splash;
         final isGoingToCadastro = state.matchedLocation == AppRoutesNames.cadastro;
-        final isGoingToHome = state.matchedLocation == AppRoutesNames.home;
         final isGoingToRecuperarSenha = state.matchedLocation == AppRoutesNames.recuperarSenha;
 
         if (!isLogado) {

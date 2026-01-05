@@ -40,6 +40,7 @@ dependencies:
   firebase_storage: ^13.0.5
   dartz: ^0.10.1  # Para Exceptions -> Either
   equatable: ^2.0.7  # Para comparações de classes
+  cached_network_image: ^3.4.1  # Para Widget de foto de perfil
 
 dev_dependencies:
   flutter_test:

@@ -3,20 +3,30 @@ import 'package:flutter/material.dart';
 class ElevatedButtonCentralizado extends StatelessWidget {
   final String texto;
   final VoidCallback clique;
+  final bool isMaxWidth;
   
   const ElevatedButtonCentralizado({
     super.key,
     required this.texto,
     required this.clique,
+    this.isMaxWidth = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: ElevatedButton(
-        onPressed: clique,
-        child: Text(texto),
-      ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.deepPurpleAccent,
+          borderRadius: BorderRadius.circular(24)
+        ),
+        width: isMaxWidth ? double.infinity : null,
+        height: 50,
+        child: TextButton(
+          onPressed: clique,
+          child: Text(texto, style: TextStyle(color: Colors.white),),
+        ),
+      )
     );
   }
 }

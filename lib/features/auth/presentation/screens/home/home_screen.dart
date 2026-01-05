@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/common/widgets/elevated_button_centralizado.dart';
+import 'package:gestao_producao_chopp/core/constants/app_dimmens.dart';
 import 'package:gestao_producao_chopp/core/di/usecases/auth_use_cases_provider.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/home/home_notifier.dart';
+import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -31,7 +34,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(AppDimmens.spacingG),
         child: Column(
           children: [
             const SizedBox(height: 50),
@@ -45,6 +48,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               texto: 'Deslogar',
               clique: () {
                 ref.read(homeNotifierProvider.notifier).deslogar();
+              },
+            ),
+            const SizedBox(height: 16),
+
+            ElevatedButtonCentralizado(
+              texto: 'Configurações',
+              clique: () {
+                context.push(AppRoutesNames.configuracoes);
               },
             ),
             const SizedBox(height: 16),

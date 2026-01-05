@@ -1,4 +1,5 @@
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/cadastro/cadastro_screen.dart';
+import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/configuracoes_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/home/home_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/login/login_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +21,11 @@ class AppRoutes {
     GoRoute(
       path: AppRoutesNames.home,
       builder: (context, state) => HomeScreen(),
+    ),
+
+    GoRoute(
+      path: AppRoutesNames.configuracoes,
+      builder: (context, state) => ConfiguracoesScreen(),
     ),
   ];
 }
