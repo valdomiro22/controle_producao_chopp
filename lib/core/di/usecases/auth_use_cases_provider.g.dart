@@ -82,5 +82,24 @@ final alterarEmailUseCaseProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef AlterarEmailUseCaseRef = AutoDisposeProviderRef<AlterarEmailUseCase>;
+String _$alterarSenhaUseCaseHash() =>
+    r'10c62f286a5e82b87413ad6aa8bdf5ad870b293b';
+
+/// See also [alterarSenhaUseCase].
+@ProviderFor(alterarSenhaUseCase)
+final alterarSenhaUseCaseProvider =
+    AutoDisposeProvider<AlterarSenhaUseCase>.internal(
+      alterarSenhaUseCase,
+      name: r'alterarSenhaUseCaseProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$alterarSenhaUseCaseHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef AlterarSenhaUseCaseRef = AutoDisposeProviderRef<AlterarSenhaUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

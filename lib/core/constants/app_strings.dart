@@ -10,7 +10,7 @@ class AppStrings {
   static const String sobrenome = 'Sobrenome';
   static const String email = 'Email';
   static const String senha = 'Senha';
-  static const String confirmeSenha = 'Confirmar senha';
+  static const String confirmeSenha = 'Confirmar nova senha';
   static const String logar = 'Logar';
   static const String cadastrar = 'Cadastrar';
   static const String cancelar = 'Cancelar';
@@ -21,4 +21,10 @@ class AppStrings {
   static const String alterarEmail = 'Alterar E-mail';
   static const String novoEmail = 'Novo E-mail';
   static const String alterarEmailInfo = 'Insiera o novo e-mail e em seguida a senha atual para confirmar esta ação.';
+
+  // Alterar email
+  static const String alterarSenhaInfo = 'Digite a senha atual e a nova senha para confirmar a operação. Não podem ser iguais.';
+  static const String senhaAtual = 'Senha atual';
+  static const String novaSenha = 'Nova senha';
+  static const String confirmeNovaSenha = 'Novaa nova senha';
 }

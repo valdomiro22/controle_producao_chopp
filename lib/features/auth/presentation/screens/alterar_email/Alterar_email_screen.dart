@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/constants/app_strings.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/screens/atualizar_email/alterar_email_notifier.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/widgets/custom_textfiewd.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/constants/app_dimmens.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../providers/auth_state.dart';
+import 'alterar_email_notifier.dart';
 
 // Usamos ConsumerStatefulWidget pois precisamos de:
 // 1. WidgetRef (Riverpod) para chamar o notifier
@@ -21,9 +21,9 @@ class AlterarEmailScreen extends ConsumerStatefulWidget {
 
 class _AlterarEmailScreenState extends ConsumerState<AlterarEmailScreen> {
   // Controladores iniciados aqui são seguros e não se perdem
+  final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {

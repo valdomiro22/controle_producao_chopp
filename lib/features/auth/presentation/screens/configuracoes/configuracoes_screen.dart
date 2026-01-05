@@ -78,8 +78,7 @@ class _ConfiguracoesScreenState extends ConsumerState<ConfiguracoesScreen> {
 
               Custombuttonmaxwidth(
                 texto: 'Alterar Senha',
-                clique: () {
-                },
+                clique: () => context.push(AppRoutesNames.alterarSenha),
                 isMaxWidth: true,
               ),
               SizedBox(height: AppDimmens.spacingG),
