@@ -28,6 +28,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, Unit>> deleteUser({required String email, required String currentPassword}) async {
+    print('\n\nDeletar Conta');
     try {
       await _authDataSource.deleteUser(email: email, currentPassword: currentPassword);
       return Right(unit);

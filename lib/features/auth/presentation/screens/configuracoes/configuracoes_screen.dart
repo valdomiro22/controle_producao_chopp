@@ -83,7 +83,11 @@ class _ConfiguracoesScreenState extends ConsumerState<ConfiguracoesScreen> {
               ),
               SizedBox(height: AppDimmens.spacingG),
 
-              Custombuttonmaxwidth(texto: 'Deletar Conta', clique: () {}, isMaxWidth: true),
+              Custombuttonmaxwidth(
+                texto: 'Deletar Conta',
+                clique: () => context.push(AppRoutesNames.deletarConta),
+                isMaxWidth: true,
+              ),
               SizedBox(height: AppDimmens.spacingG),
             ],
           ),

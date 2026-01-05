@@ -27,4 +27,7 @@ class AppStrings {
   static const String senhaAtual = 'Senha atual';
   static const String novaSenha = 'Nova senha';
   static const String confirmeNovaSenha = 'Novaa nova senha';
+  
+  // Deletar conta
+  static const String deletarContaInfo = 'Digite o email e senha para confirma esta operação.';
 }

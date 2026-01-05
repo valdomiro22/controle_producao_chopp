@@ -47,32 +47,36 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   }
 
   @override
-  Future<void> deleteUser({required String email, required String currentPassword}) async {
+  Future<void> deleteUser({required String email, required String currentPassword,}) async {
     try {
+      final credential = EmailAuthProvider.credential(
+        email: email,
+        password: currentPassword,
+      );
+
+      await _auth.currentUser!.reauthenticateWithCredential(credential);
       await _auth.currentUser!.delete();
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
-        case 'invalid-email':
-          throw AuthException('E-mail inválido');
         case 'wrong-password':
           throw AuthException('Senha incorreta');
+        case 'invalid-email':
+          throw AuthException('E-mail inválido');
         case 'user-not-found':
           throw AuthException('Usuário não encontrado');
-        case 'operation-not-allowed':
-          throw AuthException('Operação não permitida');
+        case 'invalid-credential':
+          throw AuthException('Credenciais inválidas. Verifique email e senha');
+        case 'requires-recent-login':
+          throw AuthException('Precisa fazer login novamente para deletar a conta');
         case 'network-request-failed':
           throw NetworkException('Sem conexão com a internet');
         case 'too-many-requests':
           throw UnexpectedException('Muitas tentativas. Tente novamente mais tarde');
-        case 'user-disabled':
-          throw AuthException('Usuário desabilitado');
-        case 'invalid-credential' || 'INVALID_LOGIN_CREDENTIALS':
-          throw AuthException('Verifique email e senha');
         default:
-          throw AuthException(e.message ?? 'Erro ao criar usuário');
+          throw AuthException(e.message ?? 'Erro ao deletar conta');
       }
     } catch (e) {
-      throw UnexpectedException("Erro inesperado no servidor: ${e.runtimeType}");
+      throw UnexpectedException('Erro inesperado: ${e.toString()}');
     }
   }
 
@@ -196,7 +200,6 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
       await user.reauthenticateWithCredential(credential);
       await user.verifyBeforeUpdateEmail(newEmail);
 
-      // exemplo de return: return true;
     } on FirebaseAuthException catch (e) {
       dev.log('Deu erro \n\nErro: ${e.message}\n\n');
       switch (e.code) {
