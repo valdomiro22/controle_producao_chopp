@@ -30,4 +30,7 @@ class AppStrings {
   
   // Deletar conta
   static const String deletarContaInfo = 'Digite o email e senha para confirma esta operação.';
+  
+  // Recuperar senha
+  static const String recuperarSenhaInfo = 'Digite o email para receber um link de redefinição de senha.';
 }

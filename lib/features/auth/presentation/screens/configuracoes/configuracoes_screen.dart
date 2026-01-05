@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gestao_producao_chopp/core/constants/app_dimmens.dart';
+import 'package:gestao_producao_chopp/core/constants/app_dimens.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/configuracoes_notifier.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/widgets/CustomButtonMaxWidth.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
@@ -28,7 +28,7 @@ class _ConfiguracoesScreenState extends ConsumerState<ConfiguracoesScreen> {
     return Scaffold(
       body: Container(
         width: double.infinity,
-        padding: EdgeInsets.all(AppDimmens.spacingG),
+        padding: EdgeInsets.all(AppDimens.spacingG),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -57,38 +57,38 @@ class _ConfiguracoesScreenState extends ConsumerState<ConfiguracoesScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: AppDimmens.spacingXG),
+              SizedBox(height: AppDimens.spacingXG),
 
               // Nome e email do usuario logado
               Text('Nome sobrenome', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
 
               Text('Email', style: TextStyle(fontSize: 14)),
-              SizedBox(height: AppDimmens.spacingG),
+              SizedBox(height: AppDimens.spacingG),
 
               // Botões de ações
               Custombuttonmaxwidth(texto: 'Alterar Nome', clique: () {}, isMaxWidth: true),
-              SizedBox(height: AppDimmens.spacingG),
+              SizedBox(height: AppDimens.spacingG),
 
               Custombuttonmaxwidth(
                 texto: 'Alterar E-mail',
                 clique: () => context.push(AppRoutesNames.alterarEmail),
                 isMaxWidth: true,
               ),
-              SizedBox(height: AppDimmens.spacingG),
+              SizedBox(height: AppDimens.spacingG),
 
               Custombuttonmaxwidth(
                 texto: 'Alterar Senha',
                 clique: () => context.push(AppRoutesNames.alterarSenha),
                 isMaxWidth: true,
               ),
-              SizedBox(height: AppDimmens.spacingG),
+              SizedBox(height: AppDimens.spacingG),
 
               Custombuttonmaxwidth(
                 texto: 'Deletar Conta',
                 clique: () => context.push(AppRoutesNames.deletarConta),
                 isMaxWidth: true,
               ),
-              SizedBox(height: AppDimmens.spacingG),
+              SizedBox(height: AppDimens.spacingG),
             ],
           ),
         ),

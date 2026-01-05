@@ -4,7 +4,7 @@ import 'package:gestao_producao_chopp/features/auth/presentation/providers/auth_
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/cadastro/cadastro_notifier.dart';
 
 import '../../../../../core/common/widgets/elevated_button_centralizado.dart';
-import '../../../../../core/constants/app_dimmens.dart';
+import '../../../../../core/constants/app_dimens.dart';
 import '../../../../../core/constants/app_strings.dart';
 import '../../widgets/custom_textfiewd.dart';
 
@@ -40,14 +40,14 @@ class _CadastroScreenState extends ConsumerState<CadastroScreen> {
 
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(AppDimmens.spacingG),
+        padding: EdgeInsets.all(AppDimens.spacingG),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 60),
-              Text(AppStrings.cadastro, style: TextStyle(fontSize: AppDimmens.textXG)),
-              SizedBox(height: AppDimmens.spacingXG),
+              Text(AppStrings.cadastro, style: TextStyle(fontSize: AppDimens.textXG)),
+              SizedBox(height: AppDimens.spacingXG),
               CustomTextfiewd(
                 controller: _emailController,
                 hint: AppStrings.exemploEmail,
@@ -56,7 +56,7 @@ class _CadastroScreenState extends ConsumerState<CadastroScreen> {
                 icone: Icons.email,
                 validador: (value) => value!.isEmpty ? 'Digite o email' : null,
               ),
-              SizedBox(height: AppDimmens.spacingG),
+              SizedBox(height: AppDimens.spacingG),
               CustomTextfiewd(
                 controller: _senhaController,
                 hint: AppStrings.exemploSenha,
@@ -66,7 +66,7 @@ class _CadastroScreenState extends ConsumerState<CadastroScreen> {
                 validador: (value) => value!.isEmpty ? 'Digite a senha' : null,
               ),
               Text('Erro', style: TextStyle(color: Colors.red)),
-              SizedBox(height: AppDimmens.spacingG),
+              SizedBox(height: AppDimens.spacingG),
 
               if (authState.isCarregando)
                 Center(

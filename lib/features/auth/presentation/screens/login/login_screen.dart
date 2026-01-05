@@ -5,7 +5,7 @@ import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/common/widgets/elevated_button_centralizado.dart';
-import '../../../../../core/constants/app_dimmens.dart';
+import '../../../../../core/constants/app_dimens.dart';
 import '../../../../../core/constants/app_strings.dart';
 import '../../widgets/custom_textfiewd.dart';
 
@@ -27,7 +27,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(AppDimmens.spacingG),
+        padding: EdgeInsets.all(AppDimens.spacingG),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,9 +35,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               SizedBox(height: 60),
               Text(
                 AppStrings.login,
-                style: TextStyle(fontSize: AppDimmens.textXG),
+                style: TextStyle(fontSize: AppDimens.textXG),
               ),
-              SizedBox(height: AppDimmens.spacingXG),
+              SizedBox(height: AppDimens.spacingXG),
               CustomTextfiewd(
                 controller: _emailController,
                 hint: AppStrings.exemploEmail,
@@ -46,7 +46,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 icone: Icons.email,
                 validador: (value) => value!.isEmpty ? 'Digite o email' : null,
               ),
-              SizedBox(height: AppDimmens.spacingG),
+              SizedBox(height: AppDimens.spacingG),
 
               CustomTextfiewd(
                 controller: _senhaController,
@@ -64,24 +64,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 alignment: AlignmentGeometry.topRight,
                 child: TextButton(
                   onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Recuperar senha'),
-                        duration: Duration(seconds: 2),
-                        behavior: SnackBarBehavior.floating,
-                      ),
-                    );
+                    context.push(AppRoutesNames.recuperarSenha);
                   },
                   child: Text('Recuperar senha'),
                 ),
               ),
-              SizedBox(height: AppDimmens.spacingG),
+              SizedBox(height: AppDimens.spacingG),
 
               if (state.isCarregando)
                 Center(
                   child: CircularProgressIndicator(),
                 ),
-                SizedBox(height: AppDimmens.spacingG),
+                SizedBox(height: AppDimens.spacingG),
 
 
               ElevatedButtonCentralizado(

@@ -1,4 +1,4 @@
-class AppDimmens {
+class AppDimens {
 
   // Espaçamentos
   static const double spacingP = 4;

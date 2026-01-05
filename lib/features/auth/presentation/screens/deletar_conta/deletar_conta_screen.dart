@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gestao_producao_chopp/core/constants/app_dimmens.dart';
+import 'package:gestao_producao_chopp/core/constants/app_dimens.dart';
 import 'package:gestao_producao_chopp/core/constants/app_strings.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/deletar_conta/deletar_conta_notifier.dart';
 import 'package:go_router/go_router.dart';
@@ -46,7 +46,7 @@ class _DeletarConstaScreenState extends ConsumerState<DeletarContaScreen> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(AppDimmens.spacingG),
+        padding: EdgeInsets.all(AppDimens.spacingG),
         child: Form(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -55,7 +55,7 @@ class _DeletarConstaScreenState extends ConsumerState<DeletarContaScreen> {
                 AppStrings.deletarContaInfo,
                 style: TextStyle(color: AppColors.secondaryText),
               ),
-              const SizedBox(height: AppDimmens.spacingXG),
+              const SizedBox(height: AppDimens.spacingXG),
 
               CustomTextfiewd(
                 controller: _emailController,
@@ -65,7 +65,7 @@ class _DeletarConstaScreenState extends ConsumerState<DeletarContaScreen> {
                 inputType: TextInputType.emailAddress,
                 validador: (val) => val != null && val.contains('@') ? null : 'E-mail inválido',
               ),
-              const SizedBox(height: AppDimmens.spacingMM),
+              const SizedBox(height: AppDimens.spacingMM),
 
               CustomTextfiewd(
                 controller: _senhaController,
@@ -82,14 +82,14 @@ class _DeletarConstaScreenState extends ConsumerState<DeletarContaScreen> {
                   '${state.erro?.message}',
                   style: TextStyle(color: Colors.red, fontSize: 12),
                 ),
-              const SizedBox(height: AppDimmens.spacingXG),
+              const SizedBox(height: AppDimens.spacingXG),
 
               if (state.isCarregando)
                 Center(
                   child: CircularProgressIndicator(),
                 ),
 
-              const SizedBox(height: AppDimmens.spacingG),
+              const SizedBox(height: AppDimens.spacingG),
 
               ElevatedButton(
                 onPressed: () {

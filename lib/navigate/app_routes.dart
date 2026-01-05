@@ -5,6 +5,7 @@ import 'package:gestao_producao_chopp/features/auth/presentation/screens/configu
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/deletar_conta/deletar_conta_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/home/home_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/login/login_screen.dart';
+import 'package:gestao_producao_chopp/features/auth/presentation/screens/recuperar_senha/recuperar_senha_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import 'app_routes_names.dart';
@@ -14,6 +15,8 @@ class AppRoutes {
     GoRoute(path: AppRoutesNames.cadastro, builder: (context, state) => CadastroScreen()),
 
     GoRoute(path: AppRoutesNames.login, builder: (context, state) => LoginScreen()),
+
+    GoRoute(path: AppRoutesNames.recuperarSenha, builder: (context, state) => RecuperarSenhaScreen()),
 
     GoRoute(path: AppRoutesNames.home, builder: (context, state) => HomeScreen()),
 

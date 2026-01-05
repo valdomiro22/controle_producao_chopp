@@ -120,5 +120,25 @@ final deletarContaUseCaseProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef DeletarContaUseCaseRef = AutoDisposeProviderRef<DeletarContaUseCase>;
+String _$recuperarSenhaUseCaseHash() =>
+    r'63488b35d63ba7cedca85c58292665636982565a';
+
+/// See also [recuperarSenhaUseCase].
+@ProviderFor(recuperarSenhaUseCase)
+final recuperarSenhaUseCaseProvider =
+    AutoDisposeProvider<RecuperarSenhaUseCase>.internal(
+      recuperarSenhaUseCase,
+      name: r'recuperarSenhaUseCaseProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$recuperarSenhaUseCaseHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef RecuperarSenhaUseCaseRef =
+    AutoDisposeProviderRef<RecuperarSenhaUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

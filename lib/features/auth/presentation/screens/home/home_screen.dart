@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/common/widgets/elevated_button_centralizado.dart';
-import 'package:gestao_producao_chopp/core/constants/app_dimmens.dart';
+import 'package:gestao_producao_chopp/core/constants/app_dimens.dart';
 import 'package:gestao_producao_chopp/core/di/usecases/auth_use_cases_provider.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/home/home_notifier.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
@@ -34,7 +34,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(AppDimmens.spacingG),
+        padding: EdgeInsets.all(AppDimens.spacingG),
         child: Column(
           children: [
             const SizedBox(height: 50),

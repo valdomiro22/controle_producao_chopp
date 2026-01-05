@@ -7,6 +7,7 @@ import 'package:gestao_producao_chopp/features/auth/domain/usecases/cadastrar_us
 import 'package:gestao_producao_chopp/features/auth/domain/usecases/deletar_conta_use_case.dart';
 import 'package:gestao_producao_chopp/features/auth/domain/usecases/deslogar_usuario_use_case.dart';
 import 'package:gestao_producao_chopp/features/auth/domain/usecases/login_use_case.dart';
+import 'package:gestao_producao_chopp/features/auth/domain/usecases/recuperar_senha_use_case.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../features/auth/domain/usecases/alterar_senha_use_case.dart';
@@ -49,4 +50,10 @@ AlterarSenhaUseCase alterarSenhaUseCase(Ref ref) {
 DeletarContaUseCase deletarContaUseCase(Ref ref) {
   final authRepository = ref.watch(authRepositoryProvider);
   return DeletarContaUseCase(authRepository);
+}
+
+@riverpod
+RecuperarSenhaUseCase recuperarSenhaUseCase(Ref ref) {
+  final authRepository = ref.watch(authRepositoryProvider);
+  return RecuperarSenhaUseCase(authRepository);
 }
