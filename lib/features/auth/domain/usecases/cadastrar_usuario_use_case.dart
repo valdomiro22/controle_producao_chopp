@@ -4,11 +4,11 @@ import 'package:gestao_producao_chopp/features/auth/domain/repositories/auth_rep
 
 
 class CadastrarUsuarioUseCase {
-  final AuthRepository repository;
+  final AuthRepository _repository;
 
-  CadastrarUsuarioUseCase(this.repository);
+  CadastrarUsuarioUseCase(this._repository);
 
   Future<Either<Failure, String?>> call({required String email, required String senha}) async {
-    return await repository.createUser(email: email, password: senha);
+    return await _repository.createUser(email: email, password: senha);
   }
 }

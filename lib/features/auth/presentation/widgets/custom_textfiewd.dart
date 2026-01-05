@@ -1,9 +1,12 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class CustomTextfiewd extends StatelessWidget {
   final TextEditingController controller;
   final String hint;
   final String label;
+  final bool ocultar;
   final IconData icone;
   final TextInputType inputType;
   final FormFieldValidator<String?> validador;
@@ -16,6 +19,7 @@ class CustomTextfiewd extends StatelessWidget {
     required this.icone,
     required this.inputType,
     required this.validador,
+    this.ocultar = false,
   });
 
   @override
@@ -47,6 +51,7 @@ class CustomTextfiewd extends StatelessWidget {
           ),
       ),
       validator: validador,
+      obscureText: ocultar,
     );
   }
 }

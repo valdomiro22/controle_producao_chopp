@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/login/login_notifier.dart';
+import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/common/widgets/elevated_button_centralizado.dart';
 import '../../../../../core/constants/app_dimmens.dart';
@@ -102,13 +104,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Cadastrar'),
-                            duration: Duration(seconds: 2),
-                            behavior: SnackBarBehavior.floating,
-                          ),
-                        );
+                        context.push(AppRoutesNames.cadastro);
                       },
                       child: Text('Cadastre-se'),
                     ),

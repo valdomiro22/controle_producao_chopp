@@ -1,11 +1,12 @@
 import 'package:gestao_producao_chopp/core/di/usecases/auth_use_cases_provider.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/providers/auth_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'configuracoes_notifier.g.dart';
+import '../../providers/auth_state.dart';
+
+part 'alterar_email_notifier.g.dart';
 
 @riverpod
-class ConfiguracoesNotifier extends _$ConfiguracoesNotifier {
+class AlterarEmailNotifier extends _$AlterarEmailNotifier {
 
   @override
   AuthState build() {
@@ -19,8 +20,8 @@ class ConfiguracoesNotifier extends _$ConfiguracoesNotifier {
     final result = await useCase(newEmail: newEmail, password: password);
 
     state = result.fold(
-        (failure) => state = AuthState.erro(failure),
-        (_) => state = AuthState.sucesso(),
+          (failure) => state = AuthState.erro(failure),
+          (_) => state = AuthState.sucesso(),
     );
   }
 }

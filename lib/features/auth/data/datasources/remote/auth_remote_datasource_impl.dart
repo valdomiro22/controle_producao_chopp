@@ -1,3 +1,6 @@
+import 'dart:developer' as dev;
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../../../core/error/exceptions.dart';
@@ -190,18 +193,20 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
 
       final credential = EmailAuthProvider.credential(email: user.email!, password: password);
 
-      // Passo 1: Reautenticar
       await user.reauthenticateWithCredential(credential);
-
-      // Passo 2: Enviar verificação para o novo e-mail
       await user.verifyBeforeUpdateEmail(newEmail);
+
+      // exemplo de return: return true;
     } on FirebaseAuthException catch (e) {
+      dev.log('Deu erro \n\nErro: ${e.message}\n\n');
       switch (e.code) {
         // Erros de Reautenticação
         case 'wrong-password':
           throw AuthException('A senha atual está incorreta');
         case 'user-mismatch':
           throw AuthException('Credenciais não correspondem ao usuário');
+        case 'invalid-credential':
+          throw AuthException('A senha está incorreta ou a credencial expirou.');
 
         // Erros de Atualização de E-mail
         case 'invalid-email':

@@ -15,4 +15,10 @@ class AppStrings {
   static const String cadastrar = 'Cadastrar';
   static const String cancelar = 'Cancelar';
   static const String voltar = 'Voltar';
+  static const String salvarAlteracoes = 'SALVAR ALTERAÇÕES';
+
+  // Alterar email
+  static const String alterarEmail = 'Alterar E-mail';
+  static const String novoEmail = 'Novo E-mail';
+  static const String alterarEmailInfo = 'Insiera o novo e-mail e em seguida a senha atual para confirmar esta ação.';
 }

@@ -1,3 +1,4 @@
+import 'package:gestao_producao_chopp/features/auth/presentation/screens/atualizar_email/Alterar_email_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/cadastro/cadastro_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/configuracoes_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/home/home_screen.dart';
@@ -26,6 +27,11 @@ class AppRoutes {
     GoRoute(
       path: AppRoutesNames.configuracoes,
       builder: (context, state) => ConfiguracoesScreen(),
+    ),
+
+    GoRoute(
+      path: AppRoutesNames.alterarEmail,
+      builder: (context, state) => AlterarEmailScreen(),
     ),
   ];
 }
