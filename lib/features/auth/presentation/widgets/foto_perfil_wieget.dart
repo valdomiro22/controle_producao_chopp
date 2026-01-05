@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/widget_previews.dart';
 
 class FotoPerfilWieget extends StatelessWidget {
   final String imageUrl;
@@ -36,8 +37,8 @@ class FotoPerfilWieget extends StatelessWidget {
       ),
 
       errorWidget: (context, url, error) => Container(
-        width: 100.0,
-        height: 100.0,
+        width: 150.0,
+        height: 150.0,
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
           color: Colors.grey,
