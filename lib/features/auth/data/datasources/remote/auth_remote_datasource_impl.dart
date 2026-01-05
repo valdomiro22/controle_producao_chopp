@@ -77,7 +77,7 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   Future<String?> getCurrentUserEmail() async {
     try {
       final result = _auth.currentUser?.email;
-        return result;
+      return result;
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case 'user-not-found':
@@ -188,32 +188,28 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
       final user = _auth.currentUser;
       if (user == null) throw AuthException('Usuário não autenticado');
 
-      final credential = EmailAuthProvider.credential(
-        email: user.email!,
-        password: password,
-      );
+      final credential = EmailAuthProvider.credential(email: user.email!, password: password);
 
       // Passo 1: Reautenticar
       await user.reauthenticateWithCredential(credential);
 
       // Passo 2: Enviar verificação para o novo e-mail
       await user.verifyBeforeUpdateEmail(newEmail);
-
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
-      // Erros de Reautenticação
+        // Erros de Reautenticação
         case 'wrong-password':
           throw AuthException('A senha atual está incorreta');
         case 'user-mismatch':
           throw AuthException('Credenciais não correspondem ao usuário');
 
-      // Erros de Atualização de E-mail
+        // Erros de Atualização de E-mail
         case 'invalid-email':
           throw AuthException('O novo e-mail informado é inválido');
         case 'email-already-in-use':
           throw AuthException('Este e-mail já está sendo usado por outra conta');
 
-      // Erros Comuns
+        // Erros Comuns
         case 'network-request-failed':
           throw NetworkException();
         case 'too-many-requests':
@@ -228,7 +224,10 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   }
 
   @override
-  Future<void> updatePassword({required String newPassword, required String currentPassword}) async {
+  Future<void> updatePassword({
+    required String newPassword,
+    required String currentPassword,
+  }) async {
     try {
       final user = _auth.currentUser;
 
@@ -247,24 +246,23 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
 
       // 3. Atualizar para a NOVA senha
       await user.updatePassword(newPassword);
-
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
-      // Erros de Reautenticação (Senha Atual)
+        // Erros de Reautenticação (Senha Atual)
         case 'wrong-password':
           throw const AuthException('A senha atual está incorreta');
 
-      // Erros da Nova Senha
+        // Erros da Nova Senha
         case 'weak-password':
           throw const AuthException('A nova senha é muito fraca');
 
-      // Erros de Fluxo/Sessão
+        // Erros de Fluxo/Sessão
         case 'requires-recent-login':
           throw const AuthException('Sessão expirada. Faça login novamente');
         case 'user-mismatch':
           throw const AuthException('As credenciais não correspondem ao usuário');
 
-      // Erros de Infraestrutura
+        // Erros de Infraestrutura
         case 'network-request-failed':
           throw const NetworkException();
         case 'too-many-requests':

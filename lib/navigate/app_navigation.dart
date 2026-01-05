@@ -20,6 +20,9 @@ final appNavigation = Provider<GoRouter>((ref) {
         final isLogado = authState.valueOrNull != null;
         final localAlvo = state.matchedLocation;
 
+        print('estou logado: $isLogado');
+        print('indo para: $localAlvo');
+
         final isGoingToLogin = state.matchedLocation == AppRoutesNames.login;
         final isGoingToSplash = state.matchedLocation == AppRoutesNames.splash;
         final isGoingToCadastro = state.matchedLocation == AppRoutesNames.cadastro;

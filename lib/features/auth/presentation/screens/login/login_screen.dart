@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gestao_producao_chopp/features/auth/presentation/screens/login/login_notifier.dart';
 
 import '../../../../../core/common/widgets/elevated_button_centralizado.dart';
 import '../../../../../core/constants/app_dimmens.dart';
@@ -20,6 +21,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(loginNotifierProvider);
+
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(AppDimmens.spacingG),
@@ -42,6 +45,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 validador: (value) => value!.isEmpty ? 'Digite o email' : null,
               ),
               SizedBox(height: AppDimmens.spacingG),
+
               CustomTextfiewd(
                 controller: _senhaController,
                 hint: AppStrings.exemploSenha,
@@ -50,7 +54,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 icone: Icons.lock,
                 validador: (value) => value!.isEmpty ? 'Digite a senha' : null,
               ),
-              Text('Erro', style: TextStyle(color: Colors.red)),
+
+              if (state.isErro)
+                Text(state.erro?.message ?? '' , style: TextStyle(color: Colors.red)),
+
               Align(
                 alignment: AlignmentGeometry.topRight,
                 child: TextButton(
@@ -67,15 +74,19 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
               ),
               SizedBox(height: AppDimmens.spacingG),
+
+              if (state.isCarregando)
+                Center(
+                  child: CircularProgressIndicator(),
+                ),
+                SizedBox(height: AppDimmens.spacingG),
+
+
               ElevatedButtonCentralizado(
                 clique: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Logar'),
-                      duration: Duration(seconds: 2),
-                      behavior: SnackBarBehavior.floating,
-                    ),
-                  );
+                  final email = _emailController.text.trim();
+                  final senha = _senhaController.text;
+                  ref.read(loginNotifierProvider.notifier).logar(email: email, senha: senha);
                 },
                 texto: 'Logar',
               ),

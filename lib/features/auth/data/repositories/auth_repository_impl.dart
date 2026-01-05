@@ -77,7 +77,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, String>> login({required String email, required String password}) async {
     try {
-      final result = await _authDataSource.login(email: password, password: password);
+      final result = await _authDataSource.login(email: email, password: password);
       return Right(result);
     } on AuthException catch (e) {
       return Left(AuthFailure(e.message));
