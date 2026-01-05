@@ -14,7 +14,7 @@ class AuthState {
   const AuthState.inicial() : this._();
   const AuthState.carregando() : this._(carregando: true);
   const AuthState.sucessosComDados(Object dados) : this._(dados: dados);
-  const AuthState.sucessos() : this._(dados: null);
+  const AuthState.sucesso() : this._(dados: null);
   const AuthState.erro(Failure erro) : this._(erro: erro);
 
   AuthState copyWith({

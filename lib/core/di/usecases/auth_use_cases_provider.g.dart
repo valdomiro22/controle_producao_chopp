@@ -26,5 +26,25 @@ final cadastrarUsuarioUseCaseProvider =
 // ignore: unused_element
 typedef CadastrarUsuarioUseCaseRef =
     AutoDisposeProviderRef<CadastrarUsuarioUseCase>;
+String _$deslogarUsuarioUseCaseHash() =>
+    r'ba8e58e304bfbafbd52bf9f09838290d7dd5ee5e';
+
+/// See also [deslogarUsuarioUseCase].
+@ProviderFor(deslogarUsuarioUseCase)
+final deslogarUsuarioUseCaseProvider =
+    AutoDisposeProvider<DeslogarUsuarioUseCase>.internal(
+      deslogarUsuarioUseCase,
+      name: r'deslogarUsuarioUseCaseProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$deslogarUsuarioUseCaseHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef DeslogarUsuarioUseCaseRef =
+    AutoDisposeProviderRef<DeslogarUsuarioUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -26,11 +26,11 @@ class CadastroNotifier extends _$CadastroNotifier {
     state = result.fold(
       (failure) => state = AuthState.erro(failure),
 
-      (_) => state = AuthState.sucessos(),
+      (_) => state = AuthState.sucesso(),
     );
   }
 
-  void reset() {
-    state = const AuthState.inicial();
-  }
+  // void reset() {
+  //   state = const AuthState.inicial();
+  // }
 }

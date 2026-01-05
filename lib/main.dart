@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gestao_producao_chopp/navigate/app_navigation.dart';
 
 import 'features/auth/presentation/screens/cadastro/cadastro_screen.dart';
 import 'firebase_options.dart';
@@ -17,15 +18,15 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final ro
+    final router = ref.watch(appNavigation);
 
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
+      routerConfig: router,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const CadastroScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

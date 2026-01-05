@@ -31,14 +31,10 @@ class _CadastroScreenState extends ConsumerState<CadastroScreen> {
     final authState = ref.watch(cadastroNotifierProvider);
 
     ref.listen<AuthState>(cadastroNotifierProvider, (previous, next) {
-      debugPrint('Listener disparado - previous carregando: ${previous?.isCarregando} | next sucesso: ${next.isSucesso} | next erro: ${next.isErro}');
 
       if (previous?.isCarregando == true && next.isSucesso) {
-        debugPrint('>>> ENTROU NO SUCESSO - LIMPANDO CAMPOS AGORA <<<');
         _emailController.clear();
         _senhaController.clear();
-        // Comente o reset temporariamente pra testar
-        // ref.read(cadastroNotifierProvider.notifier).reset();
       }
     });
 
