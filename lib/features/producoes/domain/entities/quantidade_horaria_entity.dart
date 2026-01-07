@@ -1,11 +1,11 @@
-class QuantidadeHoraria {
+class QuantidadeHorariaEntity {
   final int? id;
   final int? turnoId;
   final int turnoReferente;
   final int quantidade;
   final String horario;
 
-  QuantidadeHoraria({
+  QuantidadeHorariaEntity({
     this.id,
     this.turnoId,
     required this.turnoReferente,
@@ -23,8 +23,8 @@ class QuantidadeHoraria {
     };
   }
 
-  factory QuantidadeHoraria.fromMap(Map<String, dynamic> map) {
-    return QuantidadeHoraria(
+  factory QuantidadeHorariaEntity.fromMap(Map<String, dynamic> map) {
+    return QuantidadeHorariaEntity(
       id: map['id'] as int?,
       turnoId: map['turnoId'] as int?,
       turnoReferente: map['turnoReferente'] as int,
@@ -33,14 +33,14 @@ class QuantidadeHoraria {
     );
   }
 
-   QuantidadeHoraria copyWith({
+   QuantidadeHorariaEntity copyWith({
      int? id,
      int? turnoId,
      int? turnoReferente,
      int? quantidade,
      String? horario,
    }) {
-     return QuantidadeHoraria(
+     return QuantidadeHorariaEntity(
        id: id ?? this.id,
        turnoId: turnoId ?? this.turnoId,
        turnoReferente: turnoReferente ?? this.turnoReferente,

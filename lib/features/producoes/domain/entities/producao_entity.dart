@@ -2,7 +2,7 @@ import 'enums/produto.dart';
 import 'enums/status_producao.dart';
 import 'enums/barril.dart';
 
-class Producao {
+class ProducaoEntity {
   final int? id;
   final int? gradeId;
   final StatusProducao status;
@@ -13,7 +13,7 @@ class Producao {
   final int quantidadePendente;
   final double volumeNecessarioHl;
 
-  Producao({
+  ProducaoEntity({
     this.id,
     this.gradeId,
     required this.status,
@@ -39,8 +39,8 @@ class Producao {
     };
   }
 
-  factory Producao.fromJson(Map<String, dynamic> json) {
-    return Producao(
+  factory ProducaoEntity.fromJson(Map<String, dynamic> json) {
+    return ProducaoEntity(
       id: json['id'] as int?,
       gradeId: json['gradeId'] as int?,
       status: StatusProducao.fronId(json['status'] as int),
@@ -53,7 +53,7 @@ class Producao {
     );
   }
 
-  Producao copyWith({
+  ProducaoEntity copyWith({
     int? id,
     int? gradeId,
     StatusProducao? status,
@@ -64,7 +64,7 @@ class Producao {
     int? qtPendente,
     double? vlNecessarioHl,
   }) {
-    return Producao(
+    return ProducaoEntity(
       id: id ?? this.id,
       gradeId: gradeId ?? this.gradeId,
       status: status ?? this.status,

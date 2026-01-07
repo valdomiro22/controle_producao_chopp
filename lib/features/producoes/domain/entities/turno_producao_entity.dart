@@ -1,13 +1,13 @@
 import 'enums/turno.dart';
 
-class TurnoProducao {
+class TurnoProducaoEntity {
   final int? id;
   final int? gradeId;
   final Turno turno;
   final String data;
   final int? producaoAcumulada;
 
-  TurnoProducao({
+  TurnoProducaoEntity({
     this.id,
     this.gradeId,
     required this.turno,
@@ -25,8 +25,8 @@ class TurnoProducao {
     };
   }
 
-  factory TurnoProducao.fromMap(Map<String, dynamic> map) {
-    return TurnoProducao(
+  factory TurnoProducaoEntity.fromMap(Map<String, dynamic> map) {
+    return TurnoProducaoEntity(
       id: map['id'] as int?,
       gradeId: map['gradeId'] as int?,
       turno: Turno.fronId(map['turno'] as int),
@@ -35,14 +35,14 @@ class TurnoProducao {
     );
   }
 
-  TurnoProducao copyWith({
+  TurnoProducaoEntity copyWith({
     int? id,
     int? gradeId,
     Turno? turno,
     String? data,
     int? producaoAcumulada,
   }) {
-    return TurnoProducao(
+    return TurnoProducaoEntity(
       id: id ?? this.id,
       gradeId: gradeId ?? this.gradeId,
       turno: turno ?? this.turno,
