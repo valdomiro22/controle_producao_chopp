@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class GradeModel {
   final String? id;
   final int numeroGrade;
-  final String data;
+  final DateTime data;
   final int? totalBarrisDaGrade;
   final double? volumeTotalDaGrade;
 
@@ -27,7 +29,7 @@ class GradeModel {
     return GradeModel(
       id: data['id'] as String?,
       numeroGrade: data['numeroGrade'] as int,
-      data: data['data'] as String,
+      data: (data['data'] as Timestamp?)!.toDate(),
       totalBarrisDaGrade: data['totalBarrisDaGrade'] as int?,
       volumeTotalDaGrade: data['volumeTotalDaGrade'] as double?,
     );

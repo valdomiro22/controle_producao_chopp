@@ -8,4 +8,6 @@ class AppRoutesNames {
   static const String alterarEmail = '/alterar-email';
   static const String alterarSenha = '/alterar-senha';
   static const String deletarConta = '/deletar-conta';
+  static const String listaGrades = '/lista-grades';
+  static const String adicionarGrade = '/adicionar-grade';
 }

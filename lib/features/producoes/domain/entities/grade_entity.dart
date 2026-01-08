@@ -1,7 +1,7 @@
 class GradeEntity {
   final String? id;
   final int numeroGrade;
-  final String data;
+  final DateTime data;
   final int? totalBarrisDaGrade;
   final double? volumeTotalDaGrade;
 
@@ -16,7 +16,7 @@ class GradeEntity {
   GradeEntity copyWith({
     String? id,
     int? numeroGrade,
-    String? data,
+    DateTime? data,
     int? totalBarrisDaGrade,
     double? volumeTotalDaGrade,
   }) {

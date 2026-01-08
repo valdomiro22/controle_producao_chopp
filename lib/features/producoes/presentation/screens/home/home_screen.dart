@@ -3,9 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/common/widgets/elevated_button_centralizado.dart';
 import 'package:gestao_producao_chopp/core/constants/app_dimens.dart';
 import 'package:gestao_producao_chopp/core/di/usecases/auth_use_cases_provider.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/screens/home/home_notifier.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
+
+import 'home_notifier.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -56,6 +57,22 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               texto: 'Configurações',
               clique: () {
                 context.push(AppRoutesNames.configuracoes);
+              },
+            ),
+            const SizedBox(height: 16),
+
+            ElevatedButtonCentralizado(
+              texto: 'Lista de Grades',
+              clique: () {
+                context.push(AppRoutesNames.listaGrades);
+              },
+            ),
+            const SizedBox(height: 16),
+
+            ElevatedButtonCentralizado(
+              texto: 'Adicionar Grade',
+              clique: () {
+                context.push(AppRoutesNames.adicionarGrade);
               },
             ),
             const SizedBox(height: 16),

@@ -3,11 +3,13 @@ import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterar
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/cadastro/cadastro_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/configuracoes_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/deletar_conta/deletar_conta_screen.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/screens/home/home_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/login/login_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/recuperar_senha/recuperar_senha_screen.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/screens/adicionar_grade/adicionar_grade_screen.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_grades/lista_grades_screen.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/producoes/presentation/screens/home/home_screen.dart';
 import 'app_routes_names.dart';
 
 class AppRoutes {
@@ -27,5 +29,9 @@ class AppRoutes {
     GoRoute(path: AppRoutesNames.alterarSenha, builder: (context, state) => AlterarSenhaScreen()),
 
     GoRoute(path: AppRoutesNames.deletarConta, builder: (context, state) => DeletarContaScreen()),
+
+    GoRoute(path: AppRoutesNames.listaGrades, builder: (context, state) => ListaGradesScreen()),
+
+    GoRoute(path: AppRoutesNames.adicionarGrade, builder: (context, state) => AdicionarGradeScreen()),
   ];
 }
