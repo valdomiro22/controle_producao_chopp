@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'adicionar_grade_notifier.dart';
+part of 'lista_grades_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$adicionarGradeNotifierHash() =>
-    r'5082a0f9bd5234c232cc709c48e58f3a0cfd5781';
+String _$listaGradesNotifierHash() =>
+    r'58443df73c0e857e395c6b3d48436d046feb4e09';
 
-/// See also [AdicionarGradeNotifier].
-@ProviderFor(AdicionarGradeNotifier)
-final adicionarGradeNotifierProvider =
-    AutoDisposeNotifierProvider<AdicionarGradeNotifier, GradeState>.internal(
-      AdicionarGradeNotifier.new,
-      name: r'adicionarGradeNotifierProvider',
+/// See also [ListaGradesNotifier].
+@ProviderFor(ListaGradesNotifier)
+final listaGradesNotifierProvider =
+    AutoDisposeNotifierProvider<ListaGradesNotifier, ListaGradesState>.internal(
+      ListaGradesNotifier.new,
+      name: r'listaGradesNotifierProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
           ? null
-          : _$adicionarGradeNotifierHash,
+          : _$listaGradesNotifierHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$AdicionarGradeNotifier = AutoDisposeNotifier<GradeState>;
+typedef _$ListaGradesNotifier = AutoDisposeNotifier<ListaGradesState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

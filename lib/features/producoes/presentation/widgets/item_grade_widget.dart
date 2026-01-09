@@ -3,13 +3,13 @@ import 'package:flutter/widget_previews.dart';
 import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
 
 class ItemGradeWidget extends StatelessWidget {
-  final String produto;
+  // final String produto;
   final String data;
   final String grade;
 
   const ItemGradeWidget({
     super.key,
-    required this.produto,
+    // required this.produto,
     required this.data,
     required this.grade,
   });
@@ -28,14 +28,14 @@ class ItemGradeWidget extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  produto,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600
-                  ),
-                ),
+                // Text(
+                //   produto,
+                //   style: TextStyle(
+                //     color: Colors.black,
+                //     fontSize: 18,
+                //     fontWeight: FontWeight.w600
+                //   ),
+                // ),
                 Text(
                   data,
                   style: TextStyle(color: Colors.black),
@@ -101,11 +101,11 @@ class ItemGradeWidget extends StatelessWidget {
   }
 }
 
-@Preview(name: 'Card Produção')
-Widget myPreview() {
-  return ItemGradeWidget(
-    produto: 'Itaipava 50L',
-    data: 'Data: 01/01/2026',
-    grade: 'Grade: 01',
-  );
-}
+// @Preview(name: 'Card Produção')
+// Widget myPreview() {
+//   return ItemGradeWidget(
+//     produto: 'Itaipava 50L',
+//     data: 'Data: 01/01/2026',
+//     grade: 'Grade: 01',
+//   );
+// }

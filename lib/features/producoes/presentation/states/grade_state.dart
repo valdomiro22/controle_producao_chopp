@@ -5,11 +5,7 @@ class GradeState {
   final Object? dados;
   final Failure? erro;
 
-  const GradeState._({
-    this.carregando = false,
-    this.dados,
-    this.erro,
-});
+  const GradeState._({this.carregando = false, this.dados, this.erro});
 
   const GradeState.inicial() : this._();
   const GradeState.carregando() : this._(carregando: true);
@@ -17,11 +13,7 @@ class GradeState {
   const GradeState.sucesso() : this._(dados: null);
   const GradeState.erro(Failure failure) : this._(erro: failure);
 
-  GradeState copyWith({
-    bool? carregando,
-    Object? dados,
-    Failure? erro,
-  }) {
+  GradeState copyWith({bool? carregando, Object? dados, Failure? erro}) {
     return GradeState._(
       carregando: carregando ?? this.carregando,
       dados: dados ?? this.dados,

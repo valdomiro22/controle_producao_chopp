@@ -1,3 +1,5 @@
+import 'dart:developer' as dev;
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gestao_producao_chopp/features/producoes/data/datasources/grade_datasource.dart';
 import 'package:gestao_producao_chopp/features/producoes/data/models/grade_model.dart';
@@ -68,6 +70,8 @@ class GradeDatasourceImpl implements GradeDatasource {
 
   @override
   Future<List<GradeModel>> getAllGrades() async {
+
+    dev.log('Listar grades chamado');
     try {
       final snapshot = await _firestore.collection(_gradeCollection).get();
 

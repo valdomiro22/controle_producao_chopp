@@ -4,7 +4,8 @@ import 'package:gestao_producao_chopp/features/producoes/domain/entities/grade_e
 import 'package:gestao_producao_chopp/features/producoes/presentation/states/grade_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
-import 'package:uuid/v4.dart';
+
+import '../lista_grades/lista_grades_notifier.dart';
 
 part 'adicionar_grade_notifier.g.dart';
 
@@ -46,8 +47,11 @@ class AdicionarGradeNotifier extends _$AdicionarGradeNotifier {
     final result = await useCase(grade);
 
     state = result.fold(
-          (failure) => GradeState.erro(failure),
-          (_) => GradeState.sucesso(),
+      (failure) => GradeState.erro(failure),
+      (_) {
+        ref.read(listaGradesNotifierProvider.notifier).listarGrades();
+        return GradeState.sucesso();
+      },
     );
   }
 }
