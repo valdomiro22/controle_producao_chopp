@@ -30,34 +30,21 @@ class ItemGradeWidget extends ConsumerWidget {
                 Text(
                   'Data: ',
                   style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold
-                  ),
+                    fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   data ?? '',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,
-                  ),
+                  style: TextStyle(fontSize: 16, color: Colors.black,),
                 ),
 
                 Spacer(),
                 Text(
                   'Grade: ',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black,),
                 ),
                 Text(
                   grade.numeroGrade.toString(),
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,
-                  ),
+                  style: TextStyle(fontSize: 16, color: Colors.black,),
                 ),
               ],
             ),
@@ -69,12 +56,52 @@ class ItemGradeWidget extends ConsumerWidget {
                 IconButton(
                   icon: Icon(Icons.info, color: Colors.grey, size: 30,),
                   onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Info'),
-                        duration: Duration(seconds: 2),
-                        behavior: SnackBarBehavior.floating,
-                      ),
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Data: $data',
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                                Divider(),
+                                Text(
+                                  'Grade: ${grade.numeroGrade}',
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                                Divider(),
+                                Text(
+                                  'Quantidade Barris: ${grade.totalBarrisDaGrade ?? ''}',
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                                Divider(),
+                                Text(
+                                  'Volume hl: ${grade.volumeTotalDaGrade ?? ''}',
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                              ],
+                            ),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop(); // Fecha o diálogo
+                              },
+                              child: const Text('Cancelar'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                // Adicione sua lógica aqui para a ação principal
+                                Navigator.of(context).pop(); // Fecha o diálogo após a ação
+                              },
+                              child: const Text('OK'),
+                            ),
+                          ],
+                        );
+                      },
                     );
                   },
                 ),
