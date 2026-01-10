@@ -21,79 +21,97 @@ class ItemGradeWidget extends StatelessWidget {
     return Card(
       color: AppColors.lightSurface,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-        child: Row(
+        padding: EdgeInsets.only(
+          left: 12, top: 10, right: 12, bottom: 2
+        ),
+        child: Column(
           children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
               children: [
-                // Text(
-                //   produto,
-                //   style: TextStyle(
-                //     color: Colors.black,
-                //     fontSize: 18,
-                //     fontWeight: FontWeight.w600
-                //   ),
-                // ),
+                Text(
+                  'Data: ',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
                 Text(
                   data,
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                ),
+
+                Spacer(),
+                Text(
+                  'Grade: ',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
                 Text(
                   grade,
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
                 ),
               ],
             ),
 
-            Spacer(),
-            IconButton(
-              icon: Icon(Icons.info, color: Colors.grey,),
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Info'),
-                    duration: Duration(seconds: 2),
-                    behavior: SnackBarBehavior.floating,
-                  ),
-                );
-              },
-            ),
+            SizedBox(height: 2),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.info, color: Colors.grey, size: 30,),
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Info'),
+                        duration: Duration(seconds: 2),
+                        behavior: SnackBarBehavior.floating,
+                      ),
+                    );
+                  },
+                ),
 
-            SizedBox(width: 4,),
-            IconButton(
-              icon: Icon(Icons.delete, color: Colors.red, size: 30,),
-              onPressed: _deletarGrade,
-            ),
+                IconButton(
+                  icon: Icon(Icons.delete, color: Colors.red, size: 30,),
+                  onPressed: _deletarGrade,
+                ),
 
-            SizedBox(width: 4,),
-            IconButton(
-              icon: Icon(Icons.edit, color: Colors.blue, size: 30,),
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Edit'),
-                    duration: Duration(seconds: 2),
-                    behavior: SnackBarBehavior.floating,
-                  ),
-                );
-              },
-            ),
+                IconButton(
+                  icon: Icon(Icons.edit, color: Colors.blue, size: 30,),
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Edit'),
+                        duration: Duration(seconds: 2),
+                        behavior: SnackBarBehavior.floating,
+                      ),
+                    );
+                  },
+                ),
 
-            SizedBox(width: 4,),
-            IconButton(
-              icon: Icon(Icons.share, color: Colors.purple, size: 30,),
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Share'),
-                    duration: Duration(seconds: 2),
-                    behavior: SnackBarBehavior.floating,
-                  ),
-                );
-              },
-            ),
+                IconButton(
+                  icon: Icon(Icons.share, color: Colors.purple, size: 30,),
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Share'),
+                        duration: Duration(seconds: 2),
+                        behavior: SnackBarBehavior.floating,
+                      ),
+                    );
+                  },
+                ),
+              ],
+            )
           ],
         )
       ),
@@ -101,11 +119,10 @@ class ItemGradeWidget extends StatelessWidget {
   }
 }
 
-// @Preview(name: 'Card Produção')
-// Widget myPreview() {
-//   return ItemGradeWidget(
-//     produto: 'Itaipava 50L',
-//     data: 'Data: 01/01/2026',
-//     grade: 'Grade: 01',
-//   );
-// }
+@Preview(name: 'Card Produção')
+Widget myPreview() {
+  return ItemGradeWidget(
+    data: 'Data: 01/01/2026',
+    grade: 'Grade: 01',
+  );
+}

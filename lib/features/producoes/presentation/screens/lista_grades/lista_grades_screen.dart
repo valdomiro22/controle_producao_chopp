@@ -77,8 +77,8 @@ class _ListaGradesScreenState extends ConsumerState<ListaGradesScreen> {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: ItemGradeWidget(
-                      grade: 'Grade: $numeroGrade',
-                      data: 'Data: $data',
+                      grade: numeroGrade,
+                      data: data,
                     ),
                   );
                 },
