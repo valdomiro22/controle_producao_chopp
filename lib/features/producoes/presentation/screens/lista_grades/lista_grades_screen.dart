@@ -66,19 +66,14 @@ class _ListaGradesScreenState extends ConsumerState<ListaGradesScreen> {
                 );
               }
 
-              // ← Adicione isso aqui (caso com itens na lista)
               return ListView.builder(
                 physics: const AlwaysScrollableScrollPhysics(),
                 itemCount: lista.length,
                 itemBuilder: (_, index) {
-                  final numeroGrade = lista[index].numeroGrade.toString();
-                  final data = StringUtil.formatarData(lista[index].data.toIso8601String()) ?? '';
-
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: ItemGradeWidget(
-                      grade: numeroGrade,
-                      data: data,
+                      grade: lista[index]
                     ),
                   );
                 },

@@ -1,3 +1,5 @@
+import 'dart:developer' as dev;
+
 import 'package:dartz/dartz.dart';
 import 'package:gestao_producao_chopp/core/error/exceptions.dart';
 import 'package:gestao_producao_chopp/core/error/failure.dart';
@@ -31,6 +33,8 @@ class GradeRepositoryImpl implements GradeRepository {
 
   @override
   Future<Either<Failure, Unit>> deleteGrade(String id) async {
+
+    dev.log('Deletar grade');
     try {
       await _datasource.deleteGrade(id);
       return const Right(unit);

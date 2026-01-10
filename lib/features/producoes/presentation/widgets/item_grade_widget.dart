@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
+import 'package:gestao_producao_chopp/core/utils/string_util.dart';
+import 'package:gestao_producao_chopp/features/producoes/domain/entities/grade_entity.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_grades/lista_grades_notifier.dart';
 
-class ItemGradeWidget extends StatelessWidget {
-  // final String produto;
-  final String data;
-  final String grade;
+class ItemGradeWidget extends ConsumerWidget {
+  final GradeEntity grade;
 
   const ItemGradeWidget({
     super.key,
-    // required this.produto,
-    required this.data,
     required this.grade,
   });
 
-  void _deletarGrade() {}
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final data = StringUtil.formatarData(grade.data.toIso8601String());
     return Card(
       color: AppColors.lightSurface,
       child: Padding(
@@ -37,7 +36,7 @@ class ItemGradeWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  data,
+                  data ?? '',
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.black,
@@ -54,7 +53,7 @@ class ItemGradeWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  grade,
+                  grade.numeroGrade.toString(),
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.black,
@@ -82,7 +81,12 @@ class ItemGradeWidget extends StatelessWidget {
 
                 IconButton(
                   icon: Icon(Icons.delete, color: Colors.red, size: 30,),
-                  onPressed: _deletarGrade,
+                  onPressed: () {
+                    debugPrint('Deletar grade');
+                    if (grade.id != null) {
+                      ref.read(listaGradesNotifierProvider.notifier).deletarGrade(grade.id!);
+                    }
+                  },
                 ),
 
                 IconButton(
@@ -122,7 +126,6 @@ class ItemGradeWidget extends StatelessWidget {
 @Preview(name: 'Card Produção')
 Widget myPreview() {
   return ItemGradeWidget(
-    data: 'Data: 01/01/2026',
-    grade: 'Grade: 01',
+    grade: GradeEntity(numeroGrade: 3, data: DateTime.now())
   );
 }

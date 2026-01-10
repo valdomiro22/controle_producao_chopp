@@ -20,4 +20,19 @@ class ListaGradesNotifier extends _$ListaGradesNotifier {
           (lista) => ListaGradesState.sucessoConDados(lista),
     );
   }
+
+  Future<void> deletarGrade(String id) async {
+    state = const ListaGradesState.carregando();
+
+    final useCase = ref.read(deleteGradeUseCaseProvider);
+    final result = await useCase(id);
+
+    state = result.fold(
+          (failure) => ListaGradesState.erro(failure),
+          (_) {
+            ref.read(listaGradesNotifierProvider.notifier).listarGrades();
+            return ListaGradesState.sucesso();
+          },
+    );
+  }
 }
