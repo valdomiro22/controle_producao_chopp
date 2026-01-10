@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'lista_grades_notifier.dart';
+part of 'editar_grade_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$listaGradesNotifierHash() =>
-    r'8292df17a3afa24599766a8361e6175fc0bd64a4';
+String _$editarGradeNotifierHash() =>
+    r'e27f6e9387d0a763080e6008b2e74df4e913f736';
 
-/// See also [ListaGradesNotifier].
-@ProviderFor(ListaGradesNotifier)
-final listaGradesNotifierProvider =
-    AutoDisposeNotifierProvider<ListaGradesNotifier, ListaGradesState>.internal(
-      ListaGradesNotifier.new,
-      name: r'listaGradesNotifierProvider',
+/// See also [EditarGradeNotifier].
+@ProviderFor(EditarGradeNotifier)
+final editarGradeNotifierProvider =
+    AutoDisposeNotifierProvider<EditarGradeNotifier, ListaGradesState>.internal(
+      EditarGradeNotifier.new,
+      name: r'editarGradeNotifierProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
           ? null
-          : _$listaGradesNotifierHash,
+          : _$editarGradeNotifierHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$ListaGradesNotifier = AutoDisposeNotifier<ListaGradesState>;
+typedef _$EditarGradeNotifier = AutoDisposeNotifier<ListaGradesState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

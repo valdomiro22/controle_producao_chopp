@@ -5,6 +5,8 @@ import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
 import 'package:gestao_producao_chopp/core/utils/string_util.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/grade_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_grades/lista_grades_notifier.dart';
+import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
+import 'package:go_router/go_router.dart';
 
 class ItemGradeWidget extends ConsumerWidget {
   final GradeEntity grade;
@@ -119,13 +121,7 @@ class ItemGradeWidget extends ConsumerWidget {
                 IconButton(
                   icon: Icon(Icons.edit, color: Colors.blue, size: 30,),
                   onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Edit'),
-                        duration: Duration(seconds: 2),
-                        behavior: SnackBarBehavior.floating,
-                      ),
-                    );
+                    context.push(AppRoutesNames.editarGrade, extra: grade);
                   },
                 ),
 

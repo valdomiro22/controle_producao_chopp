@@ -10,4 +10,5 @@ class AppRoutesNames {
   static const String deletarConta = '/deletar-conta';
   static const String listaGrades = '/lista-grades';
   static const String adicionarGrade = '/adicionar-grade';
+  static const String editarGrade = '/editar-grade';
 }
