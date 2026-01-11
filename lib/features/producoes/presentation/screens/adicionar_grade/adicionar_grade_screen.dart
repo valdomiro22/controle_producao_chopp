@@ -41,6 +41,9 @@ class _AdicionarGradeScreenState extends ConsumerState<AdicionarGradeScreen> {
     });
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Adicionar Grade'),
+      ),
       body: Container(
         padding: EdgeInsets.all(16),
         width: double.infinity,

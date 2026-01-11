@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gestao_producao_chopp/core/common/widgets/app_drawer.dart';
 import 'package:gestao_producao_chopp/core/constants/app_dimens.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_grades/lista_grades_notifier.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
@@ -30,9 +31,10 @@ class _ListaGradesScreenState extends ConsumerState<ListaGradesScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('Lista de Grades')),
-        automaticallyImplyLeading: false,
+        title: const Text('Lista de Grades'),
+        // automaticallyImplyLeading: false,
       ),
+      drawer: AppDrawer(),
       body: Container(
         padding: EdgeInsets.all(AppDimens.spacingG),
         child: RefreshIndicator(

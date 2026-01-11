@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gestao_producao_chopp/core/common/widgets/app_drawer.dart';
 import 'package:gestao_producao_chopp/core/common/widgets/elevated_button_centralizado.dart';
 import 'package:gestao_producao_chopp/core/constants/app_dimens.dart';
 import 'package:gestao_producao_chopp/core/di/usecases/auth_use_cases_provider.dart';
@@ -34,17 +35,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     });
     
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
+      ),
+      drawer: AppDrawer(),
       body: Container(
         padding: EdgeInsets.all(AppDimens.spacingG),
         child: Column(
           children: [
             const SizedBox(height: 50),
-            Text(
-              'Home',
-              style: TextStyle(fontSize: 32),
-            ),
-            const SizedBox(height: 50),
-
             ElevatedButtonCentralizado(
               texto: 'Deslogar',
               clique: () {
