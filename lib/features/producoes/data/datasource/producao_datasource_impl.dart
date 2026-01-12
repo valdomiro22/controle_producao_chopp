@@ -11,12 +11,10 @@ class ProducaoDatasourceImpl implements ProducaoDatasource {
   final _producaoCollection = 'producoes';
   final _gradeCollection = 'grades';
 
-
   @override
-  Future<void> insertProducao(ProducaoModel producao) async {
+  Future<void> insertProducao({required ProducaoModel producao, required String gradeId}) async {
     try {
       final producaoId = producao.id!;
-      final gradeId = producao.gradeId;
 
       await _firestore
           .collection(_gradeCollection)

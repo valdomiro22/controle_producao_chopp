@@ -20,7 +20,7 @@ class GradeRepositoryImpl implements GradeRepository {
     try {
       final gradeModel = _mapper.toModel(grade);
 
-      // TODO - verificar o id da grade antes de dalvar.
+      if (gradeModel.id == null) return const Left(UnexpectedFailure('Id da grade não pode ser null'));
 
       await _datasource.insertGrade(gradeModel);
       return const Right(unit);
@@ -37,8 +37,6 @@ class GradeRepositoryImpl implements GradeRepository {
 
   @override
   Future<Either<Failure, Unit>> deleteGrade(String id) async {
-
-    dev.log('Deletar grade');
     try {
       await _datasource.deleteGrade(id);
       return const Right(unit);
@@ -66,7 +64,7 @@ class GradeRepositoryImpl implements GradeRepository {
     } on CacheException catch (e) {
       return Left(CacheFailure(e.message));
     } catch (e) {
-      return Left(UnexpectedFailure('Erro inesperado ao buscar todas as producoes: $e'));
+      return Left(UnexpectedFailure('Erro inesperado ao buscar todas as grade: $e'));
     }
   }
 
