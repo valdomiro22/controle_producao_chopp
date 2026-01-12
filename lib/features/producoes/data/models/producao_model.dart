@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../../grades/domain/enums/barril.dart';
 import '../../../grades/domain/enums/produto.dart';
-import '../enums/status_producao.dart';
+import '../../domain/enums/status_producao.dart';
 
-class ProducaoEntity {
+class ProducaoModel {
   final String? id;
   final String gradeId;
   final StatusProducao status;
@@ -15,7 +17,7 @@ class ProducaoEntity {
   final DateTime iniciadaProducao;
   final DateTime? finalizadaProducao;
 
-  ProducaoEntity({
+  ProducaoModel({
     this.id,
     required this.gradeId,
     required this.status,
@@ -29,7 +31,39 @@ class ProducaoEntity {
     this.finalizadaProducao,
   });
 
-  ProducaoEntity copyWith({
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'gradeId': gradeId,
+      'status': status.id,
+      'tipoBarril': tipoBarril.id,
+      'produto': produto.id,
+      'quantidade': quantidadeProgramada,
+      'qtProduzida': quantidadeProduzida,
+      'qtPendente': quantidadePendente,
+      'vlNecessarioHl': volumeNecessarioHl,
+      'iniciadaProducao': iniciadaProducao,
+      'finalizadaProducao': finalizadaProducao,
+    };
+  }
+
+  factory ProducaoModel.fromMap(Map<String, dynamic> map) {
+    return ProducaoModel(
+      id: map['id'] as String?,
+      gradeId: map['gradeId'] as String,
+      status: StatusProducao.fronId(map['status'] as int),
+      tipoBarril: Barril.fronId(map['tipoBarril'] as int),
+      produto: Produto.fronId(map['produto'] as int),
+      quantidadeProgramada: map['quantidade'] as int,
+      quantidadeProduzida: map['qtProduzida'] as int,
+      quantidadePendente: map['qtPendente'] as int,
+      volumeNecessarioHl: map['vlNecessarioHl'] as double,
+      iniciadaProducao: (map['iniciadaProducao'] as Timestamp).toDate(),
+      finalizadaProducao: (map['finalizadaProducao'] as Timestamp).toDate(),
+    );
+  }
+
+  ProducaoModel copyWith({
     String? id,
     String? gradeId,
     StatusProducao? status,
@@ -42,7 +76,7 @@ class ProducaoEntity {
     DateTime? iniciadaProducao,
     DateTime? finalizadaProducao,
   }) {
-    return ProducaoEntity(
+    return ProducaoModel(
       id: id ?? this.id,
       gradeId: gradeId ?? this.gradeId,
       status: status ?? this.status,
@@ -55,22 +89,5 @@ class ProducaoEntity {
       iniciadaProducao: iniciadaProducao ?? this.iniciadaProducao,
       finalizadaProducao: finalizadaProducao ?? this.finalizadaProducao,
     );
-  }
-
-  @override
-  String toString() {
-    return 'ProducaoEntity('
-      'id: $id, '
-      'gradeId: $gradeId, '
-      'status: $status, '
-      'tipoBarril: $tipoBarril, '
-      'produto: $produto, '
-      'quantidadeProgramada: $quantidadeProgramada, '
-      'quantidadeProduzida: $quantidadeProduzida, '
-      'quantidadePendente: $quantidadePendente, '
-      'volumeNecessarioHl: $volumeNecessarioHl, '
-      'iniciadaProducao: $iniciadaProducao, '
-      'finalizadaProducao: $finalizadaProducao'
-      ')';
   }
 }

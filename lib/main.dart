@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/navigate/app_navigation.dart';
 import 'package:intl/date_symbol_data_local.dart' as date_local_data;
 
-import 'features/auth/presentation/screens/cadastro/cadastro_screen.dart';
 import 'firebase_options.dart';
 
 void main() async {

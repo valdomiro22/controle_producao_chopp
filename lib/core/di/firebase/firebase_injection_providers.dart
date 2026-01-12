@@ -1,17 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gestao_producao_chopp/features/producoes/data/datasources/grade_datasource.dart';
-import 'package:gestao_producao_chopp/features/producoes/data/datasources/grade_datasource_impl.dart';
-import 'package:gestao_producao_chopp/features/producoes/data/mapper/grade_mapper.dart';
-import 'package:gestao_producao_chopp/features/producoes/data/repositories/grade_repository_impl.dart';
-import 'package:gestao_producao_chopp/features/producoes/domain/repositories/grade_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../features/auth/data/datasources/remote/auth_remote_datasource.dart';
 import '../../../features/auth/data/datasources/remote/auth_remote_datasource_impl.dart';
 import '../../../features/auth/data/repositories/auth_repository_impl.dart';
 import '../../../features/auth/domain/repositories/auth_repository.dart';
+import '../../../features/grades/data/datasources/grade_datasource.dart';
+import '../../../features/grades/data/datasources/grade_datasource_impl.dart';
+import '../../../features/grades/data/mapper/grade_mapper.dart';
+import '../../../features/grades/data/repositories/grade_repository_impl.dart';
+import '../../../features/grades/domain/repositories/grade_repository.dart';
 
 part 'firebase_injection_providers.g.dart';
 

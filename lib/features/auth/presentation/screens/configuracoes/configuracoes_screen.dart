@@ -6,7 +6,6 @@ import 'package:gestao_producao_chopp/features/auth/presentation/widgets/CustomB
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/constants/app_strings.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../widgets/foto_perfil_wieget.dart';
 

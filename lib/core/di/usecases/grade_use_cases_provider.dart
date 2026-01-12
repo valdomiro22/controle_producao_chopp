@@ -1,12 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/di/firebase/firebase_injection_providers.dart';
-import 'package:gestao_producao_chopp/features/producoes/domain/usecases/grade_usecases/get_all_grades_use_case.dart';
-import 'package:gestao_producao_chopp/features/producoes/domain/usecases/grade_usecases/insert_grade_use_case.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../features/producoes/domain/usecases/grade_usecases/delete_grade_use_case.dart';
-import '../../../features/producoes/domain/usecases/grade_usecases/get_grade_use_case.dart';
-import '../../../features/producoes/domain/usecases/grade_usecases/update_grade_use_case.dart';
+import '../../../features/grades/domain/usecases/delete_grade_use_case.dart';
+import '../../../features/grades/domain/usecases/get_all_grades_use_case.dart';
+import '../../../features/grades/domain/usecases/get_grade_use_case.dart';
+import '../../../features/grades/domain/usecases/insert_grade_use_case.dart';
+import '../../../features/grades/domain/usecases/update_grade_use_case.dart';
 
 part 'grade_use_cases_provider.g.dart';
 
