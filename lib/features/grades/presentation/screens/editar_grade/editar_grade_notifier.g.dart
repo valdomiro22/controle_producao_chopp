@@ -7,7 +7,7 @@ part of 'editar_grade_notifier.dart';
 // **************************************************************************
 
 String _$editarGradeNotifierHash() =>
-    r'e27f6e9387d0a763080e6008b2e74df4e913f736';
+    r'be89f34b9679e9a80427ca86c19a54851e0e5ddb';
 
 /// See also [EditarGradeNotifier].
 @ProviderFor(EditarGradeNotifier)

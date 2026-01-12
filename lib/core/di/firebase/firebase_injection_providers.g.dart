@@ -77,6 +77,25 @@ final gradeDatasourceProvider = AutoDisposeProvider<GradeDatasource>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef GradeDatasourceRef = AutoDisposeProviderRef<GradeDatasource>;
+String _$producaoDatasourceHash() =>
+    r'e67a92cff69543db527f9592d51483df86a691cf';
+
+/// See also [producaoDatasource].
+@ProviderFor(producaoDatasource)
+final producaoDatasourceProvider =
+    AutoDisposeProvider<ProducaoDatasource>.internal(
+      producaoDatasource,
+      name: r'producaoDatasourceProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$producaoDatasourceHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef ProducaoDatasourceRef = AutoDisposeProviderRef<ProducaoDatasource>;
 String _$authRepositoryHash() => r'85782c17a7a45c26ba968dea12877e2577363791';
 
 /// See also [authRepository].
@@ -111,5 +130,24 @@ final gradeRepositoryProvider = AutoDisposeProvider<GradeRepository>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef GradeRepositoryRef = AutoDisposeProviderRef<GradeRepository>;
+String _$producaoRepositoryHash() =>
+    r'705f74728e570a602708d96505f5e3920a8a435c';
+
+/// See also [producaoRepository].
+@ProviderFor(producaoRepository)
+final producaoRepositoryProvider =
+    AutoDisposeProvider<ProducaoRepository>.internal(
+      producaoRepository,
+      name: r'producaoRepositoryProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$producaoRepositoryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef ProducaoRepositoryRef = AutoDisposeProviderRef<ProducaoRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

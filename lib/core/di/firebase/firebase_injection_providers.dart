@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gestao_producao_chopp/features/producoes/data/datasource/producao_datasource.dart';
+import 'package:gestao_producao_chopp/features/producoes/data/datasource/producao_datasource_impl.dart';
+import 'package:gestao_producao_chopp/features/producoes/data/repository/producao_repository_impl.dart';
+import 'package:gestao_producao_chopp/features/producoes/domain/repository/producao_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../features/auth/data/datasources/remote/auth_remote_datasource.dart';
@@ -41,6 +45,12 @@ GradeDatasource gradeDatasource(Ref ref) {
   return GradeDatasourceImpl(firestore);
 }
 
+@riverpod
+ProducaoDatasource producaoDatasource(Ref ref) {
+  final firestore = ref.watch(firebaseFirestoreProvider);
+  return ProducaoDatasourceImpl(firestore);
+}
+
 // repository ------------------------------------------------------------------
 @riverpod
 AuthRepository authRepository(Ref ref) {
@@ -53,5 +63,11 @@ GradeRepository gradeRepository(Ref ref) {
   final dataSource = ref.watch(gradeDatasourceProvider);
   final mapper = GradeMapper();
   return GradeRepositoryImpl(dataSource, mapper);
+}
+
+@riverpod
+ProducaoRepository producaoRepository(Ref ref) {
+  final dataSource = ref.watch(producaoDatasourceProvider);
+  return ProducaoRepositoryImpl(dataSource);
 }
 
