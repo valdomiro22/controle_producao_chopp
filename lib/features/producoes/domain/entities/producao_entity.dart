@@ -9,10 +9,10 @@ class ProducaoEntity {
   final Barril tipoBarril;
   final Produto produto;
   final int quantidadeProgramada;
-  final int quantidadeProduzida;
-  final int quantidadePendente;
-  final double volumeNecessarioHl;
-  final DateTime iniciadaProducao;
+  final int? quantidadeProduzida;
+  final int? quantidadePendente;
+  final double? volumeNecessarioHl;
+  final DateTime? dataCriacao;
   final DateTime? finalizadaProducao;
 
   ProducaoEntity({
@@ -25,7 +25,7 @@ class ProducaoEntity {
     this.quantidadeProduzida = 0,
     this.quantidadePendente = 0,
     required this.volumeNecessarioHl,
-    required this.iniciadaProducao,
+    required this.dataCriacao,
     this.finalizadaProducao,
   });
 
@@ -52,7 +52,7 @@ class ProducaoEntity {
       quantidadeProduzida: quantidadeProduzida ?? this.quantidadeProduzida,
       quantidadePendente: quantidadePendente ?? this.quantidadePendente,
       volumeNecessarioHl: volumeNecessarioHl ?? this.volumeNecessarioHl,
-      iniciadaProducao: iniciadaProducao ?? this.iniciadaProducao,
+      dataCriacao: iniciadaProducao ?? this.dataCriacao,
       finalizadaProducao: finalizadaProducao ?? this.finalizadaProducao,
     );
   }
@@ -69,7 +69,7 @@ class ProducaoEntity {
       'quantidadeProduzida: $quantidadeProduzida, '
       'quantidadePendente: $quantidadePendente, '
       'volumeNecessarioHl: $volumeNecessarioHl, '
-      'iniciadaProducao: $iniciadaProducao, '
+      'iniciadaProducao: $dataCriacao, '
       'finalizadaProducao: $finalizadaProducao'
       ')';
   }

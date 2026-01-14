@@ -11,10 +11,10 @@ class ProducaoModel {
   final Barril tipoBarril;
   final Produto produto;
   final int quantidadeProgramada;
-  final int quantidadeProduzida;
-  final int quantidadePendente;
-  final double volumeNecessarioHl;
-  final DateTime iniciadaProducao;
+  final int? quantidadeProduzida;
+  final int? quantidadePendente;
+  final double? volumeNecessarioHl;
+  final DateTime? dataCriacao;
   final DateTime? finalizadaProducao;
 
   ProducaoModel({
@@ -27,7 +27,7 @@ class ProducaoModel {
     this.quantidadeProduzida = 0,
     this.quantidadePendente = 0,
     required this.volumeNecessarioHl,
-    required this.iniciadaProducao,
+    required this.dataCriacao,
     this.finalizadaProducao,
   });
 
@@ -42,7 +42,7 @@ class ProducaoModel {
       'qtProduzida': quantidadeProduzida,
       'qtPendente': quantidadePendente,
       'vlNecessarioHl': volumeNecessarioHl,
-      'iniciadaProducao': iniciadaProducao,
+      'dataCriacao': dataCriacao,
       'finalizadaProducao': finalizadaProducao,
     };
   }
@@ -58,7 +58,7 @@ class ProducaoModel {
       quantidadeProduzida: map['qtProduzida'] as int,
       quantidadePendente: map['qtPendente'] as int,
       volumeNecessarioHl: map['vlNecessarioHl'] as double,
-      iniciadaProducao: (map['iniciadaProducao'] as Timestamp).toDate(),
+      dataCriacao: (map['dataCriacao'] as Timestamp).toDate(),
       finalizadaProducao: (map['finalizadaProducao'] as Timestamp).toDate(),
     );
   }
@@ -73,7 +73,7 @@ class ProducaoModel {
     int? quantidadeProduzida,
     int? quantidadePendente,
     double? volumeNecessarioHl,
-    DateTime? iniciadaProducao,
+    DateTime? dataCriacao,
     DateTime? finalizadaProducao,
   }) {
     return ProducaoModel(
@@ -86,7 +86,7 @@ class ProducaoModel {
       quantidadeProduzida: quantidadeProduzida ?? this.quantidadeProduzida,
       quantidadePendente: quantidadePendente ?? this.quantidadePendente,
       volumeNecessarioHl: volumeNecessarioHl ?? this.volumeNecessarioHl,
-      iniciadaProducao: iniciadaProducao ?? this.iniciadaProducao,
+      dataCriacao: dataCriacao ?? this.dataCriacao,
       finalizadaProducao: finalizadaProducao ?? this.finalizadaProducao,
     );
   }

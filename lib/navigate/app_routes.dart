@@ -13,6 +13,7 @@ import '../features/grades/presentation/screens/adicionar_grade/adicionar_grade_
 import '../features/grades/presentation/screens/editar_grade/editar_grade_screen.dart';
 import '../features/grades/presentation/screens/home/home_screen.dart';
 import '../features/grades/presentation/screens/lista_grades/lista_grades_screen.dart';
+import '../features/producoes/presentation/screens/adicionar_producao/adicionar_producao_screen.dart';
 import 'app_routes_names.dart';
 
 class AppRoutes {
@@ -37,6 +38,14 @@ class AppRoutes {
     GoRoute(path: AppRoutesNames.deletarConta, builder: (context, state) => DeletarContaScreen()),
 
     GoRoute(path: AppRoutesNames.listaGrades, builder: (context, state) => ListaGradesScreen()),
+
+    // GoRoute(path: AppRoutesNames.adicionarProducao, builder: (context, state) {
+    //   final grade = state.extra as GradeEntity?;
+    //   if (grade == null) {
+    //     return const Scaffold(body: Center(child: Text('Item não encontrado')));
+    //   }
+    //   return AdicionarProducaoScreen(grade: grade);
+    // }),
 
     GoRoute(
       path: AppRoutesNames.adicionarGrade,

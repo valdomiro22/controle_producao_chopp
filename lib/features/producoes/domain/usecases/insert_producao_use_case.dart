@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:gestao_producao_chopp/core/error/failure.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/repository/producao_repository.dart';
+import 'package:uuid/uuid.dart';
 
 import '../entities/producao_entity.dart';
 
@@ -13,6 +14,8 @@ class InsertProducaoUseCase {
     required ProducaoEntity producao,
     required String gradeId,
   }) async {
-    return await _repository.insertProducao(producao: producao, gradeId: gradeId);
+    final id = Uuid().v4();
+    final producaoComId = producao.copyWith(id: id);
+    return await _repository.insertProducao(producao: producaoComId, gradeId: gradeId);
   }
 }

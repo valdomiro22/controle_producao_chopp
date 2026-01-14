@@ -16,7 +16,6 @@ class AdicionarGradeScreen extends ConsumerStatefulWidget {
 class _AdicionarGradeScreenState extends ConsumerState<AdicionarGradeScreen> {
   final _numeroController = TextEditingController();
   DateTime? _dataSelecionada;
-  Barril? _barrilSelecionado;
 
   @override
   void dispose() {

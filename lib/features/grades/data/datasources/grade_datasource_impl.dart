@@ -11,7 +11,7 @@ class GradeDatasourceImpl implements GradeDatasource {
 
   GradeDatasourceImpl(this._firestore);
 
-  final _gradeCollection = 'producoes';
+  final _gradeCollection = 'grades';
 
   @override
   Future<void> insertGrade(GradeModel grade) async {

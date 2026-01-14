@@ -60,7 +60,7 @@ class AppDrawer extends ConsumerWidget {
           ),
           ListTile(
             leading: const Icon(Icons.stacked_bar_chart_rounded, color: AppColors.primaryRed),
-            title: const Text('Adicionar Produção'),
+            title: const Text('Adicionar Grade'),
             onTap: () {
               context.pop();
               context.push(AppRoutesNames.adicionarGrade);
@@ -68,7 +68,7 @@ class AppDrawer extends ConsumerWidget {
           ),
           ListTile(
             leading: const Icon(Icons.list, color: AppColors.primaryRed),
-            title: const Text('Lista de Produções'),
+            title: const Text('Lista de Grades'),
             onTap: () {
               context.pop();
               context.push(AppRoutesNames.listaGrades);

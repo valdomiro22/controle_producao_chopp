@@ -11,4 +11,5 @@ class AppRoutesNames {
   static const String listaGrades = '/lista-producoes';
   static const String adicionarGrade = '/adicionar-grade';
   static const String editarGrade = '/editar-grade';
+  static const String adicionarProducao = '/adicionar-producao';
 }

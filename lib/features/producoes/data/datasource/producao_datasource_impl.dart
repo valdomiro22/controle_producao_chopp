@@ -8,8 +8,8 @@ class ProducaoDatasourceImpl implements ProducaoDatasource {
 
   ProducaoDatasourceImpl(this._firestore);
 
-  final _producaoCollection = 'producoes';
-  final _gradeCollection = 'grades';
+  final _gradesComProducoes = 'grades_com_producoes';
+  final _listaProducoes = 'producoes';
 
   @override
   Future<void> insertProducao({required ProducaoModel producao, required String gradeId}) async {
@@ -17,9 +17,9 @@ class ProducaoDatasourceImpl implements ProducaoDatasource {
       final producaoId = producao.id!;
 
       await _firestore
-          .collection(_gradeCollection)
+          .collection(_gradesComProducoes)
           .doc(gradeId)
-          .collection(_producaoCollection)
+          .collection(_listaProducoes)
           .doc(producaoId)
           .set(producao.toMap());
 
@@ -52,9 +52,9 @@ class ProducaoDatasourceImpl implements ProducaoDatasource {
   Future<void> deleteProducao({required String gradeId, required String producaoId}) async {
     try {
       await _firestore
-          .collection(_gradeCollection)
+          .collection(_gradesComProducoes)
           .doc(gradeId)
-          .collection(_producaoCollection)
+          .collection(_listaProducoes)
           .doc(producaoId)
           .delete();
 
@@ -83,9 +83,9 @@ class ProducaoDatasourceImpl implements ProducaoDatasource {
   Future<List<ProducaoModel>> getAllProducoesOfGrade(String gradeId) async {
     try {
       final snapshot = await _firestore
-          .collection(_gradeCollection)
+          .collection(_gradesComProducoes)
           .doc(gradeId)
-          .collection(_producaoCollection)
+          .collection(_listaProducoes)
           .get();
 
       if (snapshot.docs.isEmpty) {
@@ -121,9 +121,9 @@ class ProducaoDatasourceImpl implements ProducaoDatasource {
   Future<ProducaoModel?> getProducao({required String gradeId, required String producaoId}) async {
     try {
       final snapshot = await _firestore
-          .collection(_gradeCollection)
+          .collection(_gradesComProducoes)
           .doc(gradeId)
-          .collection(_producaoCollection)
+          .collection(_listaProducoes)
           .doc(producaoId)
           .get();
 
@@ -160,9 +160,9 @@ class ProducaoDatasourceImpl implements ProducaoDatasource {
   }) async {
     try {
       await _firestore
-          .collection(_gradeCollection)
+          .collection(_gradesComProducoes)
           .doc(gradeId)
-          .collection(_producaoCollection)
+          .collection(_listaProducoes)
           .doc(producaoId)
           .set(producao.toMap(), SetOptions(merge: true));
 

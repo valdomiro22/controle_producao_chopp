@@ -74,8 +74,13 @@ class _ListaGradesScreenState extends ConsumerState<ListaGradesScreen> {
                 itemBuilder: (_, index) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 8),
-                    child: ItemGradeWidget(
-                      grade: lista[index]
+                    child: GestureDetector(
+                      onTap: () {
+                        context.push(AppRoutesNames.adicionarProducao, extra: lista[index]);
+                      },
+                      child: ItemGradeWidget(
+                          grade: lista[index]
+                      ),
                     ),
                   );
                 },
