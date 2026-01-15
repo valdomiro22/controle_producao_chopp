@@ -7,7 +7,7 @@ part of 'form_adicionar_producao_notifier.dart';
 // **************************************************************************
 
 String _$formAdicionarProducaoNotifierHash() =>
-    r'ca0c972cea340a614d0243e1fac52e150a72e3e8';
+    r'802ab8b9a6ce104ac915be97f28e6b011914d0f4';
 
 /// See also [FormAdicionarProducaoNotifier].
 @ProviderFor(FormAdicionarProducaoNotifier)

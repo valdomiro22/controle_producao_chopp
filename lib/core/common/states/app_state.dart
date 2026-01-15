@@ -1,32 +1,32 @@
 import '../../error/failure.dart';
 
-class ProducaoState<T> {
+class AppState<T> {
   final bool carregando;
   final T? dados;
   final List<T>? lista;
   final Failure? erro;
 
-  const ProducaoState._({
+  const AppState._({
     this.carregando = false,
     this.dados,
     this.lista,
     this.erro,
   });
 
-  const ProducaoState.inicial() : this._();
-  const ProducaoState.carregando() : this._(carregando: true);
-  const ProducaoState.sucessoComDados(T dados) : this._(dados: dados);
-  const ProducaoState.sucessoComLista(List<T> lista) : this._(lista: lista);
-  const ProducaoState.sucesso() : this._();
-  const ProducaoState.erro(Failure failure) : this._(erro: failure);
+  const AppState.inicial() : this._();
+  const AppState.carregando() : this._(carregando: true);
+  const AppState.sucessoComDados(T dados) : this._(dados: dados);
+  const AppState.sucessoComLista(List<T> lista) : this._(lista: lista);
+  const AppState.sucesso() : this._();
+  const AppState.erro(Failure failure) : this._(erro: failure);
 
-  ProducaoState<T> copyWith({
+  AppState<T> copyWith({
     bool? carregando,
     T? dados,
     List<T>? lista,
     Failure? erro,
   }) {
-    return ProducaoState._(
+    return AppState._(
       carregando: carregando ?? this.carregando,
       dados: dados ?? this.dados,
       lista: lista ?? this.lista,

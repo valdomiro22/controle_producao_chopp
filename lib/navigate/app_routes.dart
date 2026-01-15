@@ -39,13 +39,13 @@ class AppRoutes {
 
     GoRoute(path: AppRoutesNames.listaGrades, builder: (context, state) => ListaGradesScreen()),
 
-    // GoRoute(path: AppRoutesNames.adicionarProducao, builder: (context, state) {
-    //   final grade = state.extra as GradeEntity?;
-    //   if (grade == null) {
-    //     return const Scaffold(body: Center(child: Text('Item não encontrado')));
-    //   }
-    //   return AdicionarProducaoScreen(grade: grade);
-    // }),
+    GoRoute(path: AppRoutesNames.adicionarProducao, builder: (context, state) {
+      final grade = state.extra as GradeEntity?;
+      if (grade == null) {
+        return const Scaffold(body: Center(child: Text('Item não encontrado')));
+      }
+      return AdicionarProducaoScreen(grade: grade);
+    }),
 
     GoRoute(
       path: AppRoutesNames.adicionarGrade,
