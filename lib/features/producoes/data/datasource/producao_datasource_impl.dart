@@ -113,7 +113,7 @@ class ProducaoDatasourceImpl implements ProducaoDatasource {
           throw FirestoreException(e.message ?? 'Erro ao buscar dados: ${e.code}');
       }
     } catch (e) {
-      throw UnexpectedException('Erro inesperado ao buscar produções: ${e.toString()}');
+      throw UnexpectedException('datasource -> Erro inesperado ao buscar produções: ${e.toString()}');
     }
   }
 

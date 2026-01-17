@@ -57,9 +57,9 @@ class ProducaoModel {
       quantidadeProgramada: map['quantidade'] as int,
       quantidadeProduzida: map['qtProduzida'] as int,
       quantidadePendente: map['qtPendente'] as int,
-      volumeNecessarioHl: map['vlNecessarioHl'] as double,
-      dataCriacao: (map['dataCriacao'] as Timestamp).toDate(),
-      finalizadaProducao: (map['finalizadaProducao'] as Timestamp).toDate(),
+      volumeNecessarioHl: (map['vlNecessarioHl'] as num?)?.toDouble() ?? 0.0,
+      dataCriacao: (map['dataCriacao'] as Timestamp?)?.toDate(),
+      finalizadaProducao: (map['finalizadaProducao'] as Timestamp?)?.toDate(),
     );
   }
 

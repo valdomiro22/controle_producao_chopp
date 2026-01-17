@@ -6,6 +6,7 @@ import 'package:gestao_producao_chopp/features/auth/presentation/screens/configu
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/deletar_conta/deletar_conta_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/login/login_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/recuperar_senha/recuperar_senha_screen.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/grades/domain/entities/grade_entity.dart';
@@ -38,6 +39,14 @@ class AppRoutes {
     GoRoute(path: AppRoutesNames.deletarConta, builder: (context, state) => DeletarContaScreen()),
 
     GoRoute(path: AppRoutesNames.listaGrades, builder: (context, state) => ListaGradesScreen()),
+
+    GoRoute(path: AppRoutesNames.listaProducoes, builder: (context, state) {
+      final gradeId = state.extra as String?;
+      if (gradeId == null) {
+        return const Scaffold(body: Center(child: Text('Item não encontrado')));
+      }
+      return ListaProducoesScreen(gradeId: gradeId);
+    }),
 
     GoRoute(path: AppRoutesNames.adicionarProducao, builder: (context, state) {
       final grade = state.extra as GradeEntity?;

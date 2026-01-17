@@ -76,7 +76,8 @@ class _ListaGradesScreenState extends ConsumerState<ListaGradesScreen> {
                     padding: const EdgeInsets.only(bottom: 8),
                     child: GestureDetector(
                       onTap: () {
-                        context.push(AppRoutesNames.adicionarProducao, extra: lista[index]);
+                        // context.push(AppRoutesNames.adicionarProducao, extra: lista[index]);
+                        context.push(AppRoutesNames.listaProducoes, extra: lista[index].id);
                       },
                       child: ItemGradeWidget(
                           grade: lista[index]

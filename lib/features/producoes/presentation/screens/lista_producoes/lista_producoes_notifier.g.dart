@@ -1,31 +1,31 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'form_adicionar_producao_notifier.dart';
+part of 'lista_producoes_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$formAdicionarProducaoNotifierHash() =>
-    r'1827b5acb467e8f0fc8f769e64f4c3245950baf1';
+String _$listaProducoesNotifierHash() =>
+    r'67439da58bb9179e1ef152e2d7d30214fa752c5c';
 
-/// See also [FormAdicionarProducaoNotifier].
-@ProviderFor(FormAdicionarProducaoNotifier)
-final formAdicionarProducaoNotifierProvider =
+/// See also [ListaProducoesNotifier].
+@ProviderFor(ListaProducoesNotifier)
+final listaProducoesNotifierProvider =
     AutoDisposeNotifierProvider<
-      FormAdicionarProducaoNotifier,
-      AdicionarProducaoState
+      ListaProducoesNotifier,
+      AppState<ProducaoEntity>
     >.internal(
-      FormAdicionarProducaoNotifier.new,
-      name: r'formAdicionarProducaoNotifierProvider',
+      ListaProducoesNotifier.new,
+      name: r'listaProducoesNotifierProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
           ? null
-          : _$formAdicionarProducaoNotifierHash,
+          : _$listaProducoesNotifierHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$FormAdicionarProducaoNotifier =
-    AutoDisposeNotifier<AdicionarProducaoState>;
+typedef _$ListaProducoesNotifier =
+    AutoDisposeNotifier<AppState<ProducaoEntity>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
