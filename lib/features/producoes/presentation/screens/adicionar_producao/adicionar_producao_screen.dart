@@ -11,8 +11,8 @@ import 'package:gestao_producao_chopp/features/producoes/presentation/screens/ad
 import 'package:go_router/go_router.dart';
 
 class AdicionarProducaoScreen extends ConsumerStatefulWidget {
-  final GradeEntity grade;
-  const AdicionarProducaoScreen({super.key, required this.grade,});
+  final String gId;
+  const AdicionarProducaoScreen({super.key, required this.gId,});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _AdicionarProducaoScreenState();
@@ -29,7 +29,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
     final formState = ref.watch(formAdicionarProducaoNotifierProvider);
     final formNotifier = ref.watch(formAdicionarProducaoNotifierProvider.notifier);
 
-    final gradeId = widget.grade.id;
+    final gradeId = widget.gId;
 
     ref.listen(adicionarProducaoNotifierProvider, (previous, next) {
       if (next.isSucesso) {

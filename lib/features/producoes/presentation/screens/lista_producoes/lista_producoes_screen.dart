@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gestao_producao_chopp/features/grades/presentation/widgets/item_grade_widget.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_notifier.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/item_producao_widget.dart';
+import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../../navigate/app_routes_names.dart';
 
 class ListaProducoesScreen extends ConsumerStatefulWidget {
   final String gradeId;
+
   const ListaProducoesScreen({super.key, required this.gradeId});
 
   @override
@@ -16,7 +15,6 @@ class ListaProducoesScreen extends ConsumerStatefulWidget {
 }
 
 class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -44,7 +42,7 @@ class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
                 if (state.isCarregando) {
                   return const Center(child: CircularProgressIndicator());
                 }
-                
+
                 if (state.isErro) {
                   return Center(
                     child: Text(
@@ -53,10 +51,10 @@ class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
                     ),
                   );
                 }
-                
+
                 final lista = state.lista ?? [];
                 debugPrint('lista pesquisada: ${lista.length}');
-                
+
                 if (lista.isEmpty) {
                   return SingleChildScrollView(
                     physics: const AlwaysScrollableScrollPhysics(),
@@ -66,7 +64,7 @@ class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
                     ),
                   );
                 }
-                
+
                 return ListView.builder(
                   physics: AlwaysScrollableScrollPhysics(),
                   itemCount: lista.length,
@@ -82,13 +80,17 @@ class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
                         child: ItemProducaoWidget(producao: producao),
                       ),
                     );
+
                   },
                 );
-                
               },
             ),
           ),
-        )
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.push(AppRoutesNames.adicionarProducao, extra: widget.gradeId),
+        child: Icon(Icons.add),
       ),
     );
   }
