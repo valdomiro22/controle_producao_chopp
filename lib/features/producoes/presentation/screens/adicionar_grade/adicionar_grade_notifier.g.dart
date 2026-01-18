@@ -6,22 +6,58 @@ part of 'adicionar_grade_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(AdicionarGradeNotifier)
+final adicionarGradeProvider = AdicionarGradeNotifierProvider._();
+
+final class AdicionarGradeNotifierProvider
+    extends $NotifierProvider<AdicionarGradeNotifier, GradeState> {
+  AdicionarGradeNotifierProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'adicionarGradeProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$adicionarGradeNotifierHash();
+
+  @$internal
+  @override
+  AdicionarGradeNotifier create() => AdicionarGradeNotifier();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GradeState value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GradeState>(value),
+    );
+  }
+}
+
 String _$adicionarGradeNotifierHash() =>
     r'5082a0f9bd5234c232cc709c48e58f3a0cfd5781';
 
-/// See also [AdicionarGradeNotifier].
-@ProviderFor(AdicionarGradeNotifier)
-final adicionarGradeNotifierProvider =
-    AutoDisposeNotifierProvider<AdicionarGradeNotifier, GradeState>.internal(
-      AdicionarGradeNotifier.new,
-      name: r'adicionarGradeNotifierProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$adicionarGradeNotifierHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-typedef _$AdicionarGradeNotifier = AutoDisposeNotifier<GradeState>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+abstract class _$AdicionarGradeNotifier extends $Notifier<GradeState> {
+  GradeState build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<GradeState, GradeState>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<GradeState, GradeState>,
+              GradeState,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}
