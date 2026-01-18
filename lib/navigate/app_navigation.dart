@@ -17,7 +17,7 @@ final appNavigation = Provider<GoRouter>((ref) {
         return null;
       }
 
-      final isLogado = authState.valueOrNull != null;
+      final isLogado = authState.value != null;
       final localAlvo = state.matchedLocation;
 
       print('estou logado: $isLogado');

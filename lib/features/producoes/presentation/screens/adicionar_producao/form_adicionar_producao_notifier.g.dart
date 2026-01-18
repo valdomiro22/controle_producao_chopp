@@ -6,26 +6,64 @@ part of 'form_adicionar_producao_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(FormAdicionarProducaoNotifier)
+final formAdicionarProducaoProvider = FormAdicionarProducaoNotifierProvider._();
+
+final class FormAdicionarProducaoNotifierProvider
+    extends
+        $NotifierProvider<
+          FormAdicionarProducaoNotifier,
+          AdicionarProducaoState
+        > {
+  FormAdicionarProducaoNotifierProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'formAdicionarProducaoProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$formAdicionarProducaoNotifierHash();
+
+  @$internal
+  @override
+  FormAdicionarProducaoNotifier create() => FormAdicionarProducaoNotifier();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AdicionarProducaoState value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AdicionarProducaoState>(value),
+    );
+  }
+}
+
 String _$formAdicionarProducaoNotifierHash() =>
     r'1827b5acb467e8f0fc8f769e64f4c3245950baf1';
 
-/// See also [FormAdicionarProducaoNotifier].
-@ProviderFor(FormAdicionarProducaoNotifier)
-final formAdicionarProducaoNotifierProvider =
-    AutoDisposeNotifierProvider<
-      FormAdicionarProducaoNotifier,
-      AdicionarProducaoState
-    >.internal(
-      FormAdicionarProducaoNotifier.new,
-      name: r'formAdicionarProducaoNotifierProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$formAdicionarProducaoNotifierHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-typedef _$FormAdicionarProducaoNotifier =
-    AutoDisposeNotifier<AdicionarProducaoState>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+abstract class _$FormAdicionarProducaoNotifier
+    extends $Notifier<AdicionarProducaoState> {
+  AdicionarProducaoState build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref =
+        this.ref as $Ref<AdicionarProducaoState, AdicionarProducaoState>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AdicionarProducaoState, AdicionarProducaoState>,
+              AdicionarProducaoState,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}

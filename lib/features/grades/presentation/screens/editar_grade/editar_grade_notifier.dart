@@ -22,7 +22,7 @@ class EditarGradeNotifier extends _$EditarGradeNotifier {
     result.fold(
         (failure) => state = ListaGradesState.erro(failure),
         (_) {
-          ref.read(listaGradesNotifierProvider.notifier).listarGrades();
+          ref.read(listaGradesProvider.notifier).listarGrades();
           return state = ListaGradesState.sucesso();
         },
     );

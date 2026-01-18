@@ -34,9 +34,9 @@ class _AlterarEmailScreenState extends ConsumerState<AlterarEmailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(alterarEmailNotifierProvider);
+    final state = ref.watch(alterarEmailProvider);
 
-    ref.listen<AuthState>(alterarEmailNotifierProvider, (previous, next) {
+    ref.listen<AuthState>(alterarEmailProvider, (previous, next) {
 
       if (previous?.isCarregando == true && next.isSucesso) {
         _emailController.clear();
@@ -101,7 +101,7 @@ class _AlterarEmailScreenState extends ConsumerState<AlterarEmailScreen> {
                   final email = _emailController.text.trim();
                   final senha = _senhaController.text;
 
-                  ref.read(alterarEmailNotifierProvider.notifier).alterarEmail(
+                  ref.read(alterarEmailProvider.notifier).alterarEmail(
                     newEmail: email,
                     password: senha
                   );

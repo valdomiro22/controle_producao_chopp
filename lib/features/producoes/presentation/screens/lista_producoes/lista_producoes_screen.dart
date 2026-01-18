@@ -19,14 +19,16 @@ class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(listaProducoesNotifierProvider.notifier).listarProducoes(widget.gradeId);
+      ref.read(listaProducoesProvider.notifier).listarProducoes(widget.gradeId);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(listaProducoesNotifierProvider);
-    final notifier = ref.watch(listaProducoesNotifierProvider.notifier);
+    final listaState = ref.watch(listaProducoesProvider);
+    final listaNotifier = ref.watch(listaProducoesProvider.notifier);
+    
+    // final deletarState = ref.watch(deletp)
 
     return Scaffold(
       appBar: AppBar(title: Text('Lista de Produções')),
@@ -35,24 +37,24 @@ class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
           padding: EdgeInsets.all(16),
           child: RefreshIndicator(
             onRefresh: () async {
-              await notifier.listarProducoes(widget.gradeId);
+              await listaNotifier.listarProducoes(widget.gradeId);
             },
             child: Builder(
               builder: (context) {
-                if (state.isCarregando) {
+                if (listaState.isCarregando) {
                   return const Center(child: CircularProgressIndicator());
                 }
 
-                if (state.isErro) {
+                if (listaState.isErro) {
                   return Center(
                     child: Text(
-                      'Erro: ${state.erro?.message ?? 'Tente novamente'}',
+                      'Erro: ${listaState.erro?.message ?? 'Tente novamente'}',
                       style: const TextStyle(color: Colors.red),
                     ),
                   );
                 }
 
-                final lista = state.lista ?? [];
+                final lista = listaState.lista ?? [];
                 debugPrint('lista pesquisada: ${lista.length}');
 
                 if (lista.isEmpty) {

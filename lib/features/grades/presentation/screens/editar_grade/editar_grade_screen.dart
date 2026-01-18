@@ -29,9 +29,9 @@ class _EditarGradeScreenState extends ConsumerState<EditarGradeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(editarGradeNotifierProvider);
+    final state = ref.watch(editarGradeProvider);
 
-    ref.listen(editarGradeNotifierProvider, (previous, next) {
+    ref.listen(editarGradeProvider, (previous, next) {
       if (state.isSucesso) {
         context.pop();
       }
@@ -96,8 +96,7 @@ class _EditarGradeScreenState extends ConsumerState<EditarGradeScreen> {
                 );
 
                 ref
-                    .read(editarGradeNotifierProvider.notifier)
-                    .editarGrade(grade: grade, gradeId: grade.id!);
+                    .read(editarGradeProvider.notifier).editarGrade(grade: grade, gradeId: grade.id!);
               },
             ),
           ],

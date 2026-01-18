@@ -36,4 +36,19 @@ class ListaProducoesNotifier extends _$ListaProducoesNotifier {
         }
     );
   }
+
+  Future<void> deletarProducao({required String gradeId, required String producaoId}) async {
+    state = AppState.carregando();
+
+    final useCase = ref.read(deleteProducaoUseCaseProvider);
+    final result = await useCase(producaoId: producaoId, gradeId: gradeId);
+
+    result.fold(
+        (failure) => state = AppState.erro(failure),
+        (_) {
+          listarProducoes(gradeId);
+          return state = AppState.sucesso();
+        },
+    );
+  }
 }

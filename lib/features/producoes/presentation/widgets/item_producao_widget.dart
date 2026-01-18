@@ -4,6 +4,7 @@ import 'package:gestao_producao_chopp/core/common/widgets/linha_formatada.dart';
 import 'package:gestao_producao_chopp/core/common/widgets/linha_chave_valor.dart';
 import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_notifier.dart';
 
 class ItemProducaoWidget extends ConsumerWidget {
   final ProducaoEntity producao;
@@ -12,6 +13,8 @@ class ItemProducaoWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.watch(listaProducoesProvider.notifier);
+
     return Card(
       color: AppColors.lightSurface,
       child: Padding(
@@ -122,10 +125,13 @@ class ItemProducaoWidget extends ConsumerWidget {
                 IconButton(
                   icon: Icon(Icons.delete, color: Colors.red, size: 30),
                   onPressed: () {
-                    // debugPrint('Deletar grade');
-                    // if (grade.id != null) {
-                    //   ref.read(listaGradesNotifierProvider.notifier).deletarGrade(grade.id!);
-                    // }
+                    debugPrint('Deletar grade');
+                    if (producao.id != null) {
+                      ref.read(listaProducoesProvider.notifier).deletarProducao(
+                        gradeId: producao.gradeId,
+                        producaoId: producao.id!,
+                      );
+                    }
                   },
                 ),
 

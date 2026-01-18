@@ -99,7 +99,7 @@ class ItemGradeWidget extends ConsumerWidget {
                   onPressed: () {
                     debugPrint('Deletar grade');
                     if (grade.id != null) {
-                      ref.read(listaGradesNotifierProvider.notifier).deletarGrade(grade.id!);
+                      ref.read(listaGradesProvider.notifier).deletarGrade(grade.id!);
                     }
                   },
                 ),

@@ -21,13 +21,13 @@ class _ListaGradesScreenState extends ConsumerState<ListaGradesScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(listaGradesNotifierProvider.notifier).listarGrades();
+      ref.read(listaGradesProvider.notifier).listarGrades();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(listaGradesNotifierProvider);
+    final state = ref.watch(listaGradesProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -39,7 +39,7 @@ class _ListaGradesScreenState extends ConsumerState<ListaGradesScreen> {
         padding: EdgeInsets.all(AppDimens.spacingG),
         child: RefreshIndicator(
           onRefresh: () async {
-            await ref.read(listaGradesNotifierProvider.notifier).listarGrades();
+            await ref.read(listaGradesProvider.notifier).listarGrades();
           },
           child: Builder(
             builder: (context) {

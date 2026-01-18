@@ -23,15 +23,15 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(adicionarProducaoNotifierProvider);
-    final notifier = ref.watch(adicionarProducaoNotifierProvider.notifier);
+    final state = ref.watch(adicionarProducaoProvider);
+    final notifier = ref.watch(adicionarProducaoProvider.notifier);
 
-    final formState = ref.watch(formAdicionarProducaoNotifierProvider);
-    final formNotifier = ref.watch(formAdicionarProducaoNotifierProvider.notifier);
+    final formState = ref.watch(formAdicionarProducaoProvider);
+    final formNotifier = ref.watch(formAdicionarProducaoProvider.notifier);
 
     final gradeId = widget.gId;
 
-    ref.listen(adicionarProducaoNotifierProvider, (previous, next) {
+    ref.listen(adicionarProducaoProvider, (previous, next) {
       if (next.isSucesso) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -146,7 +146,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  notifier.adicionarProducao(gradeId!);
+                  notifier.adicionarProducao(gradeId);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.teal

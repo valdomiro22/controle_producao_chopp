@@ -6,22 +6,58 @@ part of 'configuracoes_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(ConfiguracoesNotifier)
+final configuracoesProvider = ConfiguracoesNotifierProvider._();
+
+final class ConfiguracoesNotifierProvider
+    extends $NotifierProvider<ConfiguracoesNotifier, AuthState> {
+  ConfiguracoesNotifierProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'configuracoesProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$configuracoesNotifierHash();
+
+  @$internal
+  @override
+  ConfiguracoesNotifier create() => ConfiguracoesNotifier();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AuthState value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AuthState>(value),
+    );
+  }
+}
+
 String _$configuracoesNotifierHash() =>
     r'dd621c21e8af3f8f500e5f45586179369a18e55a';
 
-/// See also [ConfiguracoesNotifier].
-@ProviderFor(ConfiguracoesNotifier)
-final configuracoesNotifierProvider =
-    AutoDisposeNotifierProvider<ConfiguracoesNotifier, AuthState>.internal(
-      ConfiguracoesNotifier.new,
-      name: r'configuracoesNotifierProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$configuracoesNotifierHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-typedef _$ConfiguracoesNotifier = AutoDisposeNotifier<AuthState>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+abstract class _$ConfiguracoesNotifier extends $Notifier<AuthState> {
+  AuthState build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<AuthState, AuthState>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AuthState, AuthState>,
+              AuthState,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}

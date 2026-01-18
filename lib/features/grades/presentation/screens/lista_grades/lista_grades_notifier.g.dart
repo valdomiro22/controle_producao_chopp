@@ -6,22 +6,58 @@ part of 'lista_grades_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$listaGradesNotifierHash() =>
-    r'8292df17a3afa24599766a8361e6175fc0bd64a4';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [ListaGradesNotifier].
 @ProviderFor(ListaGradesNotifier)
-final listaGradesNotifierProvider =
-    AutoDisposeNotifierProvider<ListaGradesNotifier, ListaGradesState>.internal(
-      ListaGradesNotifier.new,
-      name: r'listaGradesNotifierProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$listaGradesNotifierHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+final listaGradesProvider = ListaGradesNotifierProvider._();
 
-typedef _$ListaGradesNotifier = AutoDisposeNotifier<ListaGradesState>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class ListaGradesNotifierProvider
+    extends $NotifierProvider<ListaGradesNotifier, ListaGradesState> {
+  ListaGradesNotifierProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'listaGradesProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$listaGradesNotifierHash();
+
+  @$internal
+  @override
+  ListaGradesNotifier create() => ListaGradesNotifier();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ListaGradesState value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ListaGradesState>(value),
+    );
+  }
+}
+
+String _$listaGradesNotifierHash() =>
+    r'd99523a7db90bde90b2aade8a3a5d3e915a8bf5a';
+
+abstract class _$ListaGradesNotifier extends $Notifier<ListaGradesState> {
+  ListaGradesState build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<ListaGradesState, ListaGradesState>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<ListaGradesState, ListaGradesState>,
+              ListaGradesState,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}

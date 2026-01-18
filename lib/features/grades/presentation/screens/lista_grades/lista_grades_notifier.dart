@@ -31,7 +31,7 @@ class ListaGradesNotifier extends _$ListaGradesNotifier {
     state = result.fold(
           (failure) => ListaGradesState.erro(failure),
           (_) {
-            ref.read(listaGradesNotifierProvider.notifier).listarGrades();
+            ref.read(listaGradesProvider.notifier).listarGrades();
             return ListaGradesState.sucesso();
           },
     );

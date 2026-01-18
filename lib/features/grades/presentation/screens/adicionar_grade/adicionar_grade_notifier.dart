@@ -49,7 +49,7 @@ class AdicionarGradeNotifier extends _$AdicionarGradeNotifier {
     state = result.fold(
       (failure) => GradeState.erro(failure),
       (_) {
-        ref.read(listaGradesNotifierProvider.notifier).listarGrades();
+        ref.read(listaGradesProvider.notifier).listarGrades();
         return GradeState.sucesso();
       },
     );

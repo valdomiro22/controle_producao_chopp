@@ -20,9 +20,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(homeNotifierProvider);
+    final state = ref.watch(homeProvider);
 
-    ref.listen(homeNotifierProvider, (previous, next) {
+    ref.listen(homeProvider, (previous, next) {
       if (previous?.isCarregando == true && next.isSucesso) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(

@@ -11,7 +11,7 @@ class AppDrawer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(homeNotifierProvider);
+    final state = ref.watch(homeProvider);
 
     return Drawer(
       width: 240,
@@ -79,7 +79,7 @@ class AppDrawer extends ConsumerWidget {
             leading: const Icon(Icons.exit_to_app, color: AppColors.primaryRed),
             title: const Text('Sair'),
             onTap: () {
-              ref.read(homeNotifierProvider.notifier).deslogar();
+              ref.read(homeProvider.notifier).deslogar();
             },
           ),
         ],

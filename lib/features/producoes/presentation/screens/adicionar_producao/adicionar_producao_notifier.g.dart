@@ -6,26 +6,61 @@ part of 'adicionar_producao_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$adicionarProducaoNotifierHash() =>
-    r'd2ab67ca588e5965d616317aa472d4342a75321f';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [AdicionarProducaoNotifier].
 @ProviderFor(AdicionarProducaoNotifier)
-final adicionarProducaoNotifierProvider =
-    AutoDisposeNotifierProvider<
-      AdicionarProducaoNotifier,
-      AppState<ProducaoEntity>
-    >.internal(
-      AdicionarProducaoNotifier.new,
-      name: r'adicionarProducaoNotifierProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$adicionarProducaoNotifierHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+final adicionarProducaoProvider = AdicionarProducaoNotifierProvider._();
 
-typedef _$AdicionarProducaoNotifier =
-    AutoDisposeNotifier<AppState<ProducaoEntity>>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class AdicionarProducaoNotifierProvider
+    extends
+        $NotifierProvider<AdicionarProducaoNotifier, AppState<ProducaoEntity>> {
+  AdicionarProducaoNotifierProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'adicionarProducaoProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$adicionarProducaoNotifierHash();
+
+  @$internal
+  @override
+  AdicionarProducaoNotifier create() => AdicionarProducaoNotifier();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AppState<ProducaoEntity> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AppState<ProducaoEntity>>(value),
+    );
+  }
+}
+
+String _$adicionarProducaoNotifierHash() =>
+    r'271bf0446919292a0a53879dc1bf7141811683cd';
+
+abstract class _$AdicionarProducaoNotifier
+    extends $Notifier<AppState<ProducaoEntity>> {
+  AppState<ProducaoEntity> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref =
+        this.ref as $Ref<AppState<ProducaoEntity>, AppState<ProducaoEntity>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AppState<ProducaoEntity>, AppState<ProducaoEntity>>,
+              AppState<ProducaoEntity>,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}

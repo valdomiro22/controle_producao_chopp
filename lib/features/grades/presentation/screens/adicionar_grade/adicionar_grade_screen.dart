@@ -25,9 +25,9 @@ class _AdicionarGradeScreenState extends ConsumerState<AdicionarGradeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(adicionarGradeNotifierProvider);
+    final state = ref.watch(adicionarGradeProvider);
 
-    ref.listen(adicionarGradeNotifierProvider, (asdf, next) {
+    ref.listen(adicionarGradeProvider, (asdf, next) {
       if (state.isSucesso) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -99,7 +99,7 @@ class _AdicionarGradeScreenState extends ConsumerState<AdicionarGradeScreen> {
               texto: 'Salvar',
               clique: () {
                 final numero = _numeroController.text;
-                ref.read(adicionarGradeNotifierProvider.notifier).inserirGrade(
+                ref.read(adicionarGradeProvider.notifier).inserirGrade(
                   data: _dataSelecionada,
                   numero: numero
                 );

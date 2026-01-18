@@ -21,8 +21,8 @@ class _ConfiguracoesScreenState extends ConsumerState<ConfiguracoesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(configuracoesNotifierProvider);
-    final notifier = ref.read(configuracoesNotifierProvider.notifier);
+    final state = ref.watch(configuracoesProvider);
+    final notifier = ref.read(configuracoesProvider.notifier);
 
     return Scaffold(
       body: Container(
