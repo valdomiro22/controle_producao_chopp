@@ -1,21 +1,23 @@
-import 'enums/produto.dart';
-import 'enums/status_producao.dart';
-import 'enums/barril.dart';
+import '../../../grades/domain/enums/barril.dart';
+import '../../../grades/domain/enums/produto.dart';
+import '../enums/status_producao.dart';
 
 class ProducaoEntity {
-  final int? id;
-  final int? gradeId;
+  final String? id;
+  final String gradeId;
   final StatusProducao status;
   final Barril tipoBarril;
   final Produto produto;
   final int quantidadeProgramada;
-  final int quantidadeProduzida;
-  final int quantidadePendente;
-  final double volumeNecessarioHl;
+  final int? quantidadeProduzida;
+  final int? quantidadePendente;
+  final double? volumeNecessarioHl;
+  final DateTime? dataCriacao;
+  final DateTime? finalizadaProducao;
 
   ProducaoEntity({
     this.id,
-    this.gradeId,
+    required this.gradeId,
     required this.status,
     required this.tipoBarril,
     required this.produto,
@@ -23,46 +25,22 @@ class ProducaoEntity {
     this.quantidadeProduzida = 0,
     this.quantidadePendente = 0,
     required this.volumeNecessarioHl,
+    required this.dataCriacao,
+    this.finalizadaProducao,
   });
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'gradeId': gradeId,
-      'status': status.id,
-      'tipoBarril': tipoBarril.id,
-      'produto': produto.id,
-      'quantidade': quantidadeProgramada,
-      'qtProduzida': quantidadeProduzida,
-      'qtPendente': quantidadePendente,
-      'vlNecessarioHl': volumeNecessarioHl,
-    };
-  }
-
-  factory ProducaoEntity.fromJson(Map<String, dynamic> json) {
-    return ProducaoEntity(
-      id: json['id'] as int?,
-      gradeId: json['gradeId'] as int?,
-      status: StatusProducao.fronId(json['status'] as int),
-      tipoBarril: Barril.fronId(json['tipoBarril'] as int),
-      produto: Produto.fronId(json['produto'] as int),
-      quantidadeProgramada: json['quantidade'] as int,
-      quantidadeProduzida: json['qtProduzida'] as int,
-      quantidadePendente: json['qtPendente'] as int,
-      volumeNecessarioHl: json['vlNecessarioHl'] as double,
-    );
-  }
-
   ProducaoEntity copyWith({
-    int? id,
-    int? gradeId,
+    String? id,
+    String? gradeId,
     StatusProducao? status,
     Barril? tipoBarril,
     Produto? produto,
-    int? quantidade,
-    int? qtProduzida,
-    int? qtPendente,
-    double? vlNecessarioHl,
+    int? quantidadeProgramada,
+    int? quantidadeProduzida,
+    int? quantidadePendente,
+    double? volumeNecessarioHl,
+    DateTime? iniciadaProducao,
+    DateTime? finalizadaProducao,
   }) {
     return ProducaoEntity(
       id: id ?? this.id,
@@ -70,10 +48,29 @@ class ProducaoEntity {
       status: status ?? this.status,
       tipoBarril: tipoBarril ?? this.tipoBarril,
       produto: produto ?? this.produto,
-      quantidadeProgramada: quantidade ?? this.quantidadeProgramada,
-      quantidadeProduzida: qtProduzida ?? this.quantidadeProduzida,
-      quantidadePendente: qtPendente ?? this.quantidadePendente,
-      volumeNecessarioHl: vlNecessarioHl ?? this.volumeNecessarioHl,
+      quantidadeProgramada: quantidadeProgramada ?? this.quantidadeProgramada,
+      quantidadeProduzida: quantidadeProduzida ?? this.quantidadeProduzida,
+      quantidadePendente: quantidadePendente ?? this.quantidadePendente,
+      volumeNecessarioHl: volumeNecessarioHl ?? this.volumeNecessarioHl,
+      dataCriacao: iniciadaProducao ?? this.dataCriacao,
+      finalizadaProducao: finalizadaProducao ?? this.finalizadaProducao,
     );
+  }
+
+  @override
+  String toString() {
+    return 'ProducaoEntity('
+      'id: $id, '
+      'gradeId: $gradeId, '
+      'status: $status, '
+      'tipoBarril: $tipoBarril, '
+      'produto: $produto, '
+      'quantidadeProgramada: $quantidadeProgramada, '
+      'quantidadeProduzida: $quantidadeProduzida, '
+      'quantidadePendente: $quantidadePendente, '
+      'volumeNecessarioHl: $volumeNecessarioHl, '
+      'iniciadaProducao: $dataCriacao, '
+      'finalizadaProducao: $finalizadaProducao'
+      ')';
   }
 }

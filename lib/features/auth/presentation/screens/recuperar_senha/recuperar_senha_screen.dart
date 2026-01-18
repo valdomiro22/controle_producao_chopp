@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/constants/app_dimens.dart';
-import 'package:gestao_producao_chopp/core/di/usecases/auth_use_cases_provider.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/recuperar_senha/recuperar_senha_notifier.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/widgets/custom_textfiewd.dart';
 import 'package:go_router/go_router.dart';
@@ -26,9 +25,9 @@ class _RecuperarSenhaScreenState extends ConsumerState<RecuperarSenhaScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(recuperarSenhaNotifierProvider);
+    final state = ref.watch(recuperarSenhaProvider);
 
-    ref.listen(recuperarSenhaNotifierProvider, (previous, next) {
+    ref.listen(recuperarSenhaProvider, (previous, next) {
       if (previous?.isCarregando == true && next.isSucesso) {
         _emailController.clear();
         context.pop();
@@ -72,7 +71,7 @@ class _RecuperarSenhaScreenState extends ConsumerState<RecuperarSenhaScreen> {
             ElevatedButton(
               onPressed: () {
                 final email = _emailController.text.trim();
-                ref.read(recuperarSenhaNotifierProvider.notifier).recuperarSenha(email);
+                ref.read(recuperarSenhaProvider.notifier).recuperarSenha(email);
               },
               child: Text('Enviar'),
             )

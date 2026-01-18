@@ -23,7 +23,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(loginNotifierProvider);
+    final state = ref.watch(loginProvider);
 
     return Scaffold(
       body: Container(
@@ -82,7 +82,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 clique: () {
                   final email = _emailController.text.trim();
                   final senha = _senhaController.text;
-                  ref.read(loginNotifierProvider.notifier).logar(email: email, senha: senha);
+                  ref.read(loginProvider.notifier).logar(email: email, senha: senha);
                 },
                 texto: 'Logar',
               ),

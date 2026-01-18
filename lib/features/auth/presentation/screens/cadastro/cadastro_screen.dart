@@ -28,9 +28,9 @@ class _CadastroScreenState extends ConsumerState<CadastroScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authState = ref.watch(cadastroNotifierProvider);
+    final authState = ref.watch(cadastroProvider);
 
-    ref.listen<AuthState>(cadastroNotifierProvider, (previous, next) {
+    ref.listen<AuthState>(cadastroProvider, (previous, next) {
 
       if (previous?.isCarregando == true && next.isSucesso) {
         _emailController.clear();
@@ -78,7 +78,7 @@ class _CadastroScreenState extends ConsumerState<CadastroScreen> {
                   final email = _emailController.text.trim();
                   final senha = _senhaController.text;
 
-                  ref.read(cadastroNotifierProvider.notifier).cadastrar(
+                  ref.read(cadastroProvider.notifier).cadastrar(
                     email: email,
                     password: senha,
                   );

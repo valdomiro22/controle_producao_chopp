@@ -31,9 +31,9 @@ class _AlterarSenhaScreenState extends ConsumerState<AlterarSenhaScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(alterarSenhaNotifierProvider);
+    final state = ref.watch(alterarSenhaProvider);
 
-    ref.listen(alterarSenhaNotifierProvider, (previous, next) {
+    ref.listen(alterarSenhaProvider, (previous, next) {
       if (previous?.isCarregando == true && next.isSucesso) {
         _senhaController.clear();
         _novaSenhaController.clear();
@@ -113,7 +113,7 @@ class _AlterarSenhaScreenState extends ConsumerState<AlterarSenhaScreen> {
                   final novaSenha = _novaSenhaController.text;
                   final confirmarNova = _confirmeNovaSenhaController.text;
 
-                  ref.read(alterarSenhaNotifierProvider.notifier).alterarSenha(
+                  ref.read(alterarSenhaProvider.notifier).alterarSenha(
                     atual: senha,
                     nova: novaSenha,
                     confirmacao: confirmarNova,

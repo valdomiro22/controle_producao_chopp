@@ -29,9 +29,9 @@ class _DeletarConstaScreenState extends ConsumerState<DeletarContaScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(deletarContaNotifierProvider);
+    final state = ref.watch(deletarContaProvider);
 
-    ref.listen(deletarContaNotifierProvider, (previous, next) {
+    ref.listen(deletarContaProvider, (previous, next) {
       if (previous?.isCarregando == true && next.isSucesso) {
         _emailController.clear();
         _senhaController.clear();
@@ -96,7 +96,7 @@ class _DeletarConstaScreenState extends ConsumerState<DeletarContaScreen> {
                   final email = _emailController.text.trim();
                   final senha = _senhaController.text;
 
-                  ref.read(deletarContaNotifierProvider.notifier).deletarConta(
+                  ref.read(deletarContaProvider.notifier).deletarConta(
                       email: email,
                       currentPassword: senha
                   );

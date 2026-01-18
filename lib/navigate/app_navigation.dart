@@ -9,39 +9,39 @@ final appNavigation = Provider<GoRouter>((ref) {
   final delaySplash = ref.watch(delaySplashScreen);
 
   return GoRouter(
-      initialLocation: AppRoutesNames.login,
-      debugLogDiagnostics: true,
+    initialLocation: AppRoutesNames.login,
+    debugLogDiagnostics: true,
 
-      redirect: (context, state) {
-        if (authState.isLoading || authState.hasError || delaySplash.isLoading) {
-          return null;
-        }
-
-        final isLogado = authState.valueOrNull != null;
-        final localAlvo = state.matchedLocation;
-
-        print('estou logado: $isLogado');
-        print('indo para: $localAlvo');
-
-        final isGoingToLogin = state.matchedLocation == AppRoutesNames.login;
-        final isGoingToSplash = state.matchedLocation == AppRoutesNames.splash;
-        final isGoingToCadastro = state.matchedLocation == AppRoutesNames.cadastro;
-        final isGoingToRecuperarSenha = state.matchedLocation == AppRoutesNames.recuperarSenha;
-
-        if (!isLogado) {
-          if (!isGoingToLogin && !isGoingToCadastro && !isGoingToSplash && !isGoingToRecuperarSenha) {
-            return AppRoutesNames.login;
-          }
-        }
-
-        if (isLogado) {
-          if (isGoingToLogin || isGoingToCadastro || isGoingToSplash || isGoingToRecuperarSenha) {
-            return AppRoutesNames.home;
-          }
-        }
-
+    redirect: (context, state) {
+      if (authState.isLoading || authState.hasError || delaySplash.isLoading) {
         return null;
-      },
-      routes: AppRoutes.routes
+      }
+
+      final isLogado = authState.value != null;
+      final localAlvo = state.matchedLocation;
+
+      print('estou logado: $isLogado');
+      print('indo para: $localAlvo');
+
+      final isGoingToLogin = state.matchedLocation == AppRoutesNames.login;
+      final isGoingToSplash = state.matchedLocation == AppRoutesNames.splash;
+      final isGoingToCadastro = state.matchedLocation == AppRoutesNames.cadastro;
+      final isGoingToRecuperarSenha = state.matchedLocation == AppRoutesNames.recuperarSenha;
+
+      if (!isLogado) {
+        if (!isGoingToLogin && !isGoingToCadastro && !isGoingToSplash && !isGoingToRecuperarSenha) {
+          return AppRoutesNames.login;
+        }
+      }
+
+      if (isLogado) {
+        if (isGoingToLogin || isGoingToCadastro || isGoingToSplash || isGoingToRecuperarSenha) {
+          return AppRoutesNames.home;
+        }
+      }
+
+      return null;
+    },
+    routes: AppRoutes.routes,
   );
 });

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/home_notifier.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../features/grades/presentation/screens/home/home_notifier.dart';
 import '../../theme/app_colors.dart';
 
 class AppDrawer extends ConsumerWidget {
@@ -11,7 +11,7 @@ class AppDrawer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(homeNotifierProvider);
+    final state = ref.watch(homeProvider);
 
     return Drawer(
       width: 240,
@@ -60,7 +60,7 @@ class AppDrawer extends ConsumerWidget {
           ),
           ListTile(
             leading: const Icon(Icons.stacked_bar_chart_rounded, color: AppColors.primaryRed),
-            title: const Text('Adicionar Produção'),
+            title: const Text('Adicionar Grade'),
             onTap: () {
               context.pop();
               context.push(AppRoutesNames.adicionarGrade);
@@ -68,7 +68,7 @@ class AppDrawer extends ConsumerWidget {
           ),
           ListTile(
             leading: const Icon(Icons.list, color: AppColors.primaryRed),
-            title: const Text('Lista de Produções'),
+            title: const Text('Lista de Grades'),
             onTap: () {
               context.pop();
               context.push(AppRoutesNames.listaGrades);
@@ -79,7 +79,7 @@ class AppDrawer extends ConsumerWidget {
             leading: const Icon(Icons.exit_to_app, color: AppColors.primaryRed),
             title: const Text('Sair'),
             onTap: () {
-              ref.read(homeNotifierProvider.notifier).deslogar();
+              ref.read(homeProvider.notifier).deslogar();
             },
           ),
         ],

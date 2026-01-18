@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widget_previews.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/constants/app_strings.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/widgets/custom_textfiewd.dart';
@@ -35,9 +34,9 @@ class _AlterarEmailScreenState extends ConsumerState<AlterarEmailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(alterarEmailNotifierProvider);
+    final state = ref.watch(alterarEmailProvider);
 
-    ref.listen<AuthState>(alterarEmailNotifierProvider, (previous, next) {
+    ref.listen<AuthState>(alterarEmailProvider, (previous, next) {
 
       if (previous?.isCarregando == true && next.isSucesso) {
         _emailController.clear();
@@ -102,7 +101,7 @@ class _AlterarEmailScreenState extends ConsumerState<AlterarEmailScreen> {
                   final email = _emailController.text.trim();
                   final senha = _senhaController.text;
 
-                  ref.read(alterarEmailNotifierProvider.notifier).alterarEmail(
+                  ref.read(alterarEmailProvider.notifier).alterarEmail(
                     newEmail: email,
                     password: senha
                   );
