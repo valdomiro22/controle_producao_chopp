@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/common/widgets/app_drawer.dart';
 
-import '../../../domain/enums/turno.dart';
-import '../../widgets/card_quantidade_horaria.dart';
-import '../../widgets/card_status_producao.dart';
-import '../../widgets/mensagem_aviso_buffer.dart';
+import '../../../../grades/domain/enums/turno.dart';
+import '../../../../grades/presentation/widgets/card_quantidade_horaria.dart';
+import '../../../../grades/presentation/widgets/card_status_producao.dart';
+import '../../../../grades/presentation/widgets/mensagem_aviso_buffer.dart';
 import 'home_notifier.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {

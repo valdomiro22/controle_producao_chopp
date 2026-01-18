@@ -12,9 +12,9 @@ import 'package:go_router/go_router.dart';
 import '../features/grades/domain/entities/grade_entity.dart';
 import '../features/grades/presentation/screens/adicionar_grade/adicionar_grade_screen.dart';
 import '../features/grades/presentation/screens/editar_grade/editar_grade_screen.dart';
-import '../features/grades/presentation/screens/home/home_screen.dart';
 import '../features/grades/presentation/screens/lista_grades/lista_grades_screen.dart';
 import '../features/producoes/presentation/screens/adicionar_producao/adicionar_producao_screen.dart';
+import '../features/producoes/presentation/screens/home/home_screen.dart';
 import 'app_routes_names.dart';
 
 class AppRoutes {
