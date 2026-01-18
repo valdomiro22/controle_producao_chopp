@@ -13,14 +13,27 @@ class ListaProducoesNotifier extends _$ListaProducoesNotifier {
   Future<void> listarProducoes(String gradeId) async {
     state = AppState.carregando();
 
-    print('notifier chamado');
-
     final useCase = ref.read(getAllProducoesUseCaseProvider);
     final result = await useCase(gradeId);
 
     result.fold(
       (failure) => state = AppState.erro(failure),
       (lista) => state = AppState.sucessoComLista(lista),
+    );
+  }
+
+  Future<void> buscarProducao({required String gradeId, required String producaoId}) async {
+    state = AppState.carregando();
+
+    final useCase = ref.read(gerProducaoUseCaseProvider);
+    final result = await useCase(producaoId: producaoId, gradeId: gradeId);
+
+    result.fold(
+        (failure) => state = AppState.erro(failure),
+        (producao) {
+          if (producao == null) return state = AppState.sucessoComDados(null);
+          return state = AppState.sucessoComDados(producao);
+        }
     );
   }
 }

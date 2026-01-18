@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gestao_producao_chopp/core/common/widgets/linha_texto_valor.dart';
+import 'package:gestao_producao_chopp/core/common/widgets/linha_formatada.dart';
+import 'package:gestao_producao_chopp/core/common/widgets/linha_chave_valor.dart';
 import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 
@@ -20,11 +21,11 @@ class ItemProducaoWidget extends ConsumerWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                LinhaTextoValor(
+                LinhaFormatada(
                   valor: producao.produto.label,
                   valorStyle: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold),
                 ),
-                LinhaTextoValor(
+                LinhaFormatada(
                   valor: 'Barril de ${producao.tipoBarril.label}',
                   valorStyle: TextStyle(fontSize: 14, color: Colors.black),
                 ),
@@ -47,19 +48,54 @@ class ItemProducaoWidget extends ConsumerWidget {
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Data: ', style: TextStyle(fontSize: 14)),
-                              Divider(),
-                              Text(
-                                'Grade: ${producao.produto.label}',
-                                style: TextStyle(fontSize: 14),
+                              LinhaChaveValor(
+                                chave: 'Produto',
+                                chaveStyle: TextStyle(fontSize: 14),
+                                valor: producao.produto.label,
+                                valorStyle: TextStyle(fontSize: 14),
                               ),
                               Divider(),
-                              Text(
-                                'Quantidade Barris: ${'afsdf' ?? ''}',
-                                style: TextStyle(fontSize: 14),
+                              LinhaChaveValor(
+                                chave: 'Barril',
+                                chaveStyle: TextStyle(fontSize: 14),
+                                valor: producao.tipoBarril.label,
+                                valorStyle: TextStyle(fontSize: 14),
                               ),
                               Divider(),
-                              Text('Volume hl: ${'fad' ?? ''}', style: TextStyle(fontSize: 14)),
+                              LinhaChaveValor(
+                                chave: 'Status',
+                                chaveStyle: TextStyle(fontSize: 14),
+                                valor: producao.status.label,
+                                valorStyle: TextStyle(fontSize: 14),
+                              ),
+                              Divider(),
+                              LinhaChaveValor(
+                                chave: 'Quantidade programada',
+                                chaveStyle: TextStyle(fontSize: 14),
+                                valor: producao.quantidadeProgramada.toString(),
+                                valorStyle: TextStyle(fontSize: 14),
+                              ),
+                              Divider(),
+                              LinhaChaveValor(
+                                chave: 'Quantidade produzida',
+                                chaveStyle: TextStyle(fontSize: 14),
+                                valor: producao.quantidadeProduzida.toString(),
+                                valorStyle: TextStyle(fontSize: 14),
+                              ),
+                              Divider(),
+                              LinhaChaveValor(
+                                chave: 'Quantidade pendente',
+                                chaveStyle: TextStyle(fontSize: 14),
+                                valor: producao.quantidadePendente.toString(),
+                                valorStyle: TextStyle(fontSize: 14),
+                              ),
+                              Divider(),
+                              LinhaChaveValor(
+                                chave: 'Volume necessário',
+                                chaveStyle: TextStyle(fontSize: 14),
+                                valor: '${producao.volumeNecessarioHl} hl',
+                                valorStyle: TextStyle(fontSize: 14),
+                              ),
                             ],
                           ),
                           actions: <Widget>[

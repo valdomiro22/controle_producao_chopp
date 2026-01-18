@@ -15,7 +15,7 @@ class AppState<T> {
 
   const AppState.inicial() : this._();
   const AppState.carregando() : this._(carregando: true);
-  const AppState.sucessoComDados(T dados) : this._(dados: dados);
+  const AppState.sucessoComDados(T? dados) : this._(dados: dados);
   const AppState.sucessoComLista(List<T> lista) : this._(lista: lista);
   const AppState.sucesso() : this._();
   const AppState.erro(Failure failure) : this._(erro: failure);

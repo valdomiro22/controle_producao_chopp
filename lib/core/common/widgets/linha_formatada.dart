@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LinhaTextoValor extends ConsumerWidget {
+class LinhaFormatada extends ConsumerWidget {
   final String valor;
   final TextStyle? valorStyle;
 
-  const LinhaTextoValor({
+  const LinhaFormatada({
     super.key,
     required this.valor,
     this.valorStyle,
