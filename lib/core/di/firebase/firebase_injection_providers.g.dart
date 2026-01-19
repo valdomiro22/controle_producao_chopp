@@ -143,7 +143,7 @@ final class AuthRemoteDatasourceProvider
 }
 
 String _$authRemoteDatasourceHash() =>
-    r'e3db12bb22c61875c8eef6e2272cdeca8cd6bb3e';
+    r'a0420ebc1d483334bbbed639d652e7aeb971aa1d';
 
 @ProviderFor(gradeDatasource)
 final gradeDatasourceProvider = GradeDatasourceProvider._();
@@ -185,7 +185,7 @@ final class GradeDatasourceProvider
   }
 }
 
-String _$gradeDatasourceHash() => r'cd5b9d43d33ded95c8d92ff6dd891281faca832d';
+String _$gradeDatasourceHash() => r'd31bd80e76f2c9fc2b7e10a7678bcba08afdc45f';
 
 @ProviderFor(producaoDatasource)
 final producaoDatasourceProvider = ProducaoDatasourceProvider._();

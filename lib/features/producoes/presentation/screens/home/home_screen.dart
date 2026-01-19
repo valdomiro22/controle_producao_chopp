@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/common/widgets/app_drawer.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/selecionar_turno_notifier.dart';
 
 import '../../../../grades/domain/enums/turno.dart';
 import '../../../../grades/presentation/widgets/card_quantidade_horaria.dart';
@@ -19,12 +20,15 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  final horariosTurnoA = Turno.turnoA.horarios.values.toList();
+  // Turno _turnoSelecionado = Turno.turnoA;
+  // final horariosTurnoA = Turno.turnoA.horarios.values.toList();
 
   @override
   Widget build(BuildContext context) {
     // final state = ref.watch(homeProvider);
     // final producaoState = ref.watch()
+    final turnoState = ref.watch(selecionarTurnoProvider);
+    final turnoNotifier = ref.watch(selecionarTurnoProvider.notifier);
 
     final producao = widget.producao;
 
@@ -120,7 +124,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           splashFactory: InkRipple.splashFactory,
                           animationDuration: const Duration(milliseconds: 120),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          // turnoNotifier = Turno.turnoA;
+                          turnoNotifier.selecionarTurno(Turno.turnoA);
+                        },
                         child: const Text('Turno A'),
                       ),
                     ),
@@ -135,7 +142,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           splashFactory: InkRipple.splashFactory,
                           animationDuration: const Duration(milliseconds: 120),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          // _turnoSelecionado = Turno.turnoB;
+                          turnoNotifier.selecionarTurno(Turno.turnoB);
+                        },
                         child: const Text('Turno B', style: TextStyle(color: Colors.white)),
                       ),
                     ),
@@ -150,7 +160,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           splashFactory: InkRipple.splashFactory,
                           animationDuration: const Duration(milliseconds: 120),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          // _turnoSelecionado = Turno.turnoC;
+                          turnoNotifier.selecionarTurno(Turno.turnoC);
+                        },
                         child: const Text('Turno C'),
                       ),
                     ),
@@ -171,9 +184,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 crossAxisSpacing: 5,
                 childAspectRatio: 1,
               ),
-              itemCount: horariosTurnoA.length,
+              // itemCount: _turnoSelecionado.horarios.length,
+              itemCount: turnoState.turno.horarios.length,
               itemBuilder: (context, index) =>
-                  CardQuantidadeHoraria(horario: horariosTurnoA[index], quantidade: '100'),
+                  // CardQuantidadeHoraria(horario: _turnoSelecionado.horarios.values.toList()[index], quantidade: '100'),
+                  CardQuantidadeHoraria(
+                    horario: turnoState.turno.horarios.values.toList()[index],
+                    quantidade: '100'
+                  ),
             ),
             SizedBox(height: 16),
 
