@@ -52,7 +52,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-
             // Cabeçalho
             Card(
               elevation: 0.4,
@@ -119,7 +118,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
-                          backgroundColor: const Color(0xffd2d6de),
+                          backgroundColor: turnoState.turno == Turno.turnoA
+                              ? Color(0xff3559fa)
+                              : Color(0xffd2d6de),
                           overlayColor: Colors.black.withOpacity(0.05),
                           splashFactory: InkRipple.splashFactory,
                           animationDuration: const Duration(milliseconds: 120),
@@ -128,7 +129,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           // turnoNotifier = Turno.turnoA;
                           turnoNotifier.selecionarTurno(Turno.turnoA);
                         },
-                        child: const Text('Turno A'),
+                        child: Text(
+                          'Turno A',
+                          style: TextStyle(
+                            color: turnoState.turno == Turno.turnoA
+                                ? Colors.white
+                                : Colors.blueGrey,
+                          ),
+                        ),
                       ),
                     ),
                     SizedBox(width: 8),
@@ -137,7 +145,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
-                          backgroundColor: const Color(0xff3559fa),
+                          backgroundColor: turnoState.turno == Turno.turnoB
+                              ? Color(0xff3559fa)
+                              : Color(0xffd2d6de),
                           overlayColor: Colors.black.withOpacity(0.05),
                           splashFactory: InkRipple.splashFactory,
                           animationDuration: const Duration(milliseconds: 120),
@@ -146,7 +156,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           // _turnoSelecionado = Turno.turnoB;
                           turnoNotifier.selecionarTurno(Turno.turnoB);
                         },
-                        child: const Text('Turno B', style: TextStyle(color: Colors.white)),
+                        child: Text(
+                          'Turno B',
+                          style: TextStyle(
+                            color: turnoState.turno == Turno.turnoB
+                                ? Colors.white
+                                : Colors.blueGrey,
+                          ),
+                        ),
                       ),
                     ),
                     SizedBox(width: 8),
@@ -155,7 +172,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
-                          backgroundColor: const Color(0xffd2d6de),
+                          backgroundColor: turnoState.turno == Turno.turnoC
+                              ? Color(0xff3559fa)
+                              : Color(0xffd2d6de),
                           overlayColor: Colors.black.withOpacity(0.05),
                           splashFactory: InkRipple.splashFactory,
                           animationDuration: const Duration(milliseconds: 120),
@@ -164,7 +183,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           // _turnoSelecionado = Turno.turnoC;
                           turnoNotifier.selecionarTurno(Turno.turnoC);
                         },
-                        child: const Text('Turno C'),
+                        child: Text(
+                          'Turno C',
+                          style: TextStyle(
+                            color: turnoState.turno == Turno.turnoC
+                                ? Colors.white
+                                : Colors.blueGrey,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -190,7 +216,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   // CardQuantidadeHoraria(horario: _turnoSelecionado.horarios.values.toList()[index], quantidade: '100'),
                   CardQuantidadeHoraria(
                     horario: turnoState.turno.horarios.values.toList()[index],
-                    quantidade: '100'
+                    quantidade: '100',
                   ),
             ),
             SizedBox(height: 16),
