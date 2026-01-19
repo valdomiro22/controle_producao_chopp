@@ -5,7 +5,6 @@ import 'package:gestao_producao_chopp/core/constants/app_dimens.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/utils/string_util.dart';
 import '../../widgets/item_grade_widget.dart';
 import 'lista_grades_notifier.dart';
 

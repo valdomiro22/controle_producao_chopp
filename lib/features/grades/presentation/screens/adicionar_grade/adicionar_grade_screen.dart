@@ -3,14 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/common/widgets/elevated_button_centralizado.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../domain/enums/barril.dart';
 import 'adicionar_grade_notifier.dart';
 
 class AdicionarGradeScreen extends ConsumerStatefulWidget {
   const AdicionarGradeScreen({super.key});
 
   @override
-  ConsumerState<AdicionarGradeScreen> createState() => _AdicionarGradeScreenState();
+  ConsumerState<AdicionarGradeScreen> createState() =>
+      _AdicionarGradeScreenState();
 }
 
 class _AdicionarGradeScreenState extends ConsumerState<AdicionarGradeScreen> {
@@ -41,21 +41,19 @@ class _AdicionarGradeScreenState extends ConsumerState<AdicionarGradeScreen> {
     });
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Adicionar Grade'),
-      ),
+      appBar: AppBar(title: Text('Adicionar Grade')),
       body: Container(
         padding: EdgeInsets.all(16),
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 50,),
+            SizedBox(height: 50),
             TextField(
               controller: _numeroController,
               decoration: InputDecoration(
                 labelText: 'Número da Grade',
-                hintText: 'Ex: 01'
+                hintText: 'Ex: 01',
               ),
             ),
 
@@ -87,27 +85,23 @@ class _AdicionarGradeScreenState extends ConsumerState<AdicionarGradeScreen> {
                     : 'Data ${_dataSelecionada?.day}/${_dataSelecionada?.month}/${_dataSelecionada?.year}',
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(height: 20),
 
-            if (state.carregando)
-              Center(
-                child: CircularProgressIndicator(),
-              ),
-            SizedBox(height: 16,),
+            if (state.carregando) Center(child: CircularProgressIndicator()),
+            SizedBox(height: 16),
 
             ElevatedButtonCentralizado(
               texto: 'Salvar',
               clique: () {
                 final numero = _numeroController.text;
-                ref.read(adicionarGradeProvider.notifier).inserirGrade(
-                  data: _dataSelecionada,
-                  numero: numero
-                );
+                ref
+                    .read(adicionarGradeProvider.notifier)
+                    .inserirGrade(data: _dataSelecionada, numero: numero);
               },
-            )
+            ),
           ],
-        )
-      )
+        ),
+      ),
     );
   }
 }

@@ -1,13 +1,6 @@
-import 'dart:developer' as dev;
-
-import 'package:gestao_producao_chopp/core/di/usecases/producao_use_cases_provider.dart';
 import 'package:gestao_producao_chopp/features/grades/domain/enums/barril.dart';
 import 'package:gestao_producao_chopp/features/grades/domain/enums/produto.dart';
-import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
-import 'package:gestao_producao_chopp/features/producoes/domain/enums/status_producao.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import '../../../../../core/error/failure.dart';
 
 part 'form_adicionar_producao_notifier.g.dart';
 

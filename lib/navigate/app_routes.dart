@@ -6,7 +6,9 @@ import 'package:gestao_producao_chopp/features/auth/presentation/screens/configu
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/deletar_conta/deletar_conta_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/login/login_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/recuperar_senha/recuperar_senha_screen.dart';
+import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_screen.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/selecionar_producao_widget.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/grades/domain/entities/grade_entity.dart';
@@ -28,7 +30,13 @@ class AppRoutes {
       builder: (context, state) => RecuperarSenhaScreen(),
     ),
 
-    GoRoute(path: AppRoutesNames.home, builder: (context, state) => HomeScreen()),
+    GoRoute(path: AppRoutesNames.home, builder: (context, state) {
+      final producao = state.extra as ProducaoEntity?;
+      if (producao == null) {
+        return const Scaffold(body: Center(child: SelecionarProducaoWidget()));
+      }
+      return HomeScreen(producao: producao);
+    }),
 
     GoRoute(path: AppRoutesNames.configuracoes, builder: (context, state) => ConfiguracoesScreen()),
 
@@ -43,7 +51,7 @@ class AppRoutes {
     GoRoute(path: AppRoutesNames.listaProducoes, builder: (context, state) {
       final gradeId = state.extra as String?;
       if (gradeId == null) {
-        return const Scaffold(body: Center(child: Text('Item não encontrado')));
+        return const Scaffold(body: Center(child: Text('Item não encontrado - [lista de produções]')));
       }
       return ListaProducoesScreen(gradeId: gradeId);
     }),
@@ -51,7 +59,7 @@ class AppRoutes {
     GoRoute(path: AppRoutesNames.adicionarProducao, builder: (context, state) {
       final gradeId = state.extra as String?;
       if (gradeId == null) {
-        return const Scaffold(body: Center(child: Text('Item não encontrado adicionar grade')));
+        return const Scaffold(body: Center(child: Text('Item não encontrado - [adicionar grade]')));
       }
       return AdicionarProducaoScreen(gId: gradeId);
     }),
@@ -66,7 +74,7 @@ class AppRoutes {
       builder: (context, state) {
         final grade = state.extra as GradeEntity?;
         if (grade == null) {
-          return const Scaffold(body: Center(child: Text('Item não encontrado')));
+          return const Scaffold(body: Center(child: Text('Item não encontrado - [editar grade]')));
         }
         return EditarGradeScreen(gradeRecebida: grade);
       },

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gestao_producao_chopp/core/common/widgets/linha_formatada.dart';
 import 'package:gestao_producao_chopp/core/common/widgets/linha_chave_valor.dart';
+import 'package:gestao_producao_chopp/core/common/widgets/linha_formatada.dart';
 import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_notifier.dart';
@@ -13,7 +13,7 @@ class ItemProducaoWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final notifier = ref.watch(listaProducoesProvider.notifier);
+    // final notifier = ref.watch(listaProducoesProvider.notifier);
 
     return Card(
       color: AppColors.lightSurface,

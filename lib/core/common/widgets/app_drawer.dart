@@ -11,7 +11,7 @@ class AppDrawer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(homeProvider);
+    // final state = ref.watch(homeProvider);
 
     return Drawer(
       width: 240,

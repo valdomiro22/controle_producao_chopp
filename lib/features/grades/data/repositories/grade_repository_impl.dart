@@ -1,5 +1,3 @@
-import 'dart:developer' as dev;
-
 import 'package:dartz/dartz.dart';
 import 'package:gestao_producao_chopp/core/error/exceptions.dart';
 import 'package:gestao_producao_chopp/core/error/failure.dart';
@@ -20,7 +18,9 @@ class GradeRepositoryImpl implements GradeRepository {
     try {
       final gradeModel = _mapper.toModel(grade);
 
-      if (gradeModel.id == null) return const Left(UnexpectedFailure('Id da grade não pode ser null'));
+      if (gradeModel.id == null) {
+        return const Left(UnexpectedFailure('Id da grade não pode ser null'));
+      }
 
       await _datasource.insertGrade(gradeModel);
       return const Right(unit);
@@ -55,7 +55,9 @@ class GradeRepositoryImpl implements GradeRepository {
   Future<Either<Failure, List<GradeEntity>>> getAllGrades() async {
     try {
       final result = await _datasource.getAllGrades();
-      final listaGradeEntity = result.map((grade) => _mapper.toEntity(grade)).toList();
+      final listaGradeEntity = result
+          .map((grade) => _mapper.toEntity(grade))
+          .toList();
       return Right(listaGradeEntity);
     } on FirestoreException catch (e) {
       return Left(FirestoreFailure(e.message));
@@ -64,7 +66,9 @@ class GradeRepositoryImpl implements GradeRepository {
     } on CacheException catch (e) {
       return Left(CacheFailure(e.message));
     } catch (e) {
-      return Left(UnexpectedFailure('Erro inesperado ao buscar todas as grade: $e'));
+      return Left(
+        UnexpectedFailure('Erro inesperado ao buscar todas as grade: $e'),
+      );
     }
   }
 

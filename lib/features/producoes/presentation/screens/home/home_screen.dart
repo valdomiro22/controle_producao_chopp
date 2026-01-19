@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/common/widgets/app_drawer.dart';
+import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 
 import '../../../../grades/domain/enums/turno.dart';
 import '../../../../grades/presentation/widgets/card_quantidade_horaria.dart';
@@ -9,7 +10,9 @@ import '../../../../grades/presentation/widgets/mensagem_aviso_buffer.dart';
 import 'home_notifier.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({super.key});
+  final ProducaoEntity producao;
+
+  const HomeScreen({super.key, required this.producao});
 
   @override
   ConsumerState<HomeScreen> createState() => _HomeScreenState();
@@ -20,7 +23,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(homeProvider);
+    // final state = ref.watch(homeProvider);
+    // final producaoState = ref.watch()
+
+    final producao = widget.producao;
 
     ref.listen(homeProvider, (previous, next) {
       if (previous?.isCarregando == true && next.isSucesso) {
@@ -40,20 +46,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
+
             // Cabeçalho
             Card(
               elevation: 0.4,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
                 child: Row(
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Produto', style: TextStyle(fontSize: 12)),
-                        Text('ITAIPAVA', style: TextStyle(fontWeight: FontWeight.bold)),
+                        const SizedBox(height: 4),
+                        Text(producao.produto.label, style: TextStyle(fontWeight: FontWeight.bold)),
                       ],
                     ),
                     Spacer(),
@@ -61,8 +70,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text('Ordem', style: TextStyle(fontSize: 12)),
+                        const SizedBox(height: 4),
                         Text(
-                          '25847598',
+                          'ex: 29384293',
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 16,
@@ -83,59 +93,66 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               children: [
                 CardStatusProducao(
                   label: 'Programado',
-                  fundoTitulo: Color(0xFF2563EB), // Azul Profissional
+                  valor: widget.producao.quantidadeProgramada,
+                  fundoTitulo: Color(0xFF2563EB),
                 ),
-                CardStatusProducao(
-                  label: 'Produzido',
-                  fundoTitulo: Color(0xFF22C55E), // Verde Profissional
-                ),
-                CardStatusProducao(
-                  label: 'Pendente',
-                  fundoTitulo: Color(0xFFEF4444), // Vermelho Profissional
-                ),
+                CardStatusProducao(label: 'Produzido', fundoTitulo: Color(0xFF22C55E)),
+                CardStatusProducao(label: 'Pendente', fundoTitulo: Color(0xFFEF4444)),
               ],
             ),
             SizedBox(height: 16),
 
             // Selecionar turno
             Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text('Horarios dos turnos', style: TextStyle(fontSize: 18)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // pode manter ou trocar por spaceEvenly
                   children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor: Color(0xffd2d6de),
-                        overlayColor: Colors.black.withValues(alpha: 0.05),
-                        splashFactory: InkRipple.splashFactory,
-                        animationDuration: const Duration(milliseconds: 120),
+                    Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          backgroundColor: const Color(0xffd2d6de),
+                          overlayColor: Colors.black.withOpacity(0.05),
+                          splashFactory: InkRipple.splashFactory,
+                          animationDuration: const Duration(milliseconds: 120),
+                        ),
+                        onPressed: () {},
+                        child: const Text('Turno A'),
                       ),
-                      onPressed: () {},
-                      child: Text('Turno A'),
                     ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor: Color(0xff3559fa),
-                        overlayColor: Colors.black.withValues(alpha: 0.05),
-                        splashFactory: InkRipple.splashFactory,
-                        animationDuration: const Duration(milliseconds: 120),
+                    SizedBox(width: 8),
+
+                    Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          backgroundColor: const Color(0xff3559fa),
+                          overlayColor: Colors.black.withOpacity(0.05),
+                          splashFactory: InkRipple.splashFactory,
+                          animationDuration: const Duration(milliseconds: 120),
+                        ),
+                        onPressed: () {},
+                        child: const Text('Turno B', style: TextStyle(color: Colors.white)),
                       ),
-                      onPressed: () {},
-                      child: Text('Turno B', style: TextStyle(color: Colors.white)),
                     ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor: Color(0xffd2d6de),
-                        overlayColor: Colors.black.withValues(alpha: 0.05),
-                        splashFactory: InkRipple.splashFactory,
-                        animationDuration: const Duration(milliseconds: 120),
+                    SizedBox(width: 8),
+
+                    Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          backgroundColor: const Color(0xffd2d6de),
+                          overlayColor: Colors.black.withOpacity(0.05),
+                          splashFactory: InkRipple.splashFactory,
+                          animationDuration: const Duration(milliseconds: 120),
+                        ),
+                        onPressed: () {},
+                        child: const Text('Turno C'),
                       ),
-                      onPressed: () {},
-                      child: Text('Turno C'),
                     ),
                   ],
                 ),
@@ -166,24 +183,31 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
               decoration: BoxDecoration(
-                color: Colors.purple[200],
+                color: Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(8),
               ),
               width: double.infinity,
               // color: Colors.red,
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text('Volume do Barril: 50L', style: TextStyle(color: Colors.black, fontSize: 16)),
+                  Text(
+                    'Volume do Barril: 50L',
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                  ),
                   SizedBox(height: 4),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Volume necessarios: ', style: TextStyle(color: Colors.black, fontSize: 16)),
-                      Text('38 hl', style: TextStyle(fontSize: 16),),
+                      Text(
+                        'Volume necessarios: ',
+                        style: TextStyle(color: Colors.black, fontSize: 16),
+                      ),
+                      Text(producao.volumeNecessarioHl.toString(), style: TextStyle(fontSize: 16)),
                     ],
                   ),
                   SizedBox(height: 16),
-                  MensagemAvisoBuffer(vlNecessario: 38)
+                  MensagemAvisoBuffer(vlNecessario: 38),
                 ],
               ),
             ),

@@ -8,7 +8,6 @@ class CardQuantidadeHoraria extends StatelessWidget {
     super.key,
     required this.horario,
     required this.quantidade,
-    req
   });
 
   @override
@@ -82,6 +81,7 @@ class CardQuantidadeHoraria extends StatelessWidget {
             borderRadius: BorderRadius.circular(5)
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               horario,

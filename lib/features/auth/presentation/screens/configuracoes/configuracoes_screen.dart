@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/constants/app_dimens.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/configuracoes_notifier.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/widgets/CustomButtonMaxWidth.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
@@ -17,12 +16,12 @@ class ConfiguracoesScreen extends ConsumerStatefulWidget {
 }
 
 class _ConfiguracoesScreenState extends ConsumerState<ConfiguracoesScreen> {
-  final _nomeController = TextEditingController();
+  // final _nomeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(configuracoesProvider);
-    final notifier = ref.read(configuracoesProvider.notifier);
+    // final state = ref.watch(configuracoesProvider);
+    // final notifier = ref.read(configuracoesProvider.notifier);
 
     return Scaffold(
       body: Container(

@@ -16,7 +16,7 @@ class DeletarContaScreen extends ConsumerStatefulWidget {
 }
 
 class _DeletarConstaScreenState extends ConsumerState<DeletarContaScreen> {
-  final _formKey = GlobalKey<FormState>();
+  // final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
 

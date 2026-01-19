@@ -78,6 +78,7 @@ class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
                       child: GestureDetector(
                         onTap: () {
                           // context.push(AppRoutesNames.adicionarProducao, extra: lista[index]);
+                          context.push(AppRoutesNames.home, extra: lista[index]);
                         },
                         child: ItemProducaoWidget(producao: producao),
                       ),

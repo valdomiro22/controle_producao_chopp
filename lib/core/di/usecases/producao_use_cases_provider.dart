@@ -1,10 +1,6 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/di/firebase/firebase_injection_providers.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/usecases/delete_producao_use_case.dart';
-import 'package:gestao_producao_chopp/features/producoes/domain/usecases/delete_producao_use_case.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/usecases/get_all_producoes_use_case.dart';
-import 'package:gestao_producao_chopp/features/producoes/domain/usecases/get_all_producoes_use_case.dart';
-import 'package:gestao_producao_chopp/features/producoes/domain/usecases/get_producao_use_case.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/usecases/get_producao_use_case.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/usecases/insert_producao_use_case.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/usecases/update_producao_use_case.dart';
