@@ -43,7 +43,7 @@ final class ListaProducoesNotifierProvider
 }
 
 String _$listaProducoesNotifierHash() =>
-    r'c7ff648e904446ab753cbcbd7913378e192a25cb';
+    r'95264eda04d022bdb6b3cfe24ba22eb21f917403';
 
 abstract class _$ListaProducoesNotifier
     extends $Notifier<AppState<ProducaoEntity>> {

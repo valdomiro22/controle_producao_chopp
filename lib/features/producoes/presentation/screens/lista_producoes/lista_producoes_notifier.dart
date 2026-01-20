@@ -51,4 +51,23 @@ class ListaProducoesNotifier extends _$ListaProducoesNotifier {
         },
     );
   }
+
+  Future<void> atualizarProducao({required String gradeId, required String producaoId, required ProducaoEntity prod,}) async {
+    state = AppState.carregando();
+
+    final useCase = ref.read(updateProducaoUseCaseProvider);
+    final result = await useCase(
+      gradeId: gradeId,
+      producaoId: producaoId,
+      producao: prod
+    );
+
+    result.fold(
+        (failure) => state = AppState.erro(failure),
+        (_) {
+          listarProducoes(gradeId);
+          return state = AppState.sucesso();
+        },
+    );
+  }
 }

@@ -31,11 +31,18 @@ class AppRoutes {
     ),
 
     GoRoute(path: AppRoutesNames.home, builder: (context, state) {
-      final producao = state.extra as ProducaoEntity?;
-      if (producao == null) {
-        return const Scaffold(body: Center(child: SelecionarProducaoWidget()));
+      final params = state.extra as ({String producaoId, String gradeId})?;
+
+      if (params == null) {
+        return const Scaffold(
+          body: Center(child: SelecionarProducaoWidget()),
+        );
       }
-      return HomeScreen(producao: producao);
+
+      return HomeScreen(
+        producaoId: params.producaoId,
+        gradeId: params.gradeId,
+      );
     }),
 
     GoRoute(path: AppRoutesNames.configuracoes, builder: (context, state) => ConfiguracoesScreen()),

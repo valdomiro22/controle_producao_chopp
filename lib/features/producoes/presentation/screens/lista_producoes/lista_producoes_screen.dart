@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/home_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_notifier.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/item_producao_widget.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
@@ -78,7 +79,16 @@ class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
                       child: GestureDetector(
                         onTap: () {
                           // context.push(AppRoutesNames.adicionarProducao, extra: lista[index]);
-                          context.push(AppRoutesNames.home, extra: lista[index]);
+                          final gradeId = lista[index].gradeId;
+                          final producaoId = lista[index].id!;
+                          // context.push(AppRoutesNames.home, extra: {'producaoId': producaoId, 'gradeId': gradeId});
+                          context.push(
+                            AppRoutesNames.home,
+                            extra: (
+                            producaoId: producaoId,
+                            gradeId: gradeId,
+                            ),
+                          );
                         },
                         child: ItemProducaoWidget(producao: producao),
                       ),
