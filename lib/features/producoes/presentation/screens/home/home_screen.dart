@@ -7,6 +7,7 @@ import 'package:gestao_producao_chopp/features/producoes/domain/entities/produca
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/buscar_producao_notifier.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/selecionar_turno_notifier.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_notifier.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/controle_nivel_buffer_widget.dart';
 
 import '../../../../grades/domain/enums/turno.dart';
 import '../../../../grades/presentation/widgets/card_quantidade_horaria.dart';
@@ -264,39 +265,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           SizedBox(height: 16),
 
           // Monitoramento de volume
-          Text('Controle de nível do Buffer', style: TextStyle(fontSize: 18)),
-          SizedBox(height: 4),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-            decoration: BoxDecoration(
-              color: Colors.grey.shade200,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            width: double.infinity,
-            // color: Colors.red,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Volume do Barril: 50L',
-                  style: TextStyle(color: Colors.black, fontSize: 16),
-                ),
-                SizedBox(height: 4),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Volume necessarios: ',
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                    ),
-                    Text(producao.volumeNecessarioHl.toString(), style: TextStyle(fontSize: 16)),
-                  ],
-                ),
-                SizedBox(height: 16),
-                MensagemAvisoBuffer(vlNecessario: 38),
-              ],
-            ),
-          ),
+          ControleNivelBufferWidget(
+            producao: producao,
+          )
         ],
       ),
     );
