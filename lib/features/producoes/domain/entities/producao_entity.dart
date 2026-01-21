@@ -39,7 +39,7 @@ class ProducaoEntity {
     int? quantidadeProduzida,
     int? quantidadePendente,
     double? volumeNecessarioHl,
-    DateTime? iniciadaProducao,
+    DateTime? dataCriacao,
     DateTime? finalizadaProducao,
   }) {
     return ProducaoEntity(
@@ -52,7 +52,7 @@ class ProducaoEntity {
       quantidadeProduzida: quantidadeProduzida ?? this.quantidadeProduzida,
       quantidadePendente: quantidadePendente ?? this.quantidadePendente,
       volumeNecessarioHl: volumeNecessarioHl ?? this.volumeNecessarioHl,
-      dataCriacao: iniciadaProducao ?? this.dataCriacao,
+      dataCriacao: dataCriacao ?? this.dataCriacao,
       finalizadaProducao: finalizadaProducao ?? this.finalizadaProducao,
     );
   }
