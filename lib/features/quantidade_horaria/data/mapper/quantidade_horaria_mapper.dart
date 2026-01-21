@@ -5,7 +5,7 @@ extension QuantidadeHorariaToEntity on QuantidadeHorariaModel {
   QuantidadeHorariaEntity toEntity() {
     return QuantidadeHorariaEntity(
       id: id,
-      turnoId: turnoId,
+      turno: turno,
       producaoId: producaoId,
       turnoReferente: turnoReferente,
       quantidade: quantidade,
@@ -20,7 +20,7 @@ extension QuantidadeHorariaToModel on QuantidadeHorariaEntity {
   QuantidadeHorariaModel toModel() {
     return QuantidadeHorariaModel(
       id: id,
-      turnoId: turnoId,
+      turno: turno,
       producaoId: producaoId,
       turnoReferente: turnoReferente,
       quantidade: quantidade,

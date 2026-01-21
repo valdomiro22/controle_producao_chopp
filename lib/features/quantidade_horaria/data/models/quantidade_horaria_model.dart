@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:gestao_producao_chopp/features/grades/domain/enums/turno.dart';
 
 class QuantidadeHorariaModel {
   final String? id;
-  final String turnoId;
+  final Turno turno;
   final String producaoId;
   final int turnoReferente;
   final int quantidade;
@@ -12,7 +13,7 @@ class QuantidadeHorariaModel {
 
   QuantidadeHorariaModel({
     this.id,
-    required this.turnoId,
+    required this.turno,
     required this.producaoId,
     required this.turnoReferente,
     required this.quantidade,
@@ -24,7 +25,7 @@ class QuantidadeHorariaModel {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'turnoId': turnoId,
+      'turno': turno.id,
       'producaoId': producaoId,
       'turnoReferente': turnoReferente,
       'quantidade': quantidade,
@@ -37,7 +38,7 @@ class QuantidadeHorariaModel {
   factory QuantidadeHorariaModel.fromMap(Map<String, dynamic> map) {
     return QuantidadeHorariaModel(
       id: map['id'] as String?,
-      turnoId: map['turnoId'] as String,
+      turno: Turno.fronId(map['turno'] as int),
       producaoId: map['producaoId'] as String,
       turnoReferente: map['turnoReferente'] as int,
       quantidade: map['quantidade'] as int,
@@ -49,7 +50,7 @@ class QuantidadeHorariaModel {
 
   QuantidadeHorariaModel copyWith({
     String? id,
-    String? turnoId,
+    Turno? turno,
     String? producaoId,
     int? turnoReferente,
     int? quantidade,
@@ -59,7 +60,7 @@ class QuantidadeHorariaModel {
   }) {
     return QuantidadeHorariaModel(
       id: id ?? this.id,
-      turnoId: turnoId ?? this.turnoId,
+      turno: turno ?? this.turno,
       producaoId: producaoId ?? this.producaoId,
       turnoReferente: turnoReferente ?? this.turnoReferente,
       quantidade: quantidade ?? this.quantidade,

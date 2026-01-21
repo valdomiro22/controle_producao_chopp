@@ -1,6 +1,8 @@
+import 'package:gestao_producao_chopp/features/grades/domain/enums/turno.dart';
+
 class QuantidadeHorariaEntity {
   final String? id;
-  final String turnoId;
+  final Turno turno;
   final String producaoId;
   final int turnoReferente;
   final int quantidade;
@@ -10,7 +12,7 @@ class QuantidadeHorariaEntity {
 
   QuantidadeHorariaEntity({
     this.id,
-    required this.turnoId,
+    required this.turno,
     required this.producaoId,
     required this.turnoReferente,
     required this.quantidade,
@@ -21,7 +23,7 @@ class QuantidadeHorariaEntity {
 
   QuantidadeHorariaEntity copyWith({
     String? id,
-    String? turnoId,
+    Turno? turno,
     String? producaoId,
     int? turnoReferente,
     int? quantidade,
@@ -31,7 +33,7 @@ class QuantidadeHorariaEntity {
   }) {
     return QuantidadeHorariaEntity(
       id: id ?? this.id,
-      turnoId: turnoId ?? this.turnoId,
+      turno: turno ?? this.turno,
       producaoId: producaoId ?? this.producaoId,
       turnoReferente: turnoReferente ?? this.turnoReferente,
       quantidade: quantidade ?? this.quantidade,
@@ -45,7 +47,7 @@ class QuantidadeHorariaEntity {
   String toString() {
     return 'QuantidadeHorariaEntity('
         'id: $id, '
-        'turnoId: $turnoId, '
+        'turno: $turno, '
         'producaoId: $producaoId, '
         'turnoReferente: $turnoReferente, '
         'quantidade: $quantidade, '
