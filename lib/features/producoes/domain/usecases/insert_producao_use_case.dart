@@ -20,12 +20,6 @@ class InsertProducaoUseCase {
     required Barril? tipoBarril,
     required DateTime? data,
   }) async {
-    print('=== USE CASE RECEBEU ===');
-    print('quantidade: $quantidade  -> (tipo: ${quantidade.runtimeType})');
-    print('tipoProduto: $tipoProduto');
-    print('tipoBarril: $tipoBarril');
-    print('data: $data');
-
     if (tipoProduto == null) {
       return Left(UnexpectedFailure('Selecione um produto'));
     }
