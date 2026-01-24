@@ -9,7 +9,7 @@ class InsertQtHorariaUseCase {
 
   InsertQtHorariaUseCase(this._repository);
 
-  Future<Either<Failure, Unit>> insertQtHoraria({
+  Future<Either<Failure, Unit>> call({
     required QuantidadeHorariaEntity qtHoraria,
     required String producaoId,
   }) async {

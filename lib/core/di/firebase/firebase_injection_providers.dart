@@ -5,6 +5,10 @@ import 'package:gestao_producao_chopp/features/producoes/data/datasource/produca
 import 'package:gestao_producao_chopp/features/producoes/data/datasource/producao_datasource_impl.dart';
 import 'package:gestao_producao_chopp/features/producoes/data/repository/producao_repository_impl.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/repository/producao_repository.dart';
+import 'package:gestao_producao_chopp/features/quantidade_horaria/data/datasource/quantidade_horaria_datasource.dart';
+import 'package:gestao_producao_chopp/features/quantidade_horaria/data/datasource/quantidade_horaria_datasource_impl.dart';
+import 'package:gestao_producao_chopp/features/quantidade_horaria/data/repositories/quantidade_horaria_repository_impl.dart';
+import 'package:gestao_producao_chopp/features/quantidade_horaria/domain/repositories/quantidade_horaria_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../features/auth/data/datasources/remote/auth_remote_datasource.dart';
@@ -51,6 +55,12 @@ ProducaoDatasource producaoDatasource(Ref ref) {
   return ProducaoDatasourceImpl(firestore);
 }
 
+@riverpod
+QuantidadeHorariaDatasource quantidadeHorariaDatasource(Ref ref) {
+  final firestore = ref.watch(firebaseFirestoreProvider);
+  return QuantidadeHorariaDatasourceImpl(firestore);
+}
+
 // repository ------------------------------------------------------------------
 @riverpod
 AuthRepository authRepository(Ref ref) {
@@ -71,3 +81,8 @@ ProducaoRepository producaoRepository(Ref ref) {
   return ProducaoRepositoryImpl(dataSource);
 }
 
+@riverpod
+QuantidadeHorariaRepository quantidadeHorariaRepository(Ref ref) {
+  final dataSource = ref.watch(quantidadeHorariaDatasourceProvider);
+  return QuantidadeHorariaRepositoryImpl(dataSource);
+}

@@ -235,6 +235,55 @@ final class ProducaoDatasourceProvider
 String _$producaoDatasourceHash() =>
     r'e67a92cff69543db527f9592d51483df86a691cf';
 
+@ProviderFor(quantidadeHorariaDatasource)
+final quantidadeHorariaDatasourceProvider =
+    QuantidadeHorariaDatasourceProvider._();
+
+final class QuantidadeHorariaDatasourceProvider
+    extends
+        $FunctionalProvider<
+          QuantidadeHorariaDatasource,
+          QuantidadeHorariaDatasource,
+          QuantidadeHorariaDatasource
+        >
+    with $Provider<QuantidadeHorariaDatasource> {
+  QuantidadeHorariaDatasourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'quantidadeHorariaDatasourceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$quantidadeHorariaDatasourceHash();
+
+  @$internal
+  @override
+  $ProviderElement<QuantidadeHorariaDatasource> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  QuantidadeHorariaDatasource create(Ref ref) {
+    return quantidadeHorariaDatasource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(QuantidadeHorariaDatasource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<QuantidadeHorariaDatasource>(value),
+    );
+  }
+}
+
+String _$quantidadeHorariaDatasourceHash() =>
+    r'e0194be69b4a722aa5c8a802f88b6b81eeb4754f';
+
 @ProviderFor(authRepository)
 final authRepositoryProvider = AuthRepositoryProvider._();
 
@@ -365,3 +414,52 @@ final class ProducaoRepositoryProvider
 
 String _$producaoRepositoryHash() =>
     r'705f74728e570a602708d96505f5e3920a8a435c';
+
+@ProviderFor(quantidadeHorariaRepository)
+final quantidadeHorariaRepositoryProvider =
+    QuantidadeHorariaRepositoryProvider._();
+
+final class QuantidadeHorariaRepositoryProvider
+    extends
+        $FunctionalProvider<
+          QuantidadeHorariaRepository,
+          QuantidadeHorariaRepository,
+          QuantidadeHorariaRepository
+        >
+    with $Provider<QuantidadeHorariaRepository> {
+  QuantidadeHorariaRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'quantidadeHorariaRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$quantidadeHorariaRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<QuantidadeHorariaRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  QuantidadeHorariaRepository create(Ref ref) {
+    return quantidadeHorariaRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(QuantidadeHorariaRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<QuantidadeHorariaRepository>(value),
+    );
+  }
+}
+
+String _$quantidadeHorariaRepositoryHash() =>
+    r'2840172c3e488e524490c4cb9852a310ed38e61b';

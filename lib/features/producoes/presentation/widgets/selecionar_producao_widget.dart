@@ -8,23 +8,27 @@ class SelecionarProducaoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('Selecione uma Produção'),
-          const SizedBox(height: 100),
+    return Container(
+      padding: EdgeInsets.all(16),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Selecione uma Produção'),
+            const SizedBox(height: 100),
 
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                context.push(AppRoutesNames.listaGrades);
-              },
-              child: Text('Lista de Produções'),
+            SizedBox(
+              height: 50,
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  context.push(AppRoutesNames.listaGrades);
+                },
+                child: Text('Lista de Produções', style: TextStyle(fontSize: 18),),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
