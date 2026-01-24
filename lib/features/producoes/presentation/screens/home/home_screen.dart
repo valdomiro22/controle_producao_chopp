@@ -157,7 +157,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               Text('Horarios dos turnos', style: TextStyle(fontSize: 18)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                // pode manter ou trocar por spaceEvenly
                 children: [
                   Expanded(
                     child: ElevatedButton(
@@ -171,7 +170,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         animationDuration: const Duration(milliseconds: 120),
                       ),
                       onPressed: () {
-                        // turnoNotifier = Turno.turnoA;
                         turnoNotifier.selecionarTurno(Turno.turnoA);
                       },
                       child: Text(
@@ -244,7 +242,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
           SizedBox(height: 8),
 
-          // Hos do turno
+          // Horarios do turno
           GridView.builder(
             padding: EdgeInsets.zero,
             physics: NeverScrollableScrollPhysics(),

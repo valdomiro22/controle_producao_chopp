@@ -13,7 +13,7 @@ class InserirQuantidadeHorariaNotifier extends _$InserirQuantidadeHorariaNotifie
     return FormQtHoraria(producaoId: producaoId);
   }
 
-  Future<void> salvarProducao() async {
+  Future<void> inserirQuantidade() async {
     state = state.copyWith(isLoading: true);
 
     final qtHoraria = QuantidadeHorariaEntity(

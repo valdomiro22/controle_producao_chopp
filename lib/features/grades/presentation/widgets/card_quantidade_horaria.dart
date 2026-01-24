@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_notifier.dart';
+import 'package:gestao_producao_chopp/features/quantidade_horaria/presentation/providers/inserir_quantidade_horaria_notifier.dart';
 
 import '../../../producoes/presentation/screens/home/buscar_producao_notifier.dart';
 import '../../../producoes/presentation/screens/home/selecionar_turno_notifier.dart';
@@ -43,11 +44,16 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
 
   @override
   Widget build(BuildContext context) {
+    final producaoId = widget.producao.id ?? '';
+
     final turnoState = ref.watch(selecionarTurnoProvider);
     final turnoNotifier = ref.watch(selecionarTurnoProvider.notifier);
 
     final prodState = ref.watch(listaProducoesProvider);
     final prodNotifier = ref.watch(listaProducoesProvider.notifier);
+
+    final qtHorariaState = ref.watch(inserirQuantidadeHorariaProvider(producaoId));
+    final qtHorariaNotifier = ref.watch(inserirQuantidadeHorariaProvider(producaoId).notifier);
 
     return GestureDetector(
       onTap: () {
@@ -120,35 +126,42 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
                       return;
                     }
 
-                    final programada = widget.producao.quantidadeProgramada;
-                    final produzidaAtual = widget.producao.quantidadeProduzida ?? 0;
-                    final novaProduzida = produzidaAtual + qtAdicional;
-                    final pendente = programada - novaProduzida;
+                    // final programada = widget.producao.quantidadeProgramada;
+                    // final produzidaAtual = widget.producao.quantidadeProduzida ?? 0;
+                    // final novaProduzida = produzidaAtual + qtAdicional;
+                    // final pendente = programada - novaProduzida;
+                    //
+                    // final prodAtualizada = widget.producao.copyWith(
+                    //   quantidadeProduzida: novaProduzida,
+                    //   quantidadePendente: pendente,
+                    // );
+                    //
+                    // try {
+                    //   await prodNotifier.atualizarProducao(
+                    //     gradeId: widget.producao.gradeId,
+                    //     producaoId: widget.producao.id!,
+                    //     prod: prodAtualizada,
+                    //   );
+                    //
+                    //   // Atualização otimista: força o estado do provider que a Home observa
+                    //   ref.read(buscarProducaoProvider.notifier).state = AsyncData(prodAtualizada);
+                    //
+                    //   // Opcional: se quiser garantir sync com backend depois, pode chamar um refetch em background
+                    //   // ref.refresh(buscarProducaoProvider);
+                    // } catch (e) {
+                    //   // Se der erro no backend, reverta para o estado anterior (robustez extra)
+                    //   // ref.read(buscarProducaoProvider.notifier).state = AsyncData(widget.producao);
+                    //   ScaffoldMessenger.of(context).showSnackBar(
+                    //     SnackBar(content: Text('Erro ao salvar: $e')),
+                    //   );
+                    // }
 
-                    final prodAtualizada = widget.producao.copyWith(
-                      quantidadeProduzida: novaProduzida,
-                      quantidadePendente: pendente,
+
+
+                    final quantidade = qtAdicional;
+                    qtHorariaNotifier.inserirQuantidade(
+
                     );
-
-                    try {
-                      await prodNotifier.atualizarProducao(
-                        gradeId: widget.producao.gradeId,
-                        producaoId: widget.producao.id!,
-                        prod: prodAtualizada,
-                      );
-
-                      // Atualização otimista: força o estado do provider que a Home observa
-                      ref.read(buscarProducaoProvider.notifier).state = AsyncData(prodAtualizada);
-
-                      // Opcional: se quiser garantir sync com backend depois, pode chamar um refetch em background
-                      // ref.refresh(buscarProducaoProvider);
-                    } catch (e) {
-                      // Se der erro no backend, reverta para o estado anterior (robustez extra)
-                      // ref.read(buscarProducaoProvider.notifier).state = AsyncData(widget.producao);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Erro ao salvar: $e')),
-                      );
-                    }
 
                     Navigator.of(context).pop();
                   },
