@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gestao_producao_chopp/features/auth/data/datasources/usuario_datasource.dart';
+import 'package:gestao_producao_chopp/features/auth/data/datasources/usuario_datasource_impl.dart';
+import 'package:gestao_producao_chopp/features/auth/data/repositories/usuario_repository_impl.dart';
+import 'package:gestao_producao_chopp/features/auth/domain/repositories/usuario_repository.dart';
 import 'package:gestao_producao_chopp/features/producoes/data/datasource/producao_datasource.dart';
 import 'package:gestao_producao_chopp/features/producoes/data/datasource/producao_datasource_impl.dart';
 import 'package:gestao_producao_chopp/features/producoes/data/repository/producao_repository_impl.dart';
@@ -11,8 +15,8 @@ import 'package:gestao_producao_chopp/features/quantidade_horaria/data/repositor
 import 'package:gestao_producao_chopp/features/quantidade_horaria/domain/repositories/quantidade_horaria_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../features/auth/data/datasources/remote/auth_remote_datasource.dart';
-import '../../../features/auth/data/datasources/remote/auth_remote_datasource_impl.dart';
+import '../../../features/auth/data/datasources/auth_remote_datasource.dart';
+import '../../../features/auth/data/datasources/auth_remote_datasource_impl.dart';
 import '../../../features/auth/data/repositories/auth_repository_impl.dart';
 import '../../../features/auth/domain/repositories/auth_repository.dart';
 import '../../../features/grades/data/datasources/grade_datasource.dart';
@@ -38,6 +42,12 @@ FirebaseFirestore firebaseFirestore(Ref ref) {
 
 // datasource ------------------------------------------------------------------
 @riverpod
+UsuarioDatasource usuarioDatasource(Ref ref) {
+  final firestore = ref.watch(firebaseFirestoreProvider);
+  return UsuarioDatasourceImpl(firestore);
+}
+
+@riverpod
 AuthRemoteDatasource authRemoteDatasource(Ref ref) {
   final auth = ref.watch(firebaseAuthProvider);
   return AuthRemoteDatasourceImpl(auth);
@@ -62,6 +72,12 @@ QuantidadeHorariaDatasource quantidadeHorariaDatasource(Ref ref) {
 }
 
 // repository ------------------------------------------------------------------
+
+UsuarioRepository usuarioRepository(Ref ref) {
+  final dataSouce = ref.watch(usuarioDatasourceProvider);
+  return UsuarioRepositoryImpl(dataSouce);
+}
+
 @riverpod
 AuthRepository authRepository(Ref ref) {
   final dataSource = ref.watch(authRemoteDatasourceProvider);

@@ -97,6 +97,53 @@ final class FirebaseFirestoreProvider
 
 String _$firebaseFirestoreHash() => r'963402713bf9b7cc1fb259d619d9b0184d4dcec1';
 
+@ProviderFor(usuarioDatasource)
+final usuarioDatasourceProvider = UsuarioDatasourceProvider._();
+
+final class UsuarioDatasourceProvider
+    extends
+        $FunctionalProvider<
+          UsuarioDatasource,
+          UsuarioDatasource,
+          UsuarioDatasource
+        >
+    with $Provider<UsuarioDatasource> {
+  UsuarioDatasourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'usuarioDatasourceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$usuarioDatasourceHash();
+
+  @$internal
+  @override
+  $ProviderElement<UsuarioDatasource> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  UsuarioDatasource create(Ref ref) {
+    return usuarioDatasource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(UsuarioDatasource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<UsuarioDatasource>(value),
+    );
+  }
+}
+
+String _$usuarioDatasourceHash() => r'0b0e2e685589dbd9281d2e9f31915954892683a7';
+
 @ProviderFor(authRemoteDatasource)
 final authRemoteDatasourceProvider = AuthRemoteDatasourceProvider._();
 

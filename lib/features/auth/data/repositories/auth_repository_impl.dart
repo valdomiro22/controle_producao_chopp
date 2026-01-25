@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failure.dart';
 import '../../domain/repositories/auth_repository.dart';
-import '../datasources/remote/auth_remote_datasource.dart';
+import '../datasources/auth_remote_datasource.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDatasource _authDataSource;
@@ -28,7 +28,6 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, Unit>> deleteUser({required String email, required String currentPassword}) async {
-    print('\n\nDeletar Conta');
     try {
       await _authDataSource.deleteUser(email: email, currentPassword: currentPassword);
       return Right(unit);
