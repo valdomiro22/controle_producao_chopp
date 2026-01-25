@@ -63,7 +63,6 @@ class _DeletarConstaScreenState extends ConsumerState<DeletarContaScreen> {
                 icone: Icons.email_outlined,
                 hint: AppStrings.exemploEmail,
                 inputType: TextInputType.emailAddress,
-                validador: (val) => val != null && val.contains('@') ? null : 'E-mail inválido',
               ),
               const SizedBox(height: AppDimens.spacingMM),
 
@@ -73,7 +72,6 @@ class _DeletarConstaScreenState extends ConsumerState<DeletarContaScreen> {
                 icone: Icons.lock_outline,
                 hint: AppStrings.exemploSenha,
                 inputType: TextInputType.visiblePassword,
-                validador: (val) => val != null && val.contains('@') ? null : 'E-mail inválido',
                 ocultar: true,
               ),
 

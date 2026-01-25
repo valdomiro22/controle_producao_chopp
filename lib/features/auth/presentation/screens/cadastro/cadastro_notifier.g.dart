@@ -13,7 +13,7 @@ part of 'cadastro_notifier.dart';
 final cadastroProvider = CadastroNotifierProvider._();
 
 final class CadastroNotifierProvider
-    extends $NotifierProvider<CadastroNotifier, AuthState> {
+    extends $NotifierProvider<CadastroNotifier, FormCadastroState> {
   CadastroNotifierProvider._()
     : super(
         from: null,
@@ -33,27 +33,27 @@ final class CadastroNotifierProvider
   CadastroNotifier create() => CadastroNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(AuthState value) {
+  Override overrideWithValue(FormCadastroState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<AuthState>(value),
+      providerOverride: $SyncValueProvider<FormCadastroState>(value),
     );
   }
 }
 
-String _$cadastroNotifierHash() => r'661bcb8a65f35e552442ba7659161258f1d94863';
+String _$cadastroNotifierHash() => r'f98e56b529af8a60f89f7f03edd042d855085830';
 
-abstract class _$CadastroNotifier extends $Notifier<AuthState> {
-  AuthState build();
+abstract class _$CadastroNotifier extends $Notifier<FormCadastroState> {
+  FormCadastroState build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<AuthState, AuthState>;
+    final ref = this.ref as $Ref<FormCadastroState, FormCadastroState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AuthState, AuthState>,
-              AuthState,
+              AnyNotifier<FormCadastroState, FormCadastroState>,
+              FormCadastroState,
               Object?,
               Object?
             >;

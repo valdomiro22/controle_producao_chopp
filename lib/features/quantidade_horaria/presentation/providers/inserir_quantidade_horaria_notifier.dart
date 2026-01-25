@@ -1,4 +1,3 @@
-import 'package:gestao_producao_chopp/core/di/usecases/grade_use_cases_provider.dart';
 import 'package:gestao_producao_chopp/core/di/usecases/quantidade_horaria_use_cases_provider.dart';
 import 'package:gestao_producao_chopp/features/quantidade_horaria/domain/entities/quantidade_horaria_entity.dart';
 import 'package:gestao_producao_chopp/features/quantidade_horaria/presentation/providers/form_qt_horaria.dart';

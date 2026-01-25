@@ -11,7 +11,7 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this._authDataSource);
 
   @override
-  Future<Either<Failure, String>> createUser({required String email, required String password}) async {
+  Future<Either<Failure, String?>> createUser({required String email, required String password}) async {
     try {
       final userId = await _authDataSource.createUser(email: email, password: password);
       return Right(userId);

@@ -72,7 +72,7 @@ QuantidadeHorariaDatasource quantidadeHorariaDatasource(Ref ref) {
 }
 
 // repository ------------------------------------------------------------------
-
+@riverpod
 UsuarioRepository usuarioRepository(Ref ref) {
   final dataSouce = ref.watch(usuarioDatasourceProvider);
   return UsuarioRepositoryImpl(dataSouce);

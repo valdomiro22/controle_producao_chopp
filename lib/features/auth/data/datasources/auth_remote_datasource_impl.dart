@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../core/error/exceptions.dart';
 import 'auth_remote_datasource.dart';
@@ -9,37 +10,40 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   AuthRemoteDatasourceImpl(this._auth);
 
   @override
-  Future<String> createUser({required String email, required String password}) async {
+  Future<String?> createUser({required String email, required String password}) async {
     try {
       final credential = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      final uid = credential.user?.uid;
 
-      if (uid == null) throw AuthException('Usuário não foi criado');
+      final uid = credential.user?.uid;
+      if (uid == null) throw const AuthException('Erro ao obter identificador do usuário.');
+
       return uid;
+
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case 'weak-password':
-          throw AuthException('Senha muito fraca');
+          throw const AuthException('A senha digitada é muito fraca.');
         case 'email-already-in-use':
-          throw AuthException('Este e-mail já está em uso');
+          throw const AuthException('Este e-mail já está cadastrado.');
         case 'invalid-email':
-          throw AuthException('E-mail inválido');
+          throw const AuthException('O formato do e-mail é inválido.');
         case 'operation-not-allowed':
-          throw AuthException('Operação não permitida');
+          throw const AuthException('O cadastro de e-mail não está ativo no Firebase.');
         case 'network-request-failed':
-          throw NetworkException('Sem conexão com a internet');
+          throw const NetworkException('Sem conexão com a internet.');
         case 'too-many-requests':
-          throw UnexpectedException('Muitas tentativas. Tente novamente mais tarde');
-        case 'user-disabled':
-          throw AuthException('Usuário desabilitado');
+          throw const UnexpectedException('Muitas solicitações. Tente novamente mais tarde.');
         default:
-          throw AuthException(e.message ?? 'Erro ao criar usuário');
+          throw AuthException('Erro na autenticação: Verifique os campos');
       }
+
+    } on PlatformException catch (e) {
+      throw NetworkException('Falha de configuração local: ${e.message ?? 'Erro de plataforma'}');
     } catch (e) {
-      throw UnexpectedException("Erro inesperado ao criar usuario: ${e.runtimeType}");
+      throw const UnexpectedException('Ocorreu um erro inesperado ao processar seu cadastro.');
     }
   }
 

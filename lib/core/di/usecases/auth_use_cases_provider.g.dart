@@ -55,7 +55,7 @@ final class CadastrarUsuarioUseCaseProvider
 }
 
 String _$cadastrarUsuarioUseCaseHash() =>
-    r'38a13645215379b171c543e34fa5de26145127e6';
+    r'2aedddc7ab83ae4a61c1cc058c34ca5346b1c61d';
 
 @ProviderFor(deslogarUsuarioUseCase)
 final deslogarUsuarioUseCaseProvider = DeslogarUsuarioUseCaseProvider._();

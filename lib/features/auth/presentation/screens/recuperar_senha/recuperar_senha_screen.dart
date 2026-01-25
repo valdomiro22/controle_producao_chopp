@@ -58,7 +58,6 @@ class _RecuperarSenhaScreenState extends ConsumerState<RecuperarSenhaScreen> {
               icone: Icons.email_outlined,
               hint: AppStrings.exemploEmail,
               inputType: TextInputType.emailAddress,
-              validador: (val) => val != null && val.contains('@') ? null : 'E-mail inválido',
             ),
             const SizedBox(height: AppDimens.spacingG),
 

@@ -44,7 +44,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 label: AppStrings.email,
                 inputType: TextInputType.emailAddress,
                 icone: Icons.email,
-                validador: (value) => value!.isEmpty ? 'Digite o email' : null,
               ),
               SizedBox(height: AppDimens.spacingG),
 
@@ -54,11 +53,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 label: AppStrings.senha,
                 inputType: TextInputType.visiblePassword,
                 icone: Icons.lock,
-                validador: (value) => value!.isEmpty ? 'Digite a senha' : null,
               ),
 
-              if (state.isErro)
-                Text(state.erro?.message ?? '' , style: TextStyle(color: Colors.red)),
+
+              // // if (state.err)
+              //   Text(state.erroForm?.message ?? '' , style: TextStyle(color: Colors.red)),
 
               Align(
                 alignment: AlignmentGeometry.topRight,

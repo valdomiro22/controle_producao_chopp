@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/error/failure.dart';
 
 abstract class AuthRepository {
-  Future<Either<Failure, String>> createUser({required String email, required String password});
+  Future<Either<Failure, String?>> createUser({required String email, required String password});
   Future<Either<Failure, String>> login({required String email, required String password});
   Future<Either<Failure, Unit>> signOut();
   Future<Either<Failure, String?>> getCurrentUserId();

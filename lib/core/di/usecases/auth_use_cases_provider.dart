@@ -15,10 +15,12 @@ part 'auth_use_cases_provider.g.dart';
 @riverpod
 CadastrarUsuarioUseCase cadastrarUsuarioUseCase(Ref ref) {
   final authRepository = ref.watch(authRepositoryProvider);
-  return CadastrarUsuarioUseCase(authRepository);
+  final usuarioRepository = ref.watch(usuarioRepositoryProvider);
+  return CadastrarUsuarioUseCase(authRepository, usuarioRepository);
 }
 
 @riverpod
+
 DeslogarUsuarioUseCase deslogarUsuarioUseCase(Ref ref) {
   final authRepository = ref.watch(authRepositoryProvider);
   return DeslogarUsuarioUseCase(authRepository);

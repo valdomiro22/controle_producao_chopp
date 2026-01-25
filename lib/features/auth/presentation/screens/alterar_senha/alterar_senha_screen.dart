@@ -67,7 +67,6 @@ class _AlterarSenhaScreenState extends ConsumerState<AlterarSenhaScreen> {
                 icone: Icons.lock_outline,
                 hint: AppStrings.exemploSenha,
                 inputType: TextInputType.visiblePassword,
-                validador: (val) => val != null && val.contains('@') ? null : 'E-mail inválido',
                 ocultar: true,
               ),
               const SizedBox(height: AppDimens.spacingMM),
@@ -78,7 +77,6 @@ class _AlterarSenhaScreenState extends ConsumerState<AlterarSenhaScreen> {
                 icone: Icons.lock_outline,
                 hint: AppStrings.exemploSenha,
                 inputType: TextInputType.visiblePassword,
-                validador: (val) => val != null && val.contains('@') ? null : 'E-mail inválido',
                 ocultar: true,
               ),
               const SizedBox(height: AppDimens.spacingMM),
@@ -89,7 +87,6 @@ class _AlterarSenhaScreenState extends ConsumerState<AlterarSenhaScreen> {
                 icone: Icons.lock_outline,
                 hint: AppStrings.exemploSenha,
                 inputType: TextInputType.visiblePassword,
-                validador: (val) => val != null ? null : 'E-mail inválido',
                 ocultar: true,
               ),
 

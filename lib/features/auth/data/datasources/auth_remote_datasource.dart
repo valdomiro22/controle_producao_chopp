@@ -1,6 +1,6 @@
 abstract class AuthRemoteDatasource {
   /// Crie um novo usuario.
-  Future<String> createUser({required String email, required String password});
+  Future<String?> createUser({required String email, required String password});
 
   /// Faz log in (entrar). Retorna o UID do usuario logado.
   Future<String> login({required String email, required String password});

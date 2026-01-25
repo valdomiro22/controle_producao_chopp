@@ -8,7 +8,6 @@ class CustomTextfiewd extends StatelessWidget {
   final bool ocultar;
   final IconData icone;
   final TextInputType inputType;
-  final FormFieldValidator<String?> validador;
 
   const CustomTextfiewd({
     super.key,
@@ -17,13 +16,12 @@ class CustomTextfiewd extends StatelessWidget {
     required this.label,
     required this.icone,
     required this.inputType,
-    required this.validador,
     this.ocultar = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
+    return TextField(
       controller: controller,
       keyboardType: inputType,
       decoration: InputDecoration(
@@ -49,7 +47,6 @@ class CustomTextfiewd extends StatelessWidget {
               borderRadius: BorderRadius.circular(8)
           ),
       ),
-      validator: validador,
       obscureText: ocultar,
     );
   }
