@@ -1,38 +1,114 @@
 import 'package:gestao_producao_chopp/core/common/states/app_state.dart';
 import 'package:gestao_producao_chopp/core/di/usecases/producao_use_cases_provider.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
-import 'package:gestao_producao_chopp/features/producoes/presentation/screens/adicionar_producao/form_adicionar_producao_notifier.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/screens/adicionar_producao/form_adicionar_producao_state.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../grades/domain/enums/barril.dart';
+import '../../../../grades/domain/enums/produto.dart';
+import '../../../domain/enums/status_producao.dart';
 
 part 'adicionar_producao_notifier.g.dart';
 
 @riverpod
 class AdicionarProducaoNotifier extends _$AdicionarProducaoNotifier {
   @override
-  AppState<ProducaoEntity> build() => AppState.inicial();
+  FormAdicionarProducaoState build() => FormAdicionarProducaoState.inicial();
+
+  void selecionarProduto(Produto? produto) => state = state.copyWith(produto: produto);
+  void selecionarBarril(Barril? barril) => state = state.copyWith(barril: barril);
+
+  void atualizaQuantidade(String value) {
+    final valorRecebido = value.trim();
+    state = state.copyWith(
+        quantidade: valorRecebido.isEmpty ? null : valorRecebido
+    );
+  }
 
   Future<void> adicionarProducao(String gradeId) async {
 
-    state = AppState.carregando();
+    if (!_validarCampos()) return;
 
-    final form = ref.read(formAdicionarProducaoProvider);
+    state = state.copyWith(isLoading: true);
+
     final usecase = ref.read(insertProducaoUseCaseProvider);
-    final result = await usecase(
+    final quantidade = int.parse(state.quantidade!);
+
+    final producao = ProducaoEntity(
       gradeId: gradeId,
-      quantidade: form.quantidade,
-      tipoProduto: form.produto,
-      tipoBarril: form.barril,
-      data: form.data,
+      status: StatusProducao.naoConcluido,
+      tipoBarril: state.barril!,
+      produto: state.produto!,
+      quantidadeProgramada: quantidade,
+      dataCriacao: DateTime.now(),
+      volumeNecessarioHl: 999.9,
+      horarioReferente: '',
     );
 
+    final result = await usecase(producao: producao, gradeId: gradeId);
+
     result.fold(
-          (failure) => state = AppState.erro(failure),
+          (failure) => state = state.copyWith(isLoading: false, erro: failure.message),
           (_) {
             ref.read(listaProducoesProvider.notifier).listarProducoes(gradeId);
-            return state = AppState.sucesso();
+            return state = state.copyWith(isLoading: false, isSucess: true);
           },
     );
 
+  }
+
+  bool _validarCampos() {
+    bool camposValidos = true;
+    String? erroProduto;
+    String? erroBarril;
+    String? erroQuantidade;
+    String? erroData;
+
+    if (state.produto == null) {
+      erroProduto = 'Selecione um produto';
+      camposValidos = false;
+    }
+
+    if (state.barril == null) {
+      camposValidos = false;
+      erroBarril = 'Selecione um tipo de barril';
+    }
+
+    if (state.data == null) {
+      camposValidos = false;
+      erroData = 'Selecione uma data';
+    }
+
+    if (state.quantidade == null || state.quantidade!.trim().isEmpty) {
+      camposValidos = false;
+      erroQuantidade = 'Digite a quantidade';
+    }
+
+    final quantidadeLimpa = state.quantidade!.trim();
+    final valorInt = int.tryParse(quantidadeLimpa);
+
+    if (valorInt == null) {
+      camposValidos = false;
+      erroQuantidade = 'A quantidade deve ser um número inteiro válido';
+    }
+
+    if (valorInt! <= 0) {
+      camposValidos = false;
+      erroQuantidade = 'A quantidade deve ser maior que zero';
+    }
+
+    state = state.copyWith(
+      erroQuantidade: erroQuantidade,
+      erroBarril: erroBarril,
+      erroProduto: erroProduto,
+      erroData: erroData,
+    );
+
+    return camposValidos;
+  }
+
+  void limpar() {
+    state = FormAdicionarProducaoState.inicial();
   }
 }

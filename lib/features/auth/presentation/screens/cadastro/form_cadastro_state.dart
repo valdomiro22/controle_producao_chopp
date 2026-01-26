@@ -10,13 +10,13 @@ sealed class FormCadastroState with _$FormCadastroState {
     @Default('') String sobrenome,
     @Default('') String email,
     @Default('') String senha,
-    @Default(false) bool isLoading,
-    @Default(false) bool isSucesso,
     String? erro,
     String? erroEmail,
     String? erroNome,
     String? erroSobrenome,
     String? erroSenha,
+    @Default(false) bool isLoading,
+    @Default(false) bool isSucesso,
     @Default(false) bool camposValidos,
   }) = _FormCadastroState;
 }

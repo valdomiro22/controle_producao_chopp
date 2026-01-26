@@ -4,7 +4,7 @@ import 'package:gestao_producao_chopp/core/constants/app_dimens.dart';
 import 'package:gestao_producao_chopp/features/grades/domain/enums/barril.dart';
 import 'package:gestao_producao_chopp/features/grades/domain/enums/produto.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/adicionar_producao/adicionar_producao_notifier.dart';
-import 'package:gestao_producao_chopp/features/producoes/presentation/screens/adicionar_producao/form_adicionar_producao_notifier.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/screens/adicionar_producao/form_adicionar_producao_state.dart';
 import 'package:go_router/go_router.dart';
 
 class AdicionarProducaoScreen extends ConsumerStatefulWidget {
@@ -23,13 +23,10 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
     final state = ref.watch(adicionarProducaoProvider);
     final notifier = ref.watch(adicionarProducaoProvider.notifier);
 
-    final formState = ref.watch(formAdicionarProducaoProvider);
-    final formNotifier = ref.watch(formAdicionarProducaoProvider.notifier);
-
     final gradeId = widget.gId;
 
     ref.listen(adicionarProducaoProvider, (previous, next) {
-      if (next.isSucesso) {
+      if (next.isSucess) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Producao criada'),
@@ -37,7 +34,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
             behavior: SnackBarBehavior.floating,
           ),
         );
-        formNotifier.limpar();
+        notifier.limpar();
         _qtController.clear();
         context.pop();
       }
@@ -65,7 +62,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
                         borderRadius: BorderRadius.circular(10),
                         isDense: false,
                         hint: const Text('Tipo de Barril', style: TextStyle(color: Colors.white)),
-                        value: formState.produto,
+                        value: state.produto,
                         items: Produto.values.map((Produto produto) {
                           return DropdownMenuItem<Produto>(
                             value: produto,
@@ -73,7 +70,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
                           );
                         }).toList(),
                         onChanged: (Produto? produto) {
-                          formNotifier.selecionarProduto(produto);
+                          notifier.selecionarProduto(produto);
                         },
                       ),
                     ),
@@ -95,7 +92,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
                         borderRadius: BorderRadius.circular(10),
                         isDense: false,
                         hint: const Text('Tipo de Barril', style: TextStyle(color: Colors.white)),
-                        value: formState.barril,
+                        value: state.barril,
                         items: Barril.values.map((Barril barril) {
                           return DropdownMenuItem<Barril>(
                             value: barril,
@@ -103,7 +100,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
                           );
                         }).toList(),
                         onChanged: (Barril? barril) {
-                          formNotifier.selecionarBarril(barril);
+                          notifier.selecionarBarril(barril);
                         },
                       ),
                     ),
@@ -120,16 +117,16 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
                 hintText: 'Ex: 50',
               ),
               keyboardType: TextInputType.number,
-              onChanged: (value) => formNotifier.atualizaQuantidade(value),
+              onChanged: (value) => notifier.atualizaQuantidade(value),
             ),
 
             if (state.erro != null)
               Text(
-                state.erro!.message,
+                state.erro!,
                 style: TextStyle(color: Colors.red, fontSize: 12),
               ),
 
-            if (state.carregando == true)
+            if (state.isLoading == true)
               Padding(
                 padding: EdgeInsets.only(top: 16),
                 child: Center(

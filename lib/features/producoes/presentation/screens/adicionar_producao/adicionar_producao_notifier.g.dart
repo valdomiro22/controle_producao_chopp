@@ -14,7 +14,10 @@ final adicionarProducaoProvider = AdicionarProducaoNotifierProvider._();
 
 final class AdicionarProducaoNotifierProvider
     extends
-        $NotifierProvider<AdicionarProducaoNotifier, AppState<ProducaoEntity>> {
+        $NotifierProvider<
+          AdicionarProducaoNotifier,
+          FormAdicionarProducaoState
+        > {
   AdicionarProducaoNotifierProvider._()
     : super(
         from: null,
@@ -34,30 +37,34 @@ final class AdicionarProducaoNotifierProvider
   AdicionarProducaoNotifier create() => AdicionarProducaoNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(AppState<ProducaoEntity> value) {
+  Override overrideWithValue(FormAdicionarProducaoState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<AppState<ProducaoEntity>>(value),
+      providerOverride: $SyncValueProvider<FormAdicionarProducaoState>(value),
     );
   }
 }
 
 String _$adicionarProducaoNotifierHash() =>
-    r'271bf0446919292a0a53879dc1bf7141811683cd';
+    r'e63c08f97a0b5008a3feacd4e8d60f632de5f475';
 
 abstract class _$AdicionarProducaoNotifier
-    extends $Notifier<AppState<ProducaoEntity>> {
-  AppState<ProducaoEntity> build();
+    extends $Notifier<FormAdicionarProducaoState> {
+  FormAdicionarProducaoState build();
   @$mustCallSuper
   @override
   void runBuild() {
     final ref =
-        this.ref as $Ref<AppState<ProducaoEntity>, AppState<ProducaoEntity>>;
+        this.ref
+            as $Ref<FormAdicionarProducaoState, FormAdicionarProducaoState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AppState<ProducaoEntity>, AppState<ProducaoEntity>>,
-              AppState<ProducaoEntity>,
+              AnyNotifier<
+                FormAdicionarProducaoState,
+                FormAdicionarProducaoState
+              >,
+              FormAdicionarProducaoState,
               Object?,
               Object?
             >;

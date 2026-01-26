@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FormCadastroState {
 
- String? get id; String get nome; String get sobrenome; String get email; String get senha; bool get isLoading; bool get isSucesso; String? get erro; String? get erroEmail; String? get erroNome; String? get erroSobrenome; String? get erroSenha; bool get camposValidos;
+ String? get id; String get nome; String get sobrenome; String get email; String get senha; String? get erro; String? get erroEmail; String? get erroNome; String? get erroSobrenome; String? get erroSenha; bool get isLoading; bool get isSucesso; bool get camposValidos;
 /// Create a copy of FormCadastroState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $FormCadastroStateCopyWith<FormCadastroState> get copyWith => _$FormCadastroStat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FormCadastroState&&(identical(other.id, id) || other.id == id)&&(identical(other.nome, nome) || other.nome == nome)&&(identical(other.sobrenome, sobrenome) || other.sobrenome == sobrenome)&&(identical(other.email, email) || other.email == email)&&(identical(other.senha, senha) || other.senha == senha)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isSucesso, isSucesso) || other.isSucesso == isSucesso)&&(identical(other.erro, erro) || other.erro == erro)&&(identical(other.erroEmail, erroEmail) || other.erroEmail == erroEmail)&&(identical(other.erroNome, erroNome) || other.erroNome == erroNome)&&(identical(other.erroSobrenome, erroSobrenome) || other.erroSobrenome == erroSobrenome)&&(identical(other.erroSenha, erroSenha) || other.erroSenha == erroSenha)&&(identical(other.camposValidos, camposValidos) || other.camposValidos == camposValidos));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FormCadastroState&&(identical(other.id, id) || other.id == id)&&(identical(other.nome, nome) || other.nome == nome)&&(identical(other.sobrenome, sobrenome) || other.sobrenome == sobrenome)&&(identical(other.email, email) || other.email == email)&&(identical(other.senha, senha) || other.senha == senha)&&(identical(other.erro, erro) || other.erro == erro)&&(identical(other.erroEmail, erroEmail) || other.erroEmail == erroEmail)&&(identical(other.erroNome, erroNome) || other.erroNome == erroNome)&&(identical(other.erroSobrenome, erroSobrenome) || other.erroSobrenome == erroSobrenome)&&(identical(other.erroSenha, erroSenha) || other.erroSenha == erroSenha)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isSucesso, isSucesso) || other.isSucesso == isSucesso)&&(identical(other.camposValidos, camposValidos) || other.camposValidos == camposValidos));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,nome,sobrenome,email,senha,isLoading,isSucesso,erro,erroEmail,erroNome,erroSobrenome,erroSenha,camposValidos);
+int get hashCode => Object.hash(runtimeType,id,nome,sobrenome,email,senha,erro,erroEmail,erroNome,erroSobrenome,erroSenha,isLoading,isSucesso,camposValidos);
 
 @override
 String toString() {
-  return 'FormCadastroState(id: $id, nome: $nome, sobrenome: $sobrenome, email: $email, senha: $senha, isLoading: $isLoading, isSucesso: $isSucesso, erro: $erro, erroEmail: $erroEmail, erroNome: $erroNome, erroSobrenome: $erroSobrenome, erroSenha: $erroSenha, camposValidos: $camposValidos)';
+  return 'FormCadastroState(id: $id, nome: $nome, sobrenome: $sobrenome, email: $email, senha: $senha, erro: $erro, erroEmail: $erroEmail, erroNome: $erroNome, erroSobrenome: $erroSobrenome, erroSenha: $erroSenha, isLoading: $isLoading, isSucesso: $isSucesso, camposValidos: $camposValidos)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $FormCadastroStateCopyWith<$Res>  {
   factory $FormCadastroStateCopyWith(FormCadastroState value, $Res Function(FormCadastroState) _then) = _$FormCadastroStateCopyWithImpl;
 @useResult
 $Res call({
- String? id, String nome, String sobrenome, String email, String senha, bool isLoading, bool isSucesso, String? erro, String? erroEmail, String? erroNome, String? erroSobrenome, String? erroSenha, bool camposValidos
+ String? id, String nome, String sobrenome, String email, String senha, String? erro, String? erroEmail, String? erroNome, String? erroSobrenome, String? erroSenha, bool isLoading, bool isSucesso, bool camposValidos
 });
 
 
@@ -62,21 +62,21 @@ class _$FormCadastroStateCopyWithImpl<$Res>
 
 /// Create a copy of FormCadastroState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? nome = null,Object? sobrenome = null,Object? email = null,Object? senha = null,Object? isLoading = null,Object? isSucesso = null,Object? erro = freezed,Object? erroEmail = freezed,Object? erroNome = freezed,Object? erroSobrenome = freezed,Object? erroSenha = freezed,Object? camposValidos = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? nome = null,Object? sobrenome = null,Object? email = null,Object? senha = null,Object? erro = freezed,Object? erroEmail = freezed,Object? erroNome = freezed,Object? erroSobrenome = freezed,Object? erroSenha = freezed,Object? isLoading = null,Object? isSucesso = null,Object? camposValidos = null,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,nome: null == nome ? _self.nome : nome // ignore: cast_nullable_to_non_nullable
 as String,sobrenome: null == sobrenome ? _self.sobrenome : sobrenome // ignore: cast_nullable_to_non_nullable
 as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,senha: null == senha ? _self.senha : senha // ignore: cast_nullable_to_non_nullable
-as String,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,isSucesso: null == isSucesso ? _self.isSucesso : isSucesso // ignore: cast_nullable_to_non_nullable
-as bool,erro: freezed == erro ? _self.erro : erro // ignore: cast_nullable_to_non_nullable
+as String,erro: freezed == erro ? _self.erro : erro // ignore: cast_nullable_to_non_nullable
 as String?,erroEmail: freezed == erroEmail ? _self.erroEmail : erroEmail // ignore: cast_nullable_to_non_nullable
 as String?,erroNome: freezed == erroNome ? _self.erroNome : erroNome // ignore: cast_nullable_to_non_nullable
 as String?,erroSobrenome: freezed == erroSobrenome ? _self.erroSobrenome : erroSobrenome // ignore: cast_nullable_to_non_nullable
 as String?,erroSenha: freezed == erroSenha ? _self.erroSenha : erroSenha // ignore: cast_nullable_to_non_nullable
-as String?,camposValidos: null == camposValidos ? _self.camposValidos : camposValidos // ignore: cast_nullable_to_non_nullable
+as String?,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,isSucesso: null == isSucesso ? _self.isSucesso : isSucesso // ignore: cast_nullable_to_non_nullable
+as bool,camposValidos: null == camposValidos ? _self.camposValidos : camposValidos // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -159,10 +159,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String nome,  String sobrenome,  String email,  String senha,  bool isLoading,  bool isSucesso,  String? erro,  String? erroEmail,  String? erroNome,  String? erroSobrenome,  String? erroSenha,  bool camposValidos)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String nome,  String sobrenome,  String email,  String senha,  String? erro,  String? erroEmail,  String? erroNome,  String? erroSobrenome,  String? erroSenha,  bool isLoading,  bool isSucesso,  bool camposValidos)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FormCadastroState() when $default != null:
-return $default(_that.id,_that.nome,_that.sobrenome,_that.email,_that.senha,_that.isLoading,_that.isSucesso,_that.erro,_that.erroEmail,_that.erroNome,_that.erroSobrenome,_that.erroSenha,_that.camposValidos);case _:
+return $default(_that.id,_that.nome,_that.sobrenome,_that.email,_that.senha,_that.erro,_that.erroEmail,_that.erroNome,_that.erroSobrenome,_that.erroSenha,_that.isLoading,_that.isSucesso,_that.camposValidos);case _:
   return orElse();
 
 }
@@ -180,10 +180,10 @@ return $default(_that.id,_that.nome,_that.sobrenome,_that.email,_that.senha,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String nome,  String sobrenome,  String email,  String senha,  bool isLoading,  bool isSucesso,  String? erro,  String? erroEmail,  String? erroNome,  String? erroSobrenome,  String? erroSenha,  bool camposValidos)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String nome,  String sobrenome,  String email,  String senha,  String? erro,  String? erroEmail,  String? erroNome,  String? erroSobrenome,  String? erroSenha,  bool isLoading,  bool isSucesso,  bool camposValidos)  $default,) {final _that = this;
 switch (_that) {
 case _FormCadastroState():
-return $default(_that.id,_that.nome,_that.sobrenome,_that.email,_that.senha,_that.isLoading,_that.isSucesso,_that.erro,_that.erroEmail,_that.erroNome,_that.erroSobrenome,_that.erroSenha,_that.camposValidos);}
+return $default(_that.id,_that.nome,_that.sobrenome,_that.email,_that.senha,_that.erro,_that.erroEmail,_that.erroNome,_that.erroSobrenome,_that.erroSenha,_that.isLoading,_that.isSucesso,_that.camposValidos);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -197,10 +197,10 @@ return $default(_that.id,_that.nome,_that.sobrenome,_that.email,_that.senha,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String nome,  String sobrenome,  String email,  String senha,  bool isLoading,  bool isSucesso,  String? erro,  String? erroEmail,  String? erroNome,  String? erroSobrenome,  String? erroSenha,  bool camposValidos)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String nome,  String sobrenome,  String email,  String senha,  String? erro,  String? erroEmail,  String? erroNome,  String? erroSobrenome,  String? erroSenha,  bool isLoading,  bool isSucesso,  bool camposValidos)?  $default,) {final _that = this;
 switch (_that) {
 case _FormCadastroState() when $default != null:
-return $default(_that.id,_that.nome,_that.sobrenome,_that.email,_that.senha,_that.isLoading,_that.isSucesso,_that.erro,_that.erroEmail,_that.erroNome,_that.erroSobrenome,_that.erroSenha,_that.camposValidos);case _:
+return $default(_that.id,_that.nome,_that.sobrenome,_that.email,_that.senha,_that.erro,_that.erroEmail,_that.erroNome,_that.erroSobrenome,_that.erroSenha,_that.isLoading,_that.isSucesso,_that.camposValidos);case _:
   return null;
 
 }
@@ -212,7 +212,7 @@ return $default(_that.id,_that.nome,_that.sobrenome,_that.email,_that.senha,_tha
 
 
 class _FormCadastroState implements FormCadastroState {
-  const _FormCadastroState({this.id, this.nome = '', this.sobrenome = '', this.email = '', this.senha = '', this.isLoading = false, this.isSucesso = false, this.erro, this.erroEmail, this.erroNome, this.erroSobrenome, this.erroSenha, this.camposValidos = false});
+  const _FormCadastroState({this.id, this.nome = '', this.sobrenome = '', this.email = '', this.senha = '', this.erro, this.erroEmail, this.erroNome, this.erroSobrenome, this.erroSenha, this.isLoading = false, this.isSucesso = false, this.camposValidos = false});
   
 
 @override final  String? id;
@@ -220,13 +220,13 @@ class _FormCadastroState implements FormCadastroState {
 @override@JsonKey() final  String sobrenome;
 @override@JsonKey() final  String email;
 @override@JsonKey() final  String senha;
-@override@JsonKey() final  bool isLoading;
-@override@JsonKey() final  bool isSucesso;
 @override final  String? erro;
 @override final  String? erroEmail;
 @override final  String? erroNome;
 @override final  String? erroSobrenome;
 @override final  String? erroSenha;
+@override@JsonKey() final  bool isLoading;
+@override@JsonKey() final  bool isSucesso;
 @override@JsonKey() final  bool camposValidos;
 
 /// Create a copy of FormCadastroState
@@ -239,16 +239,16 @@ _$FormCadastroStateCopyWith<_FormCadastroState> get copyWith => __$FormCadastroS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FormCadastroState&&(identical(other.id, id) || other.id == id)&&(identical(other.nome, nome) || other.nome == nome)&&(identical(other.sobrenome, sobrenome) || other.sobrenome == sobrenome)&&(identical(other.email, email) || other.email == email)&&(identical(other.senha, senha) || other.senha == senha)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isSucesso, isSucesso) || other.isSucesso == isSucesso)&&(identical(other.erro, erro) || other.erro == erro)&&(identical(other.erroEmail, erroEmail) || other.erroEmail == erroEmail)&&(identical(other.erroNome, erroNome) || other.erroNome == erroNome)&&(identical(other.erroSobrenome, erroSobrenome) || other.erroSobrenome == erroSobrenome)&&(identical(other.erroSenha, erroSenha) || other.erroSenha == erroSenha)&&(identical(other.camposValidos, camposValidos) || other.camposValidos == camposValidos));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FormCadastroState&&(identical(other.id, id) || other.id == id)&&(identical(other.nome, nome) || other.nome == nome)&&(identical(other.sobrenome, sobrenome) || other.sobrenome == sobrenome)&&(identical(other.email, email) || other.email == email)&&(identical(other.senha, senha) || other.senha == senha)&&(identical(other.erro, erro) || other.erro == erro)&&(identical(other.erroEmail, erroEmail) || other.erroEmail == erroEmail)&&(identical(other.erroNome, erroNome) || other.erroNome == erroNome)&&(identical(other.erroSobrenome, erroSobrenome) || other.erroSobrenome == erroSobrenome)&&(identical(other.erroSenha, erroSenha) || other.erroSenha == erroSenha)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isSucesso, isSucesso) || other.isSucesso == isSucesso)&&(identical(other.camposValidos, camposValidos) || other.camposValidos == camposValidos));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,nome,sobrenome,email,senha,isLoading,isSucesso,erro,erroEmail,erroNome,erroSobrenome,erroSenha,camposValidos);
+int get hashCode => Object.hash(runtimeType,id,nome,sobrenome,email,senha,erro,erroEmail,erroNome,erroSobrenome,erroSenha,isLoading,isSucesso,camposValidos);
 
 @override
 String toString() {
-  return 'FormCadastroState(id: $id, nome: $nome, sobrenome: $sobrenome, email: $email, senha: $senha, isLoading: $isLoading, isSucesso: $isSucesso, erro: $erro, erroEmail: $erroEmail, erroNome: $erroNome, erroSobrenome: $erroSobrenome, erroSenha: $erroSenha, camposValidos: $camposValidos)';
+  return 'FormCadastroState(id: $id, nome: $nome, sobrenome: $sobrenome, email: $email, senha: $senha, erro: $erro, erroEmail: $erroEmail, erroNome: $erroNome, erroSobrenome: $erroSobrenome, erroSenha: $erroSenha, isLoading: $isLoading, isSucesso: $isSucesso, camposValidos: $camposValidos)';
 }
 
 
@@ -259,7 +259,7 @@ abstract mixin class _$FormCadastroStateCopyWith<$Res> implements $FormCadastroS
   factory _$FormCadastroStateCopyWith(_FormCadastroState value, $Res Function(_FormCadastroState) _then) = __$FormCadastroStateCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String nome, String sobrenome, String email, String senha, bool isLoading, bool isSucesso, String? erro, String? erroEmail, String? erroNome, String? erroSobrenome, String? erroSenha, bool camposValidos
+ String? id, String nome, String sobrenome, String email, String senha, String? erro, String? erroEmail, String? erroNome, String? erroSobrenome, String? erroSenha, bool isLoading, bool isSucesso, bool camposValidos
 });
 
 
@@ -276,21 +276,21 @@ class __$FormCadastroStateCopyWithImpl<$Res>
 
 /// Create a copy of FormCadastroState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? nome = null,Object? sobrenome = null,Object? email = null,Object? senha = null,Object? isLoading = null,Object? isSucesso = null,Object? erro = freezed,Object? erroEmail = freezed,Object? erroNome = freezed,Object? erroSobrenome = freezed,Object? erroSenha = freezed,Object? camposValidos = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? nome = null,Object? sobrenome = null,Object? email = null,Object? senha = null,Object? erro = freezed,Object? erroEmail = freezed,Object? erroNome = freezed,Object? erroSobrenome = freezed,Object? erroSenha = freezed,Object? isLoading = null,Object? isSucesso = null,Object? camposValidos = null,}) {
   return _then(_FormCadastroState(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,nome: null == nome ? _self.nome : nome // ignore: cast_nullable_to_non_nullable
 as String,sobrenome: null == sobrenome ? _self.sobrenome : sobrenome // ignore: cast_nullable_to_non_nullable
 as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,senha: null == senha ? _self.senha : senha // ignore: cast_nullable_to_non_nullable
-as String,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,isSucesso: null == isSucesso ? _self.isSucesso : isSucesso // ignore: cast_nullable_to_non_nullable
-as bool,erro: freezed == erro ? _self.erro : erro // ignore: cast_nullable_to_non_nullable
+as String,erro: freezed == erro ? _self.erro : erro // ignore: cast_nullable_to_non_nullable
 as String?,erroEmail: freezed == erroEmail ? _self.erroEmail : erroEmail // ignore: cast_nullable_to_non_nullable
 as String?,erroNome: freezed == erroNome ? _self.erroNome : erroNome // ignore: cast_nullable_to_non_nullable
 as String?,erroSobrenome: freezed == erroSobrenome ? _self.erroSobrenome : erroSobrenome // ignore: cast_nullable_to_non_nullable
 as String?,erroSenha: freezed == erroSenha ? _self.erroSenha : erroSenha // ignore: cast_nullable_to_non_nullable
-as String?,camposValidos: null == camposValidos ? _self.camposValidos : camposValidos // ignore: cast_nullable_to_non_nullable
+as String?,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,isSucesso: null == isSucesso ? _self.isSucesso : isSucesso // ignore: cast_nullable_to_non_nullable
+as bool,camposValidos: null == camposValidos ? _self.camposValidos : camposValidos // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

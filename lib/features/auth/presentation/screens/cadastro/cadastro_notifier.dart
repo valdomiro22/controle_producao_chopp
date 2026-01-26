@@ -12,11 +12,8 @@ class CadastroNotifier extends _$CadastroNotifier {
   FormCadastroState build() => const FormCadastroState();
 
   void onEmailChanged(String v) => state = state.copyWith(email: v, erroEmail: null);
-
   void onSenhaChanged(String v) => state = state.copyWith(senha: v, erroSenha: null);
-
   void onNomeChanged(String v) => state = state.copyWith(nome: v, erroNome: null);
-
   void onSobrenomeChanged(String v) => state = state.copyWith(sobrenome: v, erroSobrenome: null);
 
   Future<void> cadastrar() async {
