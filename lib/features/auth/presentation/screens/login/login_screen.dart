@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/login/login_notifier.dart';
+import 'package:gestao_producao_chopp/features/auth/presentation/widgets/custom_imput_text.dart';
+import 'package:gestao_producao_chopp/features/auth/presentation/widgets/custom_imput_text.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
 
@@ -23,7 +25,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(loginProvider);
+    final loginState = ref.watch(loginProvider);
+    final loginNotifier = ref.watch(loginProvider.notifier);
 
     return Scaffold(
       body: Container(
@@ -38,26 +41,32 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 style: TextStyle(fontSize: AppDimens.textXG),
               ),
               SizedBox(height: AppDimens.spacingXG),
-              CustomTextfiewd(
+              CustomImputText(
                 controller: _emailController,
                 hint: AppStrings.exemploEmail,
                 label: AppStrings.email,
                 inputType: TextInputType.emailAddress,
                 icone: Icons.email,
+                onChanged: (value) => loginNotifier.onEmailChanged(value),
               ),
+              if (loginState.emailErro != null)
+                Text(loginState.emailErro ?? '', style: TextStyle(color: Colors.red),),
               SizedBox(height: AppDimens.spacingG),
 
-              CustomTextfiewd(
+              CustomImputText(
                 controller: _senhaController,
                 hint: AppStrings.exemploSenha,
                 label: AppStrings.senha,
                 inputType: TextInputType.visiblePassword,
                 icone: Icons.lock,
+                onChanged: (value) => loginNotifier.onSenhaChanged(value),
               ),
+              // TODO - não esta mostrando os erros que vem de repository e datasource
+              if (loginState.senhaErro != null)
+                Text(loginState.senhaErro ?? '', style: TextStyle(color: Colors.red),),
 
-
-              // // if (state.err)
-              //   Text(state.erroForm?.message ?? '' , style: TextStyle(color: Colors.red)),
+              // // if (loginState.err)
+              //   Text(loginState.erroForm?.message ?? '' , style: TextStyle(color: Colors.red)),
 
               Align(
                 alignment: AlignmentGeometry.topRight,
@@ -70,7 +79,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               ),
               SizedBox(height: AppDimens.spacingG),
 
-              if (state.isCarregando)
+              if (loginState.isLoading)
                 Center(
                   child: CircularProgressIndicator(),
                 ),
@@ -79,9 +88,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
               ElevatedButtonCentralizado(
                 clique: () {
-                  final email = _emailController.text.trim();
-                  final senha = _senhaController.text;
-                  ref.read(loginProvider.notifier).logar(email: email, senha: senha);
+                  ref.read(loginProvider.notifier).logar();
                 },
                 texto: 'Logar',
               ),

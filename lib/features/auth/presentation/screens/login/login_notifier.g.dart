@@ -13,7 +13,7 @@ part of 'login_notifier.dart';
 final loginProvider = LoginNotifierProvider._();
 
 final class LoginNotifierProvider
-    extends $NotifierProvider<LoginNotifier, AuthState> {
+    extends $NotifierProvider<LoginNotifier, FormLoginState> {
   LoginNotifierProvider._()
     : super(
         from: null,
@@ -33,27 +33,27 @@ final class LoginNotifierProvider
   LoginNotifier create() => LoginNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(AuthState value) {
+  Override overrideWithValue(FormLoginState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<AuthState>(value),
+      providerOverride: $SyncValueProvider<FormLoginState>(value),
     );
   }
 }
 
-String _$loginNotifierHash() => r'f9ebb35266d0f09cd098aa79bdd219f6aa36b7a4';
+String _$loginNotifierHash() => r'8bef2eb7dadb1fcc7f0be0870189a5787e7ced6c';
 
-abstract class _$LoginNotifier extends $Notifier<AuthState> {
-  AuthState build();
+abstract class _$LoginNotifier extends $Notifier<FormLoginState> {
+  FormLoginState build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<AuthState, AuthState>;
+    final ref = this.ref as $Ref<FormLoginState, FormLoginState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AuthState, AuthState>,
-              AuthState,
+              AnyNotifier<FormLoginState, FormLoginState>,
+              FormLoginState,
               Object?,
               Object?
             >;
