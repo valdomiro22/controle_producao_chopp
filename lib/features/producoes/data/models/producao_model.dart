@@ -13,11 +13,10 @@ class ProducaoModel {
   final int codigo;
   final Produto produto;
   final int quantidadeProgramada;
-  final int? quantidadeProduzida;
-  final int? quantidadePendente;
-  final double? volumeNecessarioHl;
+  final int quantidadeProduzida;
+  final int quantidadePendente;
   final DateTime? dataCriacao;
-  final DateTime? dadaFimDeProducao;
+  final DateTime? dataFimDeProducao;
 
   ProducaoModel({
     this.id,
@@ -30,9 +29,8 @@ class ProducaoModel {
     required this.quantidadeProgramada,
     this.quantidadeProduzida = 0,
     this.quantidadePendente = 0,
-    required this.volumeNecessarioHl,
     required this.dataCriacao,
-    this.dadaFimDeProducao,
+    this.dataFimDeProducao,
   });
 
   Map<String, dynamic> toMap() {
@@ -47,9 +45,8 @@ class ProducaoModel {
       'codigo': codigo,
       'qtProduzida': quantidadeProduzida,
       'qtPendente': quantidadePendente,
-      'vlNecessarioHl': volumeNecessarioHl,
       'dataCriacao': dataCriacao,
-      'dadaFimDeProducao': dadaFimDeProducao,
+      'dataFimDeProducao': dataFimDeProducao,
     };
   }
 
@@ -65,9 +62,8 @@ class ProducaoModel {
       ordem: map['ordem'] as int,
       codigo: map['codigo'] as int,
       quantidadePendente: map['qtPendente'] as int,
-      volumeNecessarioHl: (map['vlNecessarioHl'] as num?)?.toDouble() ?? 0.0,
       dataCriacao: (map['dataCriacao'] as Timestamp?)?.toDate(),
-      dadaFimDeProducao: (map['dadaFimDeProducao'] as Timestamp?)?.toDate(),
+      dataFimDeProducao: (map['dataFimDeProducao'] as Timestamp?)?.toDate(),
     );
   }
 
@@ -82,9 +78,8 @@ class ProducaoModel {
     int? codigo,
     int? quantidadeProduzida,
     int? quantidadePendente,
-    double? volumeNecessarioHl,
     DateTime? dataCriacao,
-    DateTime? dadaFimDeProducao,
+    DateTime? dataFimDeProducao,
   }) {
     return ProducaoModel(
       id: id ?? this.id,
@@ -97,9 +92,8 @@ class ProducaoModel {
       quantidadeProgramada: quantidadeProgramada ?? this.quantidadeProgramada,
       quantidadeProduzida: quantidadeProduzida ?? this.quantidadeProduzida,
       quantidadePendente: quantidadePendente ?? this.quantidadePendente,
-      volumeNecessarioHl: volumeNecessarioHl ?? this.volumeNecessarioHl,
       dataCriacao: dataCriacao ?? this.dataCriacao,
-      dadaFimDeProducao: dadaFimDeProducao ?? this.dadaFimDeProducao,
+      dataFimDeProducao: dataFimDeProducao ?? this.dataFimDeProducao,
     );
   }
 }

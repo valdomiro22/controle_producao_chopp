@@ -59,7 +59,6 @@ class AdicionarProducaoNotifier extends _$AdicionarProducaoNotifier {
       produto: state.produto!,
       quantidadeProgramada: quantidade,
       dataCriacao: DateTime.now(),
-      volumeNecessarioHl: 999.9,
     );
 
     final result = await usecase(producao: producao, gradeId: gradeId);

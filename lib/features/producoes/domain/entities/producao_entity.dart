@@ -11,11 +11,9 @@ class ProducaoEntity {
   final int ordem;
   final int codigo;
   final int quantidadeProgramada;
-  final int? quantidadeProduzida;
-  final int? quantidadePendente;
-  final double? volumeNecessarioHl;
+  final int quantidadeProduzida;
   final DateTime? dataCriacao;
-  final DateTime? dadaFimDeProducao;
+  final DateTime? dataFimDeProducao;
 
   ProducaoEntity({
     this.id,
@@ -27,11 +25,17 @@ class ProducaoEntity {
     required this.produto,
     required this.quantidadeProgramada,
     this.quantidadeProduzida = 0,
-    this.quantidadePendente = 0,
-    required this.volumeNecessarioHl,
     required this.dataCriacao,
-    this.dadaFimDeProducao,
+    this.dataFimDeProducao,
   });
+
+  int get quantidadePendente {
+    return quantidadeProgramada - quantidadeProduzida > 0 ? quantidadeProgramada - quantidadeProduzida : 0;
+  }
+
+  double get volumeNecessarioHl {
+    return quantidadePendente * tipoBarril.volume / 100;
+  }
 
   ProducaoEntity copyWith({
     String? id,
@@ -43,10 +47,8 @@ class ProducaoEntity {
     Produto? produto,
     int? quantidadeProgramada,
     int? quantidadeProduzida,
-    int? quantidadePendente,
-    double? volumeNecessarioHl,
     DateTime? dataCriacao,
-    DateTime? dadaFimDeProducao,
+    DateTime? dataFimDeProducao,
   }) {
     return ProducaoEntity(
       id: id ?? this.id,
@@ -58,10 +60,8 @@ class ProducaoEntity {
       produto: produto ?? this.produto,
       quantidadeProgramada: quantidadeProgramada ?? this.quantidadeProgramada,
       quantidadeProduzida: quantidadeProduzida ?? this.quantidadeProduzida,
-      quantidadePendente: quantidadePendente ?? this.quantidadePendente,
-      volumeNecessarioHl: volumeNecessarioHl ?? this.volumeNecessarioHl,
       dataCriacao: dataCriacao ?? this.dataCriacao,
-      dadaFimDeProducao: dadaFimDeProducao ?? this.dadaFimDeProducao,
+      dataFimDeProducao: dataFimDeProducao ?? this.dataFimDeProducao,
     );
   }
 
@@ -77,10 +77,9 @@ class ProducaoEntity {
         'produto: $produto, '
         'quantidadeProgramada: $quantidadeProgramada, '
         'quantidadeProduzida: $quantidadeProduzida, '
-        'quantidadePendente: $quantidadePendente, '
         'volumeNecessarioHl: $volumeNecessarioHl, '
         'iniciadaProducao: $dataCriacao, '
-        'dadaFimDeProducao: $dadaFimDeProducao'
+        'dataFimDeProducao: $dataFimDeProducao'
         ')';
   }
 }
