@@ -6,6 +6,8 @@ import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/it
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
 
+import 'lista_producoes_state.dart';
+
 class ListaProducoesScreen extends ConsumerStatefulWidget {
   final String gradeId;
 
@@ -28,34 +30,38 @@ class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
   Widget build(BuildContext context) {
     final listaState = ref.watch(listaProducoesProvider);
     final listaNotifier = ref.watch(listaProducoesProvider.notifier);
-    
-    // final deletarState = ref.watch(deleta)
 
     return Scaffold(
-      appBar: AppBar(title: Text('Lista de Produções')),
+      appBar: AppBar(title: const Text('Lista de Produções')),
       body: Center(
         child: Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: RefreshIndicator(
             onRefresh: () async {
               await listaNotifier.listarProducoes(widget.gradeId);
             },
-            child: Builder(
-              builder: (context) {
-                if (listaState.isCarregando) {
-                  return const Center(child: CircularProgressIndicator());
-                }
+            // Aqui começa a mágica do Freezed
+            child: listaState.when(
+              // 1. Estado Inicial (geralmente exibe loading até o initState buscar os dados)
+              inicial: () => const Center(child: CircularProgressIndicator()),
 
-                if (listaState.isErro) {
-                  return Center(
-                    child: Text(
-                      'Erro: ${listaState.erro?.message ?? 'Tente novamente'}',
-                      style: const TextStyle(color: Colors.red),
-                    ),
-                  );
-                }
+              // 2. Carregando
+              carregando: () => const Center(child: CircularProgressIndicator()),
 
-                final lista = listaState.lista ?? [];
+              // 3. Sucesso vazio (transição de delete/update)
+              // Como não temos lista aqui, exibimos um loading para não quebrar a tela
+              sucesso: () => const Center(child: CircularProgressIndicator()),
+
+              // 4. Erro
+              erro: (failure) => Center(
+                child: Text(
+                  'Erro: ${failure.message}',
+                  style: const TextStyle(color: Colors.red),
+                ),
+              ),
+
+              // 5. Sucesso com a Lista (Onde a UI real acontece)
+              sucessoComLista: (lista) {
                 debugPrint('lista pesquisada: ${lista.length}');
 
                 if (lista.isEmpty) {
@@ -69,19 +75,18 @@ class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
                 }
 
                 return ListView.builder(
-                  physics: AlwaysScrollableScrollPhysics(),
+                  physics: const AlwaysScrollableScrollPhysics(),
                   itemCount: lista.length,
                   itemBuilder: (context, index) {
                     final producao = lista[index];
 
                     return Padding(
-                      padding: EdgeInsets.only(bottom: 4),
+                      padding: const EdgeInsets.only(bottom: 4),
                       child: GestureDetector(
                         onTap: () {
-                          // context.push(AppRoutesNames.adicionarProducao, extra: lista[index]);
                           final gradeId = lista[index].gradeId;
                           final producaoId = lista[index].id!;
-                          // context.push(AppRoutesNames.home, extra: {'producaoId': producaoId, 'gradeId': gradeId});
+
                           context.push(
                             AppRoutesNames.home,
                             extra: (
@@ -93,7 +98,6 @@ class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
                         child: ItemProducaoWidget(producao: producao),
                       ),
                     );
-
                   },
                 );
               },
@@ -103,7 +107,7 @@ class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.push(AppRoutesNames.adicionarProducao, extra: widget.gradeId),
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

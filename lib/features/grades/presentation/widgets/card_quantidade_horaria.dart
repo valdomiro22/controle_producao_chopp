@@ -11,7 +11,7 @@ class CardQuantidadeHoraria extends ConsumerStatefulWidget {
   final String horario;
   final String quantidade;
   final ProducaoEntity producao;
-  
+
   const CardQuantidadeHoraria({
     super.key,
     required this.quantidade,
@@ -28,15 +28,14 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
 
   @override
   void dispose() {
-    super.dispose();
     _qtController.dispose();
+    super.dispose();
   }
 
   void _incrementar(int valor) {
     final atual = int.tryParse(_qtController.text) ?? 0;
     final novo = atual + valor;
     _qtController.text = novo.toString();
-    // Coloca o cursor no final
     _qtController.selection = TextSelection.fromPosition(
       TextPosition(offset: _qtController.text.length),
     );
@@ -45,15 +44,15 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
   @override
   Widget build(BuildContext context) {
     final producaoId = widget.producao.id ?? '';
+    final gradeId = widget.producao.gradeId ?? '';
 
-    final turnoState = ref.watch(selecionarTurnoProvider);
-    final turnoNotifier = ref.watch(selecionarTurnoProvider.notifier);
+    // Apenas leitura dos notifiers para usar no callback
+    final turnoNotifier = ref.read(selecionarTurnoProvider.notifier);
+    final prodNotifier = ref.read(listaProducoesProvider.notifier);
+    final qtHorariaNotifier = ref.read(inserirQuantidadeHorariaProvider(producaoId).notifier);
 
-    final prodState = ref.watch(listaProducoesProvider);
-    final prodNotifier = ref.watch(listaProducoesProvider.notifier);
-
-    final qtHorariaState = ref.watch(inserirQuantidadeHorariaProvider(producaoId));
-    final qtHorariaNotifier = ref.watch(inserirQuantidadeHorariaProvider(producaoId).notifier);
+    // Note: Se precisar observar o estado para mudar a cor do card, use ref.watch aqui fora.
+    // Mas para as ações do Dialog, usaremos ref.read lá dentro ou as variáveis acima.
 
     return GestureDetector(
       onTap: () {
@@ -63,7 +62,7 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Center(
+              title: const Center(
                 child: Text('Barris produzidos'),
               ),
               content: Container(
@@ -84,7 +83,7 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
                       autofocus: true,
                       keyboardType: TextInputType.number,
                       onChanged: (qt) => turnoNotifier.inserirQuantidade(qt),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Ex: 30',
                         label: Text('Quantidade'),
                       ),
@@ -134,43 +133,33 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
                       return;
                     }
 
-                    // final programada = widget.producao.quantidadeProgramada;
-                    // final produzidaAtual = widget.producao.quantidadeProduzida ?? 0;
-                    // final novaProduzida = produzidaAtual + qtAdicional;
-                    // final pendente = programada - novaProduzida;
-                    //
-                    // final prodAtualizada = widget.producao.copyWith(
-                    //   quantidadeProduzida: novaProduzida,
-                    //   quantidadePendente: pendente,
-                    // );
-                    //
-                    // try {
-                    //   await prodNotifier.atualizarProducao(
-                    //     gradeId: widget.producao.gradeId,
-                    //     producaoId: widget.producao.id!,
-                    //     prod: prodAtualizada,
-                    //   );
-                    //
-                    //   // Atualização otimista: força o estado do provider que a Home observa
-                    //   ref.read(buscarProducaoProvider.notifier).state = AsyncData(prodAtualizada);
-                    //
-                    //   // Opcional: se quiser garantir sync com backend depois, pode chamar um refetch em background
-                    //   // ref.refresh(buscarProducaoProvider);
-                    // } catch (e) {
-                    //   // Se der erro no backend, reverta para o estado anterior (robustez extra)
-                    //   // ref.read(buscarProducaoProvider.notifier).state = AsyncData(widget.producao);
-                    //   ScaffoldMessenger.of(context).showSnackBar(
-                    //     SnackBar(content: Text('Erro ao salvar: $e')),
-                    //   );
-                    // }
-
-
-
-                    // final quantidade = qtAdicional;
+                    // 1. Inserir quantidade horária
                     qtHorariaNotifier.inserirQuantidade(
-                      horario: widget.horario,
-                      quantidade: qtAdicional
+                        horario: widget.horario,
+                        quantidade: qtAdicional
                     );
+
+                    // 2. Calcular nova produção total (para atualizar a lista)
+                    // Nota: Verifique se sua lógica é Somar ou Substituir no copyWith
+                    // Assumindo que o usuario digitou apenas o incremento:
+                    final novaQuantidadeTotal = widget.producao.quantidadeProduzida + qtAdicional;
+
+                    final producaoAtualizada = widget.producao.copyWith(
+                      quantidadeProduzida: novaQuantidadeTotal,
+                    );
+
+                    // 3. Atualizar na lista de produções
+                    await prodNotifier.atualizarProducao(
+                        gradeId: gradeId,
+                        producaoId: producaoId,
+                        producao: producaoAtualizada
+                    );
+
+                    final buscaNotifier = ref.read(buscarProducaoProvider.notifier);
+
+                    // Agora isso funciona pois o método espera uma ProducaoEntity e
+                    // converte internamente para AsyncValue.data
+                    buscaNotifier.atualizarEstadoLocal(producaoAtualizada);
 
                     Navigator.of(context).pop();
                   },
@@ -188,9 +177,9 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
         );
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
         decoration: BoxDecoration(
-            border: Border.all(color: Color(0xffd2d6de)),
+            border: Border.all(color: const Color(0xffd2d6de)),
             borderRadius: BorderRadius.circular(5)
         ),
         child: Column(
@@ -198,12 +187,12 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
           children: [
             Text(
               widget.horario,
-              style: TextStyle(fontSize: 11),
+              style: const TextStyle(fontSize: 11),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               widget.quantidade,
-              style: TextStyle(
+              style: const TextStyle(
                   color: Color(0xff0840a1),
                   fontWeight: FontWeight.w600
               ),

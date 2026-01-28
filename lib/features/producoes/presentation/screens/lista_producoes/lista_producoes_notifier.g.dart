@@ -13,8 +13,7 @@ part of 'lista_producoes_notifier.dart';
 final listaProducoesProvider = ListaProducoesNotifierProvider._();
 
 final class ListaProducoesNotifierProvider
-    extends
-        $NotifierProvider<ListaProducoesNotifier, AppState<ProducaoEntity>> {
+    extends $NotifierProvider<ListaProducoesNotifier, ListaProducaoState> {
   ListaProducoesNotifierProvider._()
     : super(
         from: null,
@@ -34,30 +33,28 @@ final class ListaProducoesNotifierProvider
   ListaProducoesNotifier create() => ListaProducoesNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(AppState<ProducaoEntity> value) {
+  Override overrideWithValue(ListaProducaoState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<AppState<ProducaoEntity>>(value),
+      providerOverride: $SyncValueProvider<ListaProducaoState>(value),
     );
   }
 }
 
 String _$listaProducoesNotifierHash() =>
-    r'95264eda04d022bdb6b3cfe24ba22eb21f917403';
+    r'cb7e20c333257c79288e7e6da9669deba69224f0';
 
-abstract class _$ListaProducoesNotifier
-    extends $Notifier<AppState<ProducaoEntity>> {
-  AppState<ProducaoEntity> build();
+abstract class _$ListaProducoesNotifier extends $Notifier<ListaProducaoState> {
+  ListaProducaoState build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref =
-        this.ref as $Ref<AppState<ProducaoEntity>, AppState<ProducaoEntity>>;
+    final ref = this.ref as $Ref<ListaProducaoState, ListaProducaoState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AppState<ProducaoEntity>, AppState<ProducaoEntity>>,
-              AppState<ProducaoEntity>,
+              AnyNotifier<ListaProducaoState, ListaProducaoState>,
+              ListaProducaoState,
               Object?,
               Object?
             >;

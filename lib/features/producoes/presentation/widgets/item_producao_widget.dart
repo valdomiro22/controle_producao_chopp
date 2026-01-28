@@ -127,10 +127,10 @@ class ItemProducaoWidget extends ConsumerWidget {
                   onPressed: () {
                     debugPrint('Deletar grade');
                     if (producao.id != null) {
-                      ref.read(listaProducoesProvider.notifier).deletarProducao(
-                        gradeId: producao.gradeId,
-                        producaoId: producao.id!,
-                      );
+                      // ref.read(listaProducoesProvider.notifier).deletarProducao(
+                      //   gradeId: producao.gradeId,
+                      //   producaoId: producao.id!,
+                      // );
                     }
                   },
                 ),

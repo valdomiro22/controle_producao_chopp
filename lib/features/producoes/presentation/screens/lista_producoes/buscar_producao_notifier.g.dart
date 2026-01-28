@@ -13,7 +13,7 @@ part of 'buscar_producao_notifier.dart';
 final buscarProducaoProvider = BuscarProducaoProvider._();
 
 final class BuscarProducaoProvider
-    extends $AsyncNotifierProvider<BuscarProducao, ProducaoEntity?> {
+    extends $NotifierProvider<BuscarProducao, BuscarProducaoState> {
   BuscarProducaoProvider._()
     : super(
         from: null,
@@ -31,21 +31,29 @@ final class BuscarProducaoProvider
   @$internal
   @override
   BuscarProducao create() => BuscarProducao();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(BuscarProducaoState value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<BuscarProducaoState>(value),
+    );
+  }
 }
 
-String _$buscarProducaoHash() => r'abf43c726986d05bf54cf84ebc60409d7402b69c';
+String _$buscarProducaoHash() => r'f081502872a408af948234390b4b3a90146dde2c';
 
-abstract class _$BuscarProducao extends $AsyncNotifier<ProducaoEntity?> {
-  FutureOr<ProducaoEntity?> build();
+abstract class _$BuscarProducao extends $Notifier<BuscarProducaoState> {
+  BuscarProducaoState build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<AsyncValue<ProducaoEntity?>, ProducaoEntity?>;
+    final ref = this.ref as $Ref<BuscarProducaoState, BuscarProducaoState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AsyncValue<ProducaoEntity?>, ProducaoEntity?>,
-              AsyncValue<ProducaoEntity?>,
+              AnyNotifier<BuscarProducaoState, BuscarProducaoState>,
+              BuscarProducaoState,
               Object?,
               Object?
             >;
