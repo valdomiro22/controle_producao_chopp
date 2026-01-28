@@ -8,6 +8,7 @@ class ProducaoEntity {
   final StatusProducao status;
   final Barril tipoBarril;
   final Produto produto;
+  final int ordem;
   final int quantidadeProgramada;
   final int? quantidadeProduzida;
   final int? quantidadePendente;
@@ -19,6 +20,7 @@ class ProducaoEntity {
     this.id,
     required this.gradeId,
     required this.status,
+    required this.ordem,
     required this.tipoBarril,
     required this.produto,
     required this.quantidadeProgramada,
@@ -34,6 +36,7 @@ class ProducaoEntity {
     String? gradeId,
     StatusProducao? status,
     Barril? tipoBarril,
+    int? ordem,
     Produto? produto,
     int? quantidadeProgramada,
     int? quantidadeProduzida,
@@ -46,6 +49,7 @@ class ProducaoEntity {
       id: id ?? this.id,
       gradeId: gradeId ?? this.gradeId,
       status: status ?? this.status,
+      ordem: ordem ?? this.ordem,
       tipoBarril: tipoBarril ?? this.tipoBarril,
       produto: produto ?? this.produto,
       quantidadeProgramada: quantidadeProgramada ?? this.quantidadeProgramada,
@@ -64,6 +68,7 @@ class ProducaoEntity {
       'gradeId: $gradeId, '
       'status: $status, '
       'tipoBarril: $tipoBarril, '
+      'ordem: $ordem, '
       'produto: $produto, '
       'quantidadeProgramada: $quantidadeProgramada, '
       'quantidadeProduzida: $quantidadeProduzida, '

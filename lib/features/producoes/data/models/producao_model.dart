@@ -9,6 +9,7 @@ class ProducaoModel {
   final String gradeId;
   final StatusProducao status;
   final Barril tipoBarril;
+  final int ordem;
   final Produto produto;
   final int quantidadeProgramada;
   final int? quantidadeProduzida;
@@ -22,6 +23,7 @@ class ProducaoModel {
     required this.gradeId,
     required this.status,
     required this.tipoBarril,
+    required this.ordem,
     required this.produto,
     required this.quantidadeProgramada,
     this.quantidadeProduzida = 0,
@@ -39,6 +41,7 @@ class ProducaoModel {
       'tipoBarril': tipoBarril.id,
       'produto': produto.id,
       'quantidade': quantidadeProgramada,
+      'ordem': ordem,
       'qtProduzida': quantidadeProduzida,
       'qtPendente': quantidadePendente,
       'vlNecessarioHl': volumeNecessarioHl,
@@ -56,6 +59,7 @@ class ProducaoModel {
       produto: Produto.fronId(map['produto'] as int),
       quantidadeProgramada: map['quantidade'] as int,
       quantidadeProduzida: map['qtProduzida'] as int,
+      ordem: map['ordem'] as int,
       quantidadePendente: map['qtPendente'] as int,
       volumeNecessarioHl: (map['vlNecessarioHl'] as num?)?.toDouble() ?? 0.0,
       dataCriacao: (map['dataCriacao'] as Timestamp?)?.toDate(),
@@ -70,6 +74,7 @@ class ProducaoModel {
     Barril? tipoBarril,
     Produto? produto,
     int? quantidadeProgramada,
+    int? ordem,
     int? quantidadeProduzida,
     int? quantidadePendente,
     double? volumeNecessarioHl,
@@ -82,6 +87,7 @@ class ProducaoModel {
       status: status ?? this.status,
       tipoBarril: tipoBarril ?? this.tipoBarril,
       produto: produto ?? this.produto,
+      ordem: ordem ?? this.ordem,
       quantidadeProgramada: quantidadeProgramada ?? this.quantidadeProgramada,
       quantidadeProduzida: quantidadeProduzida ?? this.quantidadeProduzida,
       quantidadePendente: quantidadePendente ?? this.quantidadePendente,

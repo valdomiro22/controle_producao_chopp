@@ -17,6 +17,14 @@ class AdicionarProducaoNotifier extends _$AdicionarProducaoNotifier {
 
   void selecionarProduto(Produto? produto) => state = state.copyWith(produto: produto);
   void selecionarBarril(Barril? barril) => state = state.copyWith(barril: barril);
+  void setOrdem(String or) {
+    final ordem = int.tryParse(or);
+
+    int intOrdem = 0;
+    ordem != null ? intOrdem = ordem : intOrdem = -1;
+
+    state = state.copyWith(ordem: intOrdem);
+  }
 
   void atualizaQuantidade(String value) {
     final valorRecebido = value.trim();
@@ -27,7 +35,6 @@ class AdicionarProducaoNotifier extends _$AdicionarProducaoNotifier {
 
   Future<void> adicionarProducao(String gradeId) async {
     if (!_validarCampos()) return;
-    print('Adicionar producao');
 
     state = state.copyWith(isLoading: true);
 
@@ -38,6 +45,7 @@ class AdicionarProducaoNotifier extends _$AdicionarProducaoNotifier {
       gradeId: gradeId,
       status: StatusProducao.naoConcluido,
       tipoBarril: state.barril!,
+      ordem: state.ordem,
       produto: state.produto!,
       quantidadeProgramada: quantidade,
       dataCriacao: DateTime.now(),

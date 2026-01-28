@@ -8,7 +8,7 @@ class ProducaoDatasourceImpl implements ProducaoDatasource {
 
   ProducaoDatasourceImpl(this._firestore);
 
-  final _gradesComProducoes = 'grades_com_producoes';
+  final _producoes = 'producoes';
   final _listaProducoes = 'producoes';
 
   @override
@@ -17,7 +17,7 @@ class ProducaoDatasourceImpl implements ProducaoDatasource {
       final producaoId = producao.id!;
 
       await _firestore
-          .collection(_gradesComProducoes)
+          .collection(_producoes)
           .doc(gradeId)
           .collection(_listaProducoes)
           .doc(producaoId)
@@ -52,7 +52,7 @@ class ProducaoDatasourceImpl implements ProducaoDatasource {
   Future<void> deleteProducao({required String gradeId, required String producaoId}) async {
     try {
       await _firestore
-          .collection(_gradesComProducoes)
+          .collection(_producoes)
           .doc(gradeId)
           .collection(_listaProducoes)
           .doc(producaoId)
@@ -83,7 +83,7 @@ class ProducaoDatasourceImpl implements ProducaoDatasource {
   Future<List<ProducaoModel>> getAllProducoesOfGrade(String gradeId) async {
     try {
       final snapshot = await _firestore
-          .collection(_gradesComProducoes)
+          .collection(_producoes)
           .doc(gradeId)
           .collection(_listaProducoes)
           .get();
@@ -121,7 +121,7 @@ class ProducaoDatasourceImpl implements ProducaoDatasource {
   Future<ProducaoModel?> getProducao({required String gradeId, required String producaoId}) async {
     try {
       final snapshot = await _firestore
-          .collection(_gradesComProducoes)
+          .collection(_producoes)
           .doc(gradeId)
           .collection(_listaProducoes)
           .doc(producaoId)
@@ -160,7 +160,7 @@ class ProducaoDatasourceImpl implements ProducaoDatasource {
   }) async {
     try {
       await _firestore
-          .collection(_gradesComProducoes)
+          .collection(_producoes)
           .doc(gradeId)
           .collection(_listaProducoes)
           .doc(producaoId)

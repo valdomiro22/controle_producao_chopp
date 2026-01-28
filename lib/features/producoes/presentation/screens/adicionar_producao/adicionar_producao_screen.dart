@@ -17,6 +17,14 @@ class AdicionarProducaoScreen extends ConsumerStatefulWidget {
 
 class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScreen> {
   final _qtController = TextEditingController();
+  final _ordemController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _ordemController.dispose();
+    _qtController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +44,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
         );
         notifier.limpar();
         _qtController.clear();
+        _ordemController.clear();
         context.pop();
       }
     });
@@ -119,6 +128,17 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
               keyboardType: TextInputType.number,
               onChanged: (value) => notifier.atualizaQuantidade(value),
             ),
+
+            TextField(
+              controller: _ordemController,
+              decoration: InputDecoration(
+                labelText: 'Ordem',
+                hintText: 'Ex: 10682909',
+              ),
+              keyboardType: TextInputType.number,
+              onChanged: (value) => notifier.setOrdem(value),
+            ),
+
 
             if (state.erro != null)
               Text(

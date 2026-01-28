@@ -86,6 +86,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+
           // Cabeçalho
           Card(
             elevation: 0.4,
@@ -112,7 +113,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       Text('Ordem', style: TextStyle(fontSize: 12)),
                       const SizedBox(height: 4),
                       Text(
-                        'ex: 29384293',
+                        producao.ordem.toString(),
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 16,
