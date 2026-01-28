@@ -4,6 +4,7 @@ class FormQtHoraria {
   final String? id;
   final Turno turno;
   final String producaoId;
+  final String horarioReferente;
   final int turnoReferente;
   final int quantidade;
   final int quantidadeAcumulada;
@@ -17,6 +18,7 @@ class FormQtHoraria {
     this.id,
     this.turno = Turno.turnoA,
     required this.producaoId,
+    required this.horarioReferente,
     this.turnoReferente = 1,
     this.quantidade = -1,
     this.quantidadeAcumulada = -1,
@@ -31,6 +33,7 @@ class FormQtHoraria {
     String? id,
     Turno? turno,
     String? producaoId,
+    String? horarioReferente,
     int? turnoReferente,
     int? quantidade,
     int? quantidadeAcumulada,
@@ -44,6 +47,7 @@ class FormQtHoraria {
       id: id ?? this.id,
       turno: turno ?? this.turno,
       producaoId: producaoId ?? this.producaoId,
+      horarioReferente: horarioReferente ?? this.horarioReferente,
       turnoReferente: turnoReferente ?? this.turnoReferente,
       quantidade: quantidade ?? this.quantidade,
       quantidadeAcumulada: quantidadeAcumulada ?? this.quantidadeAcumulada,

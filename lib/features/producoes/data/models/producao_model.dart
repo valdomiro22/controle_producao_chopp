@@ -7,7 +7,6 @@ import '../../domain/enums/status_producao.dart';
 class ProducaoModel {
   final String? id;
   final String gradeId;
-  final String horarioReferente;
   final StatusProducao status;
   final Barril tipoBarril;
   final Produto produto;
@@ -21,7 +20,6 @@ class ProducaoModel {
   ProducaoModel({
     this.id,
     required this.gradeId,
-    required this.horarioReferente,
     required this.status,
     required this.tipoBarril,
     required this.produto,
@@ -37,7 +35,6 @@ class ProducaoModel {
     return {
       'id': id,
       'gradeId': gradeId,
-      'horarioReferente': horarioReferente,
       'status': status.id,
       'tipoBarril': tipoBarril.id,
       'produto': produto.id,
@@ -54,7 +51,6 @@ class ProducaoModel {
     return ProducaoModel(
       id: map['id'] as String?,
       gradeId: map['gradeId'] as String,
-      horarioReferente: map['horarioReferente'] as String,
       status: StatusProducao.fronId(map['status'] as int),
       tipoBarril: Barril.fronId(map['tipoBarril'] as int),
       produto: Produto.fronId(map['produto'] as int),
@@ -70,7 +66,6 @@ class ProducaoModel {
   ProducaoModel copyWith({
     String? id,
     String? gradeId,
-    String? horarioReferente,
     StatusProducao? status,
     Barril? tipoBarril,
     Produto? produto,
@@ -84,7 +79,6 @@ class ProducaoModel {
     return ProducaoModel(
       id: id ?? this.id,
       gradeId: gradeId ?? this.gradeId,
-      horarioReferente: horarioReferente ?? this.horarioReferente,
       status: status ?? this.status,
       tipoBarril: tipoBarril ?? this.tipoBarril,
       produto: produto ?? this.produto,

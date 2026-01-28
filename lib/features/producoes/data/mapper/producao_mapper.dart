@@ -6,7 +6,6 @@ extension ProducaoModelToEntity on ProducaoModel {
     return ProducaoEntity(
       id: id,
       gradeId: gradeId,
-      horarioReferente: horarioReferente,
       status: status,
       tipoBarril: tipoBarril,
       produto: produto,
@@ -25,7 +24,6 @@ extension ProducaoEntityToModel on ProducaoEntity {
     return ProducaoModel(
       id: id,
       gradeId: gradeId,
-      horarioReferente: horarioReferente,
       status: status,
       tipoBarril: tipoBarril,
       produto: produto,

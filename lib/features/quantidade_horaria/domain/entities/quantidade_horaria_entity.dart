@@ -4,6 +4,7 @@ class QuantidadeHorariaEntity {
   final String? id;
   final Turno turno;
   final String producaoId;
+  final int ? horarioReferente;
   final int turnoReferente;
   final int quantidade;
   final int quantidadeAcumulada;
@@ -14,6 +15,7 @@ class QuantidadeHorariaEntity {
     this.id,
     required this.turno,
     required this.producaoId,
+    this.horarioReferente,
     required this.turnoReferente,
     required this.quantidade,
     required this.quantidadeAcumulada,
@@ -25,6 +27,7 @@ class QuantidadeHorariaEntity {
     String? id,
     Turno? turno,
     String? producaoId,
+    int? horarioReferente,
     int? turnoReferente,
     int? quantidade,
     int? quantidadeAcumulada,
@@ -35,6 +38,7 @@ class QuantidadeHorariaEntity {
       id: id ?? this.id,
       turno: turno ?? this.turno,
       producaoId: producaoId ?? this.producaoId,
+      horarioReferente: horarioReferente ?? this.horarioReferente,
       turnoReferente: turnoReferente ?? this.turnoReferente,
       quantidade: quantidade ?? this.quantidade,
       quantidadeAcumulada: quantidadeAcumulada ?? this.quantidadeAcumulada,
@@ -49,6 +53,7 @@ class QuantidadeHorariaEntity {
         'id: $id, '
         'turno: $turno, '
         'producaoId: $producaoId, '
+        'horarioReferente: $horarioReferente, '
         'turnoReferente: $turnoReferente, '
         'quantidade: $quantidade, '
         'quantidadeAcumulada: $quantidadeAcumulada, '

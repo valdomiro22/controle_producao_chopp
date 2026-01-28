@@ -62,7 +62,7 @@ final class InserirQuantidadeHorariaNotifierProvider
 }
 
 String _$inserirQuantidadeHorariaNotifierHash() =>
-    r'8c7693dae843cebbeb0d28772d23409b0c515148';
+    r'ca2b489b64ed2ca12c1ab47d6da7c5a2a91dec82';
 
 final class InserirQuantidadeHorariaNotifierFamily extends $Family
     with

@@ -16,11 +16,8 @@ class InsertProducaoUseCase {
     required ProducaoEntity producao,
   }) async {
     final idGerado = const Uuid().v4();
-    final hrReferente = StringUtil.formatarHoraSincrona(
-      DateTime.now().toIso8601String(),
-    ).substring(0, 2);
 
-    final producaoEditada = producao.copyWith(id: idGerado, horarioReferente: hrReferente);
+    final producaoEditada = producao.copyWith(id: idGerado);
 
     return await _repository.insertProducao(producao: producaoEditada, gradeId: gradeId);
   }

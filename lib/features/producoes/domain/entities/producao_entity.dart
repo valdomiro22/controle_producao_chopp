@@ -5,7 +5,6 @@ import '../enums/status_producao.dart';
 class ProducaoEntity {
   final String? id;
   final String gradeId;
-  final String horarioReferente;
   final StatusProducao status;
   final Barril tipoBarril;
   final Produto produto;
@@ -19,7 +18,6 @@ class ProducaoEntity {
   ProducaoEntity({
     this.id,
     required this.gradeId,
-    required this.horarioReferente,
     required this.status,
     required this.tipoBarril,
     required this.produto,
@@ -34,7 +32,6 @@ class ProducaoEntity {
   ProducaoEntity copyWith({
     String? id,
     String? gradeId,
-    String? horarioReferente,
     StatusProducao? status,
     Barril? tipoBarril,
     Produto? produto,
@@ -48,7 +45,6 @@ class ProducaoEntity {
     return ProducaoEntity(
       id: id ?? this.id,
       gradeId: gradeId ?? this.gradeId,
-      horarioReferente: horarioReferente ?? this.horarioReferente,
       status: status ?? this.status,
       tipoBarril: tipoBarril ?? this.tipoBarril,
       produto: produto ?? this.produto,
@@ -66,7 +62,6 @@ class ProducaoEntity {
     return 'ProducaoEntity('
       'id: $id, '
       'gradeId: $gradeId, '
-      'horarioReferente: $horarioReferente, '
       'status: $status, '
       'tipoBarril: $tipoBarril, '
       'produto: $produto, '

@@ -1,4 +1,3 @@
-import 'package:gestao_producao_chopp/core/common/states/app_state.dart';
 import 'package:gestao_producao_chopp/core/di/usecases/producao_use_cases_provider.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/adicionar_producao/form_adicionar_producao_state.dart';
@@ -27,8 +26,8 @@ class AdicionarProducaoNotifier extends _$AdicionarProducaoNotifier {
   }
 
   Future<void> adicionarProducao(String gradeId) async {
-
     if (!_validarCampos()) return;
+    print('Adicionar producao');
 
     state = state.copyWith(isLoading: true);
 
@@ -43,7 +42,6 @@ class AdicionarProducaoNotifier extends _$AdicionarProducaoNotifier {
       quantidadeProgramada: quantidade,
       dataCriacao: DateTime.now(),
       volumeNecessarioHl: 999.9,
-      horarioReferente: '',
     );
 
     final result = await usecase(producao: producao, gradeId: gradeId);
@@ -73,11 +71,6 @@ class AdicionarProducaoNotifier extends _$AdicionarProducaoNotifier {
     if (state.barril == null) {
       camposValidos = false;
       erroBarril = 'Selecione um tipo de barril';
-    }
-
-    if (state.data == null) {
-      camposValidos = false;
-      erroData = 'Selecione uma data';
     }
 
     if (state.quantidade == null || state.quantidade!.trim().isEmpty) {

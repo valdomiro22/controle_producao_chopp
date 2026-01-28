@@ -29,7 +29,7 @@ class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
     final listaState = ref.watch(listaProducoesProvider);
     final listaNotifier = ref.watch(listaProducoesProvider.notifier);
     
-    // final deletarState = ref.watch(deletp)
+    // final deletarState = ref.watch(deleta)
 
     return Scaffold(
       appBar: AppBar(title: Text('Lista de Produções')),

@@ -63,14 +63,22 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: const Text('Barris produzidos'),
+              title: Center(
+                child: Text('Barris produzidos'),
+              ),
               content: Container(
                 width: MediaQuery.of(context).size.width - 16,
-                height: 120,
+                height: 130,
                 alignment: Alignment.center,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        'Horario: ${widget.horario}',
+                      ),
+                    ),
                     TextField(
                       controller: _qtController,
                       autofocus: true,
@@ -105,7 +113,7 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
                   ],
                 ),
               ),
-              actions: <Widget>[
+              actions: [
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -158,9 +166,10 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
 
 
 
-                    final quantidade = qtAdicional;
+                    // final quantidade = qtAdicional;
                     qtHorariaNotifier.inserirQuantidade(
-
+                      horario: widget.horario,
+                      quantidade: qtAdicional
                     );
 
                     Navigator.of(context).pop();
