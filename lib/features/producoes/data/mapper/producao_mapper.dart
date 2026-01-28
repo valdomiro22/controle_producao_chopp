@@ -16,7 +16,7 @@ extension ProducaoModelToEntity on ProducaoModel {
       quantidadePendente: quantidadePendente,
       volumeNecessarioHl: volumeNecessarioHl,
       dataCriacao: dataCriacao,
-      finalizadaProducao: finalizadaProducao,
+      dadaFimDeProducao: dadaFimDeProducao,
     );
   }
 }
@@ -36,7 +36,7 @@ extension ProducaoEntityToModel on ProducaoEntity {
       quantidadePendente: quantidadePendente,
       volumeNecessarioHl: volumeNecessarioHl,
       dataCriacao: dataCriacao,
-      finalizadaProducao: finalizadaProducao,
+      dadaFimDeProducao: dadaFimDeProducao,
     );
   }
 }

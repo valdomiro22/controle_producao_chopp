@@ -15,7 +15,7 @@ class ProducaoEntity {
   final int? quantidadePendente;
   final double? volumeNecessarioHl;
   final DateTime? dataCriacao;
-  final DateTime? finalizadaProducao;
+  final DateTime? dadaFimDeProducao;
 
   ProducaoEntity({
     this.id,
@@ -30,7 +30,7 @@ class ProducaoEntity {
     this.quantidadePendente = 0,
     required this.volumeNecessarioHl,
     required this.dataCriacao,
-    this.finalizadaProducao,
+    this.dadaFimDeProducao,
   });
 
   ProducaoEntity copyWith({
@@ -46,7 +46,7 @@ class ProducaoEntity {
     int? quantidadePendente,
     double? volumeNecessarioHl,
     DateTime? dataCriacao,
-    DateTime? finalizadaProducao,
+    DateTime? dadaFimDeProducao,
   }) {
     return ProducaoEntity(
       id: id ?? this.id,
@@ -61,7 +61,7 @@ class ProducaoEntity {
       quantidadePendente: quantidadePendente ?? this.quantidadePendente,
       volumeNecessarioHl: volumeNecessarioHl ?? this.volumeNecessarioHl,
       dataCriacao: dataCriacao ?? this.dataCriacao,
-      finalizadaProducao: finalizadaProducao ?? this.finalizadaProducao,
+      dadaFimDeProducao: dadaFimDeProducao ?? this.dadaFimDeProducao,
     );
   }
 
@@ -80,7 +80,7 @@ class ProducaoEntity {
         'quantidadePendente: $quantidadePendente, '
         'volumeNecessarioHl: $volumeNecessarioHl, '
         'iniciadaProducao: $dataCriacao, '
-        'finalizadaProducao: $finalizadaProducao'
+        'dadaFimDeProducao: $dadaFimDeProducao'
         ')';
   }
 }

@@ -17,7 +17,7 @@ class ProducaoModel {
   final int? quantidadePendente;
   final double? volumeNecessarioHl;
   final DateTime? dataCriacao;
-  final DateTime? finalizadaProducao;
+  final DateTime? dadaFimDeProducao;
 
   ProducaoModel({
     this.id,
@@ -32,7 +32,7 @@ class ProducaoModel {
     this.quantidadePendente = 0,
     required this.volumeNecessarioHl,
     required this.dataCriacao,
-    this.finalizadaProducao,
+    this.dadaFimDeProducao,
   });
 
   Map<String, dynamic> toMap() {
@@ -49,7 +49,7 @@ class ProducaoModel {
       'qtPendente': quantidadePendente,
       'vlNecessarioHl': volumeNecessarioHl,
       'dataCriacao': dataCriacao,
-      'finalizadaProducao': finalizadaProducao,
+      'dadaFimDeProducao': dadaFimDeProducao,
     };
   }
 
@@ -67,7 +67,7 @@ class ProducaoModel {
       quantidadePendente: map['qtPendente'] as int,
       volumeNecessarioHl: (map['vlNecessarioHl'] as num?)?.toDouble() ?? 0.0,
       dataCriacao: (map['dataCriacao'] as Timestamp?)?.toDate(),
-      finalizadaProducao: (map['finalizadaProducao'] as Timestamp?)?.toDate(),
+      dadaFimDeProducao: (map['dadaFimDeProducao'] as Timestamp?)?.toDate(),
     );
   }
 
@@ -84,7 +84,7 @@ class ProducaoModel {
     int? quantidadePendente,
     double? volumeNecessarioHl,
     DateTime? dataCriacao,
-    DateTime? finalizadaProducao,
+    DateTime? dadaFimDeProducao,
   }) {
     return ProducaoModel(
       id: id ?? this.id,
@@ -99,7 +99,7 @@ class ProducaoModel {
       quantidadePendente: quantidadePendente ?? this.quantidadePendente,
       volumeNecessarioHl: volumeNecessarioHl ?? this.volumeNecessarioHl,
       dataCriacao: dataCriacao ?? this.dataCriacao,
-      finalizadaProducao: finalizadaProducao ?? this.finalizadaProducao,
+      dadaFimDeProducao: dadaFimDeProducao ?? this.dadaFimDeProducao,
     );
   }
 }
