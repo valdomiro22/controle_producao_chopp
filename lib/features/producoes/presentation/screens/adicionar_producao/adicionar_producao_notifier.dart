@@ -26,6 +26,15 @@ class AdicionarProducaoNotifier extends _$AdicionarProducaoNotifier {
     state = state.copyWith(ordem: intOrdem);
   }
 
+  void setCodigo(String cd) {
+    final codigo = int.tryParse(cd);
+
+    int intCodigo = 0;
+    codigo != null ? intCodigo = codigo : intCodigo = -1;
+
+    state = state.copyWith(codigo: intCodigo);
+  }
+
   void atualizaQuantidade(String value) {
     final valorRecebido = value.trim();
     state = state.copyWith(
@@ -46,6 +55,7 @@ class AdicionarProducaoNotifier extends _$AdicionarProducaoNotifier {
       status: StatusProducao.naoConcluido,
       tipoBarril: state.barril!,
       ordem: state.ordem,
+      codigo: state.codigo,
       produto: state.produto!,
       quantidadeProgramada: quantidade,
       dataCriacao: DateTime.now(),

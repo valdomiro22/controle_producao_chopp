@@ -18,12 +18,14 @@ class AdicionarProducaoScreen extends ConsumerStatefulWidget {
 class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScreen> {
   final _qtController = TextEditingController();
   final _ordemController = TextEditingController();
+  final _codigoController = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
     _ordemController.dispose();
     _qtController.dispose();
+    _codigoController.dispose();
   }
 
   @override
@@ -57,6 +59,8 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
           children: [
             Row(
               children: [
+
+                // Produto
                 Expanded(
                   flex: 1,
                   child: Container(
@@ -70,7 +74,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
                         dropdownColor: Colors.brown[200],
                         borderRadius: BorderRadius.circular(10),
                         isDense: false,
-                        hint: const Text('Tipo de Barril', style: TextStyle(color: Colors.white)),
+                        hint: const Text('Produto', style: TextStyle(color: Colors.white)),
                         value: state.produto,
                         items: Produto.values.map((Produto produto) {
                           return DropdownMenuItem<Produto>(
@@ -87,6 +91,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
                 ),
                 SizedBox(width: 16),
 
+                // Barril
                 Expanded(
                   flex: 1,
                   child: Container(
@@ -100,7 +105,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
                         dropdownColor: Colors.brown[200],
                         borderRadius: BorderRadius.circular(10),
                         isDense: false,
-                        hint: const Text('Tipo de Barril', style: TextStyle(color: Colors.white)),
+                        hint: const Text('Barril', style: TextStyle(color: Colors.white)),
                         value: state.barril,
                         items: Barril.values.map((Barril barril) {
                           return DropdownMenuItem<Barril>(
@@ -117,7 +122,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
                 ),
               ],
             ),
-            SizedBox(height: 16,),
+            const SizedBox(height: 16,),
 
             TextField(
               controller: _qtController,
@@ -128,6 +133,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
               keyboardType: TextInputType.number,
               onChanged: (value) => notifier.atualizaQuantidade(value),
             ),
+            const SizedBox(height: 8),
 
             TextField(
               controller: _ordemController,
@@ -136,9 +142,19 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
                 hintText: 'Ex: 10682909',
               ),
               keyboardType: TextInputType.number,
+              onChanged: (value) => notifier.setCodigo(value),
+            ),
+            const SizedBox(height: 8),
+
+            TextField(
+              controller: _codigoController,
+              decoration: InputDecoration(
+                labelText: 'Código',
+                hintText: 'Ex: 2068299',
+              ),
+              keyboardType: TextInputType.number,
               onChanged: (value) => notifier.setOrdem(value),
             ),
-
 
             if (state.erro != null)
               Text(

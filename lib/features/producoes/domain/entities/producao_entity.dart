@@ -9,6 +9,7 @@ class ProducaoEntity {
   final Barril tipoBarril;
   final Produto produto;
   final int ordem;
+  final int codigo;
   final int quantidadeProgramada;
   final int? quantidadeProduzida;
   final int? quantidadePendente;
@@ -21,6 +22,7 @@ class ProducaoEntity {
     required this.gradeId,
     required this.status,
     required this.ordem,
+    required this.codigo,
     required this.tipoBarril,
     required this.produto,
     required this.quantidadeProgramada,
@@ -37,6 +39,7 @@ class ProducaoEntity {
     StatusProducao? status,
     Barril? tipoBarril,
     int? ordem,
+    int? codigo,
     Produto? produto,
     int? quantidadeProgramada,
     int? quantidadeProduzida,
@@ -50,6 +53,7 @@ class ProducaoEntity {
       gradeId: gradeId ?? this.gradeId,
       status: status ?? this.status,
       ordem: ordem ?? this.ordem,
+      codigo: codigo ?? this.codigo,
       tipoBarril: tipoBarril ?? this.tipoBarril,
       produto: produto ?? this.produto,
       quantidadeProgramada: quantidadeProgramada ?? this.quantidadeProgramada,
@@ -64,18 +68,19 @@ class ProducaoEntity {
   @override
   String toString() {
     return 'ProducaoEntity('
-      'id: $id, '
-      'gradeId: $gradeId, '
-      'status: $status, '
-      'tipoBarril: $tipoBarril, '
-      'ordem: $ordem, '
-      'produto: $produto, '
-      'quantidadeProgramada: $quantidadeProgramada, '
-      'quantidadeProduzida: $quantidadeProduzida, '
-      'quantidadePendente: $quantidadePendente, '
-      'volumeNecessarioHl: $volumeNecessarioHl, '
-      'iniciadaProducao: $dataCriacao, '
-      'finalizadaProducao: $finalizadaProducao'
-      ')';
+        'id: $id, '
+        'gradeId: $gradeId, '
+        'status: $status, '
+        'tipoBarril: $tipoBarril, '
+        'ordem: $ordem, '
+        'codigo: $codigo, '
+        'produto: $produto, '
+        'quantidadeProgramada: $quantidadeProgramada, '
+        'quantidadeProduzida: $quantidadeProduzida, '
+        'quantidadePendente: $quantidadePendente, '
+        'volumeNecessarioHl: $volumeNecessarioHl, '
+        'iniciadaProducao: $dataCriacao, '
+        'finalizadaProducao: $finalizadaProducao'
+        ')';
   }
 }

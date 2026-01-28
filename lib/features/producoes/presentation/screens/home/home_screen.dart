@@ -94,6 +94,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,7 +107,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       ),
                     ],
                   ),
-                  Spacer(),
+
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Código', style: TextStyle(fontSize: 12)),
+                      const SizedBox(height: 4),
+                      Text(
+                        '${producao.codigo}',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
