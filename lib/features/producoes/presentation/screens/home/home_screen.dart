@@ -92,7 +92,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             elevation: 0.4,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -103,7 +103,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       const SizedBox(height: 4),
                       Text(
                         '${producao.produto.label} ${producao.tipoBarril.label}',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 16,
+                          color: Color(0xff223b7a),
+                        ),
                       ),
                     ],
                   ),
@@ -115,7 +119,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       const SizedBox(height: 4),
                       Text(
                         '${producao.codigo}',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 16,
+                          color: Color(0xff223b7a),
+                        ),
                       ),
                     ],
                   ),
@@ -128,9 +136,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       Text(
                         producao.ordem.toString(),
                         style: TextStyle(
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w700,
                           fontSize: 16,
-                          color: Colors.deepPurple,
+                          color: Color(0xff223b7a),
                         ),
                       ),
                     ],
