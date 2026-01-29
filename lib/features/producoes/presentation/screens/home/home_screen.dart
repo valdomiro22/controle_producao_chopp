@@ -268,11 +268,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               childAspectRatio: 1,
             ),
             itemCount: turnoState.turno.horarios.length,
-            itemBuilder: (context, index) => CardQuantidadeHoraria(
-              horario: turnoState.turno.horarios.values.toList()[index],
-              quantidade: producao.quantidadeProduzida.toString(),
-              producao: producao,
-            ),
+            itemBuilder: (context, index) {
+              final horario = turnoState.turno.horarios.values.toList()[index];
+
+              return CardQuantidadeHoraria(
+                horario: horario,
+                producao: producao,
+              );
+            },
           ),
           SizedBox(height: 16),
 

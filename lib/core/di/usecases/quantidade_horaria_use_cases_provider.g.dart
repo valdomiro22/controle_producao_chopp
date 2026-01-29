@@ -248,3 +248,51 @@ final class DeleteQtHorariaUseCaseProvider
 
 String _$deleteQtHorariaUseCaseHash() =>
     r'401f1fd4a86c6981a5122a5a054b358fc91a15be';
+
+@ProviderFor(getQtHorariaHrRefUseCase)
+final getQtHorariaHrRefUseCaseProvider = GetQtHorariaHrRefUseCaseProvider._();
+
+final class GetQtHorariaHrRefUseCaseProvider
+    extends
+        $FunctionalProvider<
+          GetQtHorariaHrRefUseCase,
+          GetQtHorariaHrRefUseCase,
+          GetQtHorariaHrRefUseCase
+        >
+    with $Provider<GetQtHorariaHrRefUseCase> {
+  GetQtHorariaHrRefUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getQtHorariaHrRefUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$getQtHorariaHrRefUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<GetQtHorariaHrRefUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  GetQtHorariaHrRefUseCase create(Ref ref) {
+    return getQtHorariaHrRefUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GetQtHorariaHrRefUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GetQtHorariaHrRefUseCase>(value),
+    );
+  }
+}
+
+String _$getQtHorariaHrRefUseCaseHash() =>
+    r'd595d4082c6779869cc59598988ee8456ef77870';

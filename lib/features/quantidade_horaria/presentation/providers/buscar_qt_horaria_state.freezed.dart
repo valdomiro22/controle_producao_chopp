@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'buscar_producao_state.dart';
+part of 'buscar_qt_horaria_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,7 +12,7 @@ part of 'buscar_producao_state.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$BuscarProducaoState {
+mixin _$BuscarQtHorariaState {
 
 
 
@@ -20,7 +20,7 @@ mixin _$BuscarProducaoState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is BuscarProducaoState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BuscarQtHorariaState);
 }
 
 
@@ -29,20 +29,20 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'BuscarProducaoState()';
+  return 'BuscarQtHorariaState()';
 }
 
 
 }
 
 /// @nodoc
-class $BuscarProducaoStateCopyWith<$Res>  {
-$BuscarProducaoStateCopyWith(BuscarProducaoState _, $Res Function(BuscarProducaoState) __);
+class $BuscarQtHorariaStateCopyWith<$Res>  {
+$BuscarQtHorariaStateCopyWith(BuscarQtHorariaState _, $Res Function(BuscarQtHorariaState) __);
 }
 
 
-/// Adds pattern-matching-related methods to [BuscarProducaoState].
-extension BuscarProducaoStatePatterns on BuscarProducaoState {
+/// Adds pattern-matching-related methods to [BuscarQtHorariaState].
+extension BuscarQtHorariaStatePatterns on BuscarQtHorariaState {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -55,13 +55,13 @@ extension BuscarProducaoStatePatterns on BuscarProducaoState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Inicial value)?  inicial,TResult Function( _Carregando value)?  carregando,TResult Function( _SucessoComDados value)?  sucessoComDados,TResult Function( _Sucesso value)?  sucesso,TResult Function( _Erro value)?  erro,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Inicial value)?  inicial,TResult Function( _Carregando value)?  carregando,TResult Function( _SucessoComDados value)?  sucessoComDado,TResult Function( _Sucesso value)?  sucesso,TResult Function( _Erro value)?  erro,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Inicial() when inicial != null:
 return inicial(_that);case _Carregando() when carregando != null:
-return carregando(_that);case _SucessoComDados() when sucessoComDados != null:
-return sucessoComDados(_that);case _Sucesso() when sucesso != null:
+return carregando(_that);case _SucessoComDados() when sucessoComDado != null:
+return sucessoComDado(_that);case _Sucesso() when sucesso != null:
 return sucesso(_that);case _Erro() when erro != null:
 return erro(_that);case _:
   return orElse();
@@ -81,13 +81,13 @@ return erro(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Inicial value)  inicial,required TResult Function( _Carregando value)  carregando,required TResult Function( _SucessoComDados value)  sucessoComDados,required TResult Function( _Sucesso value)  sucesso,required TResult Function( _Erro value)  erro,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Inicial value)  inicial,required TResult Function( _Carregando value)  carregando,required TResult Function( _SucessoComDados value)  sucessoComDado,required TResult Function( _Sucesso value)  sucesso,required TResult Function( _Erro value)  erro,}){
 final _that = this;
 switch (_that) {
 case _Inicial():
 return inicial(_that);case _Carregando():
 return carregando(_that);case _SucessoComDados():
-return sucessoComDados(_that);case _Sucesso():
+return sucessoComDado(_that);case _Sucesso():
 return sucesso(_that);case _Erro():
 return erro(_that);case _:
   throw StateError('Unexpected subclass');
@@ -106,13 +106,13 @@ return erro(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Inicial value)?  inicial,TResult? Function( _Carregando value)?  carregando,TResult? Function( _SucessoComDados value)?  sucessoComDados,TResult? Function( _Sucesso value)?  sucesso,TResult? Function( _Erro value)?  erro,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Inicial value)?  inicial,TResult? Function( _Carregando value)?  carregando,TResult? Function( _SucessoComDados value)?  sucessoComDado,TResult? Function( _Sucesso value)?  sucesso,TResult? Function( _Erro value)?  erro,}){
 final _that = this;
 switch (_that) {
 case _Inicial() when inicial != null:
 return inicial(_that);case _Carregando() when carregando != null:
-return carregando(_that);case _SucessoComDados() when sucessoComDados != null:
-return sucessoComDados(_that);case _Sucesso() when sucesso != null:
+return carregando(_that);case _SucessoComDados() when sucessoComDado != null:
+return sucessoComDado(_that);case _Sucesso() when sucesso != null:
 return sucesso(_that);case _Erro() when erro != null:
 return erro(_that);case _:
   return null;
@@ -131,12 +131,12 @@ return erro(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  inicial,TResult Function()?  carregando,TResult Function( ProducaoEntity? producao)?  sucessoComDados,TResult Function()?  sucesso,TResult Function( Failure failure)?  erro,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  inicial,TResult Function()?  carregando,TResult Function( int qtHoraria)?  sucessoComDado,TResult Function()?  sucesso,TResult Function( Failure failure)?  erro,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Inicial() when inicial != null:
 return inicial();case _Carregando() when carregando != null:
-return carregando();case _SucessoComDados() when sucessoComDados != null:
-return sucessoComDados(_that.producao);case _Sucesso() when sucesso != null:
+return carregando();case _SucessoComDados() when sucessoComDado != null:
+return sucessoComDado(_that.qtHoraria);case _Sucesso() when sucesso != null:
 return sucesso();case _Erro() when erro != null:
 return erro(_that.failure);case _:
   return orElse();
@@ -156,12 +156,12 @@ return erro(_that.failure);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  inicial,required TResult Function()  carregando,required TResult Function( ProducaoEntity? producao)  sucessoComDados,required TResult Function()  sucesso,required TResult Function( Failure failure)  erro,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  inicial,required TResult Function()  carregando,required TResult Function( int qtHoraria)  sucessoComDado,required TResult Function()  sucesso,required TResult Function( Failure failure)  erro,}) {final _that = this;
 switch (_that) {
 case _Inicial():
 return inicial();case _Carregando():
 return carregando();case _SucessoComDados():
-return sucessoComDados(_that.producao);case _Sucesso():
+return sucessoComDado(_that.qtHoraria);case _Sucesso():
 return sucesso();case _Erro():
 return erro(_that.failure);case _:
   throw StateError('Unexpected subclass');
@@ -180,12 +180,12 @@ return erro(_that.failure);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  inicial,TResult? Function()?  carregando,TResult? Function( ProducaoEntity? producao)?  sucessoComDados,TResult? Function()?  sucesso,TResult? Function( Failure failure)?  erro,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  inicial,TResult? Function()?  carregando,TResult? Function( int qtHoraria)?  sucessoComDado,TResult? Function()?  sucesso,TResult? Function( Failure failure)?  erro,}) {final _that = this;
 switch (_that) {
 case _Inicial() when inicial != null:
 return inicial();case _Carregando() when carregando != null:
-return carregando();case _SucessoComDados() when sucessoComDados != null:
-return sucessoComDados(_that.producao);case _Sucesso() when sucesso != null:
+return carregando();case _SucessoComDados() when sucessoComDado != null:
+return sucessoComDado(_that.qtHoraria);case _Sucesso() when sucesso != null:
 return sucesso();case _Erro() when erro != null:
 return erro(_that.failure);case _:
   return null;
@@ -198,7 +198,7 @@ return erro(_that.failure);case _:
 /// @nodoc
 
 
-class _Inicial implements BuscarProducaoState {
+class _Inicial implements BuscarQtHorariaState {
   const _Inicial();
   
 
@@ -218,7 +218,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'BuscarProducaoState.inicial()';
+  return 'BuscarQtHorariaState.inicial()';
 }
 
 
@@ -230,7 +230,7 @@ String toString() {
 /// @nodoc
 
 
-class _Carregando implements BuscarProducaoState {
+class _Carregando implements BuscarQtHorariaState {
   const _Carregando();
   
 
@@ -250,7 +250,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'BuscarProducaoState.carregando()';
+  return 'BuscarQtHorariaState.carregando()';
 }
 
 
@@ -262,13 +262,13 @@ String toString() {
 /// @nodoc
 
 
-class _SucessoComDados implements BuscarProducaoState {
-  const _SucessoComDados(this.producao);
+class _SucessoComDados implements BuscarQtHorariaState {
+  const _SucessoComDados(this.qtHoraria);
   
 
- final  ProducaoEntity? producao;
+ final  int qtHoraria;
 
-/// Create a copy of BuscarProducaoState
+/// Create a copy of BuscarQtHorariaState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
@@ -278,27 +278,27 @@ _$SucessoComDadosCopyWith<_SucessoComDados> get copyWith => __$SucessoComDadosCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SucessoComDados&&(identical(other.producao, producao) || other.producao == producao));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SucessoComDados&&(identical(other.qtHoraria, qtHoraria) || other.qtHoraria == qtHoraria));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,producao);
+int get hashCode => Object.hash(runtimeType,qtHoraria);
 
 @override
 String toString() {
-  return 'BuscarProducaoState.sucessoComDados(producao: $producao)';
+  return 'BuscarQtHorariaState.sucessoComDado(qtHoraria: $qtHoraria)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$SucessoComDadosCopyWith<$Res> implements $BuscarProducaoStateCopyWith<$Res> {
+abstract mixin class _$SucessoComDadosCopyWith<$Res> implements $BuscarQtHorariaStateCopyWith<$Res> {
   factory _$SucessoComDadosCopyWith(_SucessoComDados value, $Res Function(_SucessoComDados) _then) = __$SucessoComDadosCopyWithImpl;
 @useResult
 $Res call({
- ProducaoEntity? producao
+ int qtHoraria
 });
 
 
@@ -313,12 +313,12 @@ class __$SucessoComDadosCopyWithImpl<$Res>
   final _SucessoComDados _self;
   final $Res Function(_SucessoComDados) _then;
 
-/// Create a copy of BuscarProducaoState
+/// Create a copy of BuscarQtHorariaState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? producao = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? qtHoraria = null,}) {
   return _then(_SucessoComDados(
-freezed == producao ? _self.producao : producao // ignore: cast_nullable_to_non_nullable
-as ProducaoEntity?,
+null == qtHoraria ? _self.qtHoraria : qtHoraria // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 
@@ -328,7 +328,7 @@ as ProducaoEntity?,
 /// @nodoc
 
 
-class _Sucesso implements BuscarProducaoState {
+class _Sucesso implements BuscarQtHorariaState {
   const _Sucesso();
   
 
@@ -348,7 +348,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'BuscarProducaoState.sucesso()';
+  return 'BuscarQtHorariaState.sucesso()';
 }
 
 
@@ -360,13 +360,13 @@ String toString() {
 /// @nodoc
 
 
-class _Erro implements BuscarProducaoState {
+class _Erro implements BuscarQtHorariaState {
   const _Erro(this.failure);
   
 
  final  Failure failure;
 
-/// Create a copy of BuscarProducaoState
+/// Create a copy of BuscarQtHorariaState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
@@ -385,14 +385,14 @@ int get hashCode => Object.hash(runtimeType,failure);
 
 @override
 String toString() {
-  return 'BuscarProducaoState.erro(failure: $failure)';
+  return 'BuscarQtHorariaState.erro(failure: $failure)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$ErroCopyWith<$Res> implements $BuscarProducaoStateCopyWith<$Res> {
+abstract mixin class _$ErroCopyWith<$Res> implements $BuscarQtHorariaStateCopyWith<$Res> {
   factory _$ErroCopyWith(_Erro value, $Res Function(_Erro) _then) = __$ErroCopyWithImpl;
 @useResult
 $Res call({
@@ -411,7 +411,7 @@ class __$ErroCopyWithImpl<$Res>
   final _Erro _self;
   final $Res Function(_Erro) _then;
 
-/// Create a copy of BuscarProducaoState
+/// Create a copy of BuscarQtHorariaState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? failure = null,}) {
   return _then(_Erro(

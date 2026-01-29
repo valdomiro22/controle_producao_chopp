@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FormAdicionarProducaoState {
 
- Produto? get produto; Barril? get barril; String? get quantidade; int get ordem; int get codigo; String get horarioReferente; DateTime? get data; String? get erro; String? get erroProduto; String? get erroBarril; String? get erroQuantidade; int? get erroOrdem; int? get erroCodigo; String? get erroGeral; String? get erroData; bool get isLoading; bool get isSucess; bool get camposValidos;
+ Produto? get produto; Barril? get barril; String? get quantidade; int get ordem; int get codigo; String get horarioReferente; DateTime? get data; String? get erro; String? get erroProduto; String? get erroBarril; String? get erroQuantidade; String? get erroOrdem; String? get erroCodigo; String? get erroGeral; String? get erroData; bool get isLoading; bool get isSucess; bool get camposValidos;
 /// Create a copy of FormAdicionarProducaoState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $FormAdicionarProducaoStateCopyWith<$Res>  {
   factory $FormAdicionarProducaoStateCopyWith(FormAdicionarProducaoState value, $Res Function(FormAdicionarProducaoState) _then) = _$FormAdicionarProducaoStateCopyWithImpl;
 @useResult
 $Res call({
- Produto? produto, Barril? barril, String? quantidade, int ordem, int codigo, String horarioReferente, DateTime? data, String? erro, String? erroProduto, String? erroBarril, String? erroQuantidade, int? erroOrdem, int? erroCodigo, String? erroGeral, String? erroData, bool isLoading, bool isSucess, bool camposValidos
+ Produto? produto, Barril? barril, String? quantidade, int ordem, int codigo, String horarioReferente, DateTime? data, String? erro, String? erroProduto, String? erroBarril, String? erroQuantidade, String? erroOrdem, String? erroCodigo, String? erroGeral, String? erroData, bool isLoading, bool isSucess, bool camposValidos
 });
 
 
@@ -79,8 +79,8 @@ as String?,erroProduto: freezed == erroProduto ? _self.erroProduto : erroProduto
 as String?,erroBarril: freezed == erroBarril ? _self.erroBarril : erroBarril // ignore: cast_nullable_to_non_nullable
 as String?,erroQuantidade: freezed == erroQuantidade ? _self.erroQuantidade : erroQuantidade // ignore: cast_nullable_to_non_nullable
 as String?,erroOrdem: freezed == erroOrdem ? _self.erroOrdem : erroOrdem // ignore: cast_nullable_to_non_nullable
-as int?,erroCodigo: freezed == erroCodigo ? _self.erroCodigo : erroCodigo // ignore: cast_nullable_to_non_nullable
-as int?,erroGeral: freezed == erroGeral ? _self.erroGeral : erroGeral // ignore: cast_nullable_to_non_nullable
+as String?,erroCodigo: freezed == erroCodigo ? _self.erroCodigo : erroCodigo // ignore: cast_nullable_to_non_nullable
+as String?,erroGeral: freezed == erroGeral ? _self.erroGeral : erroGeral // ignore: cast_nullable_to_non_nullable
 as String?,erroData: freezed == erroData ? _self.erroData : erroData // ignore: cast_nullable_to_non_nullable
 as String?,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,isSucess: null == isSucess ? _self.isSucess : isSucess // ignore: cast_nullable_to_non_nullable
@@ -167,7 +167,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Produto? produto,  Barril? barril,  String? quantidade,  int ordem,  int codigo,  String horarioReferente,  DateTime? data,  String? erro,  String? erroProduto,  String? erroBarril,  String? erroQuantidade,  int? erroOrdem,  int? erroCodigo,  String? erroGeral,  String? erroData,  bool isLoading,  bool isSucess,  bool camposValidos)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Produto? produto,  Barril? barril,  String? quantidade,  int ordem,  int codigo,  String horarioReferente,  DateTime? data,  String? erro,  String? erroProduto,  String? erroBarril,  String? erroQuantidade,  String? erroOrdem,  String? erroCodigo,  String? erroGeral,  String? erroData,  bool isLoading,  bool isSucess,  bool camposValidos)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FormAdicionarProducaoState() when $default != null:
 return $default(_that.produto,_that.barril,_that.quantidade,_that.ordem,_that.codigo,_that.horarioReferente,_that.data,_that.erro,_that.erroProduto,_that.erroBarril,_that.erroQuantidade,_that.erroOrdem,_that.erroCodigo,_that.erroGeral,_that.erroData,_that.isLoading,_that.isSucess,_that.camposValidos);case _:
@@ -188,7 +188,7 @@ return $default(_that.produto,_that.barril,_that.quantidade,_that.ordem,_that.co
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Produto? produto,  Barril? barril,  String? quantidade,  int ordem,  int codigo,  String horarioReferente,  DateTime? data,  String? erro,  String? erroProduto,  String? erroBarril,  String? erroQuantidade,  int? erroOrdem,  int? erroCodigo,  String? erroGeral,  String? erroData,  bool isLoading,  bool isSucess,  bool camposValidos)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Produto? produto,  Barril? barril,  String? quantidade,  int ordem,  int codigo,  String horarioReferente,  DateTime? data,  String? erro,  String? erroProduto,  String? erroBarril,  String? erroQuantidade,  String? erroOrdem,  String? erroCodigo,  String? erroGeral,  String? erroData,  bool isLoading,  bool isSucess,  bool camposValidos)  $default,) {final _that = this;
 switch (_that) {
 case _FormAdicionarProducaoState():
 return $default(_that.produto,_that.barril,_that.quantidade,_that.ordem,_that.codigo,_that.horarioReferente,_that.data,_that.erro,_that.erroProduto,_that.erroBarril,_that.erroQuantidade,_that.erroOrdem,_that.erroCodigo,_that.erroGeral,_that.erroData,_that.isLoading,_that.isSucess,_that.camposValidos);}
@@ -205,7 +205,7 @@ return $default(_that.produto,_that.barril,_that.quantidade,_that.ordem,_that.co
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Produto? produto,  Barril? barril,  String? quantidade,  int ordem,  int codigo,  String horarioReferente,  DateTime? data,  String? erro,  String? erroProduto,  String? erroBarril,  String? erroQuantidade,  int? erroOrdem,  int? erroCodigo,  String? erroGeral,  String? erroData,  bool isLoading,  bool isSucess,  bool camposValidos)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Produto? produto,  Barril? barril,  String? quantidade,  int ordem,  int codigo,  String horarioReferente,  DateTime? data,  String? erro,  String? erroProduto,  String? erroBarril,  String? erroQuantidade,  String? erroOrdem,  String? erroCodigo,  String? erroGeral,  String? erroData,  bool isLoading,  bool isSucess,  bool camposValidos)?  $default,) {final _that = this;
 switch (_that) {
 case _FormAdicionarProducaoState() when $default != null:
 return $default(_that.produto,_that.barril,_that.quantidade,_that.ordem,_that.codigo,_that.horarioReferente,_that.data,_that.erro,_that.erroProduto,_that.erroBarril,_that.erroQuantidade,_that.erroOrdem,_that.erroCodigo,_that.erroGeral,_that.erroData,_that.isLoading,_that.isSucess,_that.camposValidos);case _:
@@ -234,8 +234,8 @@ class _FormAdicionarProducaoState implements FormAdicionarProducaoState {
 @override final  String? erroProduto;
 @override final  String? erroBarril;
 @override final  String? erroQuantidade;
-@override final  int? erroOrdem;
-@override final  int? erroCodigo;
+@override final  String? erroOrdem;
+@override final  String? erroCodigo;
 @override final  String? erroGeral;
 @override final  String? erroData;
 @override@JsonKey() final  bool isLoading;
@@ -275,7 +275,7 @@ abstract mixin class _$FormAdicionarProducaoStateCopyWith<$Res> implements $Form
   factory _$FormAdicionarProducaoStateCopyWith(_FormAdicionarProducaoState value, $Res Function(_FormAdicionarProducaoState) _then) = __$FormAdicionarProducaoStateCopyWithImpl;
 @override @useResult
 $Res call({
- Produto? produto, Barril? barril, String? quantidade, int ordem, int codigo, String horarioReferente, DateTime? data, String? erro, String? erroProduto, String? erroBarril, String? erroQuantidade, int? erroOrdem, int? erroCodigo, String? erroGeral, String? erroData, bool isLoading, bool isSucess, bool camposValidos
+ Produto? produto, Barril? barril, String? quantidade, int ordem, int codigo, String horarioReferente, DateTime? data, String? erro, String? erroProduto, String? erroBarril, String? erroQuantidade, String? erroOrdem, String? erroCodigo, String? erroGeral, String? erroData, bool isLoading, bool isSucess, bool camposValidos
 });
 
 
@@ -306,8 +306,8 @@ as String?,erroProduto: freezed == erroProduto ? _self.erroProduto : erroProduto
 as String?,erroBarril: freezed == erroBarril ? _self.erroBarril : erroBarril // ignore: cast_nullable_to_non_nullable
 as String?,erroQuantidade: freezed == erroQuantidade ? _self.erroQuantidade : erroQuantidade // ignore: cast_nullable_to_non_nullable
 as String?,erroOrdem: freezed == erroOrdem ? _self.erroOrdem : erroOrdem // ignore: cast_nullable_to_non_nullable
-as int?,erroCodigo: freezed == erroCodigo ? _self.erroCodigo : erroCodigo // ignore: cast_nullable_to_non_nullable
-as int?,erroGeral: freezed == erroGeral ? _self.erroGeral : erroGeral // ignore: cast_nullable_to_non_nullable
+as String?,erroCodigo: freezed == erroCodigo ? _self.erroCodigo : erroCodigo // ignore: cast_nullable_to_non_nullable
+as String?,erroGeral: freezed == erroGeral ? _self.erroGeral : erroGeral // ignore: cast_nullable_to_non_nullable
 as String?,erroData: freezed == erroData ? _self.erroData : erroData // ignore: cast_nullable_to_non_nullable
 as String?,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,isSucess: null == isSucess ? _self.isSucess : isSucess // ignore: cast_nullable_to_non_nullable

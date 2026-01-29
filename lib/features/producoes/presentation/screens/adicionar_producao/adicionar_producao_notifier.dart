@@ -17,25 +17,19 @@ class AdicionarProducaoNotifier extends _$AdicionarProducaoNotifier {
 
   void selecionarProduto(Produto? produto) => state = state.copyWith(produto: produto);
   void selecionarBarril(Barril? barril) => state = state.copyWith(barril: barril);
+
   void setOrdem(String or) {
     final ordem = int.tryParse(or);
-
-    int intOrdem = 0;
-    ordem != null ? intOrdem = ordem : intOrdem = -1;
-
-    state = state.copyWith(ordem: intOrdem);
+    state = state.copyWith(ordem: ordem ?? -1);
   }
 
   void setCodigo(String cd) {
     final codigo = int.tryParse(cd);
-
-    int intCodigo = 0;
-    codigo != null ? intCodigo = codigo : intCodigo = -1;
-
-    state = state.copyWith(codigo: intCodigo);
+    state = state.copyWith(codigo: codigo ?? -1);
   }
 
   void atualizaQuantidade(String value) {
+    // Mantém o valor como string no estado para validação posterior
     final valorRecebido = value.trim();
     state = state.copyWith(
         quantidade: valorRecebido.isEmpty ? null : valorRecebido
@@ -43,34 +37,41 @@ class AdicionarProducaoNotifier extends _$AdicionarProducaoNotifier {
   }
 
   Future<void> adicionarProducao(String gradeId) async {
+    // 1. Valida antes de tudo
     if (!_validarCampos()) return;
 
     state = state.copyWith(isLoading: true);
 
-    final usecase = ref.read(insertProducaoUseCaseProvider);
-    final quantidade = int.parse(state.quantidade!);
+    try {
+      final usecase = ref.read(insertProducaoUseCaseProvider);
 
-    final producao = ProducaoEntity(
-      gradeId: gradeId,
-      status: StatusProducao.naoConcluido,
-      tipoBarril: state.barril!,
-      ordem: state.ordem,
-      codigo: state.codigo,
-      produto: state.produto!,
-      quantidadeProgramada: quantidade,
-      dataCriacao: DateTime.now(),
-    );
+      // Aqui é seguro usar '!' pois o _validarCampos garantiu que não é nulo e é numérico
+      final quantidade = int.parse(state.quantidade!);
 
-    final result = await usecase(producao: producao, gradeId: gradeId);
+      final producao = ProducaoEntity(
+        gradeId: gradeId,
+        status: StatusProducao.naoConcluido,
+        tipoBarril: state.barril!,
+        ordem: state.ordem,
+        codigo: state.codigo,
+        produto: state.produto!,
+        quantidadeProgramada: quantidade,
+        dataCriacao: DateTime.now(),
+      );
 
-    result.fold(
-          (failure) => state = state.copyWith(isLoading: false, erro: failure.message),
-          (_) {
-            ref.read(listaProducoesProvider.notifier).listarProducoes(gradeId);
-            return state = state.copyWith(isLoading: false, isSucess: true);
-          },
-    );
+      final result = await usecase(producao: producao, gradeId: gradeId);
 
+      result.fold(
+            (failure) => state = state.copyWith(isLoading: false, erro: failure.message),
+            (_) {
+          // Atualiza a lista na outra tela
+          ref.read(listaProducoesProvider.notifier).listarProducoes(gradeId);
+          state = state.copyWith(isLoading: false, isSucess: true);
+        },
+      );
+    } catch (e) {
+      state = state.copyWith(isLoading: false, erro: 'Erro inesperado: $e');
+    }
   }
 
   bool _validarCampos() {
@@ -78,41 +79,42 @@ class AdicionarProducaoNotifier extends _$AdicionarProducaoNotifier {
     String? erroProduto;
     String? erroBarril;
     String? erroQuantidade;
-    String? erroData;
 
+    // Validação Produto
     if (state.produto == null) {
       erroProduto = 'Selecione um produto';
       camposValidos = false;
     }
 
+    // Validação Barril
     if (state.barril == null) {
-      camposValidos = false;
       erroBarril = 'Selecione um tipo de barril';
+      camposValidos = false;
     }
 
-    if (state.quantidade == null || state.quantidade!.trim().isEmpty) {
-      camposValidos = false;
+    // Validação Quantidade (CORRIGIDA)
+    if (state.quantidade == null || state.quantidade!.isEmpty) {
       erroQuantidade = 'Digite a quantidade';
-    }
-
-    final quantidadeLimpa = state.quantidade!.trim();
-    final valorInt = int.tryParse(quantidadeLimpa);
-
-    if (valorInt == null) {
       camposValidos = false;
-      erroQuantidade = 'A quantidade deve ser um número inteiro válido';
+    } else {
+      // Só entra aqui se NÃO for nulo, evitando o crash
+      final valorInt = int.tryParse(state.quantidade!);
+
+      if (valorInt == null) {
+        erroQuantidade = 'Número inválido';
+        camposValidos = false;
+      } else if (valorInt <= 0) {
+        erroQuantidade = 'Deve ser maior que zero';
+        camposValidos = false;
+      }
     }
 
-    if (valorInt! <= 0) {
-      camposValidos = false;
-      erroQuantidade = 'A quantidade deve ser maior que zero';
-    }
-
+    // Atualiza o estado com os erros (ou null se estiver tudo ok)
     state = state.copyWith(
       erroQuantidade: erroQuantidade,
       erroBarril: erroBarril,
       erroProduto: erroProduto,
-      erroData: erroData,
+      // Limpa os erros anteriores se o campo estiver válido agora
     );
 
     return camposValidos;

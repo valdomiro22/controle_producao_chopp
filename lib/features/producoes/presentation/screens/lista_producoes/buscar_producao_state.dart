@@ -11,7 +11,7 @@ class BuscarProducaoState with _$BuscarProducaoState {
 
   const factory BuscarProducaoState.carregando() = _Carregando;
 
-  const factory BuscarProducaoState.sucessoComDados(ProducaoEntity producao) = _SucessoComDados;
+  const factory BuscarProducaoState.sucessoComDados(ProducaoEntity? producao) = _SucessoComDados;
 
   const factory BuscarProducaoState.sucesso() = _Sucesso;
 

@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_notifier.dart';
+import 'package:gestao_producao_chopp/features/quantidade_horaria/presentation/providers/buscar_qt_horaria_notifier.dart';
 import 'package:gestao_producao_chopp/features/quantidade_horaria/presentation/providers/inserir_quantidade_horaria_notifier.dart';
 
 import '../../../producoes/presentation/screens/home/buscar_producao_notifier.dart';
-import '../../../producoes/presentation/screens/home/selecionar_turno_notifier.dart';
+import '../../../quantidade_horaria/presentation/providers/buscar_qt_horaria_state.dart';
 
 class CardQuantidadeHoraria extends ConsumerStatefulWidget {
   final String horario;
-  final String quantidade;
   final ProducaoEntity producao;
 
   const CardQuantidadeHoraria({
     super.key,
-    required this.quantidade,
     required this.horario,
     required this.producao,
   });
@@ -34,8 +33,7 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
 
   void _incrementar(int valor) {
     final atual = int.tryParse(_qtController.text) ?? 0;
-    final novo = atual + valor;
-    _qtController.text = novo.toString();
+    _qtController.text = (atual + valor).toString();
     _qtController.selection = TextSelection.fromPosition(
       TextPosition(offset: _qtController.text.length),
     );
@@ -46,160 +44,135 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
     final producaoId = widget.producao.id ?? '';
     final gradeId = widget.producao.gradeId ?? '';
 
-    // Apenas leitura dos notifiers para usar no callback
-    final turnoNotifier = ref.read(selecionarTurnoProvider.notifier);
-    final prodNotifier = ref.read(listaProducoesProvider.notifier);
-    final qtHorariaNotifier = ref.read(inserirQuantidadeHorariaProvider(producaoId).notifier);
+    // Preparação dos parâmetros para o Provider Family
+    final horarioInt = int.parse(widget.horario.replaceAll(':', ''));
+    final params = (producaoId: producaoId, hrReferente: horarioInt);
 
-    // Note: Se precisar observar o estado para mudar a cor do card, use ref.watch aqui fora.
-    // Mas para as ações do Dialog, usaremos ref.read lá dentro ou as variáveis acima.
+    // Assistindo o estado específico deste card
+    final buscarState = ref.watch(buscarQtHorariaProvider(params));
+
+    // Lógica de Somatório
+    final String qtBuscada = buscarState.maybeWhen(
+      sucessoComDado: (dado) => dado.toString(),
+      carregando: () => '...',
+      erro: (_) => '!',
+      orElse: () => '0',
+    );
 
     return GestureDetector(
-      onTap: () {
-        _qtController.clear();
-
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Center(
-                child: Text('Barris produzidos'),
-              ),
-              content: Container(
-                width: MediaQuery.of(context).size.width - 16,
-                height: 130,
-                alignment: Alignment.center,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        'Horario: ${widget.horario}',
-                      ),
-                    ),
-                    TextField(
-                      controller: _qtController,
-                      autofocus: true,
-                      keyboardType: TextInputType.number,
-                      onChanged: (qt) => turnoNotifier.inserirQuantidade(qt),
-                      decoration: const InputDecoration(
-                        hintText: 'Ex: 30',
-                        label: Text('Quantidade'),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ActionChip(
-                          label: const Text('+5'),
-                          onPressed: () => _incrementar(5),
-                        ),
-                        ActionChip(
-                          label: const Text('+10'),
-                          onPressed: () => _incrementar(10),
-                        ),
-                        ActionChip(
-                          label: const Text('+20'),
-                          onPressed: () => _incrementar(20),
-                        ),
-                        ActionChip(
-                          label: const Text('+30'),
-                          onPressed: () => _incrementar(30),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('Cancelar'),
-                ),
-                TextButton(
-                  onPressed: () async {
-                    final textoQt = _qtController.text.trim();
-                    if (textoQt.isEmpty) {
-                      Navigator.of(context).pop();
-                      return;
-                    }
-
-                    final qtAdicional = int.tryParse(textoQt) ?? 0;
-                    if (qtAdicional == 0) {
-                      Navigator.of(context).pop();
-                      return;
-                    }
-
-                    // 1. Inserir quantidade horária
-                    qtHorariaNotifier.inserirQuantidade(
-                        horario: widget.horario,
-                        quantidade: qtAdicional
-                    );
-
-                    // 2. Calcular nova produção total (para atualizar a lista)
-                    // Nota: Verifique se sua lógica é Somar ou Substituir no copyWith
-                    // Assumindo que o usuario digitou apenas o incremento:
-                    final novaQuantidadeTotal = widget.producao.quantidadeProduzida + qtAdicional;
-
-                    final producaoAtualizada = widget.producao.copyWith(
-                      quantidadeProduzida: novaQuantidadeTotal,
-                    );
-
-                    // 3. Atualizar na lista de produções
-                    await prodNotifier.atualizarProducao(
-                        gradeId: gradeId,
-                        producaoId: producaoId,
-                        producao: producaoAtualizada
-                    );
-
-                    final buscaNotifier = ref.read(buscarProducaoProvider.notifier);
-
-                    // Agora isso funciona pois o método espera uma ProducaoEntity e
-                    // converte internamente para AsyncValue.data
-                    buscaNotifier.atualizarEstadoLocal(producaoAtualizada);
-
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text(
-                    'OK',
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
-            );
-          },
-        );
-      },
+      onTap: () => _abrirDialog(context, params, gradeId),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
         decoration: BoxDecoration(
-            border: Border.all(color: const Color(0xffd2d6de)),
-            borderRadius: BorderRadius.circular(5)
+          color: Colors.white,
+          border: Border.all(color: const Color(0xffd2d6de)),
+          borderRadius: BorderRadius.circular(5),
         ),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               widget.horario,
-              style: const TextStyle(fontSize: 11),
+              style: const TextStyle(fontSize: 11, color: Colors.grey),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 4),
             Text(
-              widget.quantidade,
+              qtBuscada,
               style: const TextStyle(
-                  color: Color(0xff0840a1),
-                  fontWeight: FontWeight.w600
+                color: Color(0xff0840a1),
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
               ),
             )
           ],
         ),
       ),
+    );
+  }
+
+  void _abrirDialog(BuildContext context, BuscarParams params, String gradeId) {
+    _qtController.clear();
+
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Center(child: Text('Barris produzidos')),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text('Horário: ${widget.horario}', style: const TextStyle(fontWeight: FontWeight.bold)),
+            ),
+            TextField(
+              controller: _qtController,
+              autofocus: true,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(hintText: 'Ex: 30', labelText: 'Quantidade'),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _chipIncremento(5),
+                _chipIncremento(10),
+                _chipIncremento(20),
+              ],
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancelar'),
+          ),
+          TextButton(
+            onPressed: () async {
+              final qtAdicional = int.tryParse(_qtController.text) ?? 0;
+              if (qtAdicional <= 0) {
+                Navigator.pop(context);
+                return;
+              }
+
+              // 1. Primeiro execute a ação pesada (gravação)
+              // Use ref.read aqui porque é um callback de clique
+              await ref.read(inserirQuantidadeHorariaProvider(params.producaoId).notifier).inserirQuantidade(
+                horario: widget.horario,
+                quantidade: qtAdicional,
+              );
+
+              // 2. Atualizações de estado local
+              final novaQuantidadeTotal = widget.producao.quantidadeProduzida + qtAdicional;
+              final producaoAtualizada = widget.producao.copyWith(quantidadeProduzida: novaQuantidadeTotal);
+
+              await ref.read(listaProducoesProvider.notifier).atualizarProducao(
+                gradeId: gradeId,
+                producaoId: params.producaoId,
+                producao: producaoAtualizada,
+              );
+
+              ref.read(buscarProducaoProvider.notifier).atualizarEstadoLocal(producaoAtualizada);
+
+              // 3. Atualiza o card específico
+              ref.invalidate(buscarQtHorariaProvider(params));
+
+              // 4. SÓ FECHE O DIALOG NO FINAL e se o widget ainda estiver na tela
+              if (context.mounted) {
+                Navigator.of(context).pop();
+              }
+            },
+            child: const Text('OK', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _chipIncremento(int valor) {
+    return ActionChip(
+      label: Text('+$valor'),
+      onPressed: () => _incrementar(valor),
     );
   }
 }

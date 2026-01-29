@@ -6,6 +6,8 @@ import 'package:gestao_producao_chopp/features/quantidade_horaria/domain/usecase
 import 'package:gestao_producao_chopp/features/quantidade_horaria/domain/usecases/update_qt_horaria_use_case.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../features/quantidade_horaria/domain/usecases/get_qt_horaria_hr_ref_use_case.dart';
+
 part 'quantidade_horaria_use_cases_provider.g.dart';
 
 @riverpod
@@ -36,4 +38,10 @@ GetQtHorariaUseCase getQtHorariaUseCase(Ref ref) {
 DeleteQtHorariaUseCase deleteQtHorariaUseCase(Ref ref) {
   final repository = ref.watch(quantidadeHorariaRepositoryProvider);
   return DeleteQtHorariaUseCase(repository);
+}
+
+@riverpod
+GetQtHorariaHrRefUseCase getQtHorariaHrRefUseCase(Ref ref) {
+  final repository = ref.watch(quantidadeHorariaRepositoryProvider);
+  return GetQtHorariaHrRefUseCase(repository);
 }

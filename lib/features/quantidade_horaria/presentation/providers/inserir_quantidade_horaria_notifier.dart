@@ -13,36 +13,43 @@ class InserirQuantidadeHorariaNotifier extends _$InserirQuantidadeHorariaNotifie
   }
 
   Future<void> inserirQuantidade({required String horario, required int quantidade}) async {
+    // 1. Marca como carregando
     state = state.copyWith(isLoading: true);
 
     final qtHoraria = QuantidadeHorariaEntity(
-        turno: state.turno,
-        producaoId: state.producaoId,
-        turnoReferente: state.turnoReferente,
-        quantidade: quantidade,
-        quantidadeAcumulada: state.quantidadeAcumulada,
-        horario: DateTime.now(),
-        data: DateTime.now(),
+      turno: state.turno,
+      producaoId: state.producaoId,
+      turnoReferente: state.turnoReferente,
+      quantidade: quantidade,
+      quantidadeAcumulada: state.quantidadeAcumulada,
+      horario: DateTime.now(),
+      data: DateTime.now(),
     );
 
     final useCase = ref.read(insertQtHorariaUseCaseProvider);
+
+    // 2. Aguarda o banco de dados...
     final result = await useCase(
       qtHoraria: qtHoraria,
       producaoId: state.producaoId,
       horario: horario,
     );
 
+    // Se o provider foi descartado durante a espera, paramos aqui.
+    if (!ref.mounted) return;
+
+    // 3. Só atualiza o estado se o provider ainda estiver vivo
     result.fold(
-        (failure) {
+            (failure) {
           state = state.copyWith(
-            isLoading: false,
-            mensagemErro: failure.message
+              isLoading: false,
+              mensagemErro: failure.message
           );
         },
-        (_) {
+            (_) {
           state = state.copyWith(
-            isLoading: false,
-            isSuccess: true
+              isLoading: false,
+              isSuccess: true
           );
         }
     );
