@@ -98,29 +98,34 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
       context: context,
       builder: (context) => AlertDialog(
         title: const Center(child: Text('Barris produzidos')),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text('Horário: ${widget.horario}', style: const TextStyle(fontWeight: FontWeight.bold)),
-            ),
-            TextField(
-              controller: _qtController,
-              autofocus: true,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(hintText: 'Ex: 30', labelText: 'Quantidade'),
-            ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _chipIncremento(5),
-                _chipIncremento(10),
-                _chipIncremento(20),
-              ],
-            ),
-          ],
+        content: Container(
+          height: 150,
+          child: Column(
+            // mainAxisSize: MainAxisSize.min,
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text('Horário: ${widget.horario}', style: const TextStyle(fontWeight: FontWeight.bold)),
+              ),
+              TextField(
+                controller: _qtController,
+                autofocus: true,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(hintText: 'Ex: 30', labelText: 'Quantidade'),
+              ),
+              const SizedBox(height: 10),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _chipIncremento(5),
+                  _chipIncremento(10),
+                  _chipIncremento(20),
+                  _chipIncremento(30),
+                ],
+              ),
+            ],
+          ),
         ),
         actions: [
           TextButton(
@@ -171,7 +176,7 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
 
   Widget _chipIncremento(int valor) {
     return ActionChip(
-      label: Text('+$valor'),
+      label: Text('+$valor', style: TextStyle(fontSize: 12),),
       onPressed: () => _incrementar(valor),
     );
   }
