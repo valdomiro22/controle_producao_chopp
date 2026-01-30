@@ -31,6 +31,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   // Turno _turnoSelecionado = Turno.turnoA;
   // final horariosTurnoA = Turno.turnoA.horarios.values.toList();
   late final ProducaoEntity _producao;
+  final _opcoesMenu = ['Gerar relatorio', 'Add Produção', 'Opções'];
 
   @override
   void initState() {
@@ -41,6 +42,27 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         producaoId: widget.producaoId,
       );
     });
+  }
+
+  // Opções do PopUp Menu
+  void _opcoesPopUpMenu(String itemEscolhido) {
+    switch (itemEscolhido) {
+      case 'Gerar relatorio':
+        context.push(AppRoutesNames.relatorioProducao);
+        break;
+      case 'Add Produção':
+        context.push(AppRoutesNames.adicionarProducao);
+        break;
+      case 'Opções':
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Opçoes.'),
+            duration: Duration(seconds: 2),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+        break;
+    }
   }
 
   @override
@@ -63,7 +85,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     });
 
     return Scaffold(
-      appBar: AppBar(title: Text('Home')),
+      appBar: AppBar(
+        title: Text('Home'),
+        actions: [
+          PopupMenuButton(
+            onSelected: _opcoesPopUpMenu,
+            itemBuilder: (context) => _opcoesMenu.map((String item) {
+              return PopupMenuItem(value: item, child: Text(item));
+            }).toList(),
+          ),
+        ],
+      ),
       drawer: AppDrawer(),
       body: producaoState.when(
           loading: () => Center(child: CircularProgressIndicator()),

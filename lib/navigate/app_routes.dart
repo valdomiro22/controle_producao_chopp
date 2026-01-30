@@ -8,6 +8,7 @@ import 'package:gestao_producao_chopp/features/auth/presentation/screens/login/l
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/recuperar_senha/recuperar_senha_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_screen.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/screens/relatorio_producao/relatorio_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/status_producao/status_producao_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/selecionar_producao_widget.dart';
 import 'package:go_router/go_router.dart';
@@ -55,6 +56,8 @@ class AppRoutes {
     GoRoute(path: AppRoutesNames.deletarConta, builder: (context, state) => DeletarContaScreen()),
 
     GoRoute(path: AppRoutesNames.listaGrades, builder: (context, state) => ListaGradesScreen()),
+
+    GoRoute(path: AppRoutesNames.relatorioProducao, builder: (context, state) => RelatorioScreen()),
 
     GoRoute(path: AppRoutesNames.listaProducoes, builder: (context, state) {
       final gradeId = state.extra as String?;
