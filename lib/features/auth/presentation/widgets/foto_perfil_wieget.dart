@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class FotoPerfilWieget extends StatelessWidget {
+  final double? tamanho;
   final String imageUrl;
 
-  const FotoPerfilWieget({super.key, required this.imageUrl});
+  const FotoPerfilWieget({
+    super.key,
+    required this.imageUrl,
+    this.tamanho = 150,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +41,8 @@ class FotoPerfilWieget extends StatelessWidget {
       ),
 
       errorWidget: (context, url, error) => Container(
-        width: 150.0,
-        height: 150.0,
+        width: tamanho,
+        height: tamanho,
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
           color: Colors.grey,

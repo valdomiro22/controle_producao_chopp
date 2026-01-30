@@ -217,6 +217,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   Expanded(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(4),
                         elevation: 0,
                         backgroundColor: turnoState.turno == Turno.turnoA
                             ? Color(0xff3559fa)
@@ -243,6 +244,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   Expanded(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(4),
                         elevation: 0,
                         backgroundColor: turnoState.turno == Turno.turnoB
                             ? Color(0xff3559fa)
@@ -270,6 +272,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   Expanded(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(4),
                         elevation: 0,
                         backgroundColor: turnoState.turno == Turno.turnoC
                             ? Color(0xff3559fa)
