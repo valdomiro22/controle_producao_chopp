@@ -45,6 +45,7 @@ dependencies:
   intl: ^0.20.2 # Para formatar datas
   freezed_annotation: ^3.0.0
   json_annotation: ^4.9.0
+  fl_chart: ^0.68.0  # Para grafico de pizza
   flutter_localizations: # Para datePiker em Português
     sdk: flutter
 

@@ -1,0 +1,41 @@
+import 'package:flutter/material.dart';
+
+class LinhaNomeValor extends StatelessWidget {
+  final String texto;
+  final String? quantidade;
+  final Color corDeFundo;
+
+  const LinhaNomeValor({
+    super.key,
+    required this.texto,
+    required this.quantidade,
+    required this.corDeFundo,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+        decoration: BoxDecoration(
+          color: corDeFundo,
+          // border: Border.all(
+          //   color: Colors.purple.shade400,
+          //   width: 3
+          // ),
+          borderRadius: BorderRadius.circular(5)
+        ),
+        child: Row(
+          children: [
+            Text(
+              '$texto: ',
+              style: TextStyle(fontSize: 18, color: Colors.black),
+            ),
+            Text(
+              quantidade ?? '-1',
+              style: TextStyle(fontSize: 20, color: Colors.deepPurple, fontWeight: FontWeight.w500),
+            ),
+          ],
+        ),
+    );
+  }
+}

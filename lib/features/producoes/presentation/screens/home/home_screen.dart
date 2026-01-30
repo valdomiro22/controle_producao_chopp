@@ -8,6 +8,8 @@ import 'package:gestao_producao_chopp/features/producoes/presentation/screens/ho
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/selecionar_turno_notifier.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_notifier.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/controle_nivel_buffer_widget.dart';
+import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../grades/domain/enums/turno.dart';
 import '../../../../grades/presentation/widgets/card_quantidade_horaria.dart';
@@ -288,8 +290,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           SizedBox(height: 16),
 
           // Monitoramento de volume
-          ControleNivelBufferWidget(
-            producao: producao,
+          GestureDetector(
+            onTap: () => context.push(AppRoutesNames.finalProducao, extra: producao.id),
+            child: ControleNivelBufferWidget(
+              producao: producao,
+            ),
           )
         ],
       ),

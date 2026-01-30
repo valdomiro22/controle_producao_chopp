@@ -8,6 +8,7 @@ import 'package:gestao_producao_chopp/features/auth/presentation/screens/login/l
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/recuperar_senha/recuperar_senha_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_screen.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/screens/status_producao/status_producao_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/selecionar_producao_widget.dart';
 import 'package:go_router/go_router.dart';
 
@@ -84,6 +85,17 @@ class AppRoutes {
           return const Scaffold(body: Center(child: Text('Item não encontrado - [editar grade]')));
         }
         return EditarGradeScreen(gradeRecebida: grade);
+      },
+    ),
+
+    GoRoute(
+      path: AppRoutesNames.finalProducao,
+      builder: (context, state) {
+        final producaoId = state.extra as String?;
+        if (producaoId == null) {
+          return const Scaffold(body: Center(child: Text('Item não encontrado - [adicionar grade]')));
+        }
+        return FinalProducaoScreen(producaoId: producaoId);
       },
     ),
   ];
