@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/inserir_anotacoes_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterar_email/Alterar_email_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterar_senha/alterar_senha_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/cadastro/cadastro_screen.dart';
@@ -59,6 +60,8 @@ class AppRoutes {
     GoRoute(path: AppRoutesNames.listaGrades, builder: (context, state) => ListaGradesScreen()),
 
     GoRoute(path: AppRoutesNames.relatorioProducao, builder: (context, state) => RelatorioScreen()),
+
+    GoRoute(path: AppRoutesNames.inserirAnotacao, builder: (context, state) => InserirAnotacoesScreen()),
 
     GoRoute(path: AppRoutesNames.producaoPorTurno, builder: (context, state) => ProducaoPorTurnoScreen()),
 

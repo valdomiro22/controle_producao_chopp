@@ -10,7 +10,9 @@ import 'package:gestao_producao_chopp/features/producoes/presentation/screens/li
 import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/controle_nivel_buffer_widget.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+import '../../../../../core/theme/app_colors.dart';
 import '../../../../grades/domain/enums/turno.dart';
 import '../../../../grades/presentation/widgets/card_quantidade_horaria.dart';
 import '../../../../grades/presentation/widgets/card_status_producao.dart';
@@ -102,11 +104,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           loading: () => Center(child: CircularProgressIndicator()),
           error: (Object error, StackTrace stackTrace) => Center(
             child: Text('Erro: ${(error as Failure).message}'),
-          ), 
+          ),
           data: (ProducaoEntity? producao) => producao == null
               ? Center(child: Text('Produção não encontrada'),)
-              : _buildConteudoComProducao(producao, turnoNotifier, turnoState), 
-        
+              : _buildConteudoComProducao(producao, turnoNotifier, turnoState),
+
       )
     );
   }
@@ -216,30 +218,24 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
           const SizedBox(height: 16),
 
-          SizedBox(
-            width: double.infinity,
-            child: Card(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 16,),
-                child: Center(
-                  child: Text(
-                    'Ver anotações',
-                    style: TextStyle(fontSize: 18),
+          GestureDetector(
+            onTap: () => context.push(AppRoutesNames.inserirAnotacao),
+            child: SizedBox(
+              width: double.infinity,
+              child: Card(
+                color: Colors.deepOrangeAccent,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 16,),
+                  child: Center(
+                    child: Text(
+                      'Ver anotações',
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          
-          const SizedBox(height: 16),
-
-          Container(
-            width: double.infinity,
-            height: 100,
-            decoration: BoxDecoration(
-              color: Colors.cyan
-            ),
-          ),
+          )
         ],
       ),
     );
