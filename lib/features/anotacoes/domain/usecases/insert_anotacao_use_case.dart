@@ -13,7 +13,6 @@ class InsertAnotacaoUseCase {
   Future<Either<Failure, Unit>> call({
     required String gradeId,
     required String producaoId,
-    required String anotacaoId,
     required AnotacaoEntity anotacao,
   }) async {
     final idGerado = const Uuid().v4();
