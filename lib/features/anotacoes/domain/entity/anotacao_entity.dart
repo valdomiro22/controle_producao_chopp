@@ -34,42 +34,6 @@ class AnotacaoEntity {
     this.observacao
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'producaoId': producaoId,
-      'codigo': codigo,
-      'usuarioId': usuarioId,
-      'nomeUsuario': nomeUsuario,
-      'turno': turno.id,
-      'data': data,
-      'horario': horario,
-      'horarioId': horarioId,
-      'dataEdicao': dataEdicao,
-      'horarioEdicao': horarioEdicao,
-      'tipoCodigo': tipoCodigo.id,
-      'observacao': observacao,
-    };
-  }
-
-  factory AnotacaoEntity.fromMap(DocumentSnapshot doc) {
-    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-    return AnotacaoEntity(
-      id: doc.id,
-      producaoId: data['producaoId'] as String,
-      codigo: data['codigo'] as String,
-      usuarioId: data['usuarioId'] as String,
-      nomeUsuario: data['nomeUsuario'] as String,
-      turno: Turno.fronId(data['turno'] as int),
-      data: (data['data'] as Timestamp?)!.toDate(),
-      horario: (data['horario'] as Timestamp?)!.toDate(),
-      horarioId: data['horarioId'] as int,
-      dataEdicao: (data['dataEdicao'] as Timestamp?)?.toDate(),
-      horarioEdicao: (data['horarioEdicao'] as Timestamp?)?.toDate(),
-      tipoCodigo: TipoCodigo.fronId(data['tipoCodigo'] as int),
-      observacao: data['observacao'] as String?,
-    );
-  }
-
   AnotacaoEntity copyWith({
     String? id,
     String? codigo,
