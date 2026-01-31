@@ -49,8 +49,8 @@ class UsuarioRepositoryImpl implements UsuarioRepository {
   Future<Either<Failure, List<UsuarioEntity>>> getAllUsuarios() async {
     try {
       final result = await _datasource.getAllUsuarios();
-      final listaEntitys = result.map((usr) => usr.toEntity()).toList();
-      return Right(listaEntitys);
+      final listaEntities = result.map((usr) => usr.toEntity()).toList();
+      return Right(listaEntities);
     } on FirestoreException catch (e) {
       return Left(FirestoreFailure(e.message));
     } on NetworkException catch (e) {

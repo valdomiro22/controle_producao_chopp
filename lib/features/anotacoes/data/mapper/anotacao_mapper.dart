@@ -2,8 +2,8 @@ import 'package:gestao_producao_chopp/features/anotacoes/data/models/anotacao_mo
 import 'package:gestao_producao_chopp/features/anotacoes/domain/entity/anotacao_entity.dart';
 
 extension AnotaModelToEntity on AnotacaoModel {
-  AnotacaoModel toEntity() {
-    return AnotacaoModel(
+  AnotacaoEntity toEntity() {
+    return AnotacaoEntity(
       producaoId: producaoId,
       codigo: codigo,
       usuarioId: usuarioId,
@@ -18,8 +18,8 @@ extension AnotaModelToEntity on AnotacaoModel {
 }
 
 extension AnotaEntityToModel on AnotacaoEntity {
-  AnotacaoEntity toModel() {
-    return AnotacaoEntity(
+  AnotacaoModel toModel() {
+    return AnotacaoModel(
       producaoId: producaoId,
       codigo: codigo,
       usuarioId: usuarioId,
