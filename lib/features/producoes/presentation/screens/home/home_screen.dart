@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/common/widgets/app_drawer.dart';
 import 'package:gestao_producao_chopp/core/di/usecases/producao_use_cases_provider.dart';
 import 'package:gestao_producao_chopp/core/error/failure.dart';
+import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/inserir_anotacao_args.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/buscar_producao_notifier.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/selecionar_turno_notifier.dart';
@@ -219,7 +220,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           const SizedBox(height: 16),
 
           GestureDetector(
-            onTap: () => context.push(AppRoutesNames.inserirAnotacao),
+            onTap: () {
+              context.push(
+                AppRoutesNames.inserirAnotacao,
+                extra: InserirAnotacaoArgs(
+                  producaoId: producao.id!,
+                  gradeId: producao.gradeId,
+                )
+              );
+            },
             child: SizedBox(
               width: double.infinity,
               child: Card(

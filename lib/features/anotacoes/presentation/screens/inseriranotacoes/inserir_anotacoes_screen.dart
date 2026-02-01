@@ -1,24 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gestao_producao_chopp/features/anotacoes/domain/entity/anotacao_entity.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/adicionar_anotacao_notifier.dart';
+import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/buscar_anotacoes_notifier.dart';
+import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/buscar_anotacoes_state.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/presentation/widgets/cabecalho_contador_anotacoes.dart';
+import 'package:gestao_producao_chopp/features/anotacoes/presentation/widgets/item_anotacao_widget.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../../../../../core/theme/app_colors.dart';
 
 class InserirAnotacoesScreen extends ConsumerStatefulWidget {
-  const InserirAnotacoesScreen({super.key});
+  final String gradeId;
+  final String producaoId;
+
+  const InserirAnotacoesScreen({super.key, required this.gradeId, required this.producaoId});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _InserirAnotacoesScreenState();
 }
 
 class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen> {
+  // List<AnotacaoEntity> lista = [];
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(buscarAnotacoesProvider.notifier).buscar(
+        gradeId: widget.gradeId,
+        producaoId: widget.producaoId,
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final formState = ref.watch(adicionarAnotacaoProvider);
     final formNotifier = ref.read(adicionarAnotacaoProvider.notifier);
+    final buscarState = ref.watch(buscarAnotacoesProvider);
+    final buscarNotifier = ref.read(buscarAnotacoesProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(title: Text('Anotações')),
@@ -29,7 +51,21 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
             CabecalhoContadorAnotacoes(qt: 40),
             const SizedBox(height: 8),
             Expanded(
-              child: Container(decoration: BoxDecoration(color: Colors.brown[200])),
+              // TODO - Recuperar anotações
+              child: buscarState.when(
+                carregando: () => Center(child: CircularProgressIndicator()),
+                erro: (failure) => Center(child: Text(failure.message)),
+                sucessoComDados: (lista) {
+                  return ListView.builder(
+                    itemCount: lista.length,
+                    itemBuilder: (context, index) {
+                      return ItemAnotacaoWidget(anotacao: lista[index]);
+                    },
+                  );
+                },
+                inicial: () => Container(),
+                sucesso: () => Container(),
+              ),
             ),
             const SizedBox(height: 8),
             Container(
@@ -76,10 +112,16 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
                                   width: double.infinity,
                                   child: ElevatedButton(
                                     onPressed: () {
+                                      final gradeId = widget.gradeId;
+                                      final producaoId = widget.producaoId;
+
                                       final codigo = docigoController.text;
                                       formNotifier.adicionar(
-                                          gradeId: 'gradeId', producaoId: 'producaoId', codigo: codigo
+                                        gradeId: gradeId,
+                                        producaoId: producaoId,
+                                        codigo: codigo,
                                       );
+                                      ref.read(buscarAnotacoesProvider.notifier).buscar(gradeId: gradeId, producaoId: producaoId);
                                       context.pop();
                                     },
                                     style: ElevatedButton.styleFrom(

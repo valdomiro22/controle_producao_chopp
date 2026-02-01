@@ -9,7 +9,7 @@ class GetAllAnotacoesUseCase {
 
   GetAllAnotacoesUseCase(this._repository);
 
-  Future<Either<Failure, List<AnotacaoEntity>>> getAllAnotacoes({
+  Future<Either<Failure, List<AnotacaoEntity>>> call({
     required String gradeId,
     required String producaoId,
   }) async {

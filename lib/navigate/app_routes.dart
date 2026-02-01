@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/inserir_anotacao_args.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/inserir_anotacoes_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterar_email/Alterar_email_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterar_senha/alterar_senha_screen.dart';
@@ -61,7 +62,13 @@ class AppRoutes {
 
     GoRoute(path: AppRoutesNames.relatorioProducao, builder: (context, state) => RelatorioScreen()),
 
-    GoRoute(path: AppRoutesNames.inserirAnotacao, builder: (context, state) => InserirAnotacoesScreen()),
+    GoRoute(path: AppRoutesNames.inserirAnotacao, builder: (context, state) {
+      final args = state.extra as InserirAnotacaoArgs?;
+      if (args == null) {
+        return const Scaffold(body: Center(child: Text('Item não encontrado - [inserir anotacao]')));
+      }
+      return InserirAnotacoesScreen(producaoId: args.producaoId, gradeId: args.gradeId);
+    }),
 
     GoRoute(path: AppRoutesNames.producaoPorTurno, builder: (context, state) => ProducaoPorTurnoScreen()),
 
