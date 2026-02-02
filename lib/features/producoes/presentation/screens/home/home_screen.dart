@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/common/widgets/app_drawer.dart';
 import 'package:gestao_producao_chopp/core/di/usecases/producao_use_cases_provider.dart';
 import 'package:gestao_producao_chopp/core/error/failure.dart';
+import 'package:gestao_producao_chopp/core/theme/app_theme_light.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/inserir_anotacao_args.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/buscar_producao_notifier.dart';
@@ -232,13 +233,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             child: SizedBox(
               width: double.infinity,
               child: Card(
-                color: Colors.deepOrangeAccent,
+                color: Color(0xff3559fa),
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 5, vertical: 16,),
                   child: Center(
                     child: Text(
                       'Ver anotações',
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w600),
                     ),
                   ),
                 ),

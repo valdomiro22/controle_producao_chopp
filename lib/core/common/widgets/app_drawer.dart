@@ -44,7 +44,10 @@ class AppDrawer extends ConsumerWidget {
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [Text(nome), Text(email)],
+                      children: [
+                        Text(nome, style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
+                        Text(email),
+                      ],
                     ),
                     Spacer(),
                     IconButton(
