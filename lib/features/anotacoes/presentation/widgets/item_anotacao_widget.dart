@@ -4,6 +4,7 @@ import 'package:gestao_producao_chopp/core/utils/string_util.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/domain/entity/anotacao_entity.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/buscar_anotacoes_notifier.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/presentation/widgets/botao_editar_deletar.dart';
+import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
@@ -68,9 +69,6 @@ class _ItemAnotacaoWidgetState extends ConsumerState<ItemAnotacaoWidget> {
                           final producaoId = widget.anotacao.producaoId;
                           final anotacaoId = widget.anotacao.id;
 
-                          
-                          debugPrint('\n\nanotacao: ${widget.anotacao.mostrar()}');
-
                           if (anotacaoId != null) {
                             buscarNotifier.deletar(
                                 gradeId: gradeId,
@@ -96,7 +94,7 @@ class _ItemAnotacaoWidgetState extends ConsumerState<ItemAnotacaoWidget> {
           BotaoEditarDeletar(
             cor: Colors.blue,
             onPressed: () {
-              // TODO - deletar anotacao. usar alertDialog do outro projeto
+              context.push(AppRoutesNames.editarAnotacao, extra: anotacao);
             },
             texto: 'Editar',
           ),

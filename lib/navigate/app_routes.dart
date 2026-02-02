@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gestao_producao_chopp/features/anotacoes/domain/entity/anotacao_entity.dart';
+import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/atualizaranotacao/editar_anotacao_screen.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/inserir_anotacao_args.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/inserir_anotacoes_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterar_email/Alterar_email_screen.dart';
@@ -35,20 +37,18 @@ class AppRoutes {
       builder: (context, state) => RecuperarSenhaScreen(),
     ),
 
-    GoRoute(path: AppRoutesNames.home, builder: (context, state) {
-      final params = state.extra as ({String producaoId, String gradeId})?;
+    GoRoute(
+      path: AppRoutesNames.home,
+      builder: (context, state) {
+        final params = state.extra as ({String producaoId, String gradeId})?;
 
-      if (params == null) {
-        return const Scaffold(
-          body: Center(child: SelecionarProducaoWidget()),
-        );
-      }
+        if (params == null) {
+          return const Scaffold(body: Center(child: SelecionarProducaoWidget()));
+        }
 
-      return HomeScreen(
-        producaoId: params.producaoId,
-        gradeId: params.gradeId,
-      );
-    }),
+        return HomeScreen(producaoId: params.producaoId, gradeId: params.gradeId);
+      },
+    ),
 
     GoRoute(path: AppRoutesNames.configuracoes, builder: (context, state) => ConfiguracoesScreen()),
 
@@ -62,31 +62,49 @@ class AppRoutes {
 
     GoRoute(path: AppRoutesNames.relatorioProducao, builder: (context, state) => RelatorioScreen()),
 
-    GoRoute(path: AppRoutesNames.inserirAnotacao, builder: (context, state) {
-      final args = state.extra as InserirAnotacaoArgs?;
-      if (args == null) {
-        return const Scaffold(body: Center(child: Text('Item não encontrado - [inserir anotacao]')));
-      }
-      return InserirAnotacoesScreen(producaoId: args.producaoId, gradeId: args.gradeId);
-    }),
+    GoRoute(
+      path: AppRoutesNames.inserirAnotacao,
+      builder: (context, state) {
+        final args = state.extra as InserirAnotacaoArgs?;
+        if (args == null) {
+          return const Scaffold(
+            body: Center(child: Text('Item não encontrado - [inserir anotacao]')),
+          );
+        }
+        return InserirAnotacoesScreen(producaoId: args.producaoId, gradeId: args.gradeId);
+      },
+    ),
 
-    GoRoute(path: AppRoutesNames.producaoPorTurno, builder: (context, state) => ProducaoPorTurnoScreen()),
+    GoRoute(
+      path: AppRoutesNames.producaoPorTurno,
+      builder: (context, state) => ProducaoPorTurnoScreen(),
+    ),
 
-    GoRoute(path: AppRoutesNames.listaProducoes, builder: (context, state) {
-      final gradeId = state.extra as String?;
-      if (gradeId == null) {
-        return const Scaffold(body: Center(child: Text('Item não encontrado - [lista de produções]')));
-      }
-      return ListaProducoesScreen(gradeId: gradeId);
-    }),
+    GoRoute(
+      path: AppRoutesNames.listaProducoes,
+      builder: (context, state) {
+        final gradeId = state.extra as String?;
+        if (gradeId == null) {
+          return const Scaffold(
+            body: Center(child: Text('Item não encontrado - [lista de produções]')),
+          );
+        }
+        return ListaProducoesScreen(gradeId: gradeId);
+      },
+    ),
 
-    GoRoute(path: AppRoutesNames.adicionarProducao, builder: (context, state) {
-      final gradeId = state.extra as String?;
-      if (gradeId == null) {
-        return const Scaffold(body: Center(child: Text('Item não encontrado - [adicionar grade]')));
-      }
-      return AdicionarProducaoScreen(gId: gradeId);
-    }),
+    GoRoute(
+      path: AppRoutesNames.adicionarProducao,
+      builder: (context, state) {
+        final gradeId = state.extra as String?;
+        if (gradeId == null) {
+          return const Scaffold(
+            body: Center(child: Text('Item não encontrado - [adicionar grade]')),
+          );
+        }
+        return AdicionarProducaoScreen(gId: gradeId);
+      },
+    ),
 
     GoRoute(
       path: AppRoutesNames.adicionarGrade,
@@ -109,9 +127,24 @@ class AppRoutes {
       builder: (context, state) {
         final producaoId = state.extra as String?;
         if (producaoId == null) {
-          return const Scaffold(body: Center(child: Text('Item não encontrado - [adicionar grade]')));
+          return const Scaffold(
+            body: Center(child: Text('Item não encontrado - [adicionar grade]')),
+          );
         }
         return FinalProducaoScreen(producaoId: producaoId);
+      },
+    ),
+
+    GoRoute(
+      path: AppRoutesNames.editarAnotacao,
+      builder: (context, state) {
+        final anotacao = state.extra as AnotacaoEntity?;
+        if (anotacao == null) {
+          return const Scaffold(
+            body: Center(child: Text('Item não encontrado - [editar anotacao]')),
+          );
+        }
+        return EditarAnotacaoScreen(anotacao: anotacao);
       },
     ),
   ];

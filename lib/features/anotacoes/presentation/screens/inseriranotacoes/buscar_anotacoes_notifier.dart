@@ -9,7 +9,7 @@ class BuscarAnotacoesNotifier extends _$BuscarAnotacoesNotifier {
   @override
   BuscarAnotacoesState build() => BuscarAnotacoesState.inicial();
 
-  Future<void> buscar({required String gradeId, required String producaoId}) async {
+  Future<void> buscarAll({required String gradeId, required String producaoId}) async {
     state = BuscarAnotacoesState.carregando();
 
     final useCase = ref.read(getAllAnotacoesUseCaseProvider);
@@ -38,7 +38,7 @@ class BuscarAnotacoesNotifier extends _$BuscarAnotacoesNotifier {
     result.fold(
         (failure) => state = BuscarAnotacoesState.erro(failure),
         (_) {
-          buscar(gradeId: gradeId, producaoId: producaoId);
+          buscarAll(gradeId: gradeId, producaoId: producaoId);
           return state = BuscarAnotacoesState.sucesso();
         }
     );

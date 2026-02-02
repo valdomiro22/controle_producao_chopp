@@ -9,7 +9,7 @@ class UpdateAnotacaoUseCase {
 
   UpdateAnotacaoUseCase(this._repository);
 
-  Future<Either<Failure, Unit>> updateAnotacao({
+  Future<Either<Failure, Unit>> call({
     required String gradeId,
     required String producaoId,
     required String anotacaoId,

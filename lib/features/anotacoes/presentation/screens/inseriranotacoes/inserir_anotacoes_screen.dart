@@ -28,7 +28,7 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(buscarAnotacoesProvider.notifier).buscar(
+      ref.read(buscarAnotacoesProvider.notifier).buscarAll(
         gradeId: widget.gradeId,
         producaoId: widget.producaoId,
       );
@@ -121,7 +121,7 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
                                         producaoId: producaoId,
                                         codigo: codigo,
                                       );
-                                      ref.read(buscarAnotacoesProvider.notifier).buscar(gradeId: gradeId, producaoId: producaoId);
+                                      ref.read(buscarAnotacoesProvider.notifier).buscarAll(gradeId: gradeId, producaoId: producaoId);
                                       context.pop();
                                     },
                                     style: ElevatedButton.styleFrom(
