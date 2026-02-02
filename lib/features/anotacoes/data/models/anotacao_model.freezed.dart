@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AnotacaoModel {
 
- String? get id; String get producaoId; String get codigo; String get usuarioId; String get nomeUsuario; Turno get turno; DateTime get data; DateTime get horario; int get horarioId; DateTime? get dataEdicao; DateTime? get horarioEdicao; TipoCodigo get tipoCodigo; String? get observacao;
+ String? get id; String get producaoId; String get gradeId; String get codigo; String get usuarioId; String get nomeUsuario; Turno get turno; DateTime get data; DateTime get horario; int get horarioId; DateTime? get dataEdicao; DateTime? get horarioEdicao; TipoCodigo get tipoCodigo; String? get observacao;
 /// Create a copy of AnotacaoModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $AnotacaoModelCopyWith<AnotacaoModel> get copyWith => _$AnotacaoModelCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AnotacaoModel&&(identical(other.id, id) || other.id == id)&&(identical(other.producaoId, producaoId) || other.producaoId == producaoId)&&(identical(other.codigo, codigo) || other.codigo == codigo)&&(identical(other.usuarioId, usuarioId) || other.usuarioId == usuarioId)&&(identical(other.nomeUsuario, nomeUsuario) || other.nomeUsuario == nomeUsuario)&&(identical(other.turno, turno) || other.turno == turno)&&(identical(other.data, data) || other.data == data)&&(identical(other.horario, horario) || other.horario == horario)&&(identical(other.horarioId, horarioId) || other.horarioId == horarioId)&&(identical(other.dataEdicao, dataEdicao) || other.dataEdicao == dataEdicao)&&(identical(other.horarioEdicao, horarioEdicao) || other.horarioEdicao == horarioEdicao)&&(identical(other.tipoCodigo, tipoCodigo) || other.tipoCodigo == tipoCodigo)&&(identical(other.observacao, observacao) || other.observacao == observacao));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AnotacaoModel&&(identical(other.id, id) || other.id == id)&&(identical(other.producaoId, producaoId) || other.producaoId == producaoId)&&(identical(other.gradeId, gradeId) || other.gradeId == gradeId)&&(identical(other.codigo, codigo) || other.codigo == codigo)&&(identical(other.usuarioId, usuarioId) || other.usuarioId == usuarioId)&&(identical(other.nomeUsuario, nomeUsuario) || other.nomeUsuario == nomeUsuario)&&(identical(other.turno, turno) || other.turno == turno)&&(identical(other.data, data) || other.data == data)&&(identical(other.horario, horario) || other.horario == horario)&&(identical(other.horarioId, horarioId) || other.horarioId == horarioId)&&(identical(other.dataEdicao, dataEdicao) || other.dataEdicao == dataEdicao)&&(identical(other.horarioEdicao, horarioEdicao) || other.horarioEdicao == horarioEdicao)&&(identical(other.tipoCodigo, tipoCodigo) || other.tipoCodigo == tipoCodigo)&&(identical(other.observacao, observacao) || other.observacao == observacao));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,producaoId,codigo,usuarioId,nomeUsuario,turno,data,horario,horarioId,dataEdicao,horarioEdicao,tipoCodigo,observacao);
+int get hashCode => Object.hash(runtimeType,id,producaoId,gradeId,codigo,usuarioId,nomeUsuario,turno,data,horario,horarioId,dataEdicao,horarioEdicao,tipoCodigo,observacao);
 
 @override
 String toString() {
-  return 'AnotacaoModel(id: $id, producaoId: $producaoId, codigo: $codigo, usuarioId: $usuarioId, nomeUsuario: $nomeUsuario, turno: $turno, data: $data, horario: $horario, horarioId: $horarioId, dataEdicao: $dataEdicao, horarioEdicao: $horarioEdicao, tipoCodigo: $tipoCodigo, observacao: $observacao)';
+  return 'AnotacaoModel(id: $id, producaoId: $producaoId, gradeId: $gradeId, codigo: $codigo, usuarioId: $usuarioId, nomeUsuario: $nomeUsuario, turno: $turno, data: $data, horario: $horario, horarioId: $horarioId, dataEdicao: $dataEdicao, horarioEdicao: $horarioEdicao, tipoCodigo: $tipoCodigo, observacao: $observacao)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $AnotacaoModelCopyWith<$Res>  {
   factory $AnotacaoModelCopyWith(AnotacaoModel value, $Res Function(AnotacaoModel) _then) = _$AnotacaoModelCopyWithImpl;
 @useResult
 $Res call({
- String? id, String producaoId, String codigo, String usuarioId, String nomeUsuario, Turno turno, DateTime data, DateTime horario, int horarioId, DateTime? dataEdicao, DateTime? horarioEdicao, TipoCodigo tipoCodigo, String? observacao
+ String? id, String producaoId, String gradeId, String codigo, String usuarioId, String nomeUsuario, Turno turno, DateTime data, DateTime horario, int horarioId, DateTime? dataEdicao, DateTime? horarioEdicao, TipoCodigo tipoCodigo, String? observacao
 });
 
 
@@ -65,10 +65,11 @@ class _$AnotacaoModelCopyWithImpl<$Res>
 
 /// Create a copy of AnotacaoModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? producaoId = null,Object? codigo = null,Object? usuarioId = null,Object? nomeUsuario = null,Object? turno = null,Object? data = null,Object? horario = null,Object? horarioId = null,Object? dataEdicao = freezed,Object? horarioEdicao = freezed,Object? tipoCodigo = null,Object? observacao = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? producaoId = null,Object? gradeId = null,Object? codigo = null,Object? usuarioId = null,Object? nomeUsuario = null,Object? turno = null,Object? data = null,Object? horario = null,Object? horarioId = null,Object? dataEdicao = freezed,Object? horarioEdicao = freezed,Object? tipoCodigo = null,Object? observacao = freezed,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,producaoId: null == producaoId ? _self.producaoId : producaoId // ignore: cast_nullable_to_non_nullable
+as String,gradeId: null == gradeId ? _self.gradeId : gradeId // ignore: cast_nullable_to_non_nullable
 as String,codigo: null == codigo ? _self.codigo : codigo // ignore: cast_nullable_to_non_nullable
 as String,usuarioId: null == usuarioId ? _self.usuarioId : usuarioId // ignore: cast_nullable_to_non_nullable
 as String,nomeUsuario: null == nomeUsuario ? _self.nomeUsuario : nomeUsuario // ignore: cast_nullable_to_non_nullable
@@ -162,10 +163,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String producaoId,  String codigo,  String usuarioId,  String nomeUsuario,  Turno turno,  DateTime data,  DateTime horario,  int horarioId,  DateTime? dataEdicao,  DateTime? horarioEdicao,  TipoCodigo tipoCodigo,  String? observacao)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String producaoId,  String gradeId,  String codigo,  String usuarioId,  String nomeUsuario,  Turno turno,  DateTime data,  DateTime horario,  int horarioId,  DateTime? dataEdicao,  DateTime? horarioEdicao,  TipoCodigo tipoCodigo,  String? observacao)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AnotacaoModel() when $default != null:
-return $default(_that.id,_that.producaoId,_that.codigo,_that.usuarioId,_that.nomeUsuario,_that.turno,_that.data,_that.horario,_that.horarioId,_that.dataEdicao,_that.horarioEdicao,_that.tipoCodigo,_that.observacao);case _:
+return $default(_that.id,_that.producaoId,_that.gradeId,_that.codigo,_that.usuarioId,_that.nomeUsuario,_that.turno,_that.data,_that.horario,_that.horarioId,_that.dataEdicao,_that.horarioEdicao,_that.tipoCodigo,_that.observacao);case _:
   return orElse();
 
 }
@@ -183,10 +184,10 @@ return $default(_that.id,_that.producaoId,_that.codigo,_that.usuarioId,_that.nom
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String producaoId,  String codigo,  String usuarioId,  String nomeUsuario,  Turno turno,  DateTime data,  DateTime horario,  int horarioId,  DateTime? dataEdicao,  DateTime? horarioEdicao,  TipoCodigo tipoCodigo,  String? observacao)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String producaoId,  String gradeId,  String codigo,  String usuarioId,  String nomeUsuario,  Turno turno,  DateTime data,  DateTime horario,  int horarioId,  DateTime? dataEdicao,  DateTime? horarioEdicao,  TipoCodigo tipoCodigo,  String? observacao)  $default,) {final _that = this;
 switch (_that) {
 case _AnotacaoModel():
-return $default(_that.id,_that.producaoId,_that.codigo,_that.usuarioId,_that.nomeUsuario,_that.turno,_that.data,_that.horario,_that.horarioId,_that.dataEdicao,_that.horarioEdicao,_that.tipoCodigo,_that.observacao);}
+return $default(_that.id,_that.producaoId,_that.gradeId,_that.codigo,_that.usuarioId,_that.nomeUsuario,_that.turno,_that.data,_that.horario,_that.horarioId,_that.dataEdicao,_that.horarioEdicao,_that.tipoCodigo,_that.observacao);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -200,10 +201,10 @@ return $default(_that.id,_that.producaoId,_that.codigo,_that.usuarioId,_that.nom
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String producaoId,  String codigo,  String usuarioId,  String nomeUsuario,  Turno turno,  DateTime data,  DateTime horario,  int horarioId,  DateTime? dataEdicao,  DateTime? horarioEdicao,  TipoCodigo tipoCodigo,  String? observacao)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String producaoId,  String gradeId,  String codigo,  String usuarioId,  String nomeUsuario,  Turno turno,  DateTime data,  DateTime horario,  int horarioId,  DateTime? dataEdicao,  DateTime? horarioEdicao,  TipoCodigo tipoCodigo,  String? observacao)?  $default,) {final _that = this;
 switch (_that) {
 case _AnotacaoModel() when $default != null:
-return $default(_that.id,_that.producaoId,_that.codigo,_that.usuarioId,_that.nomeUsuario,_that.turno,_that.data,_that.horario,_that.horarioId,_that.dataEdicao,_that.horarioEdicao,_that.tipoCodigo,_that.observacao);case _:
+return $default(_that.id,_that.producaoId,_that.gradeId,_that.codigo,_that.usuarioId,_that.nomeUsuario,_that.turno,_that.data,_that.horario,_that.horarioId,_that.dataEdicao,_that.horarioEdicao,_that.tipoCodigo,_that.observacao);case _:
   return null;
 
 }
@@ -215,11 +216,12 @@ return $default(_that.id,_that.producaoId,_that.codigo,_that.usuarioId,_that.nom
 @JsonSerializable()
 
 class _AnotacaoModel extends AnotacaoModel {
-  const _AnotacaoModel({this.id, required this.producaoId, required this.codigo, required this.usuarioId, required this.nomeUsuario, required this.turno, required this.data, required this.horario, required this.horarioId, this.dataEdicao, this.horarioEdicao, required this.tipoCodigo, this.observacao}): super._();
+  const _AnotacaoModel({this.id, required this.producaoId, required this.gradeId, required this.codigo, required this.usuarioId, required this.nomeUsuario, required this.turno, required this.data, required this.horario, required this.horarioId, this.dataEdicao, this.horarioEdicao, required this.tipoCodigo, this.observacao}): super._();
   factory _AnotacaoModel.fromJson(Map<String, dynamic> json) => _$AnotacaoModelFromJson(json);
 
 @override final  String? id;
 @override final  String producaoId;
+@override final  String gradeId;
 @override final  String codigo;
 @override final  String usuarioId;
 @override final  String nomeUsuario;
@@ -245,16 +247,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AnotacaoModel&&(identical(other.id, id) || other.id == id)&&(identical(other.producaoId, producaoId) || other.producaoId == producaoId)&&(identical(other.codigo, codigo) || other.codigo == codigo)&&(identical(other.usuarioId, usuarioId) || other.usuarioId == usuarioId)&&(identical(other.nomeUsuario, nomeUsuario) || other.nomeUsuario == nomeUsuario)&&(identical(other.turno, turno) || other.turno == turno)&&(identical(other.data, data) || other.data == data)&&(identical(other.horario, horario) || other.horario == horario)&&(identical(other.horarioId, horarioId) || other.horarioId == horarioId)&&(identical(other.dataEdicao, dataEdicao) || other.dataEdicao == dataEdicao)&&(identical(other.horarioEdicao, horarioEdicao) || other.horarioEdicao == horarioEdicao)&&(identical(other.tipoCodigo, tipoCodigo) || other.tipoCodigo == tipoCodigo)&&(identical(other.observacao, observacao) || other.observacao == observacao));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AnotacaoModel&&(identical(other.id, id) || other.id == id)&&(identical(other.producaoId, producaoId) || other.producaoId == producaoId)&&(identical(other.gradeId, gradeId) || other.gradeId == gradeId)&&(identical(other.codigo, codigo) || other.codigo == codigo)&&(identical(other.usuarioId, usuarioId) || other.usuarioId == usuarioId)&&(identical(other.nomeUsuario, nomeUsuario) || other.nomeUsuario == nomeUsuario)&&(identical(other.turno, turno) || other.turno == turno)&&(identical(other.data, data) || other.data == data)&&(identical(other.horario, horario) || other.horario == horario)&&(identical(other.horarioId, horarioId) || other.horarioId == horarioId)&&(identical(other.dataEdicao, dataEdicao) || other.dataEdicao == dataEdicao)&&(identical(other.horarioEdicao, horarioEdicao) || other.horarioEdicao == horarioEdicao)&&(identical(other.tipoCodigo, tipoCodigo) || other.tipoCodigo == tipoCodigo)&&(identical(other.observacao, observacao) || other.observacao == observacao));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,producaoId,codigo,usuarioId,nomeUsuario,turno,data,horario,horarioId,dataEdicao,horarioEdicao,tipoCodigo,observacao);
+int get hashCode => Object.hash(runtimeType,id,producaoId,gradeId,codigo,usuarioId,nomeUsuario,turno,data,horario,horarioId,dataEdicao,horarioEdicao,tipoCodigo,observacao);
 
 @override
 String toString() {
-  return 'AnotacaoModel(id: $id, producaoId: $producaoId, codigo: $codigo, usuarioId: $usuarioId, nomeUsuario: $nomeUsuario, turno: $turno, data: $data, horario: $horario, horarioId: $horarioId, dataEdicao: $dataEdicao, horarioEdicao: $horarioEdicao, tipoCodigo: $tipoCodigo, observacao: $observacao)';
+  return 'AnotacaoModel(id: $id, producaoId: $producaoId, gradeId: $gradeId, codigo: $codigo, usuarioId: $usuarioId, nomeUsuario: $nomeUsuario, turno: $turno, data: $data, horario: $horario, horarioId: $horarioId, dataEdicao: $dataEdicao, horarioEdicao: $horarioEdicao, tipoCodigo: $tipoCodigo, observacao: $observacao)';
 }
 
 
@@ -265,7 +267,7 @@ abstract mixin class _$AnotacaoModelCopyWith<$Res> implements $AnotacaoModelCopy
   factory _$AnotacaoModelCopyWith(_AnotacaoModel value, $Res Function(_AnotacaoModel) _then) = __$AnotacaoModelCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String producaoId, String codigo, String usuarioId, String nomeUsuario, Turno turno, DateTime data, DateTime horario, int horarioId, DateTime? dataEdicao, DateTime? horarioEdicao, TipoCodigo tipoCodigo, String? observacao
+ String? id, String producaoId, String gradeId, String codigo, String usuarioId, String nomeUsuario, Turno turno, DateTime data, DateTime horario, int horarioId, DateTime? dataEdicao, DateTime? horarioEdicao, TipoCodigo tipoCodigo, String? observacao
 });
 
 
@@ -282,10 +284,11 @@ class __$AnotacaoModelCopyWithImpl<$Res>
 
 /// Create a copy of AnotacaoModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? producaoId = null,Object? codigo = null,Object? usuarioId = null,Object? nomeUsuario = null,Object? turno = null,Object? data = null,Object? horario = null,Object? horarioId = null,Object? dataEdicao = freezed,Object? horarioEdicao = freezed,Object? tipoCodigo = null,Object? observacao = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? producaoId = null,Object? gradeId = null,Object? codigo = null,Object? usuarioId = null,Object? nomeUsuario = null,Object? turno = null,Object? data = null,Object? horario = null,Object? horarioId = null,Object? dataEdicao = freezed,Object? horarioEdicao = freezed,Object? tipoCodigo = null,Object? observacao = freezed,}) {
   return _then(_AnotacaoModel(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,producaoId: null == producaoId ? _self.producaoId : producaoId // ignore: cast_nullable_to_non_nullable
+as String,gradeId: null == gradeId ? _self.gradeId : gradeId // ignore: cast_nullable_to_non_nullable
 as String,codigo: null == codigo ? _self.codigo : codigo // ignore: cast_nullable_to_non_nullable
 as String,usuarioId: null == usuarioId ? _self.usuarioId : usuarioId // ignore: cast_nullable_to_non_nullable
 as String,nomeUsuario: null == nomeUsuario ? _self.nomeUsuario : nomeUsuario // ignore: cast_nullable_to_non_nullable

@@ -11,6 +11,7 @@ sealed class AnotacaoModel with _$AnotacaoModel {
   const factory AnotacaoModel({
     String? id,
     required String producaoId,
+    required String gradeId,
     required String codigo,
     required String usuarioId,
     required String nomeUsuario,

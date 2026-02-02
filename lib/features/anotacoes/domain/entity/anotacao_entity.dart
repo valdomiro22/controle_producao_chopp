@@ -1,10 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../../../grades/domain/enums/turno.dart';
 import '../enums/tipo_codigo.dart';
 
 class AnotacaoEntity {
   final String? id;
+  final String gradeId;
   final String producaoId;
   final String codigo;
   final String usuarioId;
@@ -20,6 +19,7 @@ class AnotacaoEntity {
 
   AnotacaoEntity({
     this.id,
+    required this.gradeId,
     required this.producaoId,
     required this.codigo,
     required this.usuarioId,
@@ -31,12 +31,13 @@ class AnotacaoEntity {
     this.dataEdicao,
     this.horarioEdicao,
     required this.tipoCodigo,
-    this.observacao
+    this.observacao,
   });
 
   AnotacaoEntity copyWith({
     String? id,
     String? codigo,
+    String? gradeId,
     String? producaoId,
     String? usuarioId,
     String? nomeUsuario,
@@ -51,6 +52,7 @@ class AnotacaoEntity {
   }) {
     return AnotacaoEntity(
       id: id ?? this.id,
+      gradeId: gradeId ?? this.gradeId,
       producaoId: producaoId ?? this.producaoId,
       codigo: codigo ?? this.codigo,
       usuarioId: usuarioId ?? this.usuarioId,
@@ -64,5 +66,24 @@ class AnotacaoEntity {
       tipoCodigo: tipoCodigo ?? this.tipoCodigo,
       observacao: observacao ?? this.observacao,
     );
+  }
+
+  String mostrar() {
+    return '\nAnotacaoEntity('
+        '\nid: $id, '
+        '\ngradeId: $gradeId, '
+        '\nproducaoId: $producaoId, '
+        '\ncodigo: $codigo, '
+        '\nusuarioId: $usuarioId, '
+        '\nnomeUsuario: $nomeUsuario, '
+        '\nturno: $turno, '
+        '\ndata: $data, '
+        '\nhorario: $horario, '
+        '\nhorarioId: $horarioId, '
+        '\ndataEdicao: $dataEdicao, '
+        '\nhorarioEdicao: $horarioEdicao, '
+        '\ntipoCodigo: $tipoCodigo, '
+        '\nobservacao: $observacao'
+        ')\n';
   }
 }

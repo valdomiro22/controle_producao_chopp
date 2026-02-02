@@ -1,3 +1,5 @@
+import 'dart:developer' as dev;
+
 import 'package:dartz/dartz.dart';
 import 'package:gestao_producao_chopp/core/error/failure.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/domain/repositories/aotacao_repository.dart';
@@ -17,6 +19,9 @@ class InsertAnotacaoUseCase {
   }) async {
     final idGerado = const Uuid().v4();
     final anotacaoComId = anotacao.copyWith(id: idGerado);
+
+    dev.log('idGerado: $idGerado');
+    dev.log('id na anotacao: ${anotacaoComId.id}');
 
     return await _repository.insertAnotacao(
       gradeId: gradeId,

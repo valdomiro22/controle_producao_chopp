@@ -8,7 +8,7 @@ class DeleteAnotacaoUseCase {
 
   DeleteAnotacaoUseCase(this._repository);
 
-  Future<Either<Failure, Unit>> deleteAnotacao({
+  Future<Either<Failure, Unit>> call({
     required String gradeId,
     required String producaoId,
     required String anotacaoId,

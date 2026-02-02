@@ -10,6 +10,7 @@ _AnotacaoModel _$AnotacaoModelFromJson(Map<String, dynamic> json) =>
     _AnotacaoModel(
       id: json['id'] as String?,
       producaoId: json['producaoId'] as String,
+      gradeId: json['gradeId'] as String,
       codigo: json['codigo'] as String,
       usuarioId: json['usuarioId'] as String,
       nomeUsuario: json['nomeUsuario'] as String,
@@ -31,6 +32,7 @@ Map<String, dynamic> _$AnotacaoModelToJson(_AnotacaoModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'producaoId': instance.producaoId,
+      'gradeId': instance.gradeId,
       'codigo': instance.codigo,
       'usuarioId': instance.usuarioId,
       'nomeUsuario': instance.nomeUsuario,

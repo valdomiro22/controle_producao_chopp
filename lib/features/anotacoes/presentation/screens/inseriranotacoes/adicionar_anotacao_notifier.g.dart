@@ -46,7 +46,7 @@ final class AdicionarAnotacaoNotifierProvider
 }
 
 String _$adicionarAnotacaoNotifierHash() =>
-    r'b52eefa2d39065080c12caf11701adc744c4883e';
+    r'f184a8b761d6bc23fb86c6ff25ce1b445107d241';
 
 abstract class _$AdicionarAnotacaoNotifier
     extends $Notifier<FormAdicionarAnotacaoState> {

@@ -20,4 +20,27 @@ class BuscarAnotacoesNotifier extends _$BuscarAnotacoesNotifier {
         (lista) => state = BuscarAnotacoesState.sucessoComDados(lista),
     );
   }
+
+  Future<void> deletar({
+    required String gradeId,
+    required String producaoId,
+    required String anotacaoId,
+  }) async {
+    state = BuscarAnotacoesState.inicial();
+
+    final useCase = ref.read(deleteAnotacaoUseCaseProvider);
+    final result = await useCase(
+      gradeId: gradeId,
+      producaoId: producaoId,
+      anotacaoId: anotacaoId
+    );
+
+    result.fold(
+        (failure) => state = BuscarAnotacoesState.erro(failure),
+        (_) {
+          buscar(gradeId: gradeId, producaoId: producaoId);
+          return state = BuscarAnotacoesState.sucesso();
+        }
+    );
+  }
 }

@@ -1,9 +1,11 @@
-import 'package:gestao_producao_chopp/features/anotacoes/data/models/anotacao_model.dart';
-import 'package:gestao_producao_chopp/features/anotacoes/domain/entity/anotacao_entity.dart';
+import '../../domain/entity/anotacao_entity.dart';
+import '../models/anotacao_model.dart';
 
 extension AnotaModelToEntity on AnotacaoModel {
   AnotacaoEntity toEntity() {
     return AnotacaoEntity(
+      id: id,
+      gradeId: gradeId,
       producaoId: producaoId,
       codigo: codigo,
       usuarioId: usuarioId,
@@ -13,6 +15,9 @@ extension AnotaModelToEntity on AnotacaoModel {
       horario: horario,
       horarioId: horarioId,
       tipoCodigo: tipoCodigo,
+      dataEdicao: dataEdicao,
+      horarioEdicao: horarioEdicao,
+      observacao: observacao,
     );
   }
 }
@@ -20,6 +25,8 @@ extension AnotaModelToEntity on AnotacaoModel {
 extension AnotaEntityToModel on AnotacaoEntity {
   AnotacaoModel toModel() {
     return AnotacaoModel(
+      id: id,
+      gradeId: gradeId,
       producaoId: producaoId,
       codigo: codigo,
       usuarioId: usuarioId,
@@ -29,6 +36,9 @@ extension AnotaEntityToModel on AnotacaoEntity {
       horario: horario,
       horarioId: horarioId,
       tipoCodigo: tipoCodigo,
+      dataEdicao: dataEdicao,
+      horarioEdicao: horarioEdicao,
+      observacao: observacao,
     );
   }
 }
