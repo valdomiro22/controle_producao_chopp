@@ -42,7 +42,7 @@ final class BuscarAnotacoesNotifierProvider
 }
 
 String _$buscarAnotacoesNotifierHash() =>
-    r'f3a35436a93f9c4ccfceb973cfd36ba3ecd8a816';
+    r'ed0e25d88df2a159195405245a156a1683b54402';
 
 abstract class _$BuscarAnotacoesNotifier
     extends $Notifier<BuscarAnotacoesState> {

@@ -28,7 +28,12 @@ class _ItemAnotacaoWidgetState extends ConsumerState<ItemAnotacaoWidget> {
     final horario = StringUtil.formatarHoraSincrona(anotacao.horario.toIso8601String());
 
     return Container(
-      padding: EdgeInsets.all(8),
+      margin: EdgeInsetsGeometry.only(bottom: 4),
+      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade300,
+        borderRadius: BorderRadius.circular(4)
+      ),
       child: Row(
         children: [
           Text(anotacao.codigo),
@@ -41,6 +46,7 @@ class _ItemAnotacaoWidgetState extends ConsumerState<ItemAnotacaoWidget> {
 
           BotaoEditarDeletar(
             cor: Colors.red,
+            altura: 30,
             onPressed: () {
               showDialog(
                 context: context,
@@ -93,6 +99,7 @@ class _ItemAnotacaoWidgetState extends ConsumerState<ItemAnotacaoWidget> {
 
           BotaoEditarDeletar(
             cor: Colors.blue,
+            altura: 30,
             onPressed: () {
               context.push(AppRoutesNames.editarAnotacao, extra: anotacao);
             },

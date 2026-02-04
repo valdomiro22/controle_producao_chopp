@@ -8,6 +8,7 @@ part 'buscar_anotacoes_notifier.g.dart';
 class BuscarAnotacoesNotifier extends _$BuscarAnotacoesNotifier {
   @override
   BuscarAnotacoesState build() => BuscarAnotacoesState.inicial();
+  int _quantidade = -1;
 
   Future<void> buscarAll({required String gradeId, required String producaoId}) async {
     state = BuscarAnotacoesState.carregando();
@@ -17,7 +18,10 @@ class BuscarAnotacoesNotifier extends _$BuscarAnotacoesNotifier {
 
     result.fold(
         (failure) => state = BuscarAnotacoesState.erro(failure),
-        (lista) => state = BuscarAnotacoesState.sucessoComDados(lista),
+        (lista) {
+          _quantidade = lista.length;
+          return state = BuscarAnotacoesState.sucessoComDados(lista);
+        },
     );
   }
 
@@ -43,4 +47,6 @@ class BuscarAnotacoesNotifier extends _$BuscarAnotacoesNotifier {
         }
     );
   }
+
+  int get quantidadeAnotacoes => _quantidade;
 }

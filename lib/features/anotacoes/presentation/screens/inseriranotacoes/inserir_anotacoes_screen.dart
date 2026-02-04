@@ -47,10 +47,9 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Column(
           children: [
-            CabecalhoContadorAnotacoes(qt: 40),
+            CabecalhoContadorAnotacoes(qt: buscarNotifier.quantidadeAnotacoes),
             const SizedBox(height: 8),
             Expanded(
-              // TODO - Recuperar anotações
               child: buscarState.when(
                 carregando: () => Center(child: CircularProgressIndicator()),
                 erro: (failure) => Center(child: Text(failure.message)),
@@ -66,6 +65,7 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
                 sucesso: () => Container(),
               ),
             ),
+
             const SizedBox(height: 8),
             Container(
               width: double.infinity,
@@ -76,6 +76,7 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+
                   // Digitar codigo
                   ElevatedButton(
                     onPressed: () {
