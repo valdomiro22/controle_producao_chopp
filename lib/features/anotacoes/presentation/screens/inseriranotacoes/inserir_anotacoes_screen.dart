@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gestao_producao_chopp/features/anotacoes/domain/entity/anotacao_entity.dart';
+import 'package:gestao_producao_chopp/features/anotacoes/domain/enums/tipo_codigo.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/adicionar_anotacao_notifier.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/buscar_anotacoes_notifier.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/buscar_anotacoes_state.dart';
@@ -28,10 +28,9 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(buscarAnotacoesProvider.notifier).buscarAll(
-        gradeId: widget.gradeId,
-        producaoId: widget.producaoId,
-      );
+      ref
+          .read(buscarAnotacoesProvider.notifier)
+          .buscarAll(gradeId: widget.gradeId, producaoId: widget.producaoId);
     });
   }
 
@@ -120,8 +119,13 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
                                         gradeId: gradeId,
                                         producaoId: producaoId,
                                         codigo: codigo,
+                                        tipoCodigo: TipoCodigo.anotacao,
                                       );
-                                      ref.read(buscarAnotacoesProvider.notifier).buscarAll(gradeId: gradeId, producaoId: producaoId);
+                                      ref.read(buscarAnotacoesProvider.notifier).buscarAll(
+                                          gradeId: gradeId,
+                                          producaoId: producaoId
+                                      );
+
                                       context.pop();
                                     },
                                     style: ElevatedButton.styleFrom(
@@ -146,7 +150,14 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
                   // QR Code
                   ElevatedButton(
                     onPressed: () {
-                      // anotacaoVm.lerQRCode();
+                      final gradeId = widget.gradeId;
+                      final producaoId = widget.producaoId;
+
+                      formNotifier.lerQRCode(gradeId: gradeId, producaoId: producaoId);
+                      ref.read(buscarAnotacoesProvider.notifier).buscarAll(
+                          gradeId: gradeId,
+                          producaoId: producaoId
+                      );
                     },
                     child: Icon(Icons.qr_code, size: 40),
                   ),
@@ -156,7 +167,14 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
                   // Código be barras
                   ElevatedButton(
                     onPressed: () {
-                      // anotacaoVm.lerCodigoBarras();
+                      final gradeId = widget.gradeId;
+                      final producaoId = widget.producaoId;
+
+                      formNotifier.lerCodigoBarras(gradeId: gradeId, producaoId: producaoId);
+                      ref.read(buscarAnotacoesProvider.notifier).buscarAll(
+                          gradeId: gradeId,
+                          producaoId: producaoId
+                      );
                     },
                     child: Icon(MdiIcons.barcode, size: 40),
                   ),

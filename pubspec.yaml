@@ -45,6 +45,7 @@ dependencies:
   intl: ^0.20.2 # Para formatar datas
   freezed_annotation: ^3.0.0
   json_annotation: ^4.9.0
+  barcode_scan2: ^4.5.1  # Ler Codigo de barras e QRCode
   material_design_icons_flutter: ^7.0.7296
   fl_chart: ^0.68.0  # Para grafico de pizza
   flutter_localizations: # Para datePiker em Português
