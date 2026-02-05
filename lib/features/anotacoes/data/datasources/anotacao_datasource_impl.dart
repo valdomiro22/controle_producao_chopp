@@ -101,6 +101,8 @@ class AnotacaoDatasourceImpl implements AnotacaoDatasource {
           .collection(_producoesCollection)
           .doc(producaoId)
           .collection(_anotacoesCollection)
+          .orderBy('data', descending: true)
+          .orderBy('horario', descending: true)
           .get();
 
       if (snapshot.docs.isEmpty) return [];

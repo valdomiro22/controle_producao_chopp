@@ -73,113 +73,115 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
               decoration: BoxDecoration(
                 // color: Colors.greenAccent
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+              child: SafeArea(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
 
-                  // Digitar codigo
-                  ElevatedButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          final docigoController = TextEditingController();
+                    // Digitar codigo
+                    ElevatedButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            final docigoController = TextEditingController();
 
-                          return AlertDialog(
-                            title: Column(
-                              children: [
-                                TextField(
-                                  autofocus: true,
-                                  controller: docigoController,
-                                  decoration: InputDecoration(
-                                    labelText: 'Código',
-                                    hintText: 'Codigo produto',
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(color: AppColors.inputBorder),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
-                                        width: 2,
-                                        color: AppColors.primaryDarkText,
+                            return AlertDialog(
+                              title: Column(
+                                children: [
+                                  TextField(
+                                    autofocus: true,
+                                    controller: docigoController,
+                                    decoration: InputDecoration(
+                                      labelText: 'Código',
+                                      hintText: 'Codigo produto',
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(color: AppColors.inputBorder),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          width: 2,
+                                          color: AppColors.primaryDarkText,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(height: 16),
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      final gradeId = widget.gradeId;
-                                      final producaoId = widget.producaoId;
+                                  SizedBox(height: 16),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        final gradeId = widget.gradeId;
+                                        final producaoId = widget.producaoId;
 
-                                      final codigo = docigoController.text;
-                                      formNotifier.adicionar(
-                                        gradeId: gradeId,
-                                        producaoId: producaoId,
-                                        codigo: codigo,
-                                        tipoCodigo: TipoCodigo.anotacao,
-                                      );
-                                      ref.read(buscarAnotacoesProvider.notifier).buscarAll(
+                                        final codigo = docigoController.text;
+                                        formNotifier.adicionar(
                                           gradeId: gradeId,
-                                          producaoId: producaoId
-                                      );
+                                          producaoId: producaoId,
+                                          codigo: codigo,
+                                          tipoCodigo: TipoCodigo.anotacao,
+                                        );
+                                        ref.read(buscarAnotacoesProvider.notifier).buscarAll(
+                                            gradeId: gradeId,
+                                            producaoId: producaoId
+                                        );
 
-                                      context.pop();
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: AppColors.inputBorder,
-                                    ),
-                                    child: const Text(
-                                      'Adicionar',
-                                      style: TextStyle(color: Colors.white),
+                                        context.pop();
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: AppColors.inputBorder,
+                                      ),
+                                      child: const Text(
+                                        'Adicionar',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      );
-                    },
-                    child: Icon(Icons.edit, size: 40),
-                  ),
-                  SizedBox(width: 24),
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      child: Icon(Icons.edit, size: 40),
+                    ),
+                    SizedBox(width: 24),
 
-                  // QR Code
-                  ElevatedButton(
-                    onPressed: () {
-                      final gradeId = widget.gradeId;
-                      final producaoId = widget.producaoId;
+                    // QR Code
+                    ElevatedButton(
+                      onPressed: () {
+                        final gradeId = widget.gradeId;
+                        final producaoId = widget.producaoId;
 
-                      formNotifier.lerQRCode(gradeId: gradeId, producaoId: producaoId);
-                      ref.read(buscarAnotacoesProvider.notifier).buscarAll(
-                          gradeId: gradeId,
-                          producaoId: producaoId
-                      );
-                    },
-                    child: Icon(Icons.qr_code, size: 40),
-                  ),
-                  SizedBox(width: 24),
-                  // SizedBox(width: 20),
+                        formNotifier.lerQRCode(gradeId: gradeId, producaoId: producaoId);
+                        ref.read(buscarAnotacoesProvider.notifier).buscarAll(
+                            gradeId: gradeId,
+                            producaoId: producaoId
+                        );
+                      },
+                      child: Icon(Icons.qr_code, size: 40),
+                    ),
+                    SizedBox(width: 24),
+                    // SizedBox(width: 20),
 
-                  // Código be barras
-                  ElevatedButton(
-                    onPressed: () {
-                      final gradeId = widget.gradeId;
-                      final producaoId = widget.producaoId;
+                    // Código be barras
+                    ElevatedButton(
+                      onPressed: () {
+                        final gradeId = widget.gradeId;
+                        final producaoId = widget.producaoId;
 
-                      formNotifier.lerCodigoBarras(gradeId: gradeId, producaoId: producaoId);
-                      ref.read(buscarAnotacoesProvider.notifier).buscarAll(
-                          gradeId: gradeId,
-                          producaoId: producaoId
-                      );
-                    },
-                    child: Icon(MdiIcons.barcode, size: 40),
-                  ),
-                ],
+                        formNotifier.lerCodigoBarras(gradeId: gradeId, producaoId: producaoId);
+                        ref.read(buscarAnotacoesProvider.notifier).buscarAll(
+                            gradeId: gradeId,
+                            producaoId: producaoId
+                        );
+                      },
+                      child: Icon(MdiIcons.barcode, size: 40),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
