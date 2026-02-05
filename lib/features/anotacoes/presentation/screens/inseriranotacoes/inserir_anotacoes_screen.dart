@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/domain/enums/tipo_codigo.dart';
@@ -6,16 +9,21 @@ import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/in
 import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/buscar_anotacoes_state.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/presentation/widgets/cabecalho_contador_anotacoes.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/presentation/widgets/item_anotacao_widget.dart';
+import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/buscar_producao_notifier.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../producoes/presentation/screens/lista_producoes/lista_producoes_notifier.dart';
+import '../../../../quantidade_horaria/presentation/providers/buscar_qt_horaria_notifier.dart';
 
 class InserirAnotacoesScreen extends ConsumerStatefulWidget {
   final String gradeId;
   final String producaoId;
+  final ProducaoEntity producao;
 
-  const InserirAnotacoesScreen({super.key, required this.gradeId, required this.producaoId});
+  const InserirAnotacoesScreen({super.key, required this.gradeId, required this.producaoId, required this.producao,});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _InserirAnotacoesScreenState();
@@ -32,6 +40,11 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
           .read(buscarAnotacoesProvider.notifier)
           .buscarAll(gradeId: widget.gradeId, producaoId: widget.producaoId);
     });
+  }
+  
+  void _atualizarProducao(String gId, String pId) {
+    final producao = ref.read(buscarProducaoProvider.notifier).buscar(gradeId: gId, producaoId: pId);
+    // final qtProduzida = producao.
   }
 
   @override
@@ -112,7 +125,7 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
                                   SizedBox(
                                     width: double.infinity,
                                     child: ElevatedButton(
-                                      onPressed: () {
+                                      onPressed: () async {
                                         final gradeId = widget.gradeId;
                                         final producaoId = widget.producaoId;
 
@@ -123,12 +136,27 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
                                           codigo: codigo,
                                           tipoCodigo: TipoCodigo.anotacao,
                                         );
+                                        
                                         ref.read(buscarAnotacoesProvider.notifier).buscarAll(
                                             gradeId: gradeId,
                                             producaoId: producaoId
                                         );
 
-                                        context.pop();
+                                        // Quantidades na produção
+                                        final qtProduzida = widget.producao.quantidadeProduzida + 1;
+                                        final producaoAtualizada = widget.producao.copyWith(quantidadeProduzida: qtProduzida);
+
+                                        await ref.read(listaProducoesProvider.notifier).atualizarProducao(
+                                          gradeId: gradeId,
+                                          producaoId: producaoId,
+                                          producao:  producaoAtualizada,
+                                        );
+                                        ref.read(buscarProducaoProvider.notifier).atualizarEstadoLocal(producaoAtualizada);
+
+                                        // 3. Atualiza o card específico
+                                        // ref.invalidate(buscarQtHorariaProvider());
+
+                                        if (context.mounted) context.pop();
                                       },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: AppColors.inputBorder,

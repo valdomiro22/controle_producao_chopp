@@ -227,6 +227,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 extra: InserirAnotacaoArgs(
                   producaoId: producao.id!,
                   gradeId: producao.gradeId,
+                  producao: producao,
                 )
               );
             },

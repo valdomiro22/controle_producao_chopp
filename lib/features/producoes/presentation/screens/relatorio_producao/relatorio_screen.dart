@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestao_producao_chopp/core/utils/string_util.dart';
 
 import '../../widgets/item_producao.dart';
 
@@ -10,8 +11,7 @@ class RelatorioScreen extends StatefulWidget {
 }
 
 class _RelatorioScreenState extends State<RelatorioScreen> {
-  final hoje =
-      '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}';
+  final hoje = StringUtil.formatarData(DateTime.now().toIso8601String());
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +39,8 @@ class _RelatorioScreenState extends State<RelatorioScreen> {
                     '\nCHOP CLARO ITAIPAVA',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
+                  Text('Estabilidade: ✅'),
+
                   ItemProducao(
                     tipo: '30L',
                     pendente: '654',
@@ -46,6 +48,7 @@ class _RelatorioScreenState extends State<RelatorioScreen> {
                     programado: '999',
                   ),
                   SizedBox(height: 16),
+
                   ItemProducao(
                     tipo: '50L',
                     pendente: '654',
@@ -53,6 +56,7 @@ class _RelatorioScreenState extends State<RelatorioScreen> {
                     programado: '999',
                   ),
                   SizedBox(height: 16),
+
                   ItemProducao(
                     tipo: '15L',
                     pendente: '654',
@@ -60,19 +64,25 @@ class _RelatorioScreenState extends State<RelatorioScreen> {
                     programado: '999',
                   ),
                   SizedBox(height: 16),
+
                   ItemProducao(
                     tipo: '30L Escuro',
                     pendente: '654',
                     produzido: '58',
                     programado: '999',
                   ),
+                  Text('Estabilidade: ✅'),
                   SizedBox(height: 16),
+
                   Text('➖➖➖➖➖➖➖➖➖'),
+
                   SizedBox(height: 16),
                   Text(
                     'CHOP PETRA',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
+                  Text('Estabilidade: ✅'),
+
                   ItemProducao(
                     tipo: '50L',
                     pendente: '654',
@@ -80,6 +90,7 @@ class _RelatorioScreenState extends State<RelatorioScreen> {
                     programado: '999',
                   ),
                   SizedBox(height: 16),
+
                   ItemProducao(
                     tipo: '30L',
                     pendente: '654',
@@ -87,6 +98,7 @@ class _RelatorioScreenState extends State<RelatorioScreen> {
                     programado: '999',
                   ),
                   SizedBox(height: 16),
+
                   ItemProducao(
                     tipo: '15L',
                     pendente: '654',

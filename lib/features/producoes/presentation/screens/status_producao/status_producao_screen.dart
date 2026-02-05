@@ -43,7 +43,7 @@ class _StatusProducaoScreenState extends ConsumerState<FinalProducaoScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 LinhaNomeValor(
-                  texto: 'Para produzir',
+                  texto: 'Quantidade Programada',
                   quantidade: _qtNotas.toString(),
                   corDeFundo: Colors.blue.shade300,
                 ),

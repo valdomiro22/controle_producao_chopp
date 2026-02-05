@@ -71,7 +71,7 @@ class AppRoutes {
             body: Center(child: Text('Item não encontrado - [inserir anotacao]')),
           );
         }
-        return InserirAnotacoesScreen(producaoId: args.producaoId, gradeId: args.gradeId);
+        return InserirAnotacoesScreen(producaoId: args.producaoId, gradeId: args.gradeId, producao: args.producao);
       },
     ),
 

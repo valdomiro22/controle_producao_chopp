@@ -42,7 +42,7 @@ class ControleNivelBufferWidget extends ConsumerWidget {
                     'Volume necessarios: ',
                     style: TextStyle(color: Colors.black, fontSize: 16),
                   ),
-                  Text(producao.volumeNecessarioHl.toString(), style: TextStyle(fontSize: 16)),
+                  Text('${producao.volumeNecessarioHl.toString()} hl', style: TextStyle(fontSize: 16)),
                 ],
               ),
               SizedBox(height: 16),
