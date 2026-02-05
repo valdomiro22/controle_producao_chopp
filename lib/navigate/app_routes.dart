@@ -60,7 +60,16 @@ class AppRoutes {
 
     GoRoute(path: AppRoutesNames.listaGrades, builder: (context, state) => ListaGradesScreen()),
 
-    GoRoute(path: AppRoutesNames.relatorioProducao, builder: (context, state) => RelatorioScreen()),
+    GoRoute(path: AppRoutesNames.relatorioProducao, builder: (context, state) {
+      final gradeId = state.extra as String?;
+      if (gradeId == null) {
+        return const Scaffold(
+          body: Center(child: Text('Item não encontrado - [adicionar grade]')),
+        );
+      }
+
+      return RelatorioScreen(gradeId: gradeId,);
+    }),
 
     GoRoute(
       path: AppRoutesNames.inserirAnotacao,

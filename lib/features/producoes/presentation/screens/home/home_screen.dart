@@ -50,7 +50,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   void _opcoesPopUpMenu(String itemEscolhido) {
     switch (itemEscolhido) {
       case 'Gerar relatorio':
-        context.push(AppRoutesNames.relatorioProducao);
+        context.push(AppRoutesNames.relatorioProducao, extra: widget.gradeId);
         break;
       case 'Add Produção':
         context.push(AppRoutesNames.adicionarProducao);
