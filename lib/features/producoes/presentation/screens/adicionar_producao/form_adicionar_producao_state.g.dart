@@ -54,8 +54,8 @@ Map<String, dynamic> _$FormAdicionarProducaoStateToJson(
 
 const _$ProdutoEnumMap = {
   Produto.itaipava: 'itaipava',
-  Produto.petra: 'petra',
   Produto.itaipavaE: 'itaipavaE',
+  Produto.petra: 'petra',
 };
 
 const _$BarrilEnumMap = {

@@ -197,10 +197,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 valor: producao.quantidadeProgramada,
                 fundoTitulo: Color(0xFF2563EB),
               ),
-              CardStatusProducao(
-                label: 'Produzido',
-                valor: producao.quantidadeProduzida,
-                fundoTitulo: Color(0xFF22C55E),
+              GestureDetector(
+                onTap: () => context.push(AppRoutesNames.producaoPorTurno),
+                child: CardStatusProducao(
+                  label: 'Produzido',
+                  valor: producao.quantidadeProduzida,
+                  fundoTitulo: Color(0xFF22C55E),
+                ),
               ),
               CardStatusProducao(
                 label: 'Pendente',
