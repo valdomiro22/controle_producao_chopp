@@ -14,6 +14,9 @@ class ControleNivelBufferWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final corVermelha = Color(0xffcb0000);
+    final corVede = Color(0xff00b000);
+    final isVolumeOk = producao.volumeNecessarioHl < 40.0 ? false : true;
 
     return Column(
       children: [
@@ -22,7 +25,7 @@ class ControleNivelBufferWidget extends ConsumerWidget {
         Container(
           padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
           decoration: BoxDecoration(
-            color: Colors.grey.shade200,
+            color: isVolumeOk ? corVede.withAlpha(30) : corVermelha.withAlpha(30),
             borderRadius: BorderRadius.circular(8),
           ),
           width: double.infinity,

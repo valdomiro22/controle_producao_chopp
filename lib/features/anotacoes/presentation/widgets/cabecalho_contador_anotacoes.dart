@@ -11,7 +11,7 @@ class CabecalhoContadorAnotacoes extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.secondaryRed,
+        color: AppColors.blueStrong,
         borderRadius: BorderRadius.circular(5),
       ),
       child: Padding(

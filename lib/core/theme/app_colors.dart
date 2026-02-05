@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // Cores principais - Baseadas no logo e contraste
-  static const Color primaryRed = Color(0xFFE41E26);      // Vermelho do logo (Destaque principal)
+  static const Color red900 = Color(0xFFE41E26);      // Vermelho do logo (Destaque principal)
+  static const Color primaryRed = Color(0xffe63946);      // Vermelho do logo (Destaque principal)
   static const Color secondaryRed = Color(0xFFFF5659);  // Cinza médio para acentos sutis
   static const Color secondaryAccent = Color(0xFF9E9E9E);  // Cinza médio para acentos sutis
   static const Color primaryDarkText = Color(0xFF212121);   // Quase preto para texto principal
@@ -14,6 +15,7 @@ class AppColors {
   static const Color inputBorder = Color(0xFFC7C7C7);      // Cinza Claro do logo (Bordas de input)
 
   // Demais cores
+  static const Color blueStrong = Color(0xff3559fa);
   static const Color purple200 = Color(0xFF8400FF);
   static const Color grey300 = Color(0xffc4c6ce);
   static const Color grey700 = Color(0xff4c4f54);

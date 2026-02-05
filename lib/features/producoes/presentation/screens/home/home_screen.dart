@@ -1,24 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/common/widgets/app_drawer.dart';
-import 'package:gestao_producao_chopp/core/di/usecases/producao_use_cases_provider.dart';
 import 'package:gestao_producao_chopp/core/error/failure.dart';
-import 'package:gestao_producao_chopp/core/theme/app_theme_light.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/inserir_anotacao_args.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/buscar_producao_notifier.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/selecionar_turno_notifier.dart';
-import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_notifier.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/controle_nivel_buffer_widget.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../../../../../core/theme/app_colors.dart';
-import '../../../../grades/domain/enums/turno.dart';
-import '../../../../grades/presentation/widgets/card_quantidade_horaria.dart';
 import '../../../../grades/presentation/widgets/card_status_producao.dart';
-import '../../../../grades/presentation/widgets/mensagem_aviso_buffer.dart';
 import 'home_notifier.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -39,10 +31,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(buscarProducaoProvider.notifier).buscar(
-        gradeId: widget.gradeId,
-        producaoId: widget.producaoId,
-      );
+      ref
+          .read(buscarProducaoProvider.notifier)
+          .buscar(gradeId: widget.gradeId, producaoId: widget.producaoId);
     });
   }
 
@@ -53,7 +44,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         context.push(AppRoutesNames.relatorioProducao, extra: widget.gradeId);
         break;
       case 'Add Produção':
-        context.push(AppRoutesNames.adicionarProducao);
+        context.push(AppRoutesNames.adicionarProducao, extra: widget.gradeId);
         break;
       case 'Produção por turno':
         context.push(AppRoutesNames.producaoPorTurno);
@@ -103,34 +94,29 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ),
       drawer: AppDrawer(),
       body: producaoState.when(
-          loading: () => Center(child: CircularProgressIndicator()),
-          error: (Object error, StackTrace stackTrace) => Center(
-            child: Text('Erro: ${(error as Failure).message}'),
-          ),
-          data: (ProducaoEntity? producao) => producao == null
-              ? Center(child: Text('Produção não encontrada'),)
-              : _buildConteudoComProducao(producao, turnoNotifier, turnoState),
-
-      )
+        loading: () => Center(child: CircularProgressIndicator()),
+        error: (Object error, StackTrace stackTrace) =>
+            Center(child: Text('Erro: ${(error as Failure).message}')),
+        data: (ProducaoEntity? producao) => producao == null
+            ? Center(child: Text('Produção não encontrada'))
+            : _buildConteudoComProducao(producao, turnoNotifier, turnoState),
+      ),
     );
   }
 
   Widget _buildConteudoComProducao(
-      ProducaoEntity producao,
-      SelecionarTurnoNotifier turnoNotifier,
-      SelecionarTurnoState turnoState,
+    ProducaoEntity producao,
+    SelecionarTurnoNotifier turnoNotifier,
+    SelecionarTurnoState turnoState,
   ) {
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.all(16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-
           // Cabeçalho
           Card(
-            elevation: 0.4,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            child: Padding(
+            child: Container(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -217,9 +203,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           // Monitoramento de volume
           GestureDetector(
             onTap: () => context.push(AppRoutesNames.finalProducao, extra: producao.id),
-            child: ControleNivelBufferWidget(
-              producao: producao,
-            ),
+            child: ControleNivelBufferWidget(producao: producao),
           ),
           const SizedBox(height: 16),
 
@@ -231,25 +215,30 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   producaoId: producao.id!,
                   gradeId: producao.gradeId,
                   producao: producao,
-                )
+                ),
               );
             },
             child: SizedBox(
               width: double.infinity,
               child: Card(
                 color: Color(0xff3559fa),
+                // color: ThemeColors.red600,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 16,),
+                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 16),
                   child: Center(
                     child: Text(
                       'Ver anotações',
-                      style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

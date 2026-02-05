@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/providers/auth_state.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/cadastro/cadastro_notifier.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/cadastro/form_cadastro_state.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/common/widgets/elevated_button_centralizado.dart';
 import '../../../../../core/constants/app_dimens.dart';
@@ -111,12 +112,13 @@ class _CadastroScreenState extends ConsumerState<CadastroScreen> {
 
               if (formaState.isLoading)
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16),
+                  padding: EdgeInsets.only(top: 16),
                   child: Center(
                     child: CircularProgressIndicator()
                   ),
                 ),
 
+              const SizedBox(height: 16),
               ElevatedButtonCentralizado(
                 clique: () {
                   ref.read(cadastroProvider.notifier).cadastrar();
@@ -135,13 +137,7 @@ class _CadastroScreenState extends ConsumerState<CadastroScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Cadastrar'),
-                            duration: Duration(seconds: 2),
-                            behavior: SnackBarBehavior.floating,
-                          ),
-                        );
+                        context.pop();
                       },
                       child: Text(AppStrings.logar),
                     ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
 
@@ -27,9 +28,10 @@ class AppDrawer extends ConsumerWidget {
         children: [
           Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.only(top: 32, left: 10),
+            padding: EdgeInsets.only(top: 32, left: 10, bottom: 8),
             decoration: BoxDecoration(
               border: Border(bottom: BorderSide(color: Colors.transparent, width: 0.0)),
+              color: AppColors.red900,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,8 +47,8 @@ class AppDrawer extends ConsumerWidget {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(nome, style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
-                        Text(email),
+                        Text(nome, style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Colors.white)),
+                        Text(email, style: TextStyle(color: Colors.white),),
                       ],
                     ),
                     Spacer(),
@@ -55,17 +57,17 @@ class AppDrawer extends ConsumerWidget {
                         context.pop();
                         context.push(AppRoutesNames.configuracoes);
                       },
-                      icon: Icon(Icons.settings, color: Colors.grey),
+                      icon: Icon(Icons.settings, color: Colors.white),
                     ),
                   ],
                 ),
               ],
             ),
           ),
-          Divider(),
-          SizedBox(height: 16),
+          // Divider(),
+          SizedBox(height: 8),
           ListTile(
-            leading: const Icon(Icons.home),
+            leading: const Icon(Icons.home, color: AppColors.red900,),
             title: const Text('Home'),
             onTap: () {
               context.pop();
@@ -73,7 +75,7 @@ class AppDrawer extends ConsumerWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.stacked_bar_chart_rounded),
+            leading: const Icon(Icons.stacked_bar_chart_rounded, color: AppColors.red900,),
             title: const Text('Adicionar Grade'),
             onTap: () {
               context.pop();
@@ -81,16 +83,17 @@ class AppDrawer extends ConsumerWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.list),
+            leading: const Icon(Icons.list, color: AppColors.red900,),
             title: const Text('Lista de Grades'),
             onTap: () {
               context.pop();
               context.push(AppRoutesNames.listaGrades);
             },
           ),
+          // TODO - Adicionar Produção
           const Divider(),
           ListTile(
-            leading: const Icon(Icons.exit_to_app),
+            leading: const Icon(Icons.exit_to_app, color: AppColors.red900,),
             title: const Text('Sair'),
             onTap: () {
               ref.read(homeProvider.notifier).deslogar();

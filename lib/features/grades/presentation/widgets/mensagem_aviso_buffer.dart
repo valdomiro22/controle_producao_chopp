@@ -7,14 +7,15 @@ class MensagemAvisoBuffer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final corVermelha = Color(0xffcb0000);
+    final isVolumeOk = vlNecessario != null ? vlNecessario! <= 40 : false;
+    
     if (vlNecessario == null) {
       return Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
         decoration: BoxDecoration(
-          // color: Colors.red,
           border: Border.all(
             color: Color(0xff9e9e9e),
-            // color: Colors.green,
             width: 4,
           ),
           borderRadius: BorderRadius.circular(8),
@@ -24,14 +25,12 @@ class MensagemAvisoBuffer extends StatelessWidget {
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       );
-    } else if (vlNecessario! <= 27.0) {
+    } else if (isVolumeOk) {
       return Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
         decoration: BoxDecoration(
-          // color: Colors.red,
           border: Border.all(
-            color: Color(0xffcb0000),
-            // color: Colors.green,
+            color: corVermelha,
             width: 4,
           ),
           borderRadius: BorderRadius.circular(8),
@@ -45,10 +44,8 @@ class MensagemAvisoBuffer extends StatelessWidget {
       return Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
         decoration: BoxDecoration(
-          // color: Colors.red,
           border: Border.all(
             color: Color(0xff00b000),
-            // color: Colors.green,
             width: 4,
           ),
           borderRadius: BorderRadius.circular(8),

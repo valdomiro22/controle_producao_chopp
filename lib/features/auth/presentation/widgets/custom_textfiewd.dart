@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class CustomTextfiewd extends StatelessWidget {
@@ -24,29 +23,7 @@ class CustomTextfiewd extends StatelessWidget {
     return TextField(
       controller: controller,
       keyboardType: inputType,
-      decoration: InputDecoration(
-          prefixIcon: Icon(icone),
-          hintText: hint,
-          labelText: label,
-          border: OutlineInputBorder(
-              borderSide: BorderSide(
-                  width: 2, color: Colors.deepPurple
-              ),
-              borderRadius: BorderRadius.circular(8)
-          ),
-          enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  width: 2, color: Colors.deepPurple
-              ),
-              borderRadius: BorderRadius.circular(8)
-          ),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  width: 3, color: Colors.deepPurple
-              ),
-              borderRadius: BorderRadius.circular(8)
-          ),
-      ),
+      decoration: InputDecoration(prefixIcon: Icon(icone), hintText: hint, labelText: label),
       obscureText: ocultar,
     );
   }

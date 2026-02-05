@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/constants/app_dimens.dart';
+import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/recuperar_senha/recuperar_senha_notifier.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/widgets/custom_textfiewd.dart';
 import 'package:go_router/go_router.dart';
@@ -47,7 +48,7 @@ class _RecuperarSenhaScreenState extends ConsumerState<RecuperarSenhaScreen> {
           children: [
             const SizedBox(height: AppDimens.spacingXG),
 
-            Icon(Icons.lock_reset, size: 100, color: Colors.deepPurpleAccent,),
+            Icon(Icons.lock_reset, size: 100, color: AppColors.primaryRed),
             const SizedBox(height: AppDimens.spacingXG),
 
             Text(AppStrings.recuperarSenhaInfo),

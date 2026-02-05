@@ -27,23 +27,7 @@ class CustomImputText extends StatelessWidget {
       keyboardType: inputType,
       onChanged: onChanged,
       obscureText: ocultar,
-      decoration: InputDecoration(
-        prefixIcon: Icon(icone),
-        hintText: hint,
-        labelText: label,
-        border: OutlineInputBorder(
-          borderSide: const BorderSide(width: 2, color: Colors.deepPurple),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(width: 2, color: Colors.deepPurple),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(width: 3, color: Colors.deepPurple),
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ),
+      decoration: InputDecoration(prefixIcon: Icon(icone), hintText: hint, labelText: label),
     );
   }
 }

@@ -1,6 +1,3 @@
-import 'dart:io';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/domain/enums/tipo_codigo.dart';
@@ -16,7 +13,6 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../producoes/presentation/screens/lista_producoes/lista_producoes_notifier.dart';
-import '../../../../quantidade_horaria/presentation/providers/buscar_qt_horaria_notifier.dart';
 
 class InserirAnotacoesScreen extends ConsumerStatefulWidget {
   final String gradeId;
@@ -41,7 +37,7 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
           .buscarAll(gradeId: widget.gradeId, producaoId: widget.producaoId);
     });
   }
-  
+
   void _atualizarProducao(String gId, String pId) {
     final producao = ref.read(buscarProducaoProvider.notifier).buscar(gradeId: gId, producaoId: pId);
     // final qtProduzida = producao.
@@ -136,7 +132,7 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
                                           codigo: codigo,
                                           tipoCodigo: TipoCodigo.anotacao,
                                         );
-                                        
+
                                         ref.read(buscarAnotacoesProvider.notifier).buscarAll(
                                             gradeId: gradeId,
                                             producaoId: producaoId
@@ -173,6 +169,9 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
                           },
                         );
                       },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.blueStrong
+                      ),
                       child: Icon(Icons.edit, size: 40),
                     ),
                     SizedBox(width: 24),
@@ -189,6 +188,9 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
                             producaoId: producaoId
                         );
                       },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.blueStrong
+                      ),
                       child: Icon(Icons.qr_code, size: 40),
                     ),
                     SizedBox(width: 24),
@@ -206,6 +208,9 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
                             producaoId: producaoId
                         );
                       },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.blueStrong
+                      ),
                       child: Icon(MdiIcons.barcode, size: 40),
                     ),
                   ],
