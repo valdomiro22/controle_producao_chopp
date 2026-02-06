@@ -1,13 +1,30 @@
 import 'package:dartz/dartz.dart';
 import 'package:gestao_producao_chopp/core/error/failure.dart';
+import 'package:gestao_producao_chopp/features/auth/domain/entity/usuario_entity.dart';
 import 'package:gestao_producao_chopp/features/auth/domain/repositories/auth_repository.dart';
+import 'package:gestao_producao_chopp/features/auth/domain/repositories/usuario_repository.dart';
 
 class AlterarEmailUseCase {
-  final AuthRepository _repository;
+  final AuthRepository _authRepository;
+  final UsuarioRepository _usuarioRepository;
 
-  AlterarEmailUseCase(this._repository);
+  AlterarEmailUseCase(this._authRepository, this._usuarioRepository);
 
-  Future<Either<Failure, Unit>> call({required String newEmail, required String password}) async {
-    return _repository.updateEmailAddress(newEmail: newEmail, password: password);
+  Future<Either<Failure, Unit>> call({
+    required String newEmail,
+    required String password,
+    required UsuarioEntity usuario,
+    required String usuarioId,
+  }) async {
+
+    final authResult = await _authRepository.updateEmailAddress(newEmail: newEmail, password: password);
+
+    return authResult.fold(
+        (failure) => Left(failure),
+        (_) {
+          final usuarioAtualizado = usuario.copyWith(email: newEmail);
+          return _usuarioRepository.updateUsuario(usuario: usuarioAtualizado, usuarioId: usuarioId);
+        }
+    );
   }
 }

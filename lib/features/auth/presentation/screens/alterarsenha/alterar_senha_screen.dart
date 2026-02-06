@@ -5,6 +5,7 @@ import 'package:gestao_producao_chopp/core/constants/app_strings.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../producoes/presentation/screens/home/home_notifier.dart';
 import '../../widgets/custom_textfiewd.dart';
 import 'alterar_senha_notifier.dart';
 
@@ -38,7 +39,7 @@ class _AlterarSenhaScreenState extends ConsumerState<AlterarSenhaScreen> {
         _senhaController.clear();
         _novaSenhaController.clear();
         _confirmeNovaSenhaController.clear();
-        context.pop();
+        ref.read(homeProvider.notifier).deslogar();
       }
     });
 

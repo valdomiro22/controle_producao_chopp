@@ -35,7 +35,8 @@ LoginUseCase loginUseCase(Ref ref) {
 @riverpod
 AlterarEmailUseCase alterarEmailUseCase(Ref ref) {
   final authRepository = ref.watch(authRepositoryProvider);
-  return AlterarEmailUseCase(authRepository);
+  final firestoreRepository = ref.watch(usuarioRepositoryProvider);
+  return AlterarEmailUseCase(authRepository, firestoreRepository);
 }
 
 @riverpod

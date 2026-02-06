@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/constants/app_strings.dart';
+import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/buscar_usuario_notifier.dart';
+import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/buscar_usuario_state.dart';
+import 'package:gestao_producao_chopp/features/auth/presentation/screens/state/alteracoes_usuario_state.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/widgets/custom_textfiewd.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/constants/app_dimens.dart';
 import '../../../../../core/theme/app_colors.dart';
+import '../../../domain/entity/usuario_entity.dart';
 import '../../providers/auth_state.dart';
 import 'alterar_email_notifier.dart';
 
@@ -34,11 +38,12 @@ class _AlterarEmailScreenState extends ConsumerState<AlterarEmailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final usuarioState = ref.watch(buscarUsuarioProvider);
     final state = ref.watch(alterarEmailProvider);
 
-    ref.listen<AuthState>(alterarEmailProvider, (previous, next) {
+    ref.listen<AlteracoesUsuarioState>(alterarEmailProvider, (previous, next) {
 
-      if (previous?.isCarregando == true && next.isSucesso) {
+      if (previous == AlteracoesUsuarioState.carregando() && next == AlteracoesUsuarioState.sucesso()) {
         _emailController.clear();
         _senhaController.clear();
         context.pop();
@@ -49,71 +54,69 @@ class _AlterarEmailScreenState extends ConsumerState<AlterarEmailScreen> {
       appBar: AppBar(
         title: const Text(AppStrings.alterarEmail),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(AppDimens.spacingG),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const Text(
-                AppStrings.alterarEmailInfo,
-                style: TextStyle(color: AppColors.secondaryText),
-              ),
-              const SizedBox(height: AppDimens.spacingXG),
+      body: usuarioState.when(
+          sucessoComDados: (UsuarioEntity usuario) {
+            return SingleChildScrollView(
+              padding: const EdgeInsets.all(AppDimens.spacingG),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const Text(
+                      AppStrings.alterarEmailInfo,
+                      style: TextStyle(color: AppColors.secondaryText),
+                    ),
+                    const SizedBox(height: AppDimens.spacingXG),
 
-              CustomTextfiewd(
-                controller: _emailController,
-                label: 'Novo E-mail',
-                icone: Icons.email_outlined,
-                hint: AppStrings.exemploEmail,
-                inputType: TextInputType.emailAddress,
-              ),
-              const SizedBox(height: AppDimens.spacingMM),
+                    CustomTextfiewd(
+                      controller: _emailController,
+                      label: 'Novo E-mail',
+                      icone: Icons.email_outlined,
+                      hint: AppStrings.exemploEmail,
+                      inputType: TextInputType.emailAddress,
+                    ),
+                    const SizedBox(height: AppDimens.spacingMM),
 
-              CustomTextfiewd(
-                controller: _senhaController,
-                label: 'Senha Atual',
-                icone: Icons.lock_outline,
-                hint: AppStrings.exemploSenha,
-                inputType: TextInputType.visiblePassword,
-                ocultar: true,
-              ),
+                    CustomTextfiewd(
+                      controller: _senhaController,
+                      label: 'Senha Atual',
+                      icone: Icons.lock_outline,
+                      hint: AppStrings.exemploSenha,
+                      inputType: TextInputType.visiblePassword,
+                      ocultar: true,
+                    ),
 
-              if (state.isErro)
-                Text(
-                  '${state.erro?.message}',
-                  style: TextStyle(color: Colors.red, fontSize: 12),
+                    const SizedBox(height: AppDimens.spacingG),
+
+                    ElevatedButton(
+                      onPressed: () {
+                        final email = _emailController.text.trim();
+                        final senha = _senhaController.text;
+                        final id = usuario.id!;
+
+                        ref.read(alterarEmailProvider.notifier).alterarEmail(
+                          newEmail: email,
+                          password: senha,
+                          usuario: usuario,
+                          usuarioId: id
+                        );
+
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                      ),
+                      child: const Text(AppStrings.salvarAlteracoes),
+                    ),
+                  ],
                 ),
-              const SizedBox(height: AppDimens.spacingXG),
-
-              if (state.isCarregando)
-                Center(
-                  child: CircularProgressIndicator(),
-                ),
-
-              const SizedBox(height: AppDimens.spacingG),
-
-              ElevatedButton(
-                onPressed: () {
-                  final email = _emailController.text.trim();
-                  final senha = _senhaController.text;
-
-                  ref.read(alterarEmailProvider.notifier).alterarEmail(
-                    newEmail: email,
-                    password: senha
-                  );
-                  
-                  debugPrint('Alterar');
-                },
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                ),
-                child: const Text(AppStrings.salvarAlteracoes),
               ),
-            ],
-          ),
-        ),
+            );
+          },
+          inicial: () => SizedBox(),
+          carregando: () => Center(child: CircularProgressIndicator(),),
+          sucesso: () => SizedBox(),
+          erro: (failure) => Center(child: Text(failure.message),)
       ),
     );
   }
