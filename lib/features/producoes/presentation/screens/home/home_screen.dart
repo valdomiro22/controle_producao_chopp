@@ -11,6 +11,7 @@ import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/co
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../auth/presentation/screens/configuracoes/buscar_usuario_notifier.dart';
 import '../../../../grades/domain/enums/turno.dart';
 import '../../../../grades/presentation/widgets/card_quantidade_horaria.dart';
 import '../../../../grades/presentation/widgets/card_status_producao.dart';
