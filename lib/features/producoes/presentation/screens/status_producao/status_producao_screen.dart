@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/buscar_producao_notifier.dart';
 
 import '../../widgets/linha_nome_valor.dart';
@@ -36,12 +37,31 @@ class _StatusProducaoScreenState extends ConsumerState<FinalProducaoScreen> {
             _pendente = double.parse(producao.value!.quantidadePendente.toString());
 
 
-          return Container(
-            width: double.infinity,
+          return SingleChildScrollView(
             padding: EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // LinhaNomeValor(
+                //   texto: 'Produção',
+                //   quantidade: '${data!.produto.label} ${data.tipoBarril.label}',
+                //   corDeFundo: AppColors.yellow500,
+                // ),
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.all(10),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: AppColors.yellow500,
+                    borderRadius: BorderRadius.circular(4)
+                  ),
+                  child: Text(
+                    '${data!.produto.label} ${data.tipoBarril.label}',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const SizedBox(height: 16),
+
                 LinhaNomeValor(
                   texto: 'Quantidade Programada',
                   quantidade: _qtNotas.toString(),
@@ -59,7 +79,8 @@ class _StatusProducaoScreenState extends ConsumerState<FinalProducaoScreen> {
                   quantidade: _pendente != null ? _pendente!.toStringAsFixed(0) : '-',
                   corDeFundo: Colors.red.shade100,
                 ),
-                SizedBox(height: 32),
+                SizedBox(height: 24),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -93,7 +114,8 @@ class _StatusProducaoScreenState extends ConsumerState<FinalProducaoScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 32),
+                const SizedBox(height: 16),
+
                 Container(
                   alignment: Alignment.center,
                   child: Row(
