@@ -56,3 +56,51 @@ final class RecuperarUsuarioUseCaseProvider
 
 String _$recuperarUsuarioUseCaseHash() =>
     r'9a88bf93a6e0a864f79f526cedc2edf6fa084b04';
+
+@ProviderFor(updateUsuarioUseCase)
+final updateUsuarioUseCaseProvider = UpdateUsuarioUseCaseProvider._();
+
+final class UpdateUsuarioUseCaseProvider
+    extends
+        $FunctionalProvider<
+          UpdateUsuarioUseCase,
+          UpdateUsuarioUseCase,
+          UpdateUsuarioUseCase
+        >
+    with $Provider<UpdateUsuarioUseCase> {
+  UpdateUsuarioUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'updateUsuarioUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$updateUsuarioUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<UpdateUsuarioUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  UpdateUsuarioUseCase create(Ref ref) {
+    return updateUsuarioUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(UpdateUsuarioUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<UpdateUsuarioUseCase>(value),
+    );
+  }
+}
+
+String _$updateUsuarioUseCaseHash() =>
+    r'f607443a8b52d8d9122cf9049e18b2efc9afc31b';

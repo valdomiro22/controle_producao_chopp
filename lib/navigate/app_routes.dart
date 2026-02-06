@@ -3,13 +3,10 @@ import 'package:gestao_producao_chopp/features/anotacoes/domain/entity/anotacao_
 import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/atualizaranotacao/editar_anotacao_screen.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/inserir_anotacao_args.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/inserir_anotacoes_screen.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterar_email/Alterar_email_screen.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterar_senha/alterar_senha_screen.dart';
+import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterarnome/Alterar_nome_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/cadastro/cadastro_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/configuracoes_screen.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/screens/deletar_conta/deletar_conta_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/login/login_screen.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/screens/recuperar_senha/recuperar_senha_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/producaoporturno/producao_por_turno_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/relatorio_producao/relatorio_screen.dart';
@@ -17,6 +14,10 @@ import 'package:gestao_producao_chopp/features/producoes/presentation/screens/st
 import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/selecionar_producao_widget.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/auth/presentation/screens/alteraremail/Alterar_email_screen.dart';
+import '../features/auth/presentation/screens/alterarsenha/alterar_senha_screen.dart';
+import '../features/auth/presentation/screens/deletarconta/deletar_conta_screen.dart';
+import '../features/auth/presentation/screens/recuperarsenha/recuperar_senha_screen.dart';
 import '../features/grades/domain/entities/grade_entity.dart';
 import '../features/grades/presentation/screens/adicionar_grade/adicionar_grade_screen.dart';
 import '../features/grades/presentation/screens/editar_grade/editar_grade_screen.dart';
@@ -52,6 +53,8 @@ class AppRoutes {
     GoRoute(path: AppRoutesNames.configuracoes, builder: (context, state) => ConfiguracoesScreen()),
 
     GoRoute(path: AppRoutesNames.alterarEmail, builder: (context, state) => AlterarEmailScreen()),
+
+    GoRoute(path: AppRoutesNames.alterarNome, builder: (context, state) => AlterarNomeScreen()),
 
     GoRoute(path: AppRoutesNames.alterarSenha, builder: (context, state) => AlterarSenhaScreen()),
 

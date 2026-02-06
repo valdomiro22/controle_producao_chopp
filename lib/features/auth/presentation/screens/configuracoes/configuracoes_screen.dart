@@ -77,7 +77,11 @@ class _ConfiguracoesScreenState extends ConsumerState<ConfiguracoesScreen> {
                   SizedBox(height: AppDimens.spacingGG),
 
                   // Botões de ações
-                  Custombuttonmaxwidth(texto: 'Alterar Nome', clique: () {}, isMaxWidth: true),
+                  Custombuttonmaxwidth(
+                    texto: 'Alterar Nome',
+                    clique: () => context.push(AppRoutesNames.alterarNome),
+                    isMaxWidth: true,
+                  ),
                   SizedBox(height: AppDimens.spacingG),
 
                   Custombuttonmaxwidth(

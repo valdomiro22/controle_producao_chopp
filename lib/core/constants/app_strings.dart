@@ -22,7 +22,13 @@ class AppStrings {
   static const String novoEmail = 'Novo E-mail';
   static const String alterarEmailInfo = 'Insiera o novo e-mail e em seguida a senha atual para confirmar esta ação.';
 
-  // Alterar email
+  // Alterar Nome
+  static const String alterarNome = 'Alterar Nome';
+  static const String novoNome = 'Novo nome';
+  static const String novoSobrenome = 'Novo sobrenome';
+  static const String alterarNomeInfo = 'Insira o novo nome e sobrenome para proceguir com esta ação.';
+
+  // Alterar Senha
   static const String alterarSenhaInfo = 'Digite a senha atual e a nova senha para confirmar a operação. Não podem ser iguais.';
   static const String senhaAtual = 'Senha atual';
   static const String novaSenha = 'Nova senha';
