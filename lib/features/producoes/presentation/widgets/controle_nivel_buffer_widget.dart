@@ -20,8 +20,8 @@ class ControleNivelBufferWidget extends ConsumerWidget {
 
     return Column(
       children: [
-        Text('Controle de nível do Buffer', style: TextStyle(fontSize: 18)),
-        SizedBox(height: 4),
+        // Text('Controle de nível do Buffer', style: TextStyle(fontSize: 18)),
+        // SizedBox(height: 4),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
           decoration: BoxDecoration(
@@ -48,7 +48,7 @@ class ControleNivelBufferWidget extends ConsumerWidget {
                   Text('${producao.volumeNecessarioHl.toString()} hl', style: TextStyle(fontSize: 16)),
                 ],
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 8),
               MensagemAvisoBuffer(vlNecessario: producao.volumeNecessarioHl),
             ],
           ),

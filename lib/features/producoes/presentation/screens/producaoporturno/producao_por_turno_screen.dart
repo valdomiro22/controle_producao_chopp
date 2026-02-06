@@ -53,6 +53,7 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+
                   Expanded(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(

@@ -6,10 +6,13 @@ import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/in
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/buscar_producao_notifier.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/selecionar_turno_notifier.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/screens/producaoporturno/producao_por_turno_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/controle_nivel_buffer_widget.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../grades/domain/enums/turno.dart';
+import '../../../../grades/presentation/widgets/card_quantidade_horaria.dart';
 import '../../../../grades/presentation/widgets/card_status_producao.dart';
 import 'home_notifier.dart';
 
@@ -110,7 +113,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     SelecionarTurnoState turnoState,
   ) {
     return SingleChildScrollView(
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.all(10),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -172,7 +175,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
             ),
           ),
-          SizedBox(height: 8),
+          SizedBox(height: 10),
 
           // Status da Produção
           Row(
@@ -198,15 +201,130 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
             ],
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 10),
 
           // Monitoramento de volume
           GestureDetector(
             onTap: () => context.push(AppRoutesNames.finalProducao, extra: producao.id),
             child: ControleNivelBufferWidget(producao: producao),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
 
+          // Horarios dos turnos
+          Column(
+              children: [
+                // Selecionar turno
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+
+                        Expanded(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.all(4),
+                              elevation: 0,
+                              backgroundColor: turnoState.turno == Turno.turnoA
+                                  ? Color(0xff3559fa)
+                                  : Color(0xffd2d6de),
+                              overlayColor: Colors.black.withOpacity(0.05),
+                              splashFactory: InkRipple.splashFactory,
+                              animationDuration: const Duration(milliseconds: 120),
+                            ),
+                            onPressed: () {
+                              turnoNotifier.selecionarTurno(Turno.turnoA);
+                            },
+                            child: Text(
+                              'Turno A',
+                              style: TextStyle(
+                                color: turnoState.turno == Turno.turnoA ? Colors.white : Colors.blueGrey,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 8),
+
+                        Expanded(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.all(4),
+                              elevation: 0,
+                              backgroundColor: turnoState.turno == Turno.turnoB
+                                  ? Color(0xff3559fa)
+                                  : Color(0xffd2d6de),
+                              overlayColor: Colors.black.withOpacity(0.05),
+                              splashFactory: InkRipple.splashFactory,
+                              animationDuration: const Duration(milliseconds: 120),
+                            ),
+                            onPressed: () {
+                              // _turnoSelecionado = Turno.turnoB;
+                              turnoNotifier.selecionarTurno(Turno.turnoB);
+                            },
+                            child: Text(
+                              'Turno B',
+                              style: TextStyle(
+                                color: turnoState.turno == Turno.turnoB ? Colors.white : Colors.blueGrey,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 8),
+
+                        Expanded(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.all(4),
+                              elevation: 0,
+                              backgroundColor: turnoState.turno == Turno.turnoC
+                                  ? Color(0xff3559fa)
+                                  : Color(0xffd2d6de),
+                              overlayColor: Colors.black.withOpacity(0.05),
+                              splashFactory: InkRipple.splashFactory,
+                              animationDuration: const Duration(milliseconds: 120),
+                            ),
+                            onPressed: () {
+                              // _turnoSelecionado = Turno.turnoC;
+                              turnoNotifier.selecionarTurno(Turno.turnoC);
+                            },
+                            child: Text(
+                              'Turno C',
+                              style: TextStyle(
+                                color: turnoState.turno == Turno.turnoC ? Colors.white : Colors.blueGrey,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 8),
+
+                // Horarios do turno
+                GridView.builder(
+                  padding: EdgeInsets.zero,
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 5,
+                    mainAxisSpacing: 5,
+                    crossAxisSpacing: 5,
+                    childAspectRatio: 1,
+                  ),
+                  itemCount: turnoState.turno.horarios.length,
+                  itemBuilder: (context, index) {
+                    final horario = turnoState.turno.horarios.values.toList()[index];
+
+                    return CardQuantidadeHoraria(horario: horario, producao: producao);
+                  },
+                ),
+              ],
+          ),
+          const SizedBox(height: 10),
+
+          // Ir para notações
           GestureDetector(
             onTap: () {
               context.push(
