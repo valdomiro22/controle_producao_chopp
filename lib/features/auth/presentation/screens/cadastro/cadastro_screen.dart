@@ -119,13 +119,17 @@ class _CadastroScreenState extends ConsumerState<CadastroScreen> {
                 ),
 
               const SizedBox(height: 16),
-              ElevatedButtonCentralizado(
-                clique: () {
-                  ref.read(cadastroProvider.notifier).cadastrar();
-                },
-                texto: AppStrings.cadastrar,
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    ref.read(cadastroProvider.notifier).cadastrar();
+                  },
+                  child: Text('Logar'),
+                ),
               ),
               SizedBox(height: 50),
+
               Align(
                 alignment: AlignmentGeometry.topCenter,
                 child: Row(

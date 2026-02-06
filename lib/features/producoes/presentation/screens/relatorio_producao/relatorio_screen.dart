@@ -137,56 +137,12 @@ class _RelatorioScreenState extends ConsumerState<RelatorioScreen> {
           inicial: () => const SizedBox(),
           carregando: () => const Center(child: CircularProgressIndicator()),
           sucessoComDados: (GradeEntity grade) {
+            final texto = _gerarMensagemRelatorio(grade, lista);
+
             return Stack(
               children: [
                 SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Prosução de Chopp $hoje',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      Text('Grade: 1'),
-                      Text(
-                        '\nCHOP CLARO ITAIPAVA',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      Text('Estabilidade: ✅'),
-
-                      ItemProducao(tipo: '30L', pendente: '654', produzido: '58', programado: '999'),
-                      SizedBox(height: 16),
-
-                      ItemProducao(tipo: '50L', pendente: '654', produzido: '58', programado: '999'),
-                      SizedBox(height: 16),
-
-                      ItemProducao(tipo: '15L', pendente: '654', produzido: '58', programado: '999'),
-                      SizedBox(height: 16),
-
-                      ItemProducao(
-                        tipo: '30L Escuro',
-                        pendente: '654',
-                        produzido: '58',
-                        programado: '999',
-                      ),
-                      Text('Estabilidade: ✅'),
-                      SizedBox(height: 16),
-
-                      Text('➖➖➖➖➖➖➖➖➖'),
-
-                      SizedBox(height: 16),
-                      Text('CHOP PETRA', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                      Text('Estabilidade: ✅'),
-
-                      ItemProducao(tipo: '50L', pendente: '654', produzido: '58', programado: '999'),
-                      SizedBox(height: 16),
-
-                      ItemProducao(tipo: '30L', pendente: '654', produzido: '58', programado: '999'),
-                      SizedBox(height: 16),
-
-                      ItemProducao(tipo: '15L', pendente: '654', produzido: '58', programado: '999'),
-                    ],
-                  ),
+                  child: Text(texto),
                 ),
                 Positioned(
                   right: 10,

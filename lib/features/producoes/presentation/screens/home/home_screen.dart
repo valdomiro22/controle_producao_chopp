@@ -125,7 +125,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text('Produto', style: TextStyle(fontSize: 12)),
                       const SizedBox(height: 4),
@@ -141,7 +141,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
 
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text('Código', style: TextStyle(fontSize: 12)),
                       const SizedBox(height: 4),
@@ -157,7 +157,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
 
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text('Ordem', style: TextStyle(fontSize: 12)),
                       const SizedBox(height: 4),

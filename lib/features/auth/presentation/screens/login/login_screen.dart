@@ -86,13 +86,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 SizedBox(height: AppDimens.spacingG),
 
 
-              ElevatedButtonCentralizado(
-                clique: () {
-                  ref.read(loginProvider.notifier).logar();
-                },
-                texto: 'Logar',
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    ref.read(loginProvider.notifier).logar();
+                  },
+                  child: Text('Logar'),
+                ),
               ),
               SizedBox(height: 50),
+
               Align(
                 alignment: AlignmentGeometry.topCenter,
                 child: Row(

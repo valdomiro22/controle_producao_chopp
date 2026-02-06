@@ -73,6 +73,20 @@ class ItemProducaoWidget extends ConsumerWidget {
                               ),
                               Divider(),
                               LinhaChaveValor(
+                                chave: 'Código',
+                                chaveStyle: TextStyle(fontSize: 14),
+                                valor: producao.codigo.toString(),
+                                valorStyle: TextStyle(fontSize: 14),
+                              ),
+                              Divider(),
+                              LinhaChaveValor(
+                                chave: 'Ordem',
+                                chaveStyle: TextStyle(fontSize: 14),
+                                valor: producao.ordem.toString(),
+                                valorStyle: TextStyle(fontSize: 14),
+                              ),
+                              Divider(),
+                              LinhaChaveValor(
                                 chave: 'Quantidade programada',
                                 chaveStyle: TextStyle(fontSize: 14),
                                 valor: producao.quantidadeProgramada.toString(),

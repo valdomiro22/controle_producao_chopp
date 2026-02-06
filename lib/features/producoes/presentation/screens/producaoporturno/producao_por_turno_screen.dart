@@ -44,16 +44,12 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
       padding: EdgeInsets.all(16),
       child: Column(
         children: [
-          // Selecionar turno
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Selecione o turno', style: TextStyle(fontSize: 18)),
-              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-
                   Expanded(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
