@@ -94,9 +94,54 @@ class _DeletarConstaScreenState extends ConsumerState<DeletarContaScreen> {
                   final email = _emailController.text.trim();
                   final senha = _senhaController.text;
 
-                  ref.read(deletarContaProvider.notifier).deletarConta(
-                      email: email,
-                      currentPassword: senha
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Row(
+                          children: [
+                            Icon(Icons.warning, color: AppColors.primaryRed,),
+                            SizedBox(width: 4,),
+                            Text(
+                              'Alerta!',
+                              style: TextStyle(color: AppColors.primaryDarkText),
+                            )
+                          ],
+                        ),
+                        content: Text(
+                          'Está ação não podera ser desfeita. Você realmente deseja excluir a sua conta?',
+                        ),
+                        actions: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.greenAccent,
+                            ),
+                            child: Text(
+                              'Cancelar',
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () async {
+                              ref.read(deletarContaProvider.notifier).deletarConta(
+                                  email: email,
+                                  currentPassword: senha
+                              );
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              'Deletar',
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
                   );
                 },
                 style: ElevatedButton.styleFrom(

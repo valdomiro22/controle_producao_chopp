@@ -125,7 +125,7 @@ class _CadastroScreenState extends ConsumerState<CadastroScreen> {
                   onPressed: () {
                     ref.read(cadastroProvider.notifier).cadastrar();
                   },
-                  child: Text('Logar'),
+                  child: Text('Cadastrar'),
                 ),
               ),
               SizedBox(height: 50),
