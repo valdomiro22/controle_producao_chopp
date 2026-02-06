@@ -7,6 +7,7 @@ class CustomTextfiewd extends StatelessWidget {
   final bool ocultar;
   final IconData icone;
   final TextInputType inputType;
+  final ValueChanged<String>? onChanged;
 
   const CustomTextfiewd({
     super.key,
@@ -16,6 +17,7 @@ class CustomTextfiewd extends StatelessWidget {
     required this.icone,
     required this.inputType,
     this.ocultar = false,
+    this.onChanged,
   });
 
   @override
@@ -23,8 +25,13 @@ class CustomTextfiewd extends StatelessWidget {
     return TextField(
       controller: controller,
       keyboardType: inputType,
-      decoration: InputDecoration(prefixIcon: Icon(icone), hintText: hint, labelText: label),
       obscureText: ocultar,
+      onChanged: onChanged,
+      decoration: InputDecoration(
+        prefixIcon: Icon(icone),
+        hintText: hint,
+        labelText: label,
+      ),
     );
   }
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gestao_producao_chopp/core/common/widgets/mensagem_erro_widget.dart';
 import 'package:gestao_producao_chopp/core/constants/app_dimens.dart';
 import 'package:gestao_producao_chopp/core/constants/app_strings.dart';
+import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterarnome/alterar_nome_notifier.dart';
+import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterarsenha/alterar_senha_state.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/theme/app_colors.dart';
@@ -33,9 +36,10 @@ class _AlterarSenhaScreenState extends ConsumerState<AlterarSenhaScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(alterarSenhaProvider);
+    final notifier = ref.watch(alterarSenhaProvider.notifier);
 
-    ref.listen(alterarSenhaProvider, (previous, next) {
-      if (previous?.isCarregando == true && next.isSucesso) {
+    ref.listen<AlterarSenhaState>(alterarSenhaProvider, (previous, next) {
+      if (previous?.isLoading == true && next.isSucess == true) {
         _senhaController.clear();
         _novaSenhaController.clear();
         _confirmeNovaSenhaController.clear();
@@ -69,7 +73,10 @@ class _AlterarSenhaScreenState extends ConsumerState<AlterarSenhaScreen> {
                 hint: AppStrings.exemploSenha,
                 inputType: TextInputType.visiblePassword,
                 ocultar: true,
+                onChanged: (v) => notifier.inserirSenhaAtual(v),
               ),
+              if (state.erroSenhaAtual != null)
+                MensagemErroWidget(texto: state.erroSenhaAtual.toString()),
               const SizedBox(height: AppDimens.spacingMM),
 
               CustomTextfiewd(
@@ -79,7 +86,10 @@ class _AlterarSenhaScreenState extends ConsumerState<AlterarSenhaScreen> {
                 hint: AppStrings.exemploSenha,
                 inputType: TextInputType.visiblePassword,
                 ocultar: true,
+                onChanged: (v) => notifier.inserirNovaSenha(v),
               ),
+              if (state.erroNovaSenha != null)
+                MensagemErroWidget(texto: state.erroNovaSenha.toString()),
               const SizedBox(height: AppDimens.spacingMM),
 
               CustomTextfiewd(
@@ -89,16 +99,13 @@ class _AlterarSenhaScreenState extends ConsumerState<AlterarSenhaScreen> {
                 hint: AppStrings.exemploSenha,
                 inputType: TextInputType.visiblePassword,
                 ocultar: true,
+                onChanged: (v) => notifier.inserirConfirmarNovaSenha(v),
               ),
-
-              if (state.isErro)
-                Text(
-                  '${state.erro?.message}',
-                  style: TextStyle(color: Colors.red, fontSize: 12),
-                ),
+              if (state.erroConfirmarSenha != null)
+                MensagemErroWidget(texto: state.erroConfirmarSenha.toString()),
               const SizedBox(height: AppDimens.spacingXG),
 
-              if (state.isCarregando)
+              if (state.isLoading)
                 Center(
                   child: CircularProgressIndicator(),
                 ),

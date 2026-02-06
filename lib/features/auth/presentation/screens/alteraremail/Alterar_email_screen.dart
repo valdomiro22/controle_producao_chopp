@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gestao_producao_chopp/core/common/widgets/mensagem_erro_widget.dart';
 import 'package:gestao_producao_chopp/core/constants/app_strings.dart';
+import 'package:gestao_producao_chopp/features/auth/presentation/screens/alteraremail/form_alterar_email_state.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/buscar_usuario_notifier.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/buscar_usuario_state.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/state/alteracoes_usuario_state.dart';
@@ -40,10 +42,11 @@ class _AlterarEmailScreenState extends ConsumerState<AlterarEmailScreen> {
   Widget build(BuildContext context) {
     final usuarioState = ref.watch(buscarUsuarioProvider);
     final state = ref.watch(alterarEmailProvider);
+    final notifier = ref.watch(alterarEmailProvider.notifier);
 
-    ref.listen<AlteracoesUsuarioState>(alterarEmailProvider, (previous, next) {
+    ref.listen<FormAlterarEmailState>(alterarEmailProvider, (previous, next) {
 
-      if (previous == AlteracoesUsuarioState.carregando() && next == AlteracoesUsuarioState.sucesso()) {
+      if (previous?.isLoading == true && next.isSucess == true) {
         _emailController.clear();
         _senhaController.clear();
         context.pop();
@@ -75,7 +78,9 @@ class _AlterarEmailScreenState extends ConsumerState<AlterarEmailScreen> {
                       icone: Icons.email_outlined,
                       hint: AppStrings.exemploEmail,
                       inputType: TextInputType.emailAddress,
+                      onChanged: (e) => notifier.inserirEmail(e),
                     ),
+                    if (state.erroEmail != null) MensagemErroWidget(texto: state.erroEmail.toString()),
                     const SizedBox(height: AppDimens.spacingMM),
 
                     CustomTextfiewd(
@@ -85,7 +90,15 @@ class _AlterarEmailScreenState extends ConsumerState<AlterarEmailScreen> {
                       hint: AppStrings.exemploSenha,
                       inputType: TextInputType.visiblePassword,
                       ocultar: true,
+                      onChanged: (s) => notifier.inserirSenha(s),
                     ),
+                    if (state.erroSenha != null) MensagemErroWidget(texto: state.erroSenha.toString()),
+                    const SizedBox(height: AppDimens.spacingG),
+
+                    if (state.isLoading)
+                      Center(
+                        child: CircularProgressIndicator(),
+                      ),
 
                     const SizedBox(height: AppDimens.spacingG),
 

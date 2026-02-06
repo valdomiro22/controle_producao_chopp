@@ -89,6 +89,13 @@ class _DeletarConstaScreenState extends ConsumerState<DeletarContaScreen> {
 
               const SizedBox(height: AppDimens.spacingG),
 
+              if (state.carregando)
+                Center(
+                  child: CircularProgressIndicator(),
+                ),
+
+              const SizedBox(height: AppDimens.spacingG),
+
               ElevatedButton(
                 onPressed: () {
                   final email = _emailController.text.trim();

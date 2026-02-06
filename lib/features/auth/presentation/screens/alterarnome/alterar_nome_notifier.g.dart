@@ -13,7 +13,7 @@ part of 'alterar_nome_notifier.dart';
 final alterarNomeProvider = AlterarNomeNotifierProvider._();
 
 final class AlterarNomeNotifierProvider
-    extends $NotifierProvider<AlterarNomeNotifier, AlteracoesUsuarioState> {
+    extends $NotifierProvider<AlterarNomeNotifier, FormAlterarNomeState> {
   AlterarNomeNotifierProvider._()
     : super(
         from: null,
@@ -33,29 +33,28 @@ final class AlterarNomeNotifierProvider
   AlterarNomeNotifier create() => AlterarNomeNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(AlteracoesUsuarioState value) {
+  Override overrideWithValue(FormAlterarNomeState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<AlteracoesUsuarioState>(value),
+      providerOverride: $SyncValueProvider<FormAlterarNomeState>(value),
     );
   }
 }
 
 String _$alterarNomeNotifierHash() =>
-    r'75ae0ce6cbe76acc1ddc0267d887ae0c1033adc2';
+    r'95e2cb8915ed0a9e9fec8684647f9b6d0fc08f4d';
 
-abstract class _$AlterarNomeNotifier extends $Notifier<AlteracoesUsuarioState> {
-  AlteracoesUsuarioState build();
+abstract class _$AlterarNomeNotifier extends $Notifier<FormAlterarNomeState> {
+  FormAlterarNomeState build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref =
-        this.ref as $Ref<AlteracoesUsuarioState, AlteracoesUsuarioState>;
+    final ref = this.ref as $Ref<FormAlterarNomeState, FormAlterarNomeState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AlteracoesUsuarioState, AlteracoesUsuarioState>,
-              AlteracoesUsuarioState,
+              AnyNotifier<FormAlterarNomeState, FormAlterarNomeState>,
+              FormAlterarNomeState,
               Object?,
               Object?
             >;

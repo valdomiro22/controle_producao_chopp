@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gestao_producao_chopp/core/common/widgets/mensagem_erro_widget.dart';
 import 'package:gestao_producao_chopp/core/constants/app_strings.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterarnome/alterar_nome_notifier.dart';
+import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterarnome/form_alterar_nome_state.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/buscar_usuario_state.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/state/alteracoes_usuario_state.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/widgets/custom_textfiewd.dart';
@@ -35,11 +37,10 @@ class _AlterarNomeScreenState extends ConsumerState<AlterarNomeScreen> {
   Widget build(BuildContext context) {
     final usuarioState = ref.watch(buscarUsuarioProvider);
     final state = ref.watch(alterarNomeProvider);
-    final notifier = ref.read(alterarNomeProvider.notifier);
+    final formNotifier = ref.watch(alterarNomeProvider.notifier);
 
-    ref.listen<AlteracoesUsuarioState>(alterarNomeProvider, (previous, next) {
-      if (previous == AlteracoesUsuarioState.carregando() &&
-          next == AlteracoesUsuarioState.sucesso()) {
+    ref.listen<FormAlterarNomeState>(alterarNomeProvider, (previous, next) {
+      if (previous?.isLoading == true && next.isSucess == true) {
         _nomeController.clear();
         _sobrenomeController.clear();
         context.pop();
@@ -63,8 +64,9 @@ class _AlterarNomeScreenState extends ConsumerState<AlterarNomeScreen> {
                   ),
                   const SizedBox(height: AppDimens.spacingXG),
 
-                  TextField(
+                  TextFormField(
                     controller: _nomeController,
+                    onChanged: (v) => formNotifier.inserirNome(v),
                     decoration: InputDecoration(
                       labelText: 'Novo nome',
                       hintText: AppStrings.exemploNome,
@@ -72,10 +74,13 @@ class _AlterarNomeScreenState extends ConsumerState<AlterarNomeScreen> {
                     ),
                       keyboardType: TextInputType.name,
                   ),
+
+                  if (state.erroNome != null) MensagemErroWidget(texto: state.erroNome.toString()),
                   const SizedBox(height: AppDimens.spacingMM),
 
-                  TextField(
+                  TextFormField(
                     controller: _sobrenomeController,
+                    onChanged: (v) => formNotifier.inserirSobrenome(v),
                     decoration: InputDecoration(
                       labelText: 'Novo Sobrenome',
                       hintText: AppStrings.exemploSobrenome,
@@ -83,14 +88,22 @@ class _AlterarNomeScreenState extends ConsumerState<AlterarNomeScreen> {
                     ),
                       keyboardType: TextInputType.name,
                   ),
+
+                  if (state.erroSobrenome != null) MensagemErroWidget(texto: state.erroSobrenome.toString(),),
                   const SizedBox(height: AppDimens.spacingMM),
 
+                  if (state.isLoading)
+                    Center(
+                      child: CircularProgressIndicator(),
+                    ),
+
+                  const SizedBox(height: AppDimens.spacingG),
                   ElevatedButton(
                     onPressed: () {
                       final nome = _nomeController.text.trim();
                       final sobrenome = _sobrenomeController.text;
 
-                      notifier.alterarNome(
+                      formNotifier.alterarNome(
                         nome: nome,
                         sobrenome: sobrenome,
                         usuarioId: usuario.id!,
