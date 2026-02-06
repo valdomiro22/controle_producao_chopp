@@ -15,17 +15,10 @@ class Custombuttonmaxwidth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.deepPurpleAccent,
-          borderRadius: BorderRadius.circular(24),
-        ),
+      child: SizedBox(
         width: isMaxWidth ? double.infinity : null,
         height: 50,
-        child: TextButton(
-          onPressed: clique,
-          child: Text(texto, style: TextStyle(color: Colors.white)),
-        ),
+        child: ElevatedButton(onPressed: clique, child: Text(texto)),
       ),
     );
   }
