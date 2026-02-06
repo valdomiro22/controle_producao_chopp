@@ -104,17 +104,6 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
                                     decoration: InputDecoration(
                                       labelText: 'Código',
                                       hintText: 'Codigo produto',
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                        borderSide: BorderSide(color: AppColors.inputBorder),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                        borderSide: BorderSide(
-                                          width: 2,
-                                          color: AppColors.primaryDarkText,
-                                        ),
-                                      ),
                                     ),
                                   ),
                                   SizedBox(height: 16),
@@ -155,7 +144,7 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
                                         if (context.mounted) context.pop();
                                       },
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor: AppColors.inputBorder,
+                                        backgroundColor: AppColors.primaryRed,
                                       ),
                                       child: const Text(
                                         'Adicionar',

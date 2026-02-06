@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_notifier.dart';
 import 'package:gestao_producao_chopp/features/quantidade_horaria/presentation/providers/buscar_qt_horaria_notifier.dart';
@@ -12,11 +13,7 @@ class CardQuantidadeHoraria extends ConsumerStatefulWidget {
   final String horario;
   final ProducaoEntity producao;
 
-  const CardQuantidadeHoraria({
-    super.key,
-    required this.horario,
-    required this.producao,
-  });
+  const CardQuantidadeHoraria({super.key, required this.horario, required this.producao});
 
   @override
   ConsumerState<CardQuantidadeHoraria> createState() => _CardQuantidadeHorariaState();
@@ -71,10 +68,7 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              widget.horario,
-              style: const TextStyle(fontSize: 11, color: Colors.grey),
-            ),
+            Text(widget.horario, style: const TextStyle(fontSize: 11, color: Colors.grey)),
             const SizedBox(height: 4),
             Text(
               qtBuscada,
@@ -83,7 +77,7 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -93,45 +87,59 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
   void _abrirDialog(BuildContext context, BuscarParams params, String gradeId) {
     _qtController.clear();
 
-
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Center(child: Text('Barris produzidos')),
-        content: Container(
-          height: 150,
+        // title: const Center(child: Text('Barris produzidos')),
+        content: SizedBox(
+          height: 190,
           child: Column(
             // mainAxisSize: MainAxisSize.min,
             children: [
               Align(
-                alignment: Alignment.centerLeft,
-                child: Text('Horário: ${widget.horario}', style: const TextStyle(fontWeight: FontWeight.bold)),
+                alignment: Alignment.topCenter,
+                child: Column(
+                  children: [
+                    Text(
+                      'Barris Produzidos',
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    Text('Horário: ${widget.horario}'),
+                  ],
+                ),
               ),
+              const SizedBox(height: 24),
+
               TextField(
                 controller: _qtController,
                 autofocus: true,
                 keyboardType: TextInputType.number,
-                decoration: const InputDecoration(hintText: 'Ex: 30', labelText: 'Quantidade'),
+                decoration: const InputDecoration(hintText: 'Ex: 30', labelText: 'Quantidade',
+                  border: OutlineInputBorder(),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey, width: 2)
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey, width: 2)
+                  )
+                ),
               ),
               const SizedBox(height: 10),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  _chipIncremento(1),
                   _chipIncremento(5),
                   _chipIncremento(10),
                   _chipIncremento(20),
-                  _chipIncremento(30),
                 ],
               ),
             ],
           ),
         ),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancelar'),
-          ),
+          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancelar')),
           TextButton(
             onPressed: () async {
               final qtAdicional = int.tryParse(_qtController.text) ?? 0;
@@ -142,20 +150,23 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
 
               // 1. Primeiro execute a ação pesada (gravação)
               // Use ref.read aqui porque é um callback de clique
-              await ref.read(inserirQuantidadeHorariaProvider(params.producaoId).notifier).inserirQuantidade(
-                horario: widget.horario,
-                quantidade: qtAdicional,
-              );
+              await ref
+                  .read(inserirQuantidadeHorariaProvider(params.producaoId).notifier)
+                  .inserirQuantidade(horario: widget.horario, quantidade: qtAdicional);
 
               // 2. Atualizações de estado local
               final novaQuantidadeTotal = widget.producao.quantidadeProduzida + qtAdicional;
-              final producaoAtualizada = widget.producao.copyWith(quantidadeProduzida: novaQuantidadeTotal);
-
-              await ref.read(listaProducoesProvider.notifier).atualizarProducao(
-                gradeId: gradeId,
-                producaoId: params.producaoId,
-                producao: producaoAtualizada,
+              final producaoAtualizada = widget.producao.copyWith(
+                quantidadeProduzida: novaQuantidadeTotal,
               );
+
+              await ref
+                  .read(listaProducoesProvider.notifier)
+                  .atualizarProducao(
+                    gradeId: gradeId,
+                    producaoId: params.producaoId,
+                    producao: producaoAtualizada,
+                  );
 
               ref.read(buscarProducaoProvider.notifier).atualizarEstadoLocal(producaoAtualizada);
 
@@ -167,7 +178,10 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
                 Navigator.of(context).pop();
               }
             },
-            child: const Text('OK', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
+            child: const Text(
+              'OK',
+              style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+            ),
           ),
         ],
       ),
@@ -176,7 +190,8 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
 
   Widget _chipIncremento(int valor) {
     return ActionChip(
-      label: Text('+$valor', style: TextStyle(fontSize: 12),),
+      // side: BorderSide(color: AppColors.red900),
+      label: Text('+$valor', style: TextStyle(fontSize: 12)),
       onPressed: () => _incrementar(valor),
     );
   }
