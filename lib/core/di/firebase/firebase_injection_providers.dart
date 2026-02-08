@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/data/datasources/anotacao_datasource.dart';
 import 'package:gestao_producao_chopp/features/anotacoes/data/datasources/anotacao_datasource_impl.dart';
@@ -7,8 +8,12 @@ import 'package:gestao_producao_chopp/features/anotacoes/data/repositories/anota
 import 'package:gestao_producao_chopp/features/anotacoes/domain/repositories/aotacao_repository.dart';
 import 'package:gestao_producao_chopp/features/auth/data/datasources/usuario_datasource.dart';
 import 'package:gestao_producao_chopp/features/auth/data/datasources/usuario_datasource_impl.dart';
+import 'package:gestao_producao_chopp/features/auth/data/datasources/usuario_storage_datasource.dart';
+import 'package:gestao_producao_chopp/features/auth/data/datasources/usuario_storage_datasource_impl.dart';
 import 'package:gestao_producao_chopp/features/auth/data/repositories/usuario_repository_impl.dart';
+import 'package:gestao_producao_chopp/features/auth/data/repositories/usuario_storage_repository_impl.dart';
 import 'package:gestao_producao_chopp/features/auth/domain/repositories/usuario_repository.dart';
+import 'package:gestao_producao_chopp/features/auth/domain/repositories/usuario_storage_repository.dart';
 import 'package:gestao_producao_chopp/features/producoes/data/datasource/producao_datasource.dart';
 import 'package:gestao_producao_chopp/features/producoes/data/datasource/producao_datasource_impl.dart';
 import 'package:gestao_producao_chopp/features/producoes/data/repository/producao_repository_impl.dart';
@@ -42,6 +47,11 @@ FirebaseAuth firebaseAuth(Ref ref) {
 @riverpod
 FirebaseFirestore firebaseFirestore(Ref ref) {
   return FirebaseFirestore.instance;
+}
+
+@riverpod
+FirebaseStorage firebaseStorage(Ref ref) {
+  return FirebaseStorage.instance;
 }
 
 // datasource ------------------------------------------------------------------
@@ -81,6 +91,12 @@ AnotacaoDatasource anotacaoDatasource(Ref ref) {
   return AnotacaoDatasourceImpl(firestore);
 }
 
+@riverpod
+UsuarioStorageDatasource usuarioStorageDatasource(Ref ref) {
+  final storage = ref.watch(firebaseStorageProvider);
+  return UsuarioStorageDatasourceImpl(storage);
+}
+
 // repository ------------------------------------------------------------------
 @riverpod
 UsuarioRepository usuarioRepository(Ref ref) {
@@ -117,4 +133,10 @@ QuantidadeHorariaRepository quantidadeHorariaRepository(Ref ref) {
 AnotacaoRepository anotacaoRepository(Ref ref) {
   final dataSource = ref.watch(anotacaoDatasourceProvider);
   return AnotacaoRepositoryImpl(dataSource);
+}
+
+@riverpod
+UsuarioStorageRepository usuarioStorageRepository(Ref ref) {
+  final datasource = ref.watch(usuarioStorageDatasourceProvider);
+  return UsuarioStorageRepositoryImpl(datasource);
 }

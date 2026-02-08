@@ -44,6 +44,7 @@ dependencies:
   uuid: ^4.5.0  # Para criar IDs
   intl: ^0.20.2 # Para formatar datas
   freezed_annotation: ^3.0.0
+  image_picker: ^1.1.2  # Para tirar a foto
   path: ^1.9.0  # Para o path da imagem de perfil
   share_plus: ^10.0.0  # Para compartilhar coisas
   json_annotation: ^4.9.0
