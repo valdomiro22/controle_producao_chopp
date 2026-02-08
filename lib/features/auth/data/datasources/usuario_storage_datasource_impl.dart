@@ -1,14 +1,12 @@
 import 'dart:io';
-import 'package:path/path.dart' as path;
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:gestao_producao_chopp/features/auth/data/datasources/usuario_storage_datasource.dart';
-
-import 'package:share_plus/share_plus.dart';
+import 'package:path/path.dart' as path;
 
 import '../../../../core/error/exceptions.dart';
 
-class UsuarioStorageDatasourceImpl extends UsuarioStorageDatasource {
+class UsuarioStorageDatasourceImpl implements UsuarioStorageDatasource {
   final FirebaseStorage _storage;
 
   UsuarioStorageDatasourceImpl(this._storage);
@@ -17,7 +15,7 @@ class UsuarioStorageDatasourceImpl extends UsuarioStorageDatasource {
   final _fotoPerfilCollection = 'foto_perfil';
 
   @override
-  Future<void> insertArquivo({required XFile foto, required String usuarioId}) async {
+  Future<void> insertArquivo({required File foto, required String usuarioId}) async {
     try {
       final fileName =
           '${DateTime.now().microsecondsSinceEpoch}_${path.basename(foto.path)}';
@@ -31,7 +29,6 @@ class UsuarioStorageDatasourceImpl extends UsuarioStorageDatasource {
 
       final file = File(foto.path);
       await ref.putFile(file);
-      await ref.getDownloadURL();
     } on FirebaseException catch (e) {
       switch (e.code) {
         case 'permission-denied':

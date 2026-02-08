@@ -1,7 +1,7 @@
-import 'package:share_plus/share_plus.dart';
+import 'dart:io';
 
 abstract class UsuarioStorageDatasource {
-  Future<void> insertArquivo({required XFile foto, required String usuarioId});
+  Future<void> insertArquivo({required File foto, required String usuarioId});
 
   Future<String?> getArquivo(String arquivoUrl);
 
