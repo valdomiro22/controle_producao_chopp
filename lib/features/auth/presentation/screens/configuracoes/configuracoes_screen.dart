@@ -27,6 +27,18 @@ class _ConfiguracoesScreenState extends ConsumerState<ConfiguracoesScreen> {
     });
   }
 
+  // void _alterarFoto() async {
+  //   final fotoAnterior = 'userVm.usuarioCorrente?.photoURL';
+  //   if (fotoAnterior != null) {
+  //     fotoVm.excluirFoto(fotoAnterior);
+  //   }
+  //
+  //   final url = await fotoVm.salvarFoto();
+  //   if (url != null) {
+  //     await userVm.atualizarPhotoURL(url);
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     final stateUsuario = ref.watch(buscarUsuarioProvider);

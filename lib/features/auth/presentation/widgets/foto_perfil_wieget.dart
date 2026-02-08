@@ -5,6 +5,16 @@ class FotoPerfilWieget extends StatelessWidget {
   final double? tamanho;
   final String imageUrl;
 
+
+
+
+
+
+
+
+
+  // todo - tirar foto
+
   const FotoPerfilWieget({
     super.key,
     required this.imageUrl,
