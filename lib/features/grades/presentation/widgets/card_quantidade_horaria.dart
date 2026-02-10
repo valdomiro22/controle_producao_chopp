@@ -36,6 +36,20 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
     );
   }
 
+  void _subtrair(int valor) {
+    final atual = int.tryParse(_qtController.text) ?? 0;
+    if (atual > 0) {
+      final op = atual - valor;
+      int valorParaSetar = 0;
+      op > 0 ? valorParaSetar = op : valorParaSetar = 0;
+
+      _qtController.text = valorParaSetar.toString();
+      _qtController.selection = TextSelection.fromPosition(
+        TextPosition(offset: _qtController.text.length),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final producaoId = widget.producao.id ?? '';
@@ -92,6 +106,7 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
       builder: (context) => AlertDialog(
         // title: const Center(child: Text('Barris produzidos')),
         content: SizedBox(
+          // height: 250,
           height: 190,
           child: Column(
             // mainAxisSize: MainAxisSize.min,
@@ -135,6 +150,19 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
                   _chipIncremento(20),
                 ],
               ),
+              // const SizedBox(height: 10),
+              // Row(
+              //   mainAxisSize: MainAxisSize.max,
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     _chipDecremento(1),
+              //     _chipDecremento(5),
+              //     _chipDecremento(10),
+              //     _chipDecremento(20),
+              //   ],
+              // ),
+
+              // TODO - Precisa ser finalizado
             ],
           ),
         ),
@@ -190,9 +218,17 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
 
   Widget _chipIncremento(int valor) {
     return ActionChip(
-      // side: BorderSide(color: AppColors.red900),
-      label: Text('+$valor', style: TextStyle(fontSize: 12)),
+      side: BorderSide(color: AppColors.blueStrong),
+      label: Text('+$valor', style: TextStyle(fontSize: 12, color: AppColors.blueStrong)),
       onPressed: () => _incrementar(valor),
+    );
+  }
+
+  Widget _chipDecremento(int valor) {
+    return ActionChip(
+      side: BorderSide(color: AppColors.red900),
+      label: Text('-$valor', style: TextStyle(fontSize: 12, color: AppColors.red900)),
+      onPressed: () => _subtrair(valor),
     );
   }
 }
