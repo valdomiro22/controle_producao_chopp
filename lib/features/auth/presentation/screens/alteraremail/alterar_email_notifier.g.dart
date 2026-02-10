@@ -13,7 +13,7 @@ part of 'alterar_email_notifier.dart';
 final alterarEmailProvider = AlterarEmailNotifierProvider._();
 
 final class AlterarEmailNotifierProvider
-    extends $NotifierProvider<AlterarEmailNotifier, AuthState> {
+    extends $NotifierProvider<AlterarEmailNotifier, FormAlterarEmailState> {
   AlterarEmailNotifierProvider._()
     : super(
         from: null,
@@ -33,28 +33,28 @@ final class AlterarEmailNotifierProvider
   AlterarEmailNotifier create() => AlterarEmailNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(AuthState value) {
+  Override overrideWithValue(FormAlterarEmailState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<AuthState>(value),
+      providerOverride: $SyncValueProvider<FormAlterarEmailState>(value),
     );
   }
 }
 
 String _$alterarEmailNotifierHash() =>
-    r'21745588989719decf82ce0b6a664979c368cc65';
+    r'b68fa6199618c01b3da3886a8c2b18a52ab30478';
 
-abstract class _$AlterarEmailNotifier extends $Notifier<AuthState> {
-  AuthState build();
+abstract class _$AlterarEmailNotifier extends $Notifier<FormAlterarEmailState> {
+  FormAlterarEmailState build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<AuthState, AuthState>;
+    final ref = this.ref as $Ref<FormAlterarEmailState, FormAlterarEmailState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AuthState, AuthState>,
-              AuthState,
+              AnyNotifier<FormAlterarEmailState, FormAlterarEmailState>,
+              FormAlterarEmailState,
               Object?,
               Object?
             >;

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UsuarioModel {
 
- String? get id; String get nome; String get sobrenome; DateTime get adicionadoEm; String get email;
+ String? get id; String get nome; String get sobrenome; DateTime get adicionadoEm; String get email; String get fotoPerfilUrl;
 /// Create a copy of UsuarioModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $UsuarioModelCopyWith<UsuarioModel> get copyWith => _$UsuarioModelCopyWithImpl<U
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UsuarioModel&&(identical(other.id, id) || other.id == id)&&(identical(other.nome, nome) || other.nome == nome)&&(identical(other.sobrenome, sobrenome) || other.sobrenome == sobrenome)&&(identical(other.adicionadoEm, adicionadoEm) || other.adicionadoEm == adicionadoEm)&&(identical(other.email, email) || other.email == email));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UsuarioModel&&(identical(other.id, id) || other.id == id)&&(identical(other.nome, nome) || other.nome == nome)&&(identical(other.sobrenome, sobrenome) || other.sobrenome == sobrenome)&&(identical(other.adicionadoEm, adicionadoEm) || other.adicionadoEm == adicionadoEm)&&(identical(other.email, email) || other.email == email)&&(identical(other.fotoPerfilUrl, fotoPerfilUrl) || other.fotoPerfilUrl == fotoPerfilUrl));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,nome,sobrenome,adicionadoEm,email);
+int get hashCode => Object.hash(runtimeType,id,nome,sobrenome,adicionadoEm,email,fotoPerfilUrl);
 
 @override
 String toString() {
-  return 'UsuarioModel(id: $id, nome: $nome, sobrenome: $sobrenome, adicionadoEm: $adicionadoEm, email: $email)';
+  return 'UsuarioModel(id: $id, nome: $nome, sobrenome: $sobrenome, adicionadoEm: $adicionadoEm, email: $email, fotoPerfilUrl: $fotoPerfilUrl)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $UsuarioModelCopyWith<$Res>  {
   factory $UsuarioModelCopyWith(UsuarioModel value, $Res Function(UsuarioModel) _then) = _$UsuarioModelCopyWithImpl;
 @useResult
 $Res call({
- String? id, String nome, String sobrenome, DateTime adicionadoEm, String email
+ String? id, String nome, String sobrenome, DateTime adicionadoEm, String email, String fotoPerfilUrl
 });
 
 
@@ -65,13 +65,14 @@ class _$UsuarioModelCopyWithImpl<$Res>
 
 /// Create a copy of UsuarioModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? nome = null,Object? sobrenome = null,Object? adicionadoEm = null,Object? email = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? nome = null,Object? sobrenome = null,Object? adicionadoEm = null,Object? email = null,Object? fotoPerfilUrl = null,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,nome: null == nome ? _self.nome : nome // ignore: cast_nullable_to_non_nullable
 as String,sobrenome: null == sobrenome ? _self.sobrenome : sobrenome // ignore: cast_nullable_to_non_nullable
 as String,adicionadoEm: null == adicionadoEm ? _self.adicionadoEm : adicionadoEm // ignore: cast_nullable_to_non_nullable
 as DateTime,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String,fotoPerfilUrl: null == fotoPerfilUrl ? _self.fotoPerfilUrl : fotoPerfilUrl // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -154,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String nome,  String sobrenome,  DateTime adicionadoEm,  String email)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String nome,  String sobrenome,  DateTime adicionadoEm,  String email,  String fotoPerfilUrl)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UsuarioModel() when $default != null:
-return $default(_that.id,_that.nome,_that.sobrenome,_that.adicionadoEm,_that.email);case _:
+return $default(_that.id,_that.nome,_that.sobrenome,_that.adicionadoEm,_that.email,_that.fotoPerfilUrl);case _:
   return orElse();
 
 }
@@ -175,10 +176,10 @@ return $default(_that.id,_that.nome,_that.sobrenome,_that.adicionadoEm,_that.ema
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String nome,  String sobrenome,  DateTime adicionadoEm,  String email)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String nome,  String sobrenome,  DateTime adicionadoEm,  String email,  String fotoPerfilUrl)  $default,) {final _that = this;
 switch (_that) {
 case _UsuarioModel():
-return $default(_that.id,_that.nome,_that.sobrenome,_that.adicionadoEm,_that.email);}
+return $default(_that.id,_that.nome,_that.sobrenome,_that.adicionadoEm,_that.email,_that.fotoPerfilUrl);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -192,10 +193,10 @@ return $default(_that.id,_that.nome,_that.sobrenome,_that.adicionadoEm,_that.ema
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String nome,  String sobrenome,  DateTime adicionadoEm,  String email)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String nome,  String sobrenome,  DateTime adicionadoEm,  String email,  String fotoPerfilUrl)?  $default,) {final _that = this;
 switch (_that) {
 case _UsuarioModel() when $default != null:
-return $default(_that.id,_that.nome,_that.sobrenome,_that.adicionadoEm,_that.email);case _:
+return $default(_that.id,_that.nome,_that.sobrenome,_that.adicionadoEm,_that.email,_that.fotoPerfilUrl);case _:
   return null;
 
 }
@@ -207,7 +208,7 @@ return $default(_that.id,_that.nome,_that.sobrenome,_that.adicionadoEm,_that.ema
 @JsonSerializable()
 
 class _UsuarioModel extends UsuarioModel {
-  const _UsuarioModel({this.id, required this.nome, required this.sobrenome, required this.adicionadoEm, required this.email}): super._();
+  const _UsuarioModel({this.id, required this.nome, required this.sobrenome, required this.adicionadoEm, required this.email, this.fotoPerfilUrl = ''}): super._();
   factory _UsuarioModel.fromJson(Map<String, dynamic> json) => _$UsuarioModelFromJson(json);
 
 @override final  String? id;
@@ -215,6 +216,7 @@ class _UsuarioModel extends UsuarioModel {
 @override final  String sobrenome;
 @override final  DateTime adicionadoEm;
 @override final  String email;
+@override@JsonKey() final  String fotoPerfilUrl;
 
 /// Create a copy of UsuarioModel
 /// with the given fields replaced by the non-null parameter values.
@@ -229,16 +231,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UsuarioModel&&(identical(other.id, id) || other.id == id)&&(identical(other.nome, nome) || other.nome == nome)&&(identical(other.sobrenome, sobrenome) || other.sobrenome == sobrenome)&&(identical(other.adicionadoEm, adicionadoEm) || other.adicionadoEm == adicionadoEm)&&(identical(other.email, email) || other.email == email));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UsuarioModel&&(identical(other.id, id) || other.id == id)&&(identical(other.nome, nome) || other.nome == nome)&&(identical(other.sobrenome, sobrenome) || other.sobrenome == sobrenome)&&(identical(other.adicionadoEm, adicionadoEm) || other.adicionadoEm == adicionadoEm)&&(identical(other.email, email) || other.email == email)&&(identical(other.fotoPerfilUrl, fotoPerfilUrl) || other.fotoPerfilUrl == fotoPerfilUrl));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,nome,sobrenome,adicionadoEm,email);
+int get hashCode => Object.hash(runtimeType,id,nome,sobrenome,adicionadoEm,email,fotoPerfilUrl);
 
 @override
 String toString() {
-  return 'UsuarioModel(id: $id, nome: $nome, sobrenome: $sobrenome, adicionadoEm: $adicionadoEm, email: $email)';
+  return 'UsuarioModel(id: $id, nome: $nome, sobrenome: $sobrenome, adicionadoEm: $adicionadoEm, email: $email, fotoPerfilUrl: $fotoPerfilUrl)';
 }
 
 
@@ -249,7 +251,7 @@ abstract mixin class _$UsuarioModelCopyWith<$Res> implements $UsuarioModelCopyWi
   factory _$UsuarioModelCopyWith(_UsuarioModel value, $Res Function(_UsuarioModel) _then) = __$UsuarioModelCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String nome, String sobrenome, DateTime adicionadoEm, String email
+ String? id, String nome, String sobrenome, DateTime adicionadoEm, String email, String fotoPerfilUrl
 });
 
 
@@ -266,13 +268,14 @@ class __$UsuarioModelCopyWithImpl<$Res>
 
 /// Create a copy of UsuarioModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? nome = null,Object? sobrenome = null,Object? adicionadoEm = null,Object? email = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? nome = null,Object? sobrenome = null,Object? adicionadoEm = null,Object? email = null,Object? fotoPerfilUrl = null,}) {
   return _then(_UsuarioModel(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,nome: null == nome ? _self.nome : nome // ignore: cast_nullable_to_non_nullable
 as String,sobrenome: null == sobrenome ? _self.sobrenome : sobrenome // ignore: cast_nullable_to_non_nullable
 as String,adicionadoEm: null == adicionadoEm ? _self.adicionadoEm : adicionadoEm // ignore: cast_nullable_to_non_nullable
 as DateTime,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String,fotoPerfilUrl: null == fotoPerfilUrl ? _self.fotoPerfilUrl : fotoPerfilUrl // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

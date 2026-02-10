@@ -13,7 +13,7 @@ part of 'alterar_senha_notifier.dart';
 final alterarSenhaProvider = AlterarSenhaNotifierProvider._();
 
 final class AlterarSenhaNotifierProvider
-    extends $NotifierProvider<AlterarSenhaNotifier, AuthState> {
+    extends $NotifierProvider<AlterarSenhaNotifier, AlterarSenhaState> {
   AlterarSenhaNotifierProvider._()
     : super(
         from: null,
@@ -33,28 +33,28 @@ final class AlterarSenhaNotifierProvider
   AlterarSenhaNotifier create() => AlterarSenhaNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(AuthState value) {
+  Override overrideWithValue(AlterarSenhaState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<AuthState>(value),
+      providerOverride: $SyncValueProvider<AlterarSenhaState>(value),
     );
   }
 }
 
 String _$alterarSenhaNotifierHash() =>
-    r'539dd09c37874dad240883f4c9eee4dbf8ca1526';
+    r'7f42d3d1097704d0856af370acf93f0f23507e6a';
 
-abstract class _$AlterarSenhaNotifier extends $Notifier<AuthState> {
-  AuthState build();
+abstract class _$AlterarSenhaNotifier extends $Notifier<AlterarSenhaState> {
+  AlterarSenhaState build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<AuthState, AuthState>;
+    final ref = this.ref as $Ref<AlterarSenhaState, AlterarSenhaState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AuthState, AuthState>,
-              AuthState,
+              AnyNotifier<AlterarSenhaState, AlterarSenhaState>,
+              AlterarSenhaState,
               Object?,
               Object?
             >;
