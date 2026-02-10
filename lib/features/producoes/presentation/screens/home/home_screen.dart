@@ -118,6 +118,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+
           // Cabeçalho
           Card(
             child: Container(

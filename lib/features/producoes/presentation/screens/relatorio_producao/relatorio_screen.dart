@@ -52,6 +52,19 @@ class _RelatorioScreenState extends ConsumerState<RelatorioScreen> {
     buffer.writeln('');
   }
 
+  void _blocoProducaoZerado(StringBuffer buffer, Barril baril) {
+    // final programada = p.quantidadeProgramada;
+    // final produzida = p.quantidadeProduzida;
+    // final pendente = p.quantidadePendente;
+    // final icone = produzida < programada ? "❌" : "✅";
+
+    buffer.writeln('*${baril.label}*');
+    buffer.writeln('Programado: 0 ✅');
+    // buffer.writeln('Produzido: $produzida $icone');
+    // buffer.writeln('Pendente: $pendente $icone');
+    buffer.writeln('');
+  }
+
   String _gerarMensagemRelatorio(GradeEntity grade, List<ProducaoEntity> lista) {
     final data = StringUtil.formatarData(grade.data.toIso8601String());
     final buffer = StringBuffer();
@@ -75,7 +88,7 @@ class _RelatorioScreenState extends ConsumerState<RelatorioScreen> {
       dev.log('Produto: ${produto.labelMaiusculas}');
 
       buffer.writeln(produto.labelMaiusculas);
-      buffer.writeln('Estabilidade ✅');  // TODO - tornar isso dinamico e editavel
+      buffer.writeln('Estabilidade ✅'); // TODO - tornar isso dinamico e editavel
       buffer.writeln('');
 
       for (final tipo in tipos) {
@@ -86,6 +99,11 @@ class _RelatorioScreenState extends ConsumerState<RelatorioScreen> {
         if (p != null) {
           _escreverBlocoProducao(buffer, tipo, p);
         }
+
+        // TODO - Testar e ver qual forma é melhor
+        // else {
+        //     _blocoProducaoZerado(buffer, tipo);
+        // }
       }
 
       if (i < produtos.length - 1) {
@@ -141,21 +159,25 @@ class _RelatorioScreenState extends ConsumerState<RelatorioScreen> {
 
             return Stack(
               children: [
-                SingleChildScrollView(
-                  child: Text(texto),
-                ),
+                SingleChildScrollView(child: Text(texto)),
                 Positioned(
                   right: 10,
                   top: altura / 3,
                   child: Column(
                     children: [
-                      IconButton(onPressed: () async {
-                        await _compartilharMensagem(grade, lista);
-                      }, icon: Icon(Icons.share)),
+                      IconButton(
+                        onPressed: () async {
+                          await _compartilharMensagem(grade, lista);
+                        },
+                        icon: Icon(Icons.share),
+                      ),
                       SizedBox(height: 8),
-                      IconButton(onPressed: () async {
-                        await _copiarMensagem(grade, lista);
-                      }, icon: Icon(Icons.copy)),
+                      IconButton(
+                        onPressed: () async {
+                          await _copiarMensagem(grade, lista);
+                        },
+                        icon: Icon(Icons.copy),
+                      ),
                     ],
                   ),
                 ),

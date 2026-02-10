@@ -86,6 +86,7 @@ class ProducaoDatasourceImpl implements ProducaoDatasource {
           .collection(_producoes)
           .doc(gradeId)
           .collection(_listaProducoes)
+          .orderBy('dataCriacao', descending: true)
           .get();
 
       if (snapshot.docs.isEmpty) {

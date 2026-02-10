@@ -142,7 +142,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
                 hintText: 'Ex: 10682909',
               ),
               keyboardType: TextInputType.number,
-              onChanged: (value) => notifier.setCodigo(value),
+              onChanged: (value) => notifier.setOrdem(value),
             ),
             const SizedBox(height: 8),
 
@@ -153,7 +153,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
                 hintText: 'Ex: 2068299',
               ),
               keyboardType: TextInputType.number,
-              onChanged: (value) => notifier.setOrdem(value),
+              onChanged: (value) => notifier.setCodigo(value),
             ),
 
             if (state.erro != null)
