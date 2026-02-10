@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UsuarioEntity {
 
- String? get id; String get nome; String get sobrenome; DateTime get adicionadoEm; String get email; String get fotoPerfilUrl;
+ String? get id; String get nome; String get sobrenome; DateTime get adicionadoEm; String get email;
 /// Create a copy of UsuarioEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $UsuarioEntityCopyWith<UsuarioEntity> get copyWith => _$UsuarioEntityCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UsuarioEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.nome, nome) || other.nome == nome)&&(identical(other.sobrenome, sobrenome) || other.sobrenome == sobrenome)&&(identical(other.adicionadoEm, adicionadoEm) || other.adicionadoEm == adicionadoEm)&&(identical(other.email, email) || other.email == email)&&(identical(other.fotoPerfilUrl, fotoPerfilUrl) || other.fotoPerfilUrl == fotoPerfilUrl));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UsuarioEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.nome, nome) || other.nome == nome)&&(identical(other.sobrenome, sobrenome) || other.sobrenome == sobrenome)&&(identical(other.adicionadoEm, adicionadoEm) || other.adicionadoEm == adicionadoEm)&&(identical(other.email, email) || other.email == email));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,nome,sobrenome,adicionadoEm,email,fotoPerfilUrl);
+int get hashCode => Object.hash(runtimeType,id,nome,sobrenome,adicionadoEm,email);
 
 @override
 String toString() {
-  return 'UsuarioEntity(id: $id, nome: $nome, sobrenome: $sobrenome, adicionadoEm: $adicionadoEm, email: $email, fotoPerfilUrl: $fotoPerfilUrl)';
+  return 'UsuarioEntity(id: $id, nome: $nome, sobrenome: $sobrenome, adicionadoEm: $adicionadoEm, email: $email)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $UsuarioEntityCopyWith<$Res>  {
   factory $UsuarioEntityCopyWith(UsuarioEntity value, $Res Function(UsuarioEntity) _then) = _$UsuarioEntityCopyWithImpl;
 @useResult
 $Res call({
- String? id, String nome, String sobrenome, DateTime adicionadoEm, String email, String fotoPerfilUrl
+ String? id, String nome, String sobrenome, DateTime adicionadoEm, String email
 });
 
 
@@ -62,14 +62,13 @@ class _$UsuarioEntityCopyWithImpl<$Res>
 
 /// Create a copy of UsuarioEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? nome = null,Object? sobrenome = null,Object? adicionadoEm = null,Object? email = null,Object? fotoPerfilUrl = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? nome = null,Object? sobrenome = null,Object? adicionadoEm = null,Object? email = null,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,nome: null == nome ? _self.nome : nome // ignore: cast_nullable_to_non_nullable
 as String,sobrenome: null == sobrenome ? _self.sobrenome : sobrenome // ignore: cast_nullable_to_non_nullable
 as String,adicionadoEm: null == adicionadoEm ? _self.adicionadoEm : adicionadoEm // ignore: cast_nullable_to_non_nullable
 as DateTime,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as String,fotoPerfilUrl: null == fotoPerfilUrl ? _self.fotoPerfilUrl : fotoPerfilUrl // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -152,10 +151,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String nome,  String sobrenome,  DateTime adicionadoEm,  String email,  String fotoPerfilUrl)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String nome,  String sobrenome,  DateTime adicionadoEm,  String email)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UsuarioEntity() when $default != null:
-return $default(_that.id,_that.nome,_that.sobrenome,_that.adicionadoEm,_that.email,_that.fotoPerfilUrl);case _:
+return $default(_that.id,_that.nome,_that.sobrenome,_that.adicionadoEm,_that.email);case _:
   return orElse();
 
 }
@@ -173,10 +172,10 @@ return $default(_that.id,_that.nome,_that.sobrenome,_that.adicionadoEm,_that.ema
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String nome,  String sobrenome,  DateTime adicionadoEm,  String email,  String fotoPerfilUrl)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String nome,  String sobrenome,  DateTime adicionadoEm,  String email)  $default,) {final _that = this;
 switch (_that) {
 case _UsuarioEntity():
-return $default(_that.id,_that.nome,_that.sobrenome,_that.adicionadoEm,_that.email,_that.fotoPerfilUrl);}
+return $default(_that.id,_that.nome,_that.sobrenome,_that.adicionadoEm,_that.email);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -190,10 +189,10 @@ return $default(_that.id,_that.nome,_that.sobrenome,_that.adicionadoEm,_that.ema
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String nome,  String sobrenome,  DateTime adicionadoEm,  String email,  String fotoPerfilUrl)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String nome,  String sobrenome,  DateTime adicionadoEm,  String email)?  $default,) {final _that = this;
 switch (_that) {
 case _UsuarioEntity() when $default != null:
-return $default(_that.id,_that.nome,_that.sobrenome,_that.adicionadoEm,_that.email,_that.fotoPerfilUrl);case _:
+return $default(_that.id,_that.nome,_that.sobrenome,_that.adicionadoEm,_that.email);case _:
   return null;
 
 }
@@ -205,7 +204,7 @@ return $default(_that.id,_that.nome,_that.sobrenome,_that.adicionadoEm,_that.ema
 
 
 class _UsuarioEntity extends UsuarioEntity {
-  const _UsuarioEntity({this.id, required this.nome, required this.sobrenome, required this.adicionadoEm, required this.email, this.fotoPerfilUrl = ''}): super._();
+  const _UsuarioEntity({this.id, required this.nome, required this.sobrenome, required this.adicionadoEm, required this.email}): super._();
   
 
 @override final  String? id;
@@ -213,7 +212,6 @@ class _UsuarioEntity extends UsuarioEntity {
 @override final  String sobrenome;
 @override final  DateTime adicionadoEm;
 @override final  String email;
-@override@JsonKey() final  String fotoPerfilUrl;
 
 /// Create a copy of UsuarioEntity
 /// with the given fields replaced by the non-null parameter values.
@@ -225,16 +223,16 @@ _$UsuarioEntityCopyWith<_UsuarioEntity> get copyWith => __$UsuarioEntityCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UsuarioEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.nome, nome) || other.nome == nome)&&(identical(other.sobrenome, sobrenome) || other.sobrenome == sobrenome)&&(identical(other.adicionadoEm, adicionadoEm) || other.adicionadoEm == adicionadoEm)&&(identical(other.email, email) || other.email == email)&&(identical(other.fotoPerfilUrl, fotoPerfilUrl) || other.fotoPerfilUrl == fotoPerfilUrl));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UsuarioEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.nome, nome) || other.nome == nome)&&(identical(other.sobrenome, sobrenome) || other.sobrenome == sobrenome)&&(identical(other.adicionadoEm, adicionadoEm) || other.adicionadoEm == adicionadoEm)&&(identical(other.email, email) || other.email == email));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,nome,sobrenome,adicionadoEm,email,fotoPerfilUrl);
+int get hashCode => Object.hash(runtimeType,id,nome,sobrenome,adicionadoEm,email);
 
 @override
 String toString() {
-  return 'UsuarioEntity(id: $id, nome: $nome, sobrenome: $sobrenome, adicionadoEm: $adicionadoEm, email: $email, fotoPerfilUrl: $fotoPerfilUrl)';
+  return 'UsuarioEntity(id: $id, nome: $nome, sobrenome: $sobrenome, adicionadoEm: $adicionadoEm, email: $email)';
 }
 
 
@@ -245,7 +243,7 @@ abstract mixin class _$UsuarioEntityCopyWith<$Res> implements $UsuarioEntityCopy
   factory _$UsuarioEntityCopyWith(_UsuarioEntity value, $Res Function(_UsuarioEntity) _then) = __$UsuarioEntityCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String nome, String sobrenome, DateTime adicionadoEm, String email, String fotoPerfilUrl
+ String? id, String nome, String sobrenome, DateTime adicionadoEm, String email
 });
 
 
@@ -262,14 +260,13 @@ class __$UsuarioEntityCopyWithImpl<$Res>
 
 /// Create a copy of UsuarioEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? nome = null,Object? sobrenome = null,Object? adicionadoEm = null,Object? email = null,Object? fotoPerfilUrl = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? nome = null,Object? sobrenome = null,Object? adicionadoEm = null,Object? email = null,}) {
   return _then(_UsuarioEntity(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,nome: null == nome ? _self.nome : nome // ignore: cast_nullable_to_non_nullable
 as String,sobrenome: null == sobrenome ? _self.sobrenome : sobrenome // ignore: cast_nullable_to_non_nullable
 as String,adicionadoEm: null == adicionadoEm ? _self.adicionadoEm : adicionadoEm // ignore: cast_nullable_to_non_nullable
 as DateTime,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as String,fotoPerfilUrl: null == fotoPerfilUrl ? _self.fotoPerfilUrl : fotoPerfilUrl // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

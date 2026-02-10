@@ -192,7 +192,7 @@ final class AlterarEmailUseCaseProvider
 }
 
 String _$alterarEmailUseCaseHash() =>
-    r'ea922f23726b3da7efe4eaa13c619db66a5f5cc0';
+    r'529ee3e9467b8bc27037d0fe378bc99e5a23f95f';
 
 @ProviderFor(alterarSenhaUseCase)
 final alterarSenhaUseCaseProvider = AlterarSenhaUseCaseProvider._();
