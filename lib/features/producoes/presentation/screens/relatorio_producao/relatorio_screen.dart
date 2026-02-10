@@ -65,7 +65,7 @@ class _RelatorioScreenState extends ConsumerState<RelatorioScreen> {
     final produtos = Produto.values.toList();
     final tipos = Barril.values.toList();
 
-    buffer.writeln('*RELATÓRIO DE PRODUÇÃO - $data*');
+    buffer.writeln('*PRODUÇÃO - $data*');
     buffer.writeln('Grade: ${grade.numeroGrade}');
     buffer.writeln('');
 
