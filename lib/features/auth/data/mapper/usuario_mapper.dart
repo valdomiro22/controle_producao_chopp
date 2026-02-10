@@ -9,6 +9,7 @@ extension UsuarioModelToEntity on UsuarioModel {
       sobrenome: sobrenome,
       adicionadoEm: adicionadoEm,
       email: email,
+      fotoPerfilUrl: fotoPerfilUrl,
     );
   }
 }
@@ -21,6 +22,7 @@ extension UsuarioEntityToModel on UsuarioEntity {
       sobrenome: sobrenome,
       adicionadoEm: adicionadoEm,
       email: email,
+      fotoPerfilUrl: fotoPerfilUrl,
     );
   }
 }

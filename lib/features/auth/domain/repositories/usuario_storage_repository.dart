@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:gestao_producao_chopp/core/error/failure.dart';
 
 abstract class UsuarioStorageRepository {
-  Future<Either<Failure, Unit>> insertArquivo({
+  Future<Either<Failure, String?>> insertArquivo({
     required File file,
     required String usuarioId,
   });

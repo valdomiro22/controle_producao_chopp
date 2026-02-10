@@ -10,6 +10,7 @@ sealed class UsuarioEntity with _$UsuarioEntity {
     required String sobrenome,
     required DateTime adicionadoEm,
     required String email,
+    @Default('') String fotoPerfilUrl,
   }) = _UsuarioEntity;
 
   const UsuarioEntity._();

@@ -13,13 +13,13 @@ class UsuarioStorageRepositoryImpl implements UsuarioStorageRepository {
   UsuarioStorageRepositoryImpl(this._datasource);
 
   @override
-  Future<Either<Failure, Unit>> insertArquivo({
+  Future<Either<Failure, String?>> insertArquivo({
     required File file,
     required String usuarioId,
   }) async {
     try {
-      await _datasource.insertArquivo(foto: file, usuarioId: usuarioId);
-      return const Right(unit);
+      final result = await _datasource.insertArquivo(foto: file, usuarioId: usuarioId);
+      return Right(result);
     } catch (e) {
       return Left(_mapExceptionToFailure(e));
     }

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 abstract class UsuarioStorageDatasource {
-  Future<void> insertArquivo({required File foto, required String usuarioId});
+  Future<String?> insertArquivo({required File foto, required String usuarioId});
 
   Future<String?> getArquivo(String arquivoUrl);
 

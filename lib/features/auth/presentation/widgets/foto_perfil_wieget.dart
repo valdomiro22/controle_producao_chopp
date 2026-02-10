@@ -27,8 +27,8 @@ class FotoPerfilWieget extends StatelessWidget {
       imageUrl: imageUrl,
 
       imageBuilder: (context, imageProvider) => Container(
-        width: 100.0,
-        height: 100.0,
+        width: tamanho,
+        height: tamanho,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(

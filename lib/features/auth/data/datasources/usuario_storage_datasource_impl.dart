@@ -15,7 +15,7 @@ class UsuarioStorageDatasourceImpl implements UsuarioStorageDatasource {
   final _fotoPerfilCollection = 'foto_perfil';
 
   @override
-  Future<void> insertArquivo({required File foto, required String usuarioId}) async {
+  Future<String?> insertArquivo({required File foto, required String usuarioId}) async {
     try {
       final fileName =
           '${DateTime.now().microsecondsSinceEpoch}_${path.basename(foto.path)}';
@@ -27,8 +27,14 @@ class UsuarioStorageDatasourceImpl implements UsuarioStorageDatasource {
           .child(_fotoPerfilCollection)
           .child(fileName);
 
-      final file = File(foto.path);
-      await ref.putFile(file);
+      // 1. Faz o upload
+      await ref.putFile(foto);
+
+      // 2. BUSCA A URL GERADA
+      final url = await ref.getDownloadURL();
+
+      // 3. RETORNA A URL
+      return url;
     } on FirebaseException catch (e) {
       switch (e.code) {
         case 'permission-denied':

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/constants/app_dimens.dart';
+import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/atualizar_foto_notifier.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/buscar_usuario_notifier.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/buscar_usuario_state.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/widgets/CustomButtonMaxWidth.dart';
@@ -27,25 +28,21 @@ class _ConfiguracoesScreenState extends ConsumerState<ConfiguracoesScreen> {
     });
   }
 
-  // void _alterarFoto() async {
-  //   final fotoAnterior = 'userVm.usuarioCorrente?.photoURL';
-  //   if (fotoAnterior != null) {
-  //     fotoVm.excluirFoto(fotoAnterior);
-  //   }
-  //
-  //   final url = await fotoVm.salvarFoto();
-  //   if (url != null) {
-  //     await userVm.atualizarPhotoURL(url);
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
+    final fotoState = ref.watch(atualizarFotoProvider);
+    final fotoNotifier = ref.watch(atualizarFotoProvider.notifier);
     final stateUsuario = ref.watch(buscarUsuarioProvider);
+
 
     return Scaffold(
       body: stateUsuario.when(
         sucessoComDados: (UsuarioEntity usuario) {
+
+
+          debugPrint('\n\n\nurlFoto: ${usuario.fotoPerfilUrl}');
+
+
           return Container(
             width: double.infinity,
             padding: EdgeInsets.all(AppDimens.spacingG),
@@ -61,12 +58,16 @@ class _ConfiguracoesScreenState extends ConsumerState<ConfiguracoesScreen> {
                   Center(
                     child: Stack(
                       children: <Widget>[
-                        FotoPerfilWieget(imageUrl: ''),
+                        FotoPerfilWieget(imageUrl: usuario.fotoPerfilUrl),
                         Positioned(
                           bottom: 0,
                           right: 0,
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              // final usuarioAtualizado = usuario.copyWith(fotoPerfilUrl: )
+
+                              fotoNotifier.atualizar(usuario: usuario);
+                            },
                             child: CircleAvatar(
                               radius: 20,
                               backgroundColor: AppColors.secondaryRed,
