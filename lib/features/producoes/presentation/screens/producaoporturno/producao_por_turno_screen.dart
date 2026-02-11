@@ -57,6 +57,7 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+
                   Expanded(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -158,29 +159,18 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
           ),
           const SizedBox(height: 24),
 
-          // Quantidade Produzida no turno
-          // Container(
-          //   child: producaoTurno,
-          // )
           qtTurno.when(
-              inicial: () => const SizedBox(),
-              carregando: () => const Center(child: CircularProgressIndicator()),
-              sucesso: () => const SizedBox(),
-
-              erro: (Failure failure) => Center(child: Text(failure.message)),
-              sucessoComDado: (int qtHoraria) {
-                ref.watch(buscarQuantidadeProduzidaTurnoProvider.notifier).buscar(data: producao.dataCriacao!, turno: turnoState.turno, producaoId: producao.gradeId);
-                return Card(
-                  child: Text('Quantidade produzidaff: $qtHoraria'),
-                );
-              },
+            inicial: () => const Text('Aguardando...'),
+            carregando: () => const CircularProgressIndicator(),
+            sucesso: () => const SizedBox(),
+            erro: (f) => Text(f.message),
+            sucessoComDado: (total) => Card(
+              child: Padding(
+                padding: EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 15),
+                child: Text('Total do Turno: $total'),
+              ),
+            ),
           ),
-          Text(
-            'Quantidade Produzida'
-          ),
-          const SizedBox(height: 8),
-
-
         ],
       ),
     );

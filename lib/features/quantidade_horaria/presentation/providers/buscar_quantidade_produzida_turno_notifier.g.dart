@@ -17,7 +17,7 @@ final class BuscarQuantidadeProduzidaTurnoNotifierProvider
     extends
         $NotifierProvider<
           BuscarQuantidadeProduzidaTurnoNotifier,
-          BuscarQtHorariaState
+          BuscarQtTurnoState
         > {
   BuscarQuantidadeProduzidaTurnoNotifierProvider._()
     : super(
@@ -40,29 +40,29 @@ final class BuscarQuantidadeProduzidaTurnoNotifierProvider
       BuscarQuantidadeProduzidaTurnoNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(BuscarQtHorariaState value) {
+  Override overrideWithValue(BuscarQtTurnoState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<BuscarQtHorariaState>(value),
+      providerOverride: $SyncValueProvider<BuscarQtTurnoState>(value),
     );
   }
 }
 
 String _$buscarQuantidadeProduzidaTurnoNotifierHash() =>
-    r'48456a612255cd4a87ab1e1ec658dc0d14a53e5f';
+    r'dd6c2c487dc3181f30e1b11ccda4eb9e9de35862';
 
 abstract class _$BuscarQuantidadeProduzidaTurnoNotifier
-    extends $Notifier<BuscarQtHorariaState> {
-  BuscarQtHorariaState build();
+    extends $Notifier<BuscarQtTurnoState> {
+  BuscarQtTurnoState build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<BuscarQtHorariaState, BuscarQtHorariaState>;
+    final ref = this.ref as $Ref<BuscarQtTurnoState, BuscarQtTurnoState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<BuscarQtHorariaState, BuscarQtHorariaState>,
-              BuscarQtHorariaState,
+              AnyNotifier<BuscarQtTurnoState, BuscarQtTurnoState>,
+              BuscarQtTurnoState,
               Object?,
               Object?
             >;
