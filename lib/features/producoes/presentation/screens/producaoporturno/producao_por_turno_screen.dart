@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gestao_producao_chopp/features/quantidade_horaria/presentation/providers/buscar_qt_horaria_state.dart';
+import 'package:gestao_producao_chopp/features/quantidade_horaria/presentation/providers/buscar_quantidade_produzida_turno_notifier.dart';
 
 import '../../../../../core/error/failure.dart';
 import '../../../../grades/domain/enums/turno.dart';
@@ -21,6 +23,8 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
     final producaoState = ref.watch(buscarProducaoProvider);
     final turnoState = ref.watch(selecionarTurnoProvider);
     final turnoNotifier = ref.watch(selecionarTurnoProvider.notifier);
+    final prTurnoState = ref.watch(buscarQuantidadeProduzidaTurnoProvider);
+    final prTurnoNotifier = ref.watch(buscarQuantidadeProduzidaTurnoProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(title: Text('Produção por turno')),
@@ -30,7 +34,7 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
             Center(child: Text('Erro: ${(error as Failure).message}')),
         data: (ProducaoEntity? producao) => producao == null
             ? Center(child: Text('Produção não encontrada'))
-            : _conteudo(producao, turnoNotifier, turnoState),
+            : _conteudo(producao, turnoNotifier, prTurnoNotifier, turnoState),
       ),
     );
   }
@@ -38,8 +42,11 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
   Widget _conteudo(
     ProducaoEntity producao,
     SelecionarTurnoNotifier turnoNotifier,
+    BuscarQuantidadeProduzidaTurnoNotifier producaoTurno,
     SelecionarTurnoState turnoState,
   ) {
+    final qtTurno = ref.watch(buscarQuantidadeProduzidaTurnoProvider);
+
     return Container(
       padding: EdgeInsets.all(16),
       child: Column(
@@ -149,6 +156,31 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
               return CardQuantidadeHoraria(horario: horario, producao: producao);
             },
           ),
+          const SizedBox(height: 24),
+
+          // Quantidade Produzida no turno
+          // Container(
+          //   child: producaoTurno,
+          // )
+          qtTurno.when(
+              inicial: () => const SizedBox(),
+              carregando: () => const Center(child: CircularProgressIndicator()),
+              sucesso: () => const SizedBox(),
+
+              erro: (Failure failure) => Center(child: Text(failure.message)),
+              sucessoComDado: (int qtHoraria) {
+                ref.watch(buscarQuantidadeProduzidaTurnoProvider.notifier).buscar(data: producao.dataCriacao!, turno: turnoState.turno, producaoId: producao.gradeId);
+                return Card(
+                  child: Text('Quantidade produzidaff: $qtHoraria'),
+                );
+              },
+          ),
+          Text(
+            'Quantidade Produzida'
+          ),
+          const SizedBox(height: 8),
+
+
         ],
       ),
     );

@@ -2,6 +2,7 @@ import 'package:gestao_producao_chopp/core/di/firebase/firebase_injection_provid
 import 'package:gestao_producao_chopp/features/quantidade_horaria/domain/usecases/delete_qt_horaria_use_case.dart';
 import 'package:gestao_producao_chopp/features/quantidade_horaria/domain/usecases/get_all_qt_horaria_use_case.dart';
 import 'package:gestao_producao_chopp/features/quantidade_horaria/domain/usecases/get_qt_horaria_use_case.dart';
+import 'package:gestao_producao_chopp/features/quantidade_horaria/domain/usecases/get_quantidade_produzida_turno_use_case.dart';
 import 'package:gestao_producao_chopp/features/quantidade_horaria/domain/usecases/insert_qt_horaria_use_case.dart';
 import 'package:gestao_producao_chopp/features/quantidade_horaria/domain/usecases/update_qt_horaria_use_case.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -44,4 +45,10 @@ DeleteQtHorariaUseCase deleteQtHorariaUseCase(Ref ref) {
 GetQtHorariaHrRefUseCase getQtHorariaHrRefUseCase(Ref ref) {
   final repository = ref.watch(quantidadeHorariaRepositoryProvider);
   return GetQtHorariaHrRefUseCase(repository);
+}
+
+@riverpod
+GetQuantidadeProduzidaTurnoUseCase getQuantidadeProduzidaTurnoUseCase(Ref ref) {
+  final rp = ref.watch(quantidadeHorariaRepositoryProvider);
+  return GetQuantidadeProduzidaTurnoUseCase(rp);
 }

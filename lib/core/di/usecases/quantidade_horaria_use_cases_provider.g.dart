@@ -296,3 +296,55 @@ final class GetQtHorariaHrRefUseCaseProvider
 
 String _$getQtHorariaHrRefUseCaseHash() =>
     r'd595d4082c6779869cc59598988ee8456ef77870';
+
+@ProviderFor(getQuantidadeProduzidaTurnoUseCase)
+final getQuantidadeProduzidaTurnoUseCaseProvider =
+    GetQuantidadeProduzidaTurnoUseCaseProvider._();
+
+final class GetQuantidadeProduzidaTurnoUseCaseProvider
+    extends
+        $FunctionalProvider<
+          GetQuantidadeProduzidaTurnoUseCase,
+          GetQuantidadeProduzidaTurnoUseCase,
+          GetQuantidadeProduzidaTurnoUseCase
+        >
+    with $Provider<GetQuantidadeProduzidaTurnoUseCase> {
+  GetQuantidadeProduzidaTurnoUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getQuantidadeProduzidaTurnoUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() =>
+      _$getQuantidadeProduzidaTurnoUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<GetQuantidadeProduzidaTurnoUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  GetQuantidadeProduzidaTurnoUseCase create(Ref ref) {
+    return getQuantidadeProduzidaTurnoUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GetQuantidadeProduzidaTurnoUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GetQuantidadeProduzidaTurnoUseCase>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$getQuantidadeProduzidaTurnoUseCaseHash() =>
+    r'92d59ece4aa28bdef909f70eff0197e3ecc9a9fe';

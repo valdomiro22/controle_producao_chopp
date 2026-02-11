@@ -37,17 +37,16 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
   }
 
   void _subtrair(int valor) {
+    // Pega o que está no campo (ex: 0) e subtrai o valor do chip (ex: 5)
     final atual = int.tryParse(_qtController.text) ?? 0;
-    if (atual > 0) {
-      final op = atual - valor;
-      int valorParaSetar = 0;
-      op > 0 ? valorParaSetar = op : valorParaSetar = 0;
+    final op = atual - valor;
 
-      _qtController.text = valorParaSetar.toString();
-      _qtController.selection = TextSelection.fromPosition(
-        TextPosition(offset: _qtController.text.length),
-      );
-    }
+    // Agora o texto pode ser "-5"
+    _qtController.text = op.toString();
+
+    _qtController.selection = TextSelection.fromPosition(
+      TextPosition(offset: _qtController.text.length),
+    );
   }
 
   @override
@@ -71,7 +70,7 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
     );
 
     return GestureDetector(
-      onTap: () => _abrirDialog(context, params, gradeId),
+      onTap: () => _abrirDialog(context, params, gradeId, qtBuscada),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
         decoration: BoxDecoration(
@@ -98,18 +97,15 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
     );
   }
 
-  void _abrirDialog(BuildContext context, BuscarParams params, String gradeId) {
+  void _abrirDialog(BuildContext context, BuscarParams params, String gradeId, String qtBuscada) {
     _qtController.clear();
 
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        // title: const Center(child: Text('Barris produzidos')),
-        content: SizedBox(
-          // height: 250,
-          height: 190,
+        content: SingleChildScrollView(
           child: Column(
-            // mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Align(
                 alignment: Alignment.topCenter,
@@ -129,86 +125,100 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
                 controller: _qtController,
                 autofocus: true,
                 keyboardType: TextInputType.number,
-                decoration: const InputDecoration(hintText: 'Ex: 30', labelText: 'Quantidade',
+                decoration: const InputDecoration(
+                  hintText: 'Ex: 30',
+                  labelText: 'Quantidade',
                   border: OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey, width: 2)
+                    borderSide: BorderSide(color: Colors.green, width: 2),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey, width: 2)
-                  )
+                    borderSide: BorderSide(color: Colors.green, width: 2),
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _chipIncremento(1),
-                  _chipIncremento(5),
-                  _chipIncremento(10),
-                  _chipIncremento(20),
-                ],
-              ),
-              // const SizedBox(height: 10),
-              // Row(
-              //   mainAxisSize: MainAxisSize.max,
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     _chipDecremento(1),
-              //     _chipDecremento(5),
-              //     _chipDecremento(10),
-              //     _chipDecremento(20),
-              //   ],
-              // ),
+              const SizedBox(height: 16),
+              Align(
+                alignment: Alignment.center,
+                child: Wrap(
+                  spacing: 8.0,    // Espaço horizontal entre os chips
+                  runSpacing: 8.0, // Espaço vertical entre as linhas de chips
+                  alignment: WrapAlignment.center,
+                  children: [
+                    _chipIncremento(1),
+                    _chipIncremento(5),
+                    _chipIncremento(10),
+                    _chipIncremento(20),
 
-              // TODO - Precisa ser finalizado
+                    _chipDecremento(1),
+                    _chipDecremento(5),
+                    _chipDecremento(10),
+                    _chipDecremento(20),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
             ],
           ),
         ),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancelar')),
-          TextButton(
+          ElevatedButton(
             onPressed: () async {
-              final qtAdicional = int.tryParse(_qtController.text) ?? 0;
-              if (qtAdicional <= 0) {
+              // 1. Parse do valor (pode vir positivo ou negativo)
+              final qtAjuste = int.tryParse(_qtController.text) ?? 0;
+
+              if (qtAjuste == 0) {
                 Navigator.pop(context);
                 return;
               }
 
-              // 1. Primeiro execute a ação pesada (gravação)
-              // Use ref.read aqui porque é um callback de clique
+              // Opcional: Validação para não deixar o total do horário ficar negativo
+              final totalAtualNoCard = int.tryParse(qtBuscada) ?? 0;
+              if (totalAtualNoCard + qtAjuste < 0) {
+                // Aqui você pode colocar um SnackBar ou apenas ignorar
+                return;
+              }
+
+              // 2. Gravação no banco (Envia o ajuste, seja +10 ou -5)
               await ref
                   .read(inserirQuantidadeHorariaProvider(params.producaoId).notifier)
-                  .inserirQuantidade(horario: widget.horario, quantidade: qtAdicional);
+                  .inserirQuantidade(horario: widget.horario, quantidade: qtAjuste);
 
-              // 2. Atualizações de estado local
-              final novaQuantidadeTotal = widget.producao.quantidadeProduzida + qtAdicional;
+              // 3. Atualizações de estado local (O total da produção também sofre o ajuste)
+              final novaQuantidadeTotalProducao = widget.producao.quantidadeProduzida + qtAjuste;
               final producaoAtualizada = widget.producao.copyWith(
-                quantidadeProduzida: novaQuantidadeTotal,
+                quantidadeProduzida: novaQuantidadeTotalProducao,
               );
 
+              // Atualiza a lista geral
               await ref
                   .read(listaProducoesProvider.notifier)
                   .atualizarProducao(
-                    gradeId: gradeId,
-                    producaoId: params.producaoId,
-                    producao: producaoAtualizada,
-                  );
+                gradeId: gradeId,
+                producaoId: params.producaoId,
+                producao: producaoAtualizada,
+              );
 
+              // Atualiza o estado da produção que está sendo visualizada
               ref.read(buscarProducaoProvider.notifier).atualizarEstadoLocal(producaoAtualizada);
 
-              // 3. Atualiza o card específico
+              // 4. Invalida o provider do card específico para forçar o reload do somatório
               ref.invalidate(buscarQtHorariaProvider(params));
 
-              // 4. SÓ FECHE O DIALOG NO FINAL e se o widget ainda estiver na tela
+              // 5. Fecha o Dialog
               if (context.mounted) {
                 Navigator.of(context).pop();
               }
             },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green,
+              padding: EdgeInsets.zero
+            ),
             child: const Text(
               'OK',
-              style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+              // style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
             ),
           ),
         ],
