@@ -36,7 +36,7 @@ final appNavigation = Provider<GoRouter>((ref) {
 
       if (isLogado) {
         if (isGoingToLogin || isGoingToCadastro || isGoingToSplash || isGoingToRecuperarSenha) {
-          return AppRoutesNames.home;
+          return AppRoutesNames.listaGrades;
         }
       }
 

@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gestao_producao_chopp/features/anotacoes/domain/entity/anotacao_entity.dart';
-import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/atualizaranotacao/editar_anotacao_screen.dart';
-import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/inserir_anotacao_args.dart';
-import 'package:gestao_producao_chopp/features/anotacoes/presentation/screens/inseriranotacoes/inserir_anotacoes_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterarnome/Alterar_nome_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/cadastro/cadastro_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/configuracoes_screen.dart';
@@ -74,19 +70,6 @@ class AppRoutes {
     }),
 
     GoRoute(
-      path: AppRoutesNames.inserirAnotacao,
-      builder: (context, state) {
-        final args = state.extra as InserirAnotacaoArgs?;
-        if (args == null) {
-          return const Scaffold(
-            body: Center(child: Text('Item não encontrado - [inserir anotacao]')),
-          );
-        }
-        return InserirAnotacoesScreen(producaoId: args.producaoId, gradeId: args.gradeId, producao: args.producao);
-      },
-    ),
-
-    GoRoute(
       path: AppRoutesNames.producaoPorTurno,
       builder: (context, state) => ProducaoPorTurnoScreen(),
     ),
@@ -143,19 +126,6 @@ class AppRoutes {
           );
         }
         return FinalProducaoScreen(producaoId: producaoId);
-      },
-    ),
-
-    GoRoute(
-      path: AppRoutesNames.editarAnotacao,
-      builder: (context, state) {
-        final anotacao = state.extra as AnotacaoEntity?;
-        if (anotacao == null) {
-          return const Scaffold(
-            body: Center(child: Text('Item não encontrado - [editar anotacao]')),
-          );
-        }
-        return EditarAnotacaoScreen(anotacao: anotacao);
       },
     ),
   ];
