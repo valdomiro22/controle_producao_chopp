@@ -41,21 +41,32 @@ class _ListaGradesScreenState extends ConsumerState<ListaGradesScreen> {
           carregando: () => const Center(child: CircularProgressIndicator()),
           sucesso: () => const SizedBox(),
           erro: (Failure failure) => Center(child: Text(failure.message)),
-          sucessoComDados: (List<GradeEntity>? grades) {
+          sucessoComDados: (lista) {
+
+            if (lista.isEmpty) {
+              return SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.7,
+                  child: const Center(child: Text('Adicione uma nova Grade')),
+                ),
+              );
+            }
+
             return Padding(
               padding: EdgeInsets.all(10),
               child: ListView.builder(
                 physics: const AlwaysScrollableScrollPhysics(),
-                itemCount: grades!.length,
+                itemCount: lista!.length,
                 itemBuilder: (_, index) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: GestureDetector(
                       onTap: () {
-                        context.push(AppRoutesNames.listaProducoes, extra: grades[index].id);
+                        context.push(AppRoutesNames.listaProducoes, extra: lista[index].id);
                       },
                       child: ItemGradeWidget(
-                          grade: grades[index]
+                          grade: lista[index]
                       ),
                     ),
                   );

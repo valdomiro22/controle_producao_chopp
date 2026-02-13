@@ -62,14 +62,12 @@ class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
 
               // 5. Sucesso com a Lista (Onde a UI real acontece)
               sucessoComLista: (lista) {
-                debugPrint('lista pesquisada: ${lista.length}');
-
                 if (lista.isEmpty) {
                   return SingleChildScrollView(
                     physics: const AlwaysScrollableScrollPhysics(),
                     child: SizedBox(
                       height: MediaQuery.of(context).size.height * 0.7,
-                      child: const Center(child: Text('Nenhuma grade cadastrada ainda')),
+                      child: const Center(child: Text('Adicione uma nova Produção')),
                     ),
                   );
                 }

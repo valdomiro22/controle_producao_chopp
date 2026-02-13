@@ -344,7 +344,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             erro: (f) => Text(f.message),
             sucessoComDado: (total) => Card(
               child: Padding(
-                padding: EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 15),
+                padding: EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 12),
                 child: Text('Total do Turno: $total'),
               ),
             ),

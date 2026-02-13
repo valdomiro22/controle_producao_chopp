@@ -12,6 +12,8 @@ class GradeDatasourceImpl implements GradeDatasource {
   GradeDatasourceImpl(this._firestore);
 
   final _gradeCollection = 'grades';
+  final _producoes = 'producoes';
+  final _listaProducoes = 'producoes';
 
   @override
   Future<void> insertGrade(GradeModel grade) async {
@@ -44,9 +46,31 @@ class GradeDatasourceImpl implements GradeDatasource {
   }
 
   @override
-  Future<void> deleteGrade(String id) async {
+  Future<void> deleteGrade(String gradeId) async {
     try {
-      await _firestore.collection(_gradeCollection).doc(id).delete();
+      final producoesSnap = await _firestore
+          .collection(_producoes)
+          .doc(gradeId)
+          .collection(_listaProducoes)
+          .get();
+
+      WriteBatch batch = _firestore.batch();
+      int ops = 0;
+      for (final doc in producoesSnap.docs) {
+        batch.delete(doc.reference);
+        ops++;
+
+        if (ops >= 450) {
+          await batch.commit();
+          batch = _firestore.batch();
+          ops = 0;
+        }
+      }
+
+      batch.delete(_firestore.collection(_producoes).doc(gradeId));  // Produções
+      batch.delete(_firestore.collection(_gradeCollection).doc(gradeId));  // Grade
+
+      await batch.commit();
     } on FirebaseException catch (e) {
       switch (e.code) {
         case 'permission-denied':

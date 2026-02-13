@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 
 import '../../../grades/presentation/widgets/mensagem_aviso_buffer.dart';
@@ -15,7 +16,7 @@ class ControleNivelBufferWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final corVermelha = Color(0xffcb0000);
-    final corFundo = Color(0xFF2563EB).withValues(alpha: 0.2);
+    final corFundo = AppColors.purple200.withValues(alpha: 0.2);
     final isVolumeOk = producao.volumeNecessarioHl < 40.0 ? false : true;
 
     return Column(
@@ -33,9 +34,15 @@ class ControleNivelBufferWidget extends ConsumerWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                'Volume do Barril: ${producao.tipoBarril.label}',
-                style: TextStyle(color: Colors.black, fontSize: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Volume do Barril: ',
+                    style: TextStyle(color: AppColors.secondaryText, fontSize: 16),
+                  ),
+                  Text(producao.tipoBarril.label, style: TextStyle(fontSize: 16, color: Colors.black)),
+                ],
               ),
               SizedBox(height: 4),
               Row(
@@ -43,9 +50,9 @@ class ControleNivelBufferWidget extends ConsumerWidget {
                 children: [
                   Text(
                     'Volume necessarios: ',
-                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    style: TextStyle(color: AppColors.secondaryText, fontSize: 16),
                   ),
-                  Text('${producao.volumeNecessarioHl.toString()} hl', style: TextStyle(fontSize: 16)),
+                  Text('${producao.volumeNecessarioHl.toString()} hl', style: TextStyle(fontSize: 16, color: Colors.black)),
                 ],
               ),
               SizedBox(height: 8),

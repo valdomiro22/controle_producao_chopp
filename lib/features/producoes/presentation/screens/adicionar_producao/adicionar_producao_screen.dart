@@ -37,13 +37,6 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
 
     ref.listen(adicionarProducaoProvider, (previous, next) {
       if (next.isSucess) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Producao criada'),
-            duration: Duration(seconds: 2),
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
         notifier.limpar();
         _qtController.clear();
         _ordemController.clear();
@@ -57,8 +50,26 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
         padding: EdgeInsets.all(AppDimens.spacingG),
         child: Column(
           children: [
+
+            // Código
+            TextField(
+              controller: _codigoController,
+              decoration: InputDecoration(
+                labelText: 'Código',
+                hintText: 'Ex: 2068299',
+              ),
+              keyboardType: TextInputType.number,
+              onChanged: (value) => notifier.setCodigo(value),
+            ),
+            const SizedBox(height: 16),
+
             Row(
               children: [
+                if (state.erro != null)
+                  Text(
+                    state.erro!,
+                    style: TextStyle(color: Colors.red, fontSize: 12),
+                  ),
 
                 // Produto
                 Expanded(
@@ -135,6 +146,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
             ),
             const SizedBox(height: 8),
 
+            // Ordem
             TextField(
               controller: _ordemController,
               decoration: InputDecoration(
@@ -145,22 +157,6 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
               onChanged: (value) => notifier.setOrdem(value),
             ),
             const SizedBox(height: 8),
-
-            TextField(
-              controller: _codigoController,
-              decoration: InputDecoration(
-                labelText: 'Código',
-                hintText: 'Ex: 2068299',
-              ),
-              keyboardType: TextInputType.number,
-              onChanged: (value) => notifier.setCodigo(value),
-            ),
-
-            if (state.erro != null)
-              Text(
-                state.erro!,
-                style: TextStyle(color: Colors.red, fontSize: 12),
-              ),
 
             if (state.isLoading == true)
               Padding(

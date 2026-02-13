@@ -13,7 +13,7 @@ part of 'editar_grade_notifier.dart';
 final editarGradeProvider = EditarGradeNotifierProvider._();
 
 final class EditarGradeNotifierProvider
-    extends $NotifierProvider<EditarGradeNotifier, ListaGradesState> {
+    extends $NotifierProvider<EditarGradeNotifier, FormEditarGradeState> {
   EditarGradeNotifierProvider._()
     : super(
         from: null,
@@ -33,28 +33,28 @@ final class EditarGradeNotifierProvider
   EditarGradeNotifier create() => EditarGradeNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ListaGradesState value) {
+  Override overrideWithValue(FormEditarGradeState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<ListaGradesState>(value),
+      providerOverride: $SyncValueProvider<FormEditarGradeState>(value),
     );
   }
 }
 
 String _$editarGradeNotifierHash() =>
-    r'7fffc5ae4c6a9872b7b468a645098715d1d8206e';
+    r'0710c67cdeda6945961de17447d0918ee23dab81';
 
-abstract class _$EditarGradeNotifier extends $Notifier<ListaGradesState> {
-  ListaGradesState build();
+abstract class _$EditarGradeNotifier extends $Notifier<FormEditarGradeState> {
+  FormEditarGradeState build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<ListaGradesState, ListaGradesState>;
+    final ref = this.ref as $Ref<FormEditarGradeState, FormEditarGradeState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<ListaGradesState, ListaGradesState>,
-              ListaGradesState,
+              AnyNotifier<FormEditarGradeState, FormEditarGradeState>,
+              FormEditarGradeState,
               Object?,
               Object?
             >;

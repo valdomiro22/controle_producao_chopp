@@ -131,7 +131,7 @@ return erro(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  inicial,TResult Function()?  carregando,TResult Function( List<GradeEntity>? grades)?  sucessoComDados,TResult Function()?  sucesso,TResult Function( Failure failure)?  erro,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  inicial,TResult Function()?  carregando,TResult Function( List<GradeEntity> grades)?  sucessoComDados,TResult Function()?  sucesso,TResult Function( Failure failure)?  erro,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Inicial() when inicial != null:
 return inicial();case _Carregando() when carregando != null:
@@ -156,7 +156,7 @@ return erro(_that.failure);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  inicial,required TResult Function()  carregando,required TResult Function( List<GradeEntity>? grades)  sucessoComDados,required TResult Function()  sucesso,required TResult Function( Failure failure)  erro,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  inicial,required TResult Function()  carregando,required TResult Function( List<GradeEntity> grades)  sucessoComDados,required TResult Function()  sucesso,required TResult Function( Failure failure)  erro,}) {final _that = this;
 switch (_that) {
 case _Inicial():
 return inicial();case _Carregando():
@@ -180,7 +180,7 @@ return erro(_that.failure);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  inicial,TResult? Function()?  carregando,TResult? Function( List<GradeEntity>? grades)?  sucessoComDados,TResult? Function()?  sucesso,TResult? Function( Failure failure)?  erro,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  inicial,TResult? Function()?  carregando,TResult? Function( List<GradeEntity> grades)?  sucessoComDados,TResult? Function()?  sucesso,TResult? Function( Failure failure)?  erro,}) {final _that = this;
 switch (_that) {
 case _Inicial() when inicial != null:
 return inicial();case _Carregando() when carregando != null:
@@ -263,16 +263,14 @@ String toString() {
 
 
 class _SucessoComDados implements ListaGradesState {
-  const _SucessoComDados(final  List<GradeEntity>? grades): _grades = grades;
+  const _SucessoComDados(final  List<GradeEntity> grades): _grades = grades;
   
 
- final  List<GradeEntity>? _grades;
- List<GradeEntity>? get grades {
-  final value = _grades;
-  if (value == null) return null;
+ final  List<GradeEntity> _grades;
+ List<GradeEntity> get grades {
   if (_grades is EqualUnmodifiableListView) return _grades;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
+  return EqualUnmodifiableListView(_grades);
 }
 
 
@@ -306,7 +304,7 @@ abstract mixin class _$SucessoComDadosCopyWith<$Res> implements $ListaGradesStat
   factory _$SucessoComDadosCopyWith(_SucessoComDados value, $Res Function(_SucessoComDados) _then) = __$SucessoComDadosCopyWithImpl;
 @useResult
 $Res call({
- List<GradeEntity>? grades
+ List<GradeEntity> grades
 });
 
 
@@ -323,10 +321,10 @@ class __$SucessoComDadosCopyWithImpl<$Res>
 
 /// Create a copy of ListaGradesState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? grades = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? grades = null,}) {
   return _then(_SucessoComDados(
-freezed == grades ? _self._grades : grades // ignore: cast_nullable_to_non_nullable
-as List<GradeEntity>?,
+null == grades ? _self._grades : grades // ignore: cast_nullable_to_non_nullable
+as List<GradeEntity>,
   ));
 }
 

@@ -11,7 +11,7 @@ class ListaGradesState with _$ListaGradesState {
 
   const factory ListaGradesState.carregando() = _Carregando;
 
-  const factory ListaGradesState.sucessoComDados(List<GradeEntity>? grades) = _SucessoComDados;
+  const factory ListaGradesState.sucessoComDados(List<GradeEntity> grades) = _SucessoComDados;
 
   const factory ListaGradesState.sucesso() = _Sucesso;
 

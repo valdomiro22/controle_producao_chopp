@@ -67,6 +67,9 @@ class _AdicionarGradeScreenState extends ConsumerState<AdicionarGradeScreen> {
 
             SizedBox(height: 16),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue
+              ),
               onPressed: () async {
                 final DateTime? picker = await showDatePicker(
                   context: context,
