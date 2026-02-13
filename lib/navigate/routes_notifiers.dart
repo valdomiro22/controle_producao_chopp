@@ -9,6 +9,6 @@ final navAuthState = StreamProvider<User?>((ref) {
 });
 
 /// Delay da tela splash
-final delaySplashScreen = FutureProvider<void>((ref) async {
-  await Future.delayed(const Duration(seconds: 3));
+final delaySplashScreen = FutureProvider.autoDispose<void>((ref) async {
+  await Future.delayed(const Duration(seconds: 5));
 });

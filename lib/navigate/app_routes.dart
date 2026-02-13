@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestao_producao_chopp/core/common/screens/splash/splash_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterarnome/Alterar_nome_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/cadastro/cadastro_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/configuracoes_screen.dart';
@@ -25,6 +26,8 @@ import 'app_routes_names.dart';
 
 class AppRoutes {
   static final routes = [
+    GoRoute(path: AppRoutesNames.splash, builder: (context, state) => SplashScreen()),
+
     GoRoute(path: AppRoutesNames.cadastro, builder: (context, state) => CadastroScreen()),
 
     GoRoute(path: AppRoutesNames.login, builder: (context, state) => LoginScreen()),

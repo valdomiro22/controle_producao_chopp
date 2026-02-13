@@ -10,9 +10,6 @@ import '../../../features/auth/domain/entity/usuario_entity.dart';
 import '../../../features/auth/presentation/widgets/foto_perfil_wieget.dart';
 import '../../../features/producoes/presentation/screens/home/home_notifier.dart';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 class AppDrawer extends ConsumerStatefulWidget {
   const AppDrawer({super.key});
 
@@ -47,6 +44,7 @@ class _AppDrawerState extends ConsumerState<AppDrawer> {
             sucesso: () => const Center(child: Text('Sucesso'),),
             erro: (failure) => Center(child: Text(failure.message)),
             sucessoComDados: (UsuarioEntity usuario) {
+
               final nome = usuario.nomeCompleto.length > 23
                   ? usuario.nomeCompleto.substring(0, 23)
                   : usuario.nomeCompleto;
@@ -67,7 +65,7 @@ class _AppDrawerState extends ConsumerState<AppDrawer> {
                   children: [
                     Center(
                       child: Stack(
-                        children: <Widget>[FotoPerfilWieget(imageUrl: '', tamanho: 100)],
+                        children: <Widget>[FotoPerfilWieget(imageUrl: usuario.fotoPerfilUrl, tamanho: 100)],
                       ),
                     ),
                     const SizedBox(height: 8),

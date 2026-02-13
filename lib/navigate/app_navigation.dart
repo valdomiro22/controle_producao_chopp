@@ -5,43 +5,56 @@ import 'package:gestao_producao_chopp/navigate/routes_notifiers.dart';
 import 'package:go_router/go_router.dart';
 
 final appNavigation = Provider<GoRouter>((ref) {
-  final authState = ref.watch(navAuthState);
-  final delaySplash = ref.watch(delaySplashScreen);
-
-  return GoRouter(
-    initialLocation: AppRoutesNames.login,
+  final router = GoRouter(
+    initialLocation: AppRoutesNames.splash,
     debugLogDiagnostics: true,
 
     redirect: (context, state) {
-      if (authState.isLoading || authState.hasError || delaySplash.isLoading) {
-        return null;
-      }
+      final authState = ref.read(navAuthState);
+      final delaySplash = ref.read(delaySplashScreen);
 
-      final isLogado = authState.value != null;
       final localAlvo = state.matchedLocation;
 
-      print('estou logado: $isLogado');
-      print('indo para: $localAlvo');
+      final isGoingToSplash = localAlvo == AppRoutesNames.splash;
+      final isGoingToLogin = localAlvo == AppRoutesNames.login;
+      final isGoingToCadastro = localAlvo == AppRoutesNames.cadastro;
+      final isGoingToRecuperarSenha = localAlvo == AppRoutesNames.recuperarSenha;
 
-      final isGoingToLogin = state.matchedLocation == AppRoutesNames.login;
-      final isGoingToSplash = state.matchedLocation == AppRoutesNames.splash;
-      final isGoingToCadastro = state.matchedLocation == AppRoutesNames.cadastro;
-      final isGoingToRecuperarSenha = state.matchedLocation == AppRoutesNames.recuperarSenha;
-
-      if (!isLogado) {
-        if (!isGoingToLogin && !isGoingToCadastro && !isGoingToSplash && !isGoingToRecuperarSenha) {
-          return AppRoutesNames.login;
-        }
+      // Enquanto carrega auth ou o delay, força ficar na splash
+      if (authState.isLoading || delaySplash.isLoading) {
+        return isGoingToSplash ? null : AppRoutesNames.splash;
       }
 
-      if (isLogado) {
-        if (isGoingToLogin || isGoingToCadastro || isGoingToSplash || isGoingToRecuperarSenha) {
+      if (authState.hasError) return AppRoutesNames.login;
+
+      final isLogado = authState.value != null;
+
+      // Quando o delay terminou e ainda está na splash, decide o destino
+      if (isGoingToSplash) {
+        return isLogado ? AppRoutesNames.listaGrades : AppRoutesNames.login;
+      }
+
+      // Regras normais
+      if (!isLogado) {
+        if (!isGoingToLogin && !isGoingToCadastro && !isGoingToRecuperarSenha) {
+          return AppRoutesNames.login;
+        }
+      } else {
+        if (isGoingToLogin || isGoingToCadastro || isGoingToRecuperarSenha) {
           return AppRoutesNames.listaGrades;
         }
       }
 
       return null;
     },
+
     routes: AppRoutes.routes,
   );
+
+  // 🔥 Isso aqui é o pulo do gato: manda o GoRouter recalcular o redirect
+  ref.listen(navAuthState, (_, __) => router.refresh());
+  ref.listen(delaySplashScreen, (_, __) => router.refresh());
+
+  return router;
 });
+

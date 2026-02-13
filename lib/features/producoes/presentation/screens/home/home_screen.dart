@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/common/widgets/app_drawer.dart';
 import 'package:gestao_producao_chopp/core/error/failure.dart';
+import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/buscar_producao_notifier.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/selecionar_turno_notifier.dart';
@@ -343,9 +344,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             sucesso: () => const SizedBox(),
             erro: (f) => Text(f.message),
             sucessoComDado: (total) => Card(
+              color: AppColors.blueStrong,
               child: Padding(
                 padding: EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 12),
-                child: Text('Total do Turno: $total'),
+                child: Text('Total do Turno: $total', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),),
               ),
             ),
           ),
