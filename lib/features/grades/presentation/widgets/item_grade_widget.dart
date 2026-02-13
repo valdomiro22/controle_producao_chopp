@@ -112,9 +112,55 @@ class ItemGradeWidget extends ConsumerWidget {
                 IconButton(
                   icon: Icon(Icons.delete, color: Colors.red, size: 30),
                   onPressed: () {
-                    debugPrint('Deletar grade');
                     if (grade.id != null) {
-                      ref.read(listaGradesProvider.notifier).deletarGrade(grade.id!);
+
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Row(
+                              children: [
+                                Icon(Icons.warning, color: AppColors.primaryRed,),
+                                SizedBox(width: 4),
+                                Text(
+                                  'Alerta!',
+                                  style: TextStyle(color: AppColors.primaryDarkText),
+                                )
+                              ],
+                            ),
+                            content: Text(
+                              'Esta ação não pode ser revertida. Você realmente quer excluir esta grade? Todas as produções relacionadas a ela serão excluidas tambem.'
+                            ),
+                            actions: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.greenAccent,
+                                ),
+                                child: Text(
+                                  'Cancelar',
+                                  style: TextStyle(
+                                    color: AppColors.primaryDarkText,
+                                  ),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  ref.read(listaGradesProvider.notifier).deletarGrade(grade.id!);
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text(
+                                  'Deletar',
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+
                     }
                   },
                 ),

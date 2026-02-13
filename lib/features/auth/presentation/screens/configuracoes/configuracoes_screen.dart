@@ -36,6 +36,9 @@ class _ConfiguracoesScreenState extends ConsumerState<ConfiguracoesScreen> {
 
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Configurações de usuário'),
+      ),
       body: stateUsuario.when(
         sucessoComDados: (UsuarioEntity usuario) {
 
@@ -50,9 +53,6 @@ class _ConfiguracoesScreenState extends ConsumerState<ConfiguracoesScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 50),
-                  Text('Configurações', style: TextStyle(fontSize: 32)),
-                  const SizedBox(height: 20),
 
                   // Imagem de perfil
                   Center(
