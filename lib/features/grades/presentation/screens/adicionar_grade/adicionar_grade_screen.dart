@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/common/widgets/elevated_button_centralizado.dart';
@@ -26,9 +28,10 @@ class _AdicionarGradeScreenState extends ConsumerState<AdicionarGradeScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(adicionarGradeProvider);
+    final notifier = ref.watch(adicionarGradeProvider.notifier);
 
-    ref.listen(adicionarGradeProvider, (asdf, next) {
-      if (state.isSucesso) {
+    ref.listen(adicionarGradeProvider, (previous, next) {
+      if (next.isSucess) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Grade criada'),
@@ -42,24 +45,23 @@ class _AdicionarGradeScreenState extends ConsumerState<AdicionarGradeScreen> {
 
     return Scaffold(
       appBar: AppBar(title: Text('Adicionar Grade')),
-      body: Container(
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
-        width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(height: 50),
             TextField(
               controller: _numeroController,
               decoration: InputDecoration(
                 labelText: 'Número da Grade',
                 hintText: 'Ex: 01',
               ),
+              onChanged: (v) => notifier.inserirNumero(v),
             ),
 
-            if (state.isErro)
+            if (state.erroNumero != null)
               Text(
-                '${state.erro?.message}',
+                '${state.erroNumero}',
                 style: TextStyle(color: Colors.red, fontSize: 12),
               ),
 
@@ -76,6 +78,7 @@ class _AdicionarGradeScreenState extends ConsumerState<AdicionarGradeScreen> {
                 if (picker != null && picker != _dataSelecionada) {
                   setState(() {
                     _dataSelecionada = picker;
+                    notifier.inserirData(picker);
                   });
                 }
               },
@@ -85,9 +88,15 @@ class _AdicionarGradeScreenState extends ConsumerState<AdicionarGradeScreen> {
                     : 'Data ${_dataSelecionada?.day}/${_dataSelecionada?.month}/${_dataSelecionada?.year}',
               ),
             ),
+            if (state.erroData != null)
+              Text(
+                '${state.erroData}',
+                style: TextStyle(color: Colors.red, fontSize: 12),
+              ),
+
             SizedBox(height: 20),
 
-            if (state.carregando) Padding(
+            if (state.isLoading) Padding(
               padding: EdgeInsets.only(bottom: 20),
               child: Center(child: CircularProgressIndicator()),
             ),
@@ -97,10 +106,8 @@ class _AdicionarGradeScreenState extends ConsumerState<AdicionarGradeScreen> {
               child: ElevatedButton(
                 child: Text('Salvar'),
                 onPressed: () {
-                  final numero = _numeroController.text;
-                  ref
-                      .read(adicionarGradeProvider.notifier)
-                      .inserirGrade(data: _dataSelecionada, numero: numero);
+                  // final numero = _numeroController.text;
+                  notifier.inserirGrade();
                 },
               ),
             ),

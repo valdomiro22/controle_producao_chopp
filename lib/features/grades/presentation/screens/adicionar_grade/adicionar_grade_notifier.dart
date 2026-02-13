@@ -1,3 +1,4 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gestao_producao_chopp/core/di/usecases/grade_use_cases_provider.dart';
 import 'package:gestao_producao_chopp/core/error/failure.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -8,50 +9,89 @@ import '../../states/grade_state.dart';
 import '../lista_grades/lista_grades_notifier.dart';
 
 part 'adicionar_grade_notifier.g.dart';
+part 'adicionar_grade_notifier.freezed.dart';
 
 @riverpod
 class AdicionarGradeNotifier extends _$AdicionarGradeNotifier {
   @override
-  GradeState build() => GradeState.inicial();
+  FormAdicionarGradeState build() => FormAdicionarGradeState.inicial();
 
-  Future<void> inserirGrade({required DateTime? data, required String numero,}) async {
-    if (data == null) {
-      state = GradeState.erro(UnexpectedFailure('Selecione uma data'));
-      return;
-    }
-
-    if (numero.trim().isEmpty) {
-      state = GradeState.erro(UnexpectedFailure('Informe o número da grade'));
-      return;
-    }
-
+  void inserirNumero(String v) {
     int? num;
     try {
-      num = int.parse(numero.trim());
+      num = int.parse(v.trim());
     } on FormatException {
-      state = GradeState.erro(UnexpectedFailure('Número inválido'));
+      state = state.copyWith(erro: 'Número inválido');
       return;
     }
+    state = state.copyWith(numeroGrade: num, erroNumero: null);
+  }
 
-    state = GradeState.carregando();
+  void inserirData(DateTime d) => state = state.copyWith(data: d, erroData: null);
+
+  Future<void> inserirGrade() async {
+    if (!_validarCampos()) return;
+
+    state = state.copyWith(isLoading: true);
 
     final useCase = ref.read(insertGradeUseCaseProvider);
 
     final id = Uuid().v4();
     final grade = GradeEntity(
       id: id,
-      numeroGrade: num,
-      data: data
+      numeroGrade: state.numeroGrade!,
+      data: state.data!,
     );
 
     final result = await useCase(grade);
 
     state = result.fold(
-      (failure) => GradeState.erro(failure),
+      (failure) {
+        return state = state.copyWith(erro: failure.message);
+      },
       (_) {
-        ref.read(listaGradesProvider.notifier).listarGrades();
-        return GradeState.sucesso();
+         ref.read(listaGradesProvider.notifier).listarGrades();
+         return state = state.copyWith(isLoading: false, isSucess: true);
       },
     );
   }
+  
+  bool _validarCampos() {
+    bool validos = true;
+    String? num;
+    String? dt;
+    
+    if (state.numeroGrade == null) {
+      validos = false;
+      num = 'Digite o número da grade';
+    } else if (state.numeroGrade!.isNaN) {
+      validos = false;
+      num = 'Digite um valor numerico';
+    }
+
+    if (state.data == null) {
+      validos = false;
+      num = 'Selecione a data';
+    }
+
+    state = state.copyWith(erroNumero: num, erroData: dt);
+    return validos;
+  }
+}
+
+
+@freezed
+sealed class FormAdicionarGradeState with _$FormAdicionarGradeState {
+  const factory FormAdicionarGradeState({
+    int? numeroGrade,
+    DateTime? data,
+    String? erro,
+    String? erroNumero,
+    String? erroData,
+    @Default(false) bool isLoading,
+    @Default(false) bool isSucess,
+    @Default(false) bool camposValidos,
+  }) = _FormAdicionarGradeState;
+
+  factory FormAdicionarGradeState.inicial() => const FormAdicionarGradeState();
 }

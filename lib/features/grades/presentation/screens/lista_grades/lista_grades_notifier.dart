@@ -1,4 +1,6 @@
+import 'package:dartz/dartz.dart';
 import 'package:gestao_producao_chopp/core/di/usecases/grade_use_cases_provider.dart';
+import 'package:gestao_producao_chopp/core/error/failure.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'lista_grades_state.dart';
@@ -18,7 +20,9 @@ class ListaGradesNotifier extends _$ListaGradesNotifier {
 
     state = result.fold(
           (failure) => ListaGradesState.erro(failure),
-          (lista) => ListaGradesState.sucessoConDados(lista),
+          (lista) {
+            return ListaGradesState.sucessoComDados(lista);
+          },
     );
   }
 

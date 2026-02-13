@@ -13,7 +13,7 @@ part of 'adicionar_grade_notifier.dart';
 final adicionarGradeProvider = AdicionarGradeNotifierProvider._();
 
 final class AdicionarGradeNotifierProvider
-    extends $NotifierProvider<AdicionarGradeNotifier, GradeState> {
+    extends $NotifierProvider<AdicionarGradeNotifier, FormAdicionarGradeState> {
   AdicionarGradeNotifierProvider._()
     : super(
         from: null,
@@ -33,28 +33,30 @@ final class AdicionarGradeNotifierProvider
   AdicionarGradeNotifier create() => AdicionarGradeNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(GradeState value) {
+  Override overrideWithValue(FormAdicionarGradeState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<GradeState>(value),
+      providerOverride: $SyncValueProvider<FormAdicionarGradeState>(value),
     );
   }
 }
 
 String _$adicionarGradeNotifierHash() =>
-    r'b423be83640d1c72a1578a6a979d2a9a17492691';
+    r'ba29e85ab1f18515e2319440d3881072b5067a0e';
 
-abstract class _$AdicionarGradeNotifier extends $Notifier<GradeState> {
-  GradeState build();
+abstract class _$AdicionarGradeNotifier
+    extends $Notifier<FormAdicionarGradeState> {
+  FormAdicionarGradeState build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<GradeState, GradeState>;
+    final ref =
+        this.ref as $Ref<FormAdicionarGradeState, FormAdicionarGradeState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<GradeState, GradeState>,
-              GradeState,
+              AnyNotifier<FormAdicionarGradeState, FormAdicionarGradeState>,
+              FormAdicionarGradeState,
               Object?,
               Object?
             >;

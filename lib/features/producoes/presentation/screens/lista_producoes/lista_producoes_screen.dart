@@ -35,7 +35,7 @@ class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
       appBar: AppBar(title: const Text('Lista de Produções')),
       body: Center(
         child: Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(10),
           child: RefreshIndicator(
             onRefresh: () async {
               await listaNotifier.listarProducoes(widget.gradeId);

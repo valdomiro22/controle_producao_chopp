@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gestao_producao_chopp/core/common/widgets/linha_formatada.dart';
 import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
 import 'package:gestao_producao_chopp/core/utils/string_util.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
@@ -17,33 +18,47 @@ class ItemGradeWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final data = StringUtil.formatarData(grade.data.toIso8601String());
+
     return Card(
       color: AppColors.lightSurface,
       child: Padding(
-        padding: EdgeInsets.only(left: 12, top: 10, right: 12, bottom: 2),
-        child: Column(
+        padding: EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+        child: Row(
           children: [
-            Row(
+            // Titulos
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Data: ',
-                  style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold),
-                ),
-                Text(data ?? '', style: TextStyle(fontSize: 16, color: Colors.black)),
 
-                Spacer(),
-                Text(
-                  'Grade: ',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+                // Data
+                Row(
+                  children: [
+                    Text('Data:', style: TextStyle(fontSize: 16, color: Colors.black)),
+                    const SizedBox(width: 4),
+
+                    Text(
+                      data ?? '',
+                      style: TextStyle(fontSize: 14, color: Colors.black),
+                    )
+                  ],
                 ),
-                Text(
-                  grade.numeroGrade.toString(),
-                  style: TextStyle(fontSize: 16, color: Colors.black),
+
+                // Grade
+                Row(
+                  children: [
+                    Text('Grade:', style: TextStyle(fontSize: 16, color: Colors.black)),
+                    const SizedBox(width: 4),
+
+                    Text(
+                      grade.numeroGrade.toString(),
+                      style: TextStyle(fontSize: 14, color: Colors.black),
+                    )
+                  ],
                 ),
               ],
             ),
 
-            SizedBox(height: 2),
+            Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -108,19 +123,6 @@ class ItemGradeWidget extends ConsumerWidget {
                   icon: Icon(Icons.edit, color: Colors.blue, size: 30),
                   onPressed: () {
                     context.push(AppRoutesNames.editarGrade, extra: grade);
-                  },
-                ),
-
-                IconButton(
-                  icon: Icon(Icons.share, color: Colors.purple, size: 30),
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Share'),
-                        duration: Duration(seconds: 2),
-                        behavior: SnackBarBehavior.floating,
-                      ),
-                    );
                   },
                 ),
               ],
