@@ -17,6 +17,5 @@ class AppRoutesNames {
   static const String finalProducao = '/final-producao';
   static const String relatorioProducao = '/relatorio-producao';
   static const String producaoPorTurno = '/producao-por-turno';
-  static const String inserirAnotacao = '/inserir-anotacao';
-  static const String editarAnotacao = '/editar-anotacao';
+  static const String simularFimProducao = '/simular-fim-producao';
 }

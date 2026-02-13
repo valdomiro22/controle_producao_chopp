@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 class MensagemAvisoBuffer extends StatelessWidget {
   final double? vlNecessario;
+  final int? vlMaximoTanque;
 
-  const MensagemAvisoBuffer({super.key, required this.vlNecessario});
+  const MensagemAvisoBuffer({super.key, required this.vlNecessario, this.vlMaximoTanque,});
 
   @override
   Widget build(BuildContext context) {
     final corVermelha = Color(0xffcb0000);
-    final isVolumeOk = vlNecessario != null ? vlNecessario! <= 40 : false;
+    final vlTanque = vlMaximoTanque ?? 0.0;
+    final isVolumeOk = vlNecessario != null ? vlNecessario! <= vlTanque : false;
     
     if (vlNecessario == null) {
       return Container(

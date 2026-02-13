@@ -49,7 +49,8 @@ class ControleNivelBufferWidget extends ConsumerWidget {
                 ],
               ),
               SizedBox(height: 8),
-              MensagemAvisoBuffer(vlNecessario: producao.volumeNecessarioHl),
+              MensagemAvisoBuffer(vlNecessario: producao.volumeNecessarioHl, vlMaximoTanque: 30,),
+              // TODO - tornar vlMaximoTanque dinamico
             ],
           ),
         ),

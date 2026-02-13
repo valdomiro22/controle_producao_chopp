@@ -209,7 +209,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
           // Monitoramento de volume
           GestureDetector(
-            onTap: () => context.push(AppRoutesNames.finalProducao, extra: producao.id),
+            onTap: () => context.push(AppRoutesNames.simularFimProducao, extra: producao.id),
             child: ControleNivelBufferWidget(producao: producao),
           ),
           const SizedBox(height: 16),

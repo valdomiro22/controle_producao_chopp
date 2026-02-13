@@ -4,12 +4,16 @@ class LinhaNomeValor extends StatelessWidget {
   final String texto;
   final String? quantidade;
   final Color corDeFundo;
+  final Color? corTexto;
+  final Color? corValor;
 
   const LinhaNomeValor({
     super.key,
     required this.texto,
     required this.quantidade,
     required this.corDeFundo,
+    this.corTexto,
+    this.corValor
   });
 
   @override
@@ -18,21 +22,17 @@ class LinhaNomeValor extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
         decoration: BoxDecoration(
           color: corDeFundo,
-          // border: Border.all(
-          //   color: Colors.purple.shade400,
-          //   width: 3
-          // ),
           borderRadius: BorderRadius.circular(5)
         ),
         child: Row(
           children: [
             Text(
               '$texto: ',
-              style: TextStyle(fontSize: 18, color: Colors.black),
+              style: TextStyle(fontSize: 18, color: corTexto ?? Colors.black),
             ),
             Text(
               quantidade ?? '-1',
-              style: TextStyle(fontSize: 20, color: Colors.deepPurple, fontWeight: FontWeight.w500),
+              style: TextStyle(fontSize: 20, color: corValor ?? Colors.deepPurple, fontWeight: FontWeight.w500),
             ),
           ],
         ),

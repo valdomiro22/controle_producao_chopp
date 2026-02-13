@@ -6,6 +6,7 @@ import 'package:gestao_producao_chopp/features/auth/presentation/screens/login/l
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/producaoporturno/producao_por_turno_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/relatorio_producao/relatorio_screen.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/screens/simularfimproducao/simular_fim_producao_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/status_producao/status_producao_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/selecionar_producao_widget.dart';
 import 'package:go_router/go_router.dart';
@@ -84,6 +85,19 @@ class AppRoutes {
           );
         }
         return ListaProducoesScreen(gradeId: gradeId);
+      },
+    ),
+
+    GoRoute(
+      path: AppRoutesNames.simularFimProducao,
+      builder: (context, state) {
+        final producaoId = state.extra as String?;
+        if (producaoId == null) {
+          return const Scaffold(
+            body: Center(child: Text('Item não encontrado - [lista de produções]')),
+          );
+        }
+        return SimularFimProducaoScreen(producaoId: producaoId);
       },
     ),
 
