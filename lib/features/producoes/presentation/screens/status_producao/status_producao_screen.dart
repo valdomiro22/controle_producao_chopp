@@ -42,22 +42,19 @@ class _StatusProducaoScreenState extends ConsumerState<FinalProducaoScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // LinhaNomeValor(
-                //   texto: 'Produção',
-                //   quantidade: '${data!.produto.label} ${data.tipoBarril.label}',
-                //   corDeFundo: AppColors.yellow500,
-                // ),
+
+                // Cabeçalho
                 Container(
                   width: double.infinity,
                   padding: EdgeInsets.all(10),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: AppColors.yellow500,
+                    color: AppColors.blueStrong,
                     borderRadius: BorderRadius.circular(4)
                   ),
                   child: Text(
                     '${data!.produto.label} ${data.tipoBarril.label}',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -104,7 +101,7 @@ class _StatusProducaoScreenState extends ConsumerState<FinalProducaoScreen> {
                                 value: _pendente,
                                 title: '',
                                 titleStyle: TextStyle(color: Colors.white, fontSize: 16),
-                                color: Colors.purple,
+                                color: AppColors.purple200,
                                 radius: 70,
                               ),
                             ],
@@ -127,7 +124,7 @@ class _StatusProducaoScreenState extends ConsumerState<FinalProducaoScreen> {
                           Container(
                             width: 16,
                             height: 16,
-                            color: Colors.purple,
+                            color: AppColors.purple200,
                             margin: EdgeInsets.only(right: 10),
                           ),
                           Text('Falta'),

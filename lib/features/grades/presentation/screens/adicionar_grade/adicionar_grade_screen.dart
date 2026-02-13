@@ -46,7 +46,7 @@ class _AdicionarGradeScreenState extends ConsumerState<AdicionarGradeScreen> {
         padding: EdgeInsets.all(16),
         width: double.infinity,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(height: 50),
             TextField(
@@ -63,7 +63,7 @@ class _AdicionarGradeScreenState extends ConsumerState<AdicionarGradeScreen> {
                 style: TextStyle(color: Colors.red, fontSize: 12),
               ),
 
-            SizedBox(height: 20),
+            SizedBox(height: 16),
             ElevatedButton(
               onPressed: () async {
                 final DateTime? picker = await showDatePicker(
@@ -87,17 +87,22 @@ class _AdicionarGradeScreenState extends ConsumerState<AdicionarGradeScreen> {
             ),
             SizedBox(height: 20),
 
-            if (state.carregando) Center(child: CircularProgressIndicator()),
-            SizedBox(height: 16),
+            if (state.carregando) Padding(
+              padding: EdgeInsets.only(bottom: 20),
+              child: Center(child: CircularProgressIndicator()),
+            ),
 
-            ElevatedButtonCentralizado(
-              texto: 'Salvar',
-              clique: () {
-                final numero = _numeroController.text;
-                ref
-                    .read(adicionarGradeProvider.notifier)
-                    .inserirGrade(data: _dataSelecionada, numero: numero);
-              },
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                child: Text('Salvar'),
+                onPressed: () {
+                  final numero = _numeroController.text;
+                  ref
+                      .read(adicionarGradeProvider.notifier)
+                      .inserirGrade(data: _dataSelecionada, numero: numero);
+                },
+              ),
             ),
           ],
         ),

@@ -33,6 +33,10 @@ class _StatusProducaoScreenState extends ConsumerState<SimularFimProducaoScreen>
         error: (error, stackTrace) => Center(child: Text('Produção não encontrada')),
         loading: () => Center(child: CircularProgressIndicator()),
         data: (data) {
+          final volume = formState.isSucess
+              ? formState.vlNecessario
+              : data!.volumeNecessarioHl;
+
           return SingleChildScrollView(
             padding: EdgeInsets.all(10),
             child: Column(
@@ -96,7 +100,7 @@ class _StatusProducaoScreenState extends ConsumerState<SimularFimProducaoScreen>
                       final programado = int.tryParse(_qtProgramadaController.text.trim()) ?? 0;
                       final produzido = int.tryParse(_qtProduzidaController.text.trim()) ?? 0;
                       final nivelMax = int.tryParse(_nivelController.text.trim()) ?? 0;
-                      final vlBarril = data!.tipoBarril.volume;
+                      final vlBarril = data.tipoBarril.volume;
 
                       formNotifier.calcular(
                         programado: programado,
@@ -122,7 +126,7 @@ class _StatusProducaoScreenState extends ConsumerState<SimularFimProducaoScreen>
                 LinhaNomeValor(
                   texto: 'Volume necessário',
                   corTexto: Colors.white,
-                  quantidade: '${formState.vlNecessario.toStringAsFixed(1)} hl',
+                  quantidade: '${volume.toStringAsFixed(1)} hl',
                   corValor: Colors.white,
                   corDeFundo: AppColors.blueStrong,
                 ),
@@ -130,7 +134,8 @@ class _StatusProducaoScreenState extends ConsumerState<SimularFimProducaoScreen>
 
                 Center(
                   child: MensagemAvisoBuffer(
-                    vlNecessario: formState.vlNecessario,
+                    // vlNecessario: formState.vlNecessario,
+                    vlNecessario: volume,
                     vlMaximoTanque: formState.nivelMax,
                   ),
                 ),

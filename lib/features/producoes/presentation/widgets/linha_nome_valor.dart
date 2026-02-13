@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
 
 class LinhaNomeValor extends StatelessWidget {
   final String texto;
@@ -13,29 +14,27 @@ class LinhaNomeValor extends StatelessWidget {
     required this.quantidade,
     required this.corDeFundo,
     this.corTexto,
-    this.corValor
+    this.corValor,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-        decoration: BoxDecoration(
-          color: corDeFundo,
-          borderRadius: BorderRadius.circular(5)
-        ),
-        child: Row(
-          children: [
-            Text(
-              '$texto: ',
-              style: TextStyle(fontSize: 18, color: corTexto ?? Colors.black),
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+      decoration: BoxDecoration(color: corDeFundo, borderRadius: BorderRadius.circular(5)),
+      child: Row(
+        children: [
+          Text('$texto: ', style: TextStyle(fontSize: 18, color: corTexto ?? Colors.black)),
+          Text(
+            quantidade ?? '-1',
+            style: TextStyle(
+              fontSize: 20,
+              color: corValor ?? AppColors.purple200,
+              fontWeight: FontWeight.w500,
             ),
-            Text(
-              quantidade ?? '-1',
-              style: TextStyle(fontSize: 20, color: corValor ?? Colors.deepPurple, fontWeight: FontWeight.w500),
-            ),
-          ],
-        ),
+          ),
+        ],
+      ),
     );
   }
 }

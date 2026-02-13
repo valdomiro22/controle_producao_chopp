@@ -122,60 +122,63 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         children: [
 
           // Cabeçalho
-          Card(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text('Produto', style: TextStyle(fontSize: 12)),
-                      const SizedBox(height: 4),
-                      Text(
-                        '${producao.produto.label} ${producao.tipoBarril.label}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16,
-                          color: Color(0xff223b7a),
+          GestureDetector(
+            onTap: () => context.push(AppRoutesNames.finalProducao, extra: widget.gradeId),
+            child: Card(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text('Produto', style: TextStyle(fontSize: 12)),
+                        const SizedBox(height: 4),
+                        Text(
+                          '${producao.produto.label} ${producao.tipoBarril.label}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16,
+                            color: Color(0xff223b7a),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
 
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text('Código', style: TextStyle(fontSize: 12)),
-                      const SizedBox(height: 4),
-                      Text(
-                        '${producao.codigo}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16,
-                          color: Color(0xff223b7a),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text('Código', style: TextStyle(fontSize: 12)),
+                        const SizedBox(height: 4),
+                        Text(
+                          '${producao.codigo}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16,
+                            color: Color(0xff223b7a),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
 
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text('Ordem', style: TextStyle(fontSize: 12)),
-                      const SizedBox(height: 4),
-                      Text(
-                        producao.ordem.toString(),
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16,
-                          color: Color(0xff223b7a),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text('Ordem', style: TextStyle(fontSize: 12)),
+                        const SizedBox(height: 4),
+                        Text(
+                          producao.ordem.toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16,
+                            color: Color(0xff223b7a),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
