@@ -8,7 +8,7 @@ extension ConfiguracoesRemoteModelToEntity on ConfiguracoesRemoteModel {
 }
 
 extension ConfiguracoesEntityToModel on ConfiguracoesEntity {
-  ConfiguracoesRemoteModel toModel() {
+  ConfiguracoesRemoteModel toRemoteModel() {
     return ConfiguracoesRemoteModel(id: id, nivelBuffer: nivelBuffer, darkMode: darkMode);
   }
 }

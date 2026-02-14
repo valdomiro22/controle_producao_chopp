@@ -67,12 +67,10 @@ class ProducaoRepositoryImpl implements ProducaoRepository {
     } on AuthException catch (e) {
       return Left(AuthFailure(e.message));
     } on UnexpectedException catch (e) {
-      print('repository -> Erro: ${e.message}');
       return Left(UnexpectedFailure(e.message));
     } on CacheException catch (e) {
       return Left(CacheFailure(e.message));
     } catch (e) {
-      print('repository -> Erro inesperado ao buscar todas as producoes: $e');
       return Left(UnexpectedFailure('repository -> Erro inesperado ao buscar todas as producoes: $e'));
     }
   }

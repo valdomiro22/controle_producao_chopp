@@ -20,19 +20,19 @@ class ConfiguracoesLocalModel extends HiveObject {
     required this.nivelBuffer,
   });
 
-  ConfiguracoesLocalModel toEntity() {
-    return ConfiguracoesLocalModel(
-      id: id,
-      darkMode: darkMode,
-      nivelBuffer: nivelBuffer,
-    );
-  }
-
-  factory ConfiguracoesLocalModel.fromEntity(ConfiguracoesLocalModel entity) {
-    return ConfiguracoesLocalModel(
-      id: entity.id,
-      darkMode: entity.darkMode,
-      nivelBuffer: entity.nivelBuffer,
-    );
-  }
+  // ConfiguracoesLocalModel toEntity() {
+  //   return ConfiguracoesLocalModel(
+  //     id: id,
+  //     darkMode: darkMode,
+  //     nivelBuffer: nivelBuffer,
+  //   );
+  // }
+  //
+  // factory ConfiguracoesLocalModel.fromEntity(ConfiguracoesLocalModel entity) {
+  //   return ConfiguracoesLocalModel(
+  //     id: entity.id,
+  //     darkMode: entity.darkMode,
+  //     nivelBuffer: entity.nivelBuffer,
+  //   );
+  // }
 }

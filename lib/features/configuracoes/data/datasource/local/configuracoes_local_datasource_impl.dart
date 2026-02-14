@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:gestao_producao_chopp/features/configuracoes/data/datasource/local/configuracoes_local_datasource.dart';
 import 'package:gestao_producao_chopp/features/configuracoes/data/models/configuracoes_local_model.dart';
 import 'package:hive_ce/hive.dart';
@@ -15,8 +17,10 @@ class ConfiguracoesLocalDatasourceImpl implements ConfiguracoesLocalDatasource {
       await _hiveBox.put(config.id, config);
     } on HiveError catch (e) {
       throw CacheException('Erro no Hive: ${e.message}');
+    } on FileSystemException catch (e) {
+      throw CacheException('Erro no armazenamento local: ${e.message}');
     } catch (e) {
-      throw UnexpectedException('Erro inesperado ao salvar Configurações: ${e.toString()}');
+      throw CacheException('Erro inesperado no cache: $e');
     }
   }
 
@@ -26,8 +30,10 @@ class ConfiguracoesLocalDatasourceImpl implements ConfiguracoesLocalDatasource {
       await _hiveBox.delete(configId);
     } on HiveError catch (e) {
       throw CacheException('Erro no Hive: ${e.message}');
+    } on FileSystemException catch (e) {
+      throw CacheException('Erro no armazenamento local: ${e.message}');
     } catch (e) {
-      throw UnexpectedException('Erro inesperado ao deletar Configurações: ${e.toString()}');
+      throw CacheException('Erro inesperado no cache: $e');
     }
   }
 
@@ -37,8 +43,10 @@ class ConfiguracoesLocalDatasourceImpl implements ConfiguracoesLocalDatasource {
       return _hiveBox.values.toList();
     } on HiveError catch (e) {
       throw CacheException('Erro no Hive: ${e.message}');
+    } on FileSystemException catch (e) {
+      throw CacheException('Erro no armazenamento local: ${e.message}');
     } catch (e) {
-      throw UnexpectedException('Erro inesperado ao buscar Configurações: ${e.toString()}');
+      throw CacheException('Erro inesperado no cache: $e');
     }
   }
 
@@ -48,8 +56,10 @@ class ConfiguracoesLocalDatasourceImpl implements ConfiguracoesLocalDatasource {
       return _hiveBox.get(configId);
     } on HiveError catch (e) {
       throw CacheException('Erro no Hive: ${e.message}');
+    } on FileSystemException catch (e) {
+      throw CacheException('Erro no armazenamento local: ${e.message}');
     } catch (e) {
-      throw UnexpectedException('Erro inesperado ao buscar Configuração: ${e.toString()}');
+      throw CacheException('Erro inesperado no cache: $e');
     }
   }
 
@@ -62,8 +72,10 @@ class ConfiguracoesLocalDatasourceImpl implements ConfiguracoesLocalDatasource {
       await _hiveBox.put(configId, config);
     } on HiveError catch (e) {
       throw CacheException('Erro no Hive: ${e.message}');
+    } on FileSystemException catch (e) {
+      throw CacheException('Erro no armazenamento local: ${e.message}');
     } catch (e) {
-      throw UnexpectedException('Erro inesperado ao atualizar Configuração: ${e.toString()}');
+      throw CacheException('Erro inesperado no cache: $e');
     }
   }
 }
