@@ -53,6 +53,8 @@ dependencies:
   fl_chart: ^0.68.0  # Para grafico de pizza
   flutter_localizations: # Para datePiker em Português
     sdk: flutter
+  hive_ce: ^2.0.0
+  hive_ce_flutter: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +64,7 @@ dev_dependencies:
   freezed: ^3.0.0
   riverpod_generator: ^4.0.0
   json_serializable: ^6.8.0
+  hive_ce_generator: ^1.10.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
