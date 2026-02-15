@@ -55,13 +55,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         context.push(AppRoutesNames.producaoPorTurno);
         break;
       case 'Opções':
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Opçoes.'),
-            duration: Duration(seconds: 2),
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+        context.push(AppRoutesNames.configuracoesApp);
         break;
     }
   }

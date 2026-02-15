@@ -18,6 +18,7 @@ import 'package:gestao_producao_chopp/features/quantidade_horaria/data/datasourc
 import 'package:gestao_producao_chopp/features/quantidade_horaria/data/datasource/quantidade_horaria_datasource_impl.dart';
 import 'package:gestao_producao_chopp/features/quantidade_horaria/data/repositories/quantidade_horaria_repository_impl.dart';
 import 'package:gestao_producao_chopp/features/quantidade_horaria/domain/repositories/quantidade_horaria_repository.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../features/auth/data/datasources/auth_remote_datasource.dart';
@@ -49,6 +50,7 @@ FirebaseFirestore firebaseFirestore(Ref ref) {
 FirebaseStorage firebaseStorage(Ref ref) {
   return FirebaseStorage.instance;
 }
+
 
 // datasource ------------------------------------------------------------------
 @riverpod

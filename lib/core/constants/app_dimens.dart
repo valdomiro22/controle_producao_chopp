@@ -14,6 +14,7 @@ class AppDimens {
   static const double paddingG = 6;
   static const double paddingGG = 8;
   static const double paddingXG = 10;
+  static const double paddingPagina = 10;
 
   // Textos
   static const double textP = 4;

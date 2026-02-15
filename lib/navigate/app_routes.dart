@@ -4,6 +4,8 @@ import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterar
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/cadastro/cadastro_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/configuracoes_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/login/login_screen.dart';
+import 'package:gestao_producao_chopp/features/configuracoes/presentation/screens/alterar_nivel_screen.dart';
+import 'package:gestao_producao_chopp/features/configuracoes/presentation/screens/configuracoes_app_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/producaoporturno/producao_por_turno_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/relatorio_producao/relatorio_screen.dart';
@@ -32,10 +34,11 @@ class AppRoutes {
 
     GoRoute(path: AppRoutesNames.login, builder: (context, state) => LoginScreen()),
 
-    GoRoute(
-      path: AppRoutesNames.recuperarSenha,
-      builder: (context, state) => RecuperarSenhaScreen(),
-    ),
+    GoRoute(path: AppRoutesNames.configuracoesApp, builder: (context, state) => ConfiguracoesAppScreen()),
+
+    GoRoute(path: AppRoutesNames.nivelBuffer, builder: (context, state) => AlterarNivelScreen()),
+
+    GoRoute(  path: AppRoutesNames.recuperarSenha,builder: (context, state) => RecuperarSenhaScreen()),
 
     GoRoute(
       path: AppRoutesNames.home,
