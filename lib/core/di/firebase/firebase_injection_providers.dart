@@ -10,6 +10,13 @@ import 'package:gestao_producao_chopp/features/auth/data/repositories/usuario_re
 import 'package:gestao_producao_chopp/features/auth/data/repositories/usuario_storage_repository_impl.dart';
 import 'package:gestao_producao_chopp/features/auth/domain/repositories/usuario_repository.dart';
 import 'package:gestao_producao_chopp/features/auth/domain/repositories/usuario_storage_repository.dart';
+import 'package:gestao_producao_chopp/features/configuracoes/data/datasource/local/configuracoes_local_datasource.dart';
+import 'package:gestao_producao_chopp/features/configuracoes/data/datasource/local/configuracoes_local_datasource_impl.dart';
+import 'package:gestao_producao_chopp/features/configuracoes/data/datasource/remote/configuracoes_remote_datasource.dart';
+import 'package:gestao_producao_chopp/features/configuracoes/data/datasource/remote/configuracoes_remote_datasource_impl.dart';
+import 'package:gestao_producao_chopp/features/configuracoes/data/models/configuracoes_local_model.dart' show ConfiguracoesLocalModel;
+import 'package:gestao_producao_chopp/features/configuracoes/data/repositories/configuracoes_repository_impl.dart';
+import 'package:gestao_producao_chopp/features/configuracoes/domain/repositories/configuracoes_repository.dart';
 import 'package:gestao_producao_chopp/features/producoes/data/datasource/producao_datasource.dart';
 import 'package:gestao_producao_chopp/features/producoes/data/datasource/producao_datasource_impl.dart';
 import 'package:gestao_producao_chopp/features/producoes/data/repository/producao_repository_impl.dart';
@@ -51,6 +58,11 @@ FirebaseStorage firebaseStorage(Ref ref) {
   return FirebaseStorage.instance;
 }
 
+@riverpod
+Box<ConfiguracoesLocalModel> configuracoesBox(Ref ref) {
+  return Hive.box<ConfiguracoesLocalModel>('configuracoes');
+}
+
 
 // datasource ------------------------------------------------------------------
 @riverpod
@@ -89,6 +101,18 @@ UsuarioStorageDatasource usuarioStorageDatasource(Ref ref) {
   return UsuarioStorageDatasourceImpl(storage);
 }
 
+@riverpod
+ConfiguracoesLocalDatasource configuracoesLocalDatasource(Ref ref) {
+  final box = ref.watch(configuracoesBoxProvider);
+  return ConfiguracoesLocalDatasourceImpl(box);
+}
+
+@riverpod
+ConfiguracoesRemoteDatasource configuracoesRemoteDatasource(Ref ref) {
+  final firestore = ref.watch(firebaseFirestoreProvider);
+  return ConfiguracoesRemoteDatasourceImpl(firestore);
+}
+
 // repository ------------------------------------------------------------------
 @riverpod
 UsuarioRepository usuarioRepository(Ref ref) {
@@ -125,4 +149,11 @@ QuantidadeHorariaRepository quantidadeHorariaRepository(Ref ref) {
 UsuarioStorageRepository usuarioStorageRepository(Ref ref) {
   final datasource = ref.watch(usuarioStorageDatasourceProvider);
   return UsuarioStorageRepositoryImpl(datasource);
+}
+
+@riverpod
+ConfiguracoesRepository configuracoesRepository(Ref ref) {
+  final remote = ref.watch(configuracoesRemoteDatasourceProvider);
+  final local = ref.watch(configuracoesLocalDatasourceProvider);
+  return ConfiguracoesRepositoryImpl(remote, local);
 }

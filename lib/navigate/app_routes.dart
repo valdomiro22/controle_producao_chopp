@@ -4,8 +4,8 @@ import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterar
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/cadastro/cadastro_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/configuracoes_screen.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/login/login_screen.dart';
-import 'package:gestao_producao_chopp/features/configuracoes/presentation/screens/alterar_nivel_screen.dart';
-import 'package:gestao_producao_chopp/features/configuracoes/presentation/screens/configuracoes_app_screen.dart';
+import 'package:gestao_producao_chopp/features/configuracoes/presentation/screens/alterarnivel/alterar_nivel_screen.dart';
+import 'package:gestao_producao_chopp/features/configuracoes/presentation/screens/configuracoesapp/configuracoes_app_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/producaoporturno/producao_por_turno_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/relatorio_producao/relatorio_screen.dart';

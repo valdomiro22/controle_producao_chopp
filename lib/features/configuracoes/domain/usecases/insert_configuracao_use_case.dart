@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:gestao_producao_chopp/core/constants/app_helper.dart';
 import 'package:gestao_producao_chopp/core/error/failure.dart';
 import 'package:gestao_producao_chopp/features/configuracoes/domain/entities/configuracoes_entity.dart';
 import 'package:gestao_producao_chopp/features/configuracoes/domain/repositories/configuracoes_repository.dart';
@@ -9,6 +10,9 @@ class InsertConfiguracaoUseCase {
   InsertConfiguracaoUseCase(this._repository);
 
   Future<Either<Failure, Unit>> call(ConfiguracoesEntity config) async {
-    return await _repository.insertConfig(config);
+    final idGerado = AppHelper.idConfiguracoes;
+    final confComId = config.copyWith(id: idGerado);
+    
+    return await _repository.insertConfig(confComId);
   }
 }

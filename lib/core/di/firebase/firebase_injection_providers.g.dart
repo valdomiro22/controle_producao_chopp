@@ -139,6 +139,53 @@ final class FirebaseStorageProvider
 
 String _$firebaseStorageHash() => r'aa6946fd2a3470c4f3e2e72956076591cc63b435';
 
+@ProviderFor(configuracoesBox)
+final configuracoesBoxProvider = ConfiguracoesBoxProvider._();
+
+final class ConfiguracoesBoxProvider
+    extends
+        $FunctionalProvider<
+          Box<ConfiguracoesLocalModel>,
+          Box<ConfiguracoesLocalModel>,
+          Box<ConfiguracoesLocalModel>
+        >
+    with $Provider<Box<ConfiguracoesLocalModel>> {
+  ConfiguracoesBoxProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'configuracoesBoxProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$configuracoesBoxHash();
+
+  @$internal
+  @override
+  $ProviderElement<Box<ConfiguracoesLocalModel>> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  Box<ConfiguracoesLocalModel> create(Ref ref) {
+    return configuracoesBox(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Box<ConfiguracoesLocalModel> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Box<ConfiguracoesLocalModel>>(value),
+    );
+  }
+}
+
+String _$configuracoesBoxHash() => r'2a83f9658b36a18d83ec820cfec15afedaa98e06';
+
 @ProviderFor(usuarioDatasource)
 final usuarioDatasourceProvider = UsuarioDatasourceProvider._();
 
@@ -421,6 +468,106 @@ final class UsuarioStorageDatasourceProvider
 String _$usuarioStorageDatasourceHash() =>
     r'ed7fd67c872aef715d7f69c6240dd53510b2c1da';
 
+@ProviderFor(configuracoesLocalDatasource)
+final configuracoesLocalDatasourceProvider =
+    ConfiguracoesLocalDatasourceProvider._();
+
+final class ConfiguracoesLocalDatasourceProvider
+    extends
+        $FunctionalProvider<
+          ConfiguracoesLocalDatasource,
+          ConfiguracoesLocalDatasource,
+          ConfiguracoesLocalDatasource
+        >
+    with $Provider<ConfiguracoesLocalDatasource> {
+  ConfiguracoesLocalDatasourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'configuracoesLocalDatasourceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$configuracoesLocalDatasourceHash();
+
+  @$internal
+  @override
+  $ProviderElement<ConfiguracoesLocalDatasource> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ConfiguracoesLocalDatasource create(Ref ref) {
+    return configuracoesLocalDatasource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ConfiguracoesLocalDatasource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ConfiguracoesLocalDatasource>(value),
+    );
+  }
+}
+
+String _$configuracoesLocalDatasourceHash() =>
+    r'1901f76407db282e5f0ba21e47a99fe68801bcc4';
+
+@ProviderFor(configuracoesRemoteDatasource)
+final configuracoesRemoteDatasourceProvider =
+    ConfiguracoesRemoteDatasourceProvider._();
+
+final class ConfiguracoesRemoteDatasourceProvider
+    extends
+        $FunctionalProvider<
+          ConfiguracoesRemoteDatasource,
+          ConfiguracoesRemoteDatasource,
+          ConfiguracoesRemoteDatasource
+        >
+    with $Provider<ConfiguracoesRemoteDatasource> {
+  ConfiguracoesRemoteDatasourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'configuracoesRemoteDatasourceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$configuracoesRemoteDatasourceHash();
+
+  @$internal
+  @override
+  $ProviderElement<ConfiguracoesRemoteDatasource> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ConfiguracoesRemoteDatasource create(Ref ref) {
+    return configuracoesRemoteDatasource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ConfiguracoesRemoteDatasource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ConfiguracoesRemoteDatasource>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$configuracoesRemoteDatasourceHash() =>
+    r'5eb79df19ac3a96a61552e04b2a3138c1e5354b4';
+
 @ProviderFor(usuarioRepository)
 final usuarioRepositoryProvider = UsuarioRepositoryProvider._();
 
@@ -695,3 +842,51 @@ final class UsuarioStorageRepositoryProvider
 
 String _$usuarioStorageRepositoryHash() =>
     r'c76b10e7823653ab121970654c63b49f105223c3';
+
+@ProviderFor(configuracoesRepository)
+final configuracoesRepositoryProvider = ConfiguracoesRepositoryProvider._();
+
+final class ConfiguracoesRepositoryProvider
+    extends
+        $FunctionalProvider<
+          ConfiguracoesRepository,
+          ConfiguracoesRepository,
+          ConfiguracoesRepository
+        >
+    with $Provider<ConfiguracoesRepository> {
+  ConfiguracoesRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'configuracoesRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$configuracoesRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<ConfiguracoesRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ConfiguracoesRepository create(Ref ref) {
+    return configuracoesRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ConfiguracoesRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ConfiguracoesRepository>(value),
+    );
+  }
+}
+
+String _$configuracoesRepositoryHash() =>
+    r'2d4dc649011ae625cf01564ff642b5833bd1bd01';
