@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/login/login_notifier.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/widgets/custom_imput_text.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/widgets/custom_imput_text.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/common/widgets/elevated_button_centralizado.dart';
 import '../../../../../core/constants/app_dimens.dart';
 import '../../../../../core/constants/app_strings.dart';
-import '../../widgets/custom_textfiewd.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});

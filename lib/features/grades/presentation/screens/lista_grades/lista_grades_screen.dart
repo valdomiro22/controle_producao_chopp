@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/common/widgets/app_drawer.dart';
-import 'package:gestao_producao_chopp/core/constants/app_dimens.dart';
 import 'package:gestao_producao_chopp/features/grades/presentation/screens/lista_grades/lista_grades_state.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/error/failure.dart';
-import '../../../domain/entities/grade_entity.dart';
 import '../../widgets/item_grade_widget.dart';
 import 'lista_grades_notifier.dart';
 
@@ -57,7 +55,7 @@ class _ListaGradesScreenState extends ConsumerState<ListaGradesScreen> {
               padding: EdgeInsets.all(10),
               child: ListView.builder(
                 physics: const AlwaysScrollableScrollPhysics(),
-                itemCount: lista!.length,
+                itemCount: lista.length,
                 itemBuilder: (_, index) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 8),

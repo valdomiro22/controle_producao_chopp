@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/home_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_notifier.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/item_producao_widget.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';

@@ -3,7 +3,6 @@ import 'package:gestao_producao_chopp/core/error/failure.dart';
 import 'package:gestao_producao_chopp/features/quantidade_horaria/domain/repositories/quantidade_horaria_repository.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../../../core/utils/string_util.dart';
 import '../entities/quantidade_horaria_entity.dart';
 
 class InsertQtHorariaUseCase {

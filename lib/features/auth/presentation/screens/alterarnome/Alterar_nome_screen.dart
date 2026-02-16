@@ -5,8 +5,6 @@ import 'package:gestao_producao_chopp/core/constants/app_strings.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterarnome/alterar_nome_notifier.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterarnome/form_alterar_nome_state.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/buscar_usuario_state.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/screens/state/alteracoes_usuario_state.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/widgets/custom_textfiewd.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/constants/app_dimens.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gestao_producao_chopp/core/utils/string_util.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../domain/entities/grade_entity.dart';

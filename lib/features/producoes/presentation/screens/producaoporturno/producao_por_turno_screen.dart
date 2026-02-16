@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gestao_producao_chopp/features/quantidade_horaria/presentation/providers/buscar_qt_horaria_state.dart';
 import 'package:gestao_producao_chopp/features/quantidade_horaria/presentation/providers/buscar_quantidade_produzida_turno_notifier.dart';
 
 import '../../../../../core/error/failure.dart';
@@ -23,7 +22,6 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
     final producaoState = ref.watch(buscarProducaoProvider);
     final turnoState = ref.watch(selecionarTurnoProvider);
     final turnoNotifier = ref.watch(selecionarTurnoProvider.notifier);
-    final prTurnoState = ref.watch(buscarQuantidadeProduzidaTurnoProvider);
     final prTurnoNotifier = ref.watch(buscarQuantidadeProduzidaTurnoProvider.notifier);
 
     return Scaffold(

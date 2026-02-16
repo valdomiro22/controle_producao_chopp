@@ -36,7 +36,7 @@ class AtualizarFotoNotifier extends _$AtualizarFotoNotifier {
     final storageResult = await storageUseCase(
       fotoNova: file,
       usuarioId: usuario.id!,
-      fotoAntigaUrl: usuario.fotoPerfilUrl ?? '',
+      fotoAntigaUrl: usuario.fotoPerfilUrl,
     );
 
     // 2. Processa o resultado do Storage usando o fold

@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:gestao_producao_chopp/core/error/failure.dart';
-import 'package:gestao_producao_chopp/core/utils/string_util.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/repository/producao_repository.dart';
 import 'package:uuid/uuid.dart';
 

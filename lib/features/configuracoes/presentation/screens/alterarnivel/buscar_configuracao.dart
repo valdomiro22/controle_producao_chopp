@@ -1,5 +1,3 @@
-import 'dart:developer' as dev;
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gestao_producao_chopp/core/di/usecases/configuracoes_use_case_provider.dart';
 import 'package:gestao_producao_chopp/core/error/failure.dart';

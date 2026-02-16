@@ -42,7 +42,7 @@ final class AtualizarFotoNotifierProvider
 }
 
 String _$atualizarFotoNotifierHash() =>
-    r'ecb7e265cade4c97d57ada005fb6232afff80db4';
+    r'6dd9bc0c07b7338f5780063b1da154a4ec8f868e';
 
 abstract class _$AtualizarFotoNotifier extends $Notifier<FotoUsuarioState> {
   FotoUsuarioState build();

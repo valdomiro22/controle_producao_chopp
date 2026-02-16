@@ -30,7 +30,6 @@ class _ConfiguracoesScreenState extends ConsumerState<ConfiguracoesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final fotoState = ref.watch(atualizarFotoProvider);
     final fotoNotifier = ref.watch(atualizarFotoProvider.notifier);
     final stateUsuario = ref.watch(buscarUsuarioProvider);
 

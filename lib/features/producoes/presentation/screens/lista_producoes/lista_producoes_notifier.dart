@@ -1,4 +1,3 @@
-import 'package:gestao_producao_chopp/core/common/states/app_state.dart';
 import 'package:gestao_producao_chopp/core/di/usecases/producao_use_cases_provider.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_state.dart';

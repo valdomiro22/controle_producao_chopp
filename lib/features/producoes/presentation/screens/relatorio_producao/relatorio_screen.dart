@@ -2,7 +2,6 @@ import 'dart:developer' as dev;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gestao_producao_chopp/core/di/usecases/producao_use_cases_provider.dart';
 import 'package:gestao_producao_chopp/core/utils/string_util.dart';
 import 'package:gestao_producao_chopp/features/grades/domain/entities/grade_entity.dart';
 import 'package:gestao_producao_chopp/features/grades/domain/enums/barril.dart';
@@ -12,7 +11,6 @@ import 'package:gestao_producao_chopp/features/grades/presentation/screens/lista
 import 'package:share_plus/share_plus.dart';
 
 import '../../../domain/entities/producao_entity.dart';
-import '../../widgets/item_producao.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -52,18 +50,18 @@ class _RelatorioScreenState extends ConsumerState<RelatorioScreen> {
     buffer.writeln('');
   }
 
-  void _blocoProducaoZerado(StringBuffer buffer, Barril baril) {
-    // final programada = p.quantidadeProgramada;
-    // final produzida = p.quantidadeProduzida;
-    // final pendente = p.quantidadePendente;
-    // final icone = produzida < programada ? "❌" : "✅";
+  // void _blocoProducaoZerado(StringBuffer buffer, Barril baril) {
+  //   // final programada = p.quantidadeProgramada;
+  //   // final produzida = p.quantidadeProduzida;
+  //   // final pendente = p.quantidadePendente;
+  //   // final icone = produzida < programada ? "❌" : "✅";
 
-    buffer.writeln('*${baril.label}*');
-    buffer.writeln('Programado: 0 ✅');
-    // buffer.writeln('Produzido: $produzida $icone');
-    // buffer.writeln('Pendente: $pendente $icone');
-    buffer.writeln('');
-  }
+  //   buffer.writeln('*${baril.label}*');
+  //   buffer.writeln('Programado: 0 ✅');
+  //   // buffer.writeln('Produzido: $produzida $icone');
+  //   // buffer.writeln('Pendente: $pendente $icone');
+  //   buffer.writeln('');
+  // }
 
   String _gerarMensagemRelatorio(GradeEntity grade, List<ProducaoEntity> lista) {
     final data = StringUtil.formatarData(grade.data.toIso8601String());

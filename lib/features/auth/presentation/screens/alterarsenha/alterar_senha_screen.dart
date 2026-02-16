@@ -3,9 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/common/widgets/mensagem_erro_widget.dart';
 import 'package:gestao_producao_chopp/core/constants/app_dimens.dart';
 import 'package:gestao_producao_chopp/core/constants/app_strings.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterarnome/alterar_nome_notifier.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/alterarsenha/alterar_senha_state.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../producoes/presentation/screens/home/home_notifier.dart';

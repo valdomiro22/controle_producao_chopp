@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/providers/auth_state.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/cadastro/cadastro_notifier.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/cadastro/form_cadastro_state.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/common/widgets/elevated_button_centralizado.dart';
 import '../../../../../core/constants/app_dimens.dart';
 import '../../../../../core/constants/app_strings.dart';
 import '../../widgets/custom_imput_text.dart';
-import '../../widgets/custom_textfiewd.dart';
 
 class CadastroScreen extends ConsumerStatefulWidget {
   const CadastroScreen({super.key});

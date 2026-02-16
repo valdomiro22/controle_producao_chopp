@@ -15,9 +15,10 @@ class ControleNivelBufferWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final corVermelha = Color(0xffcb0000);
-    final corFundo = AppColors.purple200.withValues(alpha: 0.2);
-    final isVolumeOk = producao.volumeNecessarioHl < 40.0 ? false : true;
+    // final corVermelha = Color(0xffcb0000);
+    // final corFundo = AppColors.purple200.withValues(alpha: 0.2);
+    final corFundo = Colors.grey[200];
+    // final isVolumeOk = producao.volumeNecessarioHl < 40.0 ? false : true;
 
     return Column(
       children: [
@@ -41,7 +42,7 @@ class ControleNivelBufferWidget extends ConsumerWidget {
                     'Volume do Barril: ',
                     style: TextStyle(color: AppColors.secondaryText, fontSize: 16),
                   ),
-                  Text(producao.tipoBarril.label, style: TextStyle(fontSize: 16, color: Colors.black)),
+                  Text(producao.tipoBarril.label, style: TextStyle(fontSize: 16, color: AppColors.blueStrong, fontWeight: FontWeight.w600)),
                 ],
               ),
               SizedBox(height: 4),
@@ -52,7 +53,7 @@ class ControleNivelBufferWidget extends ConsumerWidget {
                     'Volume necessarios: ',
                     style: TextStyle(color: AppColors.secondaryText, fontSize: 16),
                   ),
-                  Text('${producao.volumeNecessarioHl.toString()} hl', style: TextStyle(fontSize: 16, color: Colors.black)),
+                  Text('${producao.volumeNecessarioHl.toString()} hl', style: TextStyle(fontSize: 16, color: AppColors.blueStrong, fontWeight: FontWeight.w600)),
                 ],
               ),
               SizedBox(height: 8),

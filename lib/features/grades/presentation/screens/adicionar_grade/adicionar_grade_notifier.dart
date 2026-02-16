@@ -1,11 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gestao_producao_chopp/core/di/usecases/grade_use_cases_provider.dart';
-import 'package:gestao_producao_chopp/core/error/failure.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../domain/entities/grade_entity.dart';
-import '../../states/grade_state.dart';
 import '../lista_grades/lista_grades_notifier.dart';
 
 part 'adicionar_grade_notifier.g.dart';

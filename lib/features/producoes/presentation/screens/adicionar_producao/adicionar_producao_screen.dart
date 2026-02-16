@@ -4,7 +4,6 @@ import 'package:gestao_producao_chopp/core/constants/app_dimens.dart';
 import 'package:gestao_producao_chopp/features/grades/domain/enums/barril.dart';
 import 'package:gestao_producao_chopp/features/grades/domain/enums/produto.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/adicionar_producao/adicionar_producao_notifier.dart';
-import 'package:gestao_producao_chopp/features/producoes/presentation/screens/adicionar_producao/form_adicionar_producao_state.dart';
 import 'package:go_router/go_router.dart';
 
 class AdicionarProducaoScreen extends ConsumerStatefulWidget {
@@ -50,19 +49,6 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
         padding: EdgeInsets.all(AppDimens.spacingG),
         child: Column(
           children: [
-
-            // Código
-            TextField(
-              controller: _codigoController,
-              decoration: InputDecoration(
-                labelText: 'Código',
-                hintText: 'Ex: 2068299',
-              ),
-              keyboardType: TextInputType.number,
-              onChanged: (value) => notifier.setCodigo(value),
-            ),
-            const SizedBox(height: 16),
-
             Row(
               children: [
                 if (state.erro != null)
@@ -143,18 +129,6 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
               ),
               keyboardType: TextInputType.number,
               onChanged: (value) => notifier.atualizaQuantidade(value),
-            ),
-            const SizedBox(height: 8),
-
-            // Ordem
-            TextField(
-              controller: _ordemController,
-              decoration: InputDecoration(
-                labelText: 'Ordem',
-                hintText: 'Ex: 10682909',
-              ),
-              keyboardType: TextInputType.number,
-              onChanged: (value) => notifier.setOrdem(value),
             ),
             const SizedBox(height: 8),
 

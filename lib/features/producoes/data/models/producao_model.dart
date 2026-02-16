@@ -9,8 +9,6 @@ class ProducaoModel {
   final String gradeId;
   final StatusProducao status;
   final Barril tipoBarril;
-  final int ordem;
-  final int codigo;
   final Produto produto;
   final int quantidadeProgramada;
   final int quantidadeProduzida;
@@ -23,8 +21,6 @@ class ProducaoModel {
     required this.gradeId,
     required this.status,
     required this.tipoBarril,
-    required this.ordem,
-    required this.codigo,
     required this.produto,
     required this.quantidadeProgramada,
     this.quantidadeProduzida = 0,
@@ -41,8 +37,6 @@ class ProducaoModel {
       'tipoBarril': tipoBarril.id,
       'produto': produto.id,
       'quantidade': quantidadeProgramada,
-      'ordem': ordem,
-      'codigo': codigo,
       'qtProduzida': quantidadeProduzida,
       'qtPendente': quantidadePendente,
       'dataCriacao': dataCriacao,
@@ -59,8 +53,6 @@ class ProducaoModel {
       produto: Produto.fronId(map['produto'] as int),
       quantidadeProgramada: map['quantidade'] as int,
       quantidadeProduzida: map['qtProduzida'] as int,
-      ordem: map['ordem'] as int,
-      codigo: map['codigo'] as int,
       quantidadePendente: map['qtPendente'] as int,
       dataCriacao: (map['dataCriacao'] as Timestamp?)?.toDate(),
       dataFimDeProducao: (map['dataFimDeProducao'] as Timestamp?)?.toDate(),
@@ -74,8 +66,6 @@ class ProducaoModel {
     Barril? tipoBarril,
     Produto? produto,
     int? quantidadeProgramada,
-    int? ordem,
-    int? codigo,
     int? quantidadeProduzida,
     int? quantidadePendente,
     DateTime? dataCriacao,
@@ -87,8 +77,6 @@ class ProducaoModel {
       status: status ?? this.status,
       tipoBarril: tipoBarril ?? this.tipoBarril,
       produto: produto ?? this.produto,
-      ordem: ordem ?? this.ordem,
-      codigo: codigo ?? this.codigo,
       quantidadeProgramada: quantidadeProgramada ?? this.quantidadeProgramada,
       quantidadeProduzida: quantidadeProduzida ?? this.quantidadeProduzida,
       quantidadePendente: quantidadePendente ?? this.quantidadePendente,

@@ -1,6 +1,5 @@
 
 import 'package:gestao_producao_chopp/core/di/usecases/auth_use_cases_provider.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/providers/auth_state.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/login/form_login_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

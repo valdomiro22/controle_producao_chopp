@@ -5,14 +5,12 @@ import 'package:gestao_producao_chopp/core/constants/app_strings.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/alteraremail/form_alterar_email_state.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/buscar_usuario_notifier.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/configuracoes/buscar_usuario_state.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/screens/state/alteracoes_usuario_state.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/widgets/custom_textfiewd.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/constants/app_dimens.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../domain/entity/usuario_entity.dart';
-import '../../providers/auth_state.dart';
 import 'alterar_email_notifier.dart';
 
 // Usamos ConsumerStatefulWidget pois precisamos de:

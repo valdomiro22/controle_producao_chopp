@@ -1,15 +1,7 @@
 import 'package:gestao_producao_chopp/core/di/usecases/auth_use_cases_provider.dart';
-import 'package:gestao_producao_chopp/core/di/usecases/usuario_use_cases_provider.dart';
 import 'package:gestao_producao_chopp/features/auth/domain/entity/usuario_entity.dart';
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/alteraremail/form_alterar_email_state.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/screens/alteraremail/form_alterar_email_state.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/screens/alteraremail/form_alterar_email_state.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/screens/alteraremail/form_alterar_email_state.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/screens/alteraremail/form_alterar_email_state.dart';
-import 'package:gestao_producao_chopp/features/auth/presentation/screens/state/alteracoes_usuario_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import '../../providers/auth_state.dart';
 
 part 'alterar_email_notifier.g.dart';
 

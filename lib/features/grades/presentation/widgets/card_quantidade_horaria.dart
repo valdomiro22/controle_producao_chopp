@@ -52,7 +52,7 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
   @override
   Widget build(BuildContext context) {
     final producaoId = widget.producao.id ?? '';
-    final gradeId = widget.producao.gradeId ?? '';
+    final gradeId = widget.producao.gradeId;
 
     // Preparação dos parâmetros para o Provider Family
     final horarioInt = int.parse(widget.horario.replaceAll(':', ''));

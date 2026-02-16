@@ -27,7 +27,6 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  late final ProducaoEntity _producao;
   final _opcoesMenu = ['Gerar relatorio', 'Add Produção', 'Produção por turno', 'Opções'];
 
   @override
@@ -117,67 +116,20 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         children: [
 
           // Cabeçalho
-          GestureDetector(
-            onTap: () => context.push(AppRoutesNames.finalProducao, extra: widget.gradeId),
-            child: Card(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text('Produto', style: TextStyle(fontSize: 12)),
-                        const SizedBox(height: 4),
-                        Text(
-                          '${producao.produto.label} ${producao.tipoBarril.label}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 16,
-                            color: Color(0xff223b7a),
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text('Código', style: TextStyle(fontSize: 12)),
-                        const SizedBox(height: 4),
-                        Text(
-                          '${producao.codigo}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 16,
-                            color: Color(0xff223b7a),
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text('Ordem', style: TextStyle(fontSize: 12)),
-                        const SizedBox(height: 4),
-                        Text(
-                          producao.ordem.toString(),
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 16,
-                            color: Color(0xff223b7a),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.all(10),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: AppColors.blueStrong,
+                    borderRadius: BorderRadius.circular(4)
+                  ),
+                  child: Text(
+                    '${producao.produto.label} ${producao.tipoBarril.label}',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
                 ),
-              ),
-            ),
-          ),
-          SizedBox(height: 16),
+                const SizedBox(height: 16),
 
           // Status da Produção
           Row(
