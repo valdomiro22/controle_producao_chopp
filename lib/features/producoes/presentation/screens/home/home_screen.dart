@@ -20,14 +20,23 @@ class HomeScreen extends ConsumerStatefulWidget {
   final String gradeId;
   final String producaoId;
 
-  const HomeScreen({super.key, required this.producaoId, required this.gradeId});
+  const HomeScreen({
+    super.key,
+    required this.producaoId,
+    required this.gradeId,
+  });
 
   @override
   ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  final _opcoesMenu = ['Gerar relatorio', 'Add Produção', 'Produção por turno', 'Opções'];
+  final _opcoesMenu = [
+    'Gerar relatorio',
+    'Add Produção',
+    'Produção por turno',
+    'Opções',
+  ];
 
   @override
   void initState() {
@@ -98,7 +107,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             Center(child: Text('Erro: ${(error as Failure).message}')),
         data: (ProducaoEntity? producao) => producao == null
             ? Center(child: Text('Produção não encontrada'))
-            : _buildConteudoComProducao(producao, turnoNotifier, turnoState, qtTurno),
+            : _buildConteudoComProducao(
+                producao,
+                turnoNotifier,
+                turnoState,
+                qtTurno,
+              ),
       ),
     );
   }
@@ -107,29 +121,36 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     ProducaoEntity producao,
     SelecionarTurnoNotifier turnoNotifier,
     SelecionarTurnoState turnoState,
-      BuscarQtTurnoState qtTurno,
+    BuscarQtTurnoState qtTurno,
   ) {
     return SingleChildScrollView(
       padding: EdgeInsets.all(10),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-
           // Cabeçalho
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(10),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: AppColors.blueStrong,
-                    borderRadius: BorderRadius.circular(4)
-                  ),
-                  child: Text(
-                    '${producao.produto.label} ${producao.tipoBarril.label}',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
+          GestureDetector(
+            onTap: () =>
+                context.push(AppRoutesNames.finalProducao, extra: producao.id),
+            child: Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(10),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: AppColors.blueStrong,
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Text(
+                '${producao.produto.label} ${producao.tipoBarril.label}',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
-                const SizedBox(height: 16),
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
 
           // Status da Produção
           Row(
@@ -159,8 +180,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
           // Monitoramento de volume
           GestureDetector(
-            onTap: () => context.push(AppRoutesNames.simularFimProducao, extra: producao.id),
-            child: ControleNivelBufferWidget(producao: producao),
+            onTap: () => context.push(
+              AppRoutesNames.simularFimProducao,
+              extra: producao.id,
+            ),
+            child: ControleNivelBufferWidget(producaoRecebida: producao),
           ),
           const SizedBox(height: 16),
 
@@ -184,7 +208,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                 : Color(0xffd2d6de),
                             overlayColor: Colors.black.withOpacity(0.05),
                             splashFactory: InkRipple.splashFactory,
-                            animationDuration: const Duration(milliseconds: 120),
+                            animationDuration: const Duration(
+                              milliseconds: 120,
+                            ),
                           ),
                           onPressed: () {
                             turnoNotifier.selecionarTurno(Turno.turnoA);
@@ -211,7 +237,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                 : Color(0xffd2d6de),
                             overlayColor: Colors.black.withOpacity(0.05),
                             splashFactory: InkRipple.splashFactory,
-                            animationDuration: const Duration(milliseconds: 120),
+                            animationDuration: const Duration(
+                              milliseconds: 120,
+                            ),
                           ),
                           onPressed: () {
                             // _turnoSelecionado = Turno.turnoB;
@@ -239,7 +267,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                 : Color(0xffd2d6de),
                             overlayColor: Colors.black.withOpacity(0.05),
                             splashFactory: InkRipple.splashFactory,
-                            animationDuration: const Duration(milliseconds: 120),
+                            animationDuration: const Duration(
+                              milliseconds: 120,
+                            ),
                           ),
                           onPressed: () {
                             // _turnoSelecionado = Turno.turnoC;
@@ -274,9 +304,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
                 itemCount: turnoState.turno.horarios.length,
                 itemBuilder: (context, index) {
-                  final horario = turnoState.turno.horarios.values.toList()[index];
+                  final horario = turnoState.turno.horarios.values
+                      .toList()[index];
 
-                  return CardQuantidadeHoraria(horario: horario, producao: producao);
+                  return CardQuantidadeHoraria(
+                    horario: horario,
+                    producao: producao,
+                  );
                 },
               ),
             ],
@@ -292,8 +326,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             sucessoComDado: (total) => Card(
               color: AppColors.blueStrong,
               child: Padding(
-                padding: EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 12),
-                child: Text('Total do Turno: $total', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),),
+                padding: EdgeInsetsGeometry.symmetric(
+                  horizontal: 20,
+                  vertical: 12,
+                ),
+                child: Text(
+                  'Total do Turno: $total',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
             ),
           ),

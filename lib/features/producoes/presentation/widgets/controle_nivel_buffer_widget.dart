@@ -1,68 +1,108 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
+import 'package:gestao_producao_chopp/features/configuracoes/presentation/screens/alterarnivel/buscar_configuracao.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 
 import '../../../grades/presentation/widgets/mensagem_aviso_buffer.dart';
 
-class ControleNivelBufferWidget extends ConsumerWidget {
-  final ProducaoEntity producao;
-
-  const ControleNivelBufferWidget({
-    super.key,
-    required this.producao,
-  });
+class ControleNivelBufferWidget extends ConsumerStatefulWidget {
+  final ProducaoEntity producaoRecebida;
+  const ControleNivelBufferWidget({super.key, required this.producaoRecebida});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    // final corVermelha = Color(0xffcb0000);
-    // final corFundo = AppColors.purple200.withValues(alpha: 0.2);
-    final corFundo = Colors.grey[200];
-    // final isVolumeOk = producao.volumeNecessarioHl < 40.0 ? false : true;
+  ConsumerState<ControleNivelBufferWidget> createState() =>
+      _ControleNivelBufferWidgetState();
+}
 
-    return Column(
-      children: [
-        // Text('Controle de nível do Buffer', style: TextStyle(fontSize: 18)),
-        // SizedBox(height: 4),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-          decoration: BoxDecoration(
-            color: corFundo,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          width: double.infinity,
-          // color: Colors.red,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+class _ControleNivelBufferWidgetState
+    extends ConsumerState<ControleNivelBufferWidget> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(buscarConfiguracaoProvider.notifier).busca();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final corFundo = Colors.grey[200];
+    final producao = widget.producaoRecebida;
+    final confState = ref.watch(buscarConfiguracaoProvider);
+
+    return confState.when(
+      inicial: () => const SizedBox(),
+      loading: () => const Center(child: CircularProgressIndicator()),
+      sucesso: () => const SizedBox(),
+      erro: (e) => Center(child: Text(e.message)),
+      sucessoComDados: (config) {
+        debugPrint('nivelRecebido: ${config!.nivelBuffer}');
+
+        return Column(
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+              decoration: BoxDecoration(
+                color: corFundo,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              width: double.infinity,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    'Volume do Barril: ',
-                    style: TextStyle(color: AppColors.secondaryText, fontSize: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Volume do Barril: ',
+                        style: TextStyle(
+                          color: AppColors.secondaryText,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Text(
+                        producao.tipoBarril.label,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: AppColors.blueStrong,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
                   ),
-                  Text(producao.tipoBarril.label, style: TextStyle(fontSize: 16, color: AppColors.blueStrong, fontWeight: FontWeight.w600)),
+                  SizedBox(height: 4),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Volume necessarios: ',
+                        style: TextStyle(
+                          color: AppColors.secondaryText,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Text(
+                        '${producao.volumeNecessarioHl.toString()} hl',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: AppColors.blueStrong,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8),
+                  MensagemAvisoBuffer(
+                    vlNecessario: producao.volumeNecessarioHl,
+                    vlMaximoTanque: config!.nivelBuffer,
+                  ),
                 ],
               ),
-              SizedBox(height: 4),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Volume necessarios: ',
-                    style: TextStyle(color: AppColors.secondaryText, fontSize: 16),
-                  ),
-                  Text('${producao.volumeNecessarioHl.toString()} hl', style: TextStyle(fontSize: 16, color: AppColors.blueStrong, fontWeight: FontWeight.w600)),
-                ],
-              ),
-              SizedBox(height: 8),
-              MensagemAvisoBuffer(vlNecessario: producao.volumeNecessarioHl, vlMaximoTanque: 30,),
-              // TODO - tornar vlMaximoTanque dinamico
-            ],
-          ),
-        ),
-      ],
+            ),
+          ],
+        );
+      },
     );
   }
 }
