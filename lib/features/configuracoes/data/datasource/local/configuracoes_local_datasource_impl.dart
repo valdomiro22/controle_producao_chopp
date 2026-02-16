@@ -12,9 +12,9 @@ class ConfiguracoesLocalDatasourceImpl implements ConfiguracoesLocalDatasource {
   ConfiguracoesLocalDatasourceImpl(this._hiveBox);
 
   @override
-  Future<void> insertConfig(ConfiguracoesLocalModel config) async {
+  Future<void> insertConfig({required ConfiguracoesLocalModel config, required String configId}) async {
     try {
-      await _hiveBox.put(config.id, config);
+      await _hiveBox.put(configId, config);
     } on HiveError catch (e) {
       throw CacheException('Erro no Hive: ${e.message}');
     } on FileSystemException catch (e) {

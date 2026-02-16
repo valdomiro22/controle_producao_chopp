@@ -27,7 +27,7 @@ GetAllConfiguracoesUseCase getAllConfiguracoesUseCase(Ref ref) {
 }
 
 @riverpod
-GetConfiguracaoUseCase geConfiguracoesUseCase(Ref ref) {
+GetConfiguracaoUseCase getConfiguracoesUseCase(Ref ref) {
   final rp = ref.watch(configuracoesRepositoryProvider);
   return GetConfiguracaoUseCase(rp);
 }

@@ -1,7 +1,7 @@
 import 'package:gestao_producao_chopp/features/configuracoes/data/models/configuracoes_local_model.dart';
 
 abstract class ConfiguracoesLocalDatasource {
-  Future<void> insertConfig(ConfiguracoesLocalModel config);
+  Future<void> insertConfig({required ConfiguracoesLocalModel config, required String configId});
 
   Future<void> updateConfig({required ConfiguracoesLocalModel config, required String configId});
 

@@ -8,7 +8,7 @@ class GetAllConfiguracoesUseCase {
 
   GetAllConfiguracoesUseCase(this._repository);
 
-  Future<Either<Failure, List<ConfiguracoesEntity>>> call() async {
-    return await _repository.getAllConfigs();
+  Future<Either<Failure, List<ConfiguracoesEntity>>> call(String configId) async {
+    return await _repository.getAllConfigs(configId);
   }
 }

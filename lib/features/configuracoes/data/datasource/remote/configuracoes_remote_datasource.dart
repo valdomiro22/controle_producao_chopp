@@ -1,7 +1,7 @@
 import 'package:gestao_producao_chopp/features/configuracoes/data/models/configuracoes_remote_model.dart';
 
 abstract class ConfiguracoesRemoteDatasource {
-  Future<void> insertConfig(ConfiguracoesRemoteModel config);
+  Future<void> insertConfig({required ConfiguracoesRemoteModel config, required String configId});
 
   Future<void> updateConfig({required ConfiguracoesRemoteModel config, required String configId});
 

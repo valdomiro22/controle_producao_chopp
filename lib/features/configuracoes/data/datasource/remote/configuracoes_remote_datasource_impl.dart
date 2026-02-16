@@ -12,12 +12,12 @@ class ConfiguracoesRemoteDatasourceImpl implements ConfiguracoesRemoteDatasource
   final _configsCollection = 'configuracoes';
 
   @override
-  Future<void> insertConfig(ConfiguracoesRemoteModel config) async {
+  Future<void> insertConfig({required ConfiguracoesRemoteModel config, required String configId}) async {
     try {
       await _firestore
           .collection(_configsCollection)
-          .doc(config.id!)
-          .set(config.toJson());
+          .doc(configId)
+          .set(config.toJson(), SetOptions(merge: true));
 
     } on FirebaseException catch (e) {
       switch (e.code) {
@@ -117,10 +117,9 @@ class ConfiguracoesRemoteDatasourceImpl implements ConfiguracoesRemoteDatasource
           .doc(configId)
           .get();
 
-      if (snap.exists) return null;
+      if (!snap.exists) return null;
 
       return ConfiguracoesRemoteModel.fromJson(snap.data()!);
-
     } on FirebaseException catch (e) {
       switch (e.code) {
         case 'permission-denied':

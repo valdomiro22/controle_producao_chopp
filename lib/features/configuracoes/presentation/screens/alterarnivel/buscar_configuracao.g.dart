@@ -43,7 +43,7 @@ final class BuscarConfiguracaoNotifierProvider
 }
 
 String _$buscarConfiguracaoNotifierHash() =>
-    r'0654c14e3963f9d876f161a03bbb9c4c056a6cb5';
+    r'03cd869806301b185d609a5a2a8c88fc3cadf94c';
 
 abstract class _$BuscarConfiguracaoNotifier
     extends $Notifier<BuscarConfiguracaoState> {

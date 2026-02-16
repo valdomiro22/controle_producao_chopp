@@ -13,6 +13,6 @@ class InsertConfiguracaoUseCase {
     final idGerado = AppHelper.idConfiguracoes;
     final confComId = config.copyWith(id: idGerado);
     
-    return await _repository.insertConfig(confComId);
+    return await _repository.insertConfig(configId: idGerado, config: confComId);
   }
 }

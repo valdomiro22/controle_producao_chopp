@@ -16,7 +16,7 @@ class ConfiguracoesRepositoryImpl extends ConfiguracoesRepository {
   ConfiguracoesRepositoryImpl(this._remoteDatasource, this._localDatasource);
 
   @override
-  Future<Either<Failure, Unit>> insertConfig(ConfiguracoesEntity config) async {
+  Future<Either<Failure, Unit>> insertConfig({required ConfiguracoesEntity config, required String configId}) async {
     try {
       if (config.id == null) {
         return const Left(UnexpectedFailure('Id não pode ser null'));
@@ -25,8 +25,8 @@ class ConfiguracoesRepositoryImpl extends ConfiguracoesRepository {
       final remoteModel = config.toRemoteModel();
       final localModel = config.toLocalModel();
 
-      await _remoteDatasource.insertConfig(remoteModel);
-      await _localDatasource.insertConfig(localModel);
+      await _remoteDatasource.insertConfig(config: remoteModel, configId: configId);
+      await _localDatasource.insertConfig(config: localModel, configId: configId);
 
       return const Right(unit);
     } on FirestoreException catch (e) {
@@ -59,14 +59,14 @@ class ConfiguracoesRepositoryImpl extends ConfiguracoesRepository {
   }
 
   @override
-  Future<Either<Failure, List<ConfiguracoesEntity>>> getAllConfigs() async {
+  Future<Either<Failure, List<ConfiguracoesEntity>>> getAllConfigs(String configId) async {
     try {
       final resultRemote = await _remoteDatasource.getAllConfigs();
       final listaRemote = resultRemote.map((conf) => conf.toEntity()).toList();
 
       // Atualiza cache local
       for (final config in listaRemote) {
-        await _localDatasource.insertConfig(config.toLocalModel());
+        await _localDatasource.insertConfig(config: config.toLocalModel(), configId: configId);
       }
 
       return Right(listaRemote);
@@ -100,7 +100,7 @@ class ConfiguracoesRepositoryImpl extends ConfiguracoesRepository {
       final entity = remoteModel.toEntity();
 
       // Atualiza cache local (cache-aside)
-      await _localDatasource.insertConfig(entity.toLocalModel());
+      await _localDatasource.insertConfig(config: entity.toLocalModel(), configId: configId);
 
       return Right(entity);
     } on NetworkException {

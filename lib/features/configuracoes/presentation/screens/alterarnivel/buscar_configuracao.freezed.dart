@@ -55,12 +55,12 @@ extension BuscarConfiguracaoStatePatterns on BuscarConfiguracaoState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Inicial value)?  inicial,TResult Function( _Carregando value)?  carregando,TResult Function( _SucessoComDados value)?  sucessoComDados,TResult Function( _Sucesso value)?  sucesso,TResult Function( _Erro value)?  erro,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Inicial value)?  inicial,TResult Function( _Loading value)?  loading,TResult Function( _SucessoComDados value)?  sucessoComDados,TResult Function( _Sucesso value)?  sucesso,TResult Function( _Erro value)?  erro,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Inicial() when inicial != null:
-return inicial(_that);case _Carregando() when carregando != null:
-return carregando(_that);case _SucessoComDados() when sucessoComDados != null:
+return inicial(_that);case _Loading() when loading != null:
+return loading(_that);case _SucessoComDados() when sucessoComDados != null:
 return sucessoComDados(_that);case _Sucesso() when sucesso != null:
 return sucesso(_that);case _Erro() when erro != null:
 return erro(_that);case _:
@@ -81,12 +81,12 @@ return erro(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Inicial value)  inicial,required TResult Function( _Carregando value)  carregando,required TResult Function( _SucessoComDados value)  sucessoComDados,required TResult Function( _Sucesso value)  sucesso,required TResult Function( _Erro value)  erro,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Inicial value)  inicial,required TResult Function( _Loading value)  loading,required TResult Function( _SucessoComDados value)  sucessoComDados,required TResult Function( _Sucesso value)  sucesso,required TResult Function( _Erro value)  erro,}){
 final _that = this;
 switch (_that) {
 case _Inicial():
-return inicial(_that);case _Carregando():
-return carregando(_that);case _SucessoComDados():
+return inicial(_that);case _Loading():
+return loading(_that);case _SucessoComDados():
 return sucessoComDados(_that);case _Sucesso():
 return sucesso(_that);case _Erro():
 return erro(_that);}
@@ -103,12 +103,12 @@ return erro(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Inicial value)?  inicial,TResult? Function( _Carregando value)?  carregando,TResult? Function( _SucessoComDados value)?  sucessoComDados,TResult? Function( _Sucesso value)?  sucesso,TResult? Function( _Erro value)?  erro,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Inicial value)?  inicial,TResult? Function( _Loading value)?  loading,TResult? Function( _SucessoComDados value)?  sucessoComDados,TResult? Function( _Sucesso value)?  sucesso,TResult? Function( _Erro value)?  erro,}){
 final _that = this;
 switch (_that) {
 case _Inicial() when inicial != null:
-return inicial(_that);case _Carregando() when carregando != null:
-return carregando(_that);case _SucessoComDados() when sucessoComDados != null:
+return inicial(_that);case _Loading() when loading != null:
+return loading(_that);case _SucessoComDados() when sucessoComDados != null:
 return sucessoComDados(_that);case _Sucesso() when sucesso != null:
 return sucesso(_that);case _Erro() when erro != null:
 return erro(_that);case _:
@@ -128,11 +128,11 @@ return erro(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  inicial,TResult Function()?  carregando,TResult Function( ConfiguracoesEntity? config)?  sucessoComDados,TResult Function()?  sucesso,TResult Function( Failure failure)?  erro,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  inicial,TResult Function()?  loading,TResult Function( ConfiguracoesEntity? config)?  sucessoComDados,TResult Function()?  sucesso,TResult Function( Failure failure)?  erro,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Inicial() when inicial != null:
-return inicial();case _Carregando() when carregando != null:
-return carregando();case _SucessoComDados() when sucessoComDados != null:
+return inicial();case _Loading() when loading != null:
+return loading();case _SucessoComDados() when sucessoComDados != null:
 return sucessoComDados(_that.config);case _Sucesso() when sucesso != null:
 return sucesso();case _Erro() when erro != null:
 return erro(_that.failure);case _:
@@ -153,11 +153,11 @@ return erro(_that.failure);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  inicial,required TResult Function()  carregando,required TResult Function( ConfiguracoesEntity? config)  sucessoComDados,required TResult Function()  sucesso,required TResult Function( Failure failure)  erro,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  inicial,required TResult Function()  loading,required TResult Function( ConfiguracoesEntity? config)  sucessoComDados,required TResult Function()  sucesso,required TResult Function( Failure failure)  erro,}) {final _that = this;
 switch (_that) {
 case _Inicial():
-return inicial();case _Carregando():
-return carregando();case _SucessoComDados():
+return inicial();case _Loading():
+return loading();case _SucessoComDados():
 return sucessoComDados(_that.config);case _Sucesso():
 return sucesso();case _Erro():
 return erro(_that.failure);}
@@ -174,11 +174,11 @@ return erro(_that.failure);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  inicial,TResult? Function()?  carregando,TResult? Function( ConfiguracoesEntity? config)?  sucessoComDados,TResult? Function()?  sucesso,TResult? Function( Failure failure)?  erro,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  inicial,TResult? Function()?  loading,TResult? Function( ConfiguracoesEntity? config)?  sucessoComDados,TResult? Function()?  sucesso,TResult? Function( Failure failure)?  erro,}) {final _that = this;
 switch (_that) {
 case _Inicial() when inicial != null:
-return inicial();case _Carregando() when carregando != null:
-return carregando();case _SucessoComDados() when sucessoComDados != null:
+return inicial();case _Loading() when loading != null:
+return loading();case _SucessoComDados() when sucessoComDados != null:
 return sucessoComDados(_that.config);case _Sucesso() when sucesso != null:
 return sucesso();case _Erro() when erro != null:
 return erro(_that.failure);case _:
@@ -224,8 +224,8 @@ String toString() {
 /// @nodoc
 
 
-class _Carregando implements BuscarConfiguracaoState {
-  const _Carregando();
+class _Loading implements BuscarConfiguracaoState {
+  const _Loading();
   
 
 
@@ -235,7 +235,7 @@ class _Carregando implements BuscarConfiguracaoState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Carregando);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
 }
 
 
@@ -244,7 +244,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'BuscarConfiguracaoState.carregando()';
+  return 'BuscarConfiguracaoState.loading()';
 }
 
 

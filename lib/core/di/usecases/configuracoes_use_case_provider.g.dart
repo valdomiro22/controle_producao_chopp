@@ -154,10 +154,10 @@ final class GetAllConfiguracoesUseCaseProvider
 String _$getAllConfiguracoesUseCaseHash() =>
     r'36d5b444097cf07c63e8b2b32689dd2c3cbd991a';
 
-@ProviderFor(geConfiguracoesUseCase)
-final geConfiguracoesUseCaseProvider = GeConfiguracoesUseCaseProvider._();
+@ProviderFor(getConfiguracoesUseCase)
+final getConfiguracoesUseCaseProvider = GetConfiguracoesUseCaseProvider._();
 
-final class GeConfiguracoesUseCaseProvider
+final class GetConfiguracoesUseCaseProvider
     extends
         $FunctionalProvider<
           GetConfiguracaoUseCase,
@@ -165,19 +165,19 @@ final class GeConfiguracoesUseCaseProvider
           GetConfiguracaoUseCase
         >
     with $Provider<GetConfiguracaoUseCase> {
-  GeConfiguracoesUseCaseProvider._()
+  GetConfiguracoesUseCaseProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'geConfiguracoesUseCaseProvider',
+        name: r'getConfiguracoesUseCaseProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$geConfiguracoesUseCaseHash();
+  String debugGetCreateSourceHash() => _$getConfiguracoesUseCaseHash();
 
   @$internal
   @override
@@ -187,7 +187,7 @@ final class GeConfiguracoesUseCaseProvider
 
   @override
   GetConfiguracaoUseCase create(Ref ref) {
-    return geConfiguracoesUseCase(ref);
+    return getConfiguracoesUseCase(ref);
   }
 
   /// {@macro riverpod.override_with_value}
@@ -199,8 +199,8 @@ final class GeConfiguracoesUseCaseProvider
   }
 }
 
-String _$geConfiguracoesUseCaseHash() =>
-    r'e0a3be04aebe1c85c52f359ef9a57c2958e9be39';
+String _$getConfiguracoesUseCaseHash() =>
+    r'bcdc10baaef229941c9cc93ccacc31f6857b98c6';
 
 @ProviderFor(deleteConfiguracaoUseCase)
 final deleteConfiguracaoUseCaseProvider = DeleteConfiguracaoUseCaseProvider._();
