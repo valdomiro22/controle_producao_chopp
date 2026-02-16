@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
 import 'package:gestao_producao_chopp/features/quantidade_horaria/presentation/providers/buscar_quantidade_produzida_turno_notifier.dart';
 
 import '../../../../../core/error/failure.dart';
@@ -13,16 +14,29 @@ class ProducaoPorTurnoScreen extends ConsumerStatefulWidget {
   const ProducaoPorTurnoScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _ProducaoPorTurnoScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _ProducaoPorTurnoScreenState();
 }
 
-class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen> {
+class _ProducaoPorTurnoScreenState
+    extends ConsumerState<ProducaoPorTurnoScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(buscarQuantidadeProduzidaTurnoProvider.notifier);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final producaoState = ref.watch(buscarProducaoProvider);
     final turnoState = ref.watch(selecionarTurnoProvider);
     final turnoNotifier = ref.watch(selecionarTurnoProvider.notifier);
-    final prTurnoNotifier = ref.watch(buscarQuantidadeProduzidaTurnoProvider.notifier);
+    final prTurnoNotifier = ref.watch(
+      buscarQuantidadeProduzidaTurnoProvider.notifier,
+    );
+    final qtTurno = ref.watch(buscarQuantidadeProduzidaTurnoProvider);
 
     return Scaffold(
       appBar: AppBar(title: Text('Produção por turno')),
@@ -32,7 +46,13 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
             Center(child: Text('Erro: ${(error as Failure).message}')),
         data: (ProducaoEntity? producao) => producao == null
             ? Center(child: Text('Produção não encontrada'))
-            : _conteudo(producao, turnoNotifier, prTurnoNotifier, turnoState),
+            : _conteudo(
+                producao,
+                turnoNotifier,
+                prTurnoNotifier,
+                turnoState,
+                qtTurno,
+              ),
       ),
     );
   }
@@ -42,9 +62,8 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
     SelecionarTurnoNotifier turnoNotifier,
     BuscarQuantidadeProduzidaTurnoNotifier producaoTurno,
     SelecionarTurnoState turnoState,
+    BuscarQtTurnoState qtTurno,
   ) {
-    final qtTurno = ref.watch(buscarQuantidadeProduzidaTurnoProvider);
-
     return Container(
       padding: EdgeInsets.all(16),
       child: Column(
@@ -55,7 +74,6 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-
                   Expanded(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -74,7 +92,9 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
                       child: Text(
                         'Turno A',
                         style: TextStyle(
-                          color: turnoState.turno == Turno.turnoA ? Colors.white : Colors.blueGrey,
+                          color: turnoState.turno == Turno.turnoA
+                              ? Colors.white
+                              : Colors.blueGrey,
                         ),
                       ),
                     ),
@@ -100,7 +120,9 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
                       child: Text(
                         'Turno B',
                         style: TextStyle(
-                          color: turnoState.turno == Turno.turnoB ? Colors.white : Colors.blueGrey,
+                          color: turnoState.turno == Turno.turnoB
+                              ? Colors.white
+                              : Colors.blueGrey,
                         ),
                       ),
                     ),
@@ -126,7 +148,9 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
                       child: Text(
                         'Turno C',
                         style: TextStyle(
-                          color: turnoState.turno == Turno.turnoC ? Colors.white : Colors.blueGrey,
+                          color: turnoState.turno == Turno.turnoC
+                              ? Colors.white
+                              : Colors.blueGrey,
                         ),
                       ),
                     ),
@@ -152,7 +176,10 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
             itemBuilder: (context, index) {
               final horario = turnoState.turno.horarios.values.toList()[index];
 
-              return CardQuantidadeHoraria(horario: horario, producao: producao);
+              return CardQuantidadeHoraria(
+                horario: horario,
+                producao: producao,
+              );
             },
           ),
           const SizedBox(height: 24),
@@ -163,9 +190,19 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
             sucesso: () => const SizedBox(),
             erro: (f) => Text(f.message),
             sucessoComDado: (total) => Card(
+              color: AppColors.blueStrong,
               child: Padding(
-                padding: EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 15),
-                child: Text('Total do Turno: $total'),
+                padding: EdgeInsetsGeometry.symmetric(
+                  horizontal: 20,
+                  vertical: 12,
+                ),
+                child: Text(
+                  'Total do Turno: $total',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
             ),
           ),

@@ -198,6 +198,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      
                       Expanded(
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -317,29 +318,45 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
           const SizedBox(height: 8),
 
-          // Quantidade produzida no turno
-          qtTurno.when(
-            inicial: () => const Text('Aguardando...'),
-            carregando: () => const CircularProgressIndicator(),
-            sucesso: () => const SizedBox(),
-            erro: (f) => Text(f.message),
-            sucessoComDado: (total) => Card(
-              color: AppColors.blueStrong,
-              child: Padding(
-                padding: EdgeInsetsGeometry.symmetric(
-                  horizontal: 20,
-                  vertical: 12,
+          Row(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Card(
+                child: IconButton(
+                  onPressed: () {
+                    ref.read(buscarQuantidadeProduzidaTurnoProvider.notifier);
+                  },
+                  icon: Icon(Icons.refresh_outlined),
                 ),
-                child: Text(
-                  'Total do Turno: $total',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
+              ),
+              const SizedBox(width: 40),
+
+              // Quantidade produzida no turno
+              qtTurno.when(
+                inicial: () => const Text('Aguardando...'),
+                carregando: () => const CircularProgressIndicator(),
+                sucesso: () => const SizedBox(),
+                erro: (f) => Text(f.message),
+                sucessoComDado: (total) => Card(
+                  color: AppColors.blueStrong,
+                  child: Padding(
+                    padding: EdgeInsetsGeometry.symmetric(
+                      horizontal: 20,
+                      vertical: 12,
+                    ),
+                    child: Text(
+                      'Total do Turno: $total',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
+            ],
           ),
+
         ],
       ),
     );

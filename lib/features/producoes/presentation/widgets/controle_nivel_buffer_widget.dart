@@ -95,7 +95,7 @@ class _ControleNivelBufferWidgetState
                   SizedBox(height: 8),
                   MensagemAvisoBuffer(
                     vlNecessario: producao.volumeNecessarioHl,
-                    vlMaximoTanque: config!.nivelBuffer,
+                    vlMaximoTanque: config.nivelBuffer,
                   ),
                 ],
               ),
