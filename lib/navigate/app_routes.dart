@@ -6,6 +6,7 @@ import 'package:gestao_producao_chopp/features/auth/presentation/screens/configu
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/login/login_screen.dart';
 import 'package:gestao_producao_chopp/features/configuracoes/presentation/screens/alterarnivel/alterar_nivel_screen.dart';
 import 'package:gestao_producao_chopp/features/configuracoes/presentation/screens/configuracoesapp/configuracoes_app_screen.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/screens/calculadoraparadas/calcular_tempo_parada_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/producaoporturno/producao_por_turno_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/relatorio_producao/relatorio_screen.dart';
@@ -38,7 +39,9 @@ class AppRoutes {
 
     GoRoute(path: AppRoutesNames.nivelBuffer, builder: (context, state) => AlterarNivelScreen()),
 
-    GoRoute(  path: AppRoutesNames.recuperarSenha,builder: (context, state) => RecuperarSenhaScreen()),
+    GoRoute(  path: AppRoutesNames.recuperarSenha, builder: (context, state) => RecuperarSenhaScreen()),
+
+    GoRoute(  path: AppRoutesNames.calculadoraHoras ,builder: (context, state) => CalcularTempoParadaScreen()),
 
     GoRoute(
       path: AppRoutesNames.home,

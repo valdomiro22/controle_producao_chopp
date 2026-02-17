@@ -128,6 +128,14 @@ class _AppDrawerState extends ConsumerState<AppDrawer> {
               context.push(AppRoutesNames.listaGrades);
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.list, color: AppColors.red900),
+            title: const Text('Caculadora de Horas'),
+            onTap: () {
+              context.pop();
+              context.push(AppRoutesNames.calculadoraHoras);
+            },
+          ),
           // TODO - Adicionar Produção
           const Divider(),
           ListTile(
