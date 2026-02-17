@@ -37,7 +37,7 @@ class _ControleNivelBufferWidgetState
       sucesso: () => const SizedBox(),
       erro: (e) => Center(child: Text(e.message)),
       sucessoComDados: (config) {
-        debugPrint('nivelRecebido: ${config!.nivelBuffer}');
+        final nivelOk = producao.volumeNecessarioHl <= config!.nivelBuffer;
 
         return Column(
           children: [
@@ -86,7 +86,7 @@ class _ControleNivelBufferWidgetState
                         '${producao.volumeNecessarioHl.toString()} hl',
                         style: TextStyle(
                           fontSize: 16,
-                          color: AppColors.blueStrong,
+                          color: !nivelOk ? AppColors.blueStrong : AppColors.red900,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
