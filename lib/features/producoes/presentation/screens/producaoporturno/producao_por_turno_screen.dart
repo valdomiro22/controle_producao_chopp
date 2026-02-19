@@ -37,6 +37,7 @@ class _ProducaoPorTurnoScreenState
       buscarQuantidadeProduzidaTurnoProvider.notifier,
     );
     final qtTurno = ref.watch(buscarQuantidadeProduzidaTurnoProvider);
+    // final qtTurno = ref.watch(buscarQuantidadeProduzidaTurnoProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(title: Text('Produção por turno')),
@@ -62,8 +63,10 @@ class _ProducaoPorTurnoScreenState
     SelecionarTurnoNotifier turnoNotifier,
     BuscarQuantidadeProduzidaTurnoNotifier producaoTurno,
     SelecionarTurnoState turnoState,
-    BuscarQtTurnoState qtTurno,
+    AsyncValue<int> qtTurno,
   ) {
+    int ultimoTotal = 0;
+
     return Container(
       padding: EdgeInsets.all(16),
       child: Column(
@@ -185,28 +188,30 @@ class _ProducaoPorTurnoScreenState
           const SizedBox(height: 24),
 
           qtTurno.when(
-            inicial: () => const Text('Aguardando...'),
-            carregando: () => const CircularProgressIndicator(),
-            sucesso: () => const SizedBox(),
-            erro: (f) => Text(f.message),
-            sucessoComDado: (total) => Card(
-              color: AppColors.blueStrong,
-              child: Padding(
-                padding: EdgeInsetsGeometry.symmetric(
-                  horizontal: 20,
-                  vertical: 12,
-                ),
-                child: Text(
-                  'Total do Turno: $total',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-            ),
+            loading: () => _cardTotal(ultimoTotal),
+            error: (_, _) => _cardTotal(ultimoTotal),
+            data: (total) {
+              ultimoTotal = total;
+              return _cardTotal(total);
+            },
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _cardTotal(int total) {
+    return Card(
+      color: AppColors.blueStrong,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        child: Text(
+          'Total do Turno: $total',
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
     );
   }

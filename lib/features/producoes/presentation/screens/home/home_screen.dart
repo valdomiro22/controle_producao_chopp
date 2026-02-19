@@ -45,8 +45,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ref
           .read(buscarProducaoProvider.notifier)
           .buscar(gradeId: widget.gradeId, producaoId: widget.producaoId);
-
-      ref.read(buscarQuantidadeProduzidaTurnoProvider.notifier);
     });
   }
 
@@ -121,8 +119,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     ProducaoEntity producao,
     SelecionarTurnoNotifier turnoNotifier,
     SelecionarTurnoState turnoState,
-    BuscarQtTurnoState qtTurno,
+    AsyncValue<int> qtTurno,
   ) {
+    int ultimoTotal = 0;
+
     return SingleChildScrollView(
       padding: EdgeInsets.all(10),
       child: Column(
@@ -198,7 +198,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      
                       Expanded(
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -324,40 +323,41 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               Card(
                 child: IconButton(
                   onPressed: () {
-                    ref.read(buscarQuantidadeProduzidaTurnoProvider.notifier);
+                    ref.invalidate(buscarQuantidadeProduzidaTurnoProvider);
                   },
-                  icon: Icon(Icons.refresh_outlined),
+                  icon: const Icon(Icons.refresh_outlined),
                 ),
               ),
               const SizedBox(width: 40),
 
               // Quantidade produzida no turno
               qtTurno.when(
-                inicial: () => const Text('Aguardando...'),
-                carregando: () => const CircularProgressIndicator(),
-                sucesso: () => const SizedBox(),
-                erro: (f) => Text(f.message),
-                sucessoComDado: (total) => Card(
-                  color: AppColors.blueStrong,
-                  child: Padding(
-                    padding: EdgeInsetsGeometry.symmetric(
-                      horizontal: 20,
-                      vertical: 12,
-                    ),
-                    child: Text(
-                      'Total do Turno: $total',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),
+                loading: () => _cardTotal(ultimoTotal),
+                error: (_, __) => _cardTotal(ultimoTotal),
+                data: (total) {
+                  ultimoTotal = total;
+                  return _cardTotal(total);
+                },
               ),
             ],
           ),
-
         ],
+      ),
+    );
+  }
+
+  Widget _cardTotal(int total) {
+    return Card(
+      color: AppColors.blueStrong,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        child: Text(
+          'Total do Turno: $total',
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
     );
   }

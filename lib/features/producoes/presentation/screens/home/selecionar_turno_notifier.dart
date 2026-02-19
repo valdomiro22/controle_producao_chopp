@@ -14,7 +14,6 @@ class SelecionarTurnoNotifier extends _$SelecionarTurnoNotifier {
   }
 
   void inserirQuantidade(String quantidade) {
-    print('digitado: $quantidade');
     state = state.copyWith(quantidade: quantidade);
   }
 }

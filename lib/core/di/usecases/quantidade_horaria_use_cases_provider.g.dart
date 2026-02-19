@@ -348,3 +348,51 @@ final class GetQuantidadeProduzidaTurnoUseCaseProvider
 
 String _$getQuantidadeProduzidaTurnoUseCaseHash() =>
     r'92d59ece4aa28bdef909f70eff0197e3ecc9a9fe';
+
+@ProviderFor(getQtAposMaiaNoite)
+final getQtAposMaiaNoiteProvider = GetQtAposMaiaNoiteProvider._();
+
+final class GetQtAposMaiaNoiteProvider
+    extends
+        $FunctionalProvider<
+          GetQtAposMaiaNoite,
+          GetQtAposMaiaNoite,
+          GetQtAposMaiaNoite
+        >
+    with $Provider<GetQtAposMaiaNoite> {
+  GetQtAposMaiaNoiteProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getQtAposMaiaNoiteProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$getQtAposMaiaNoiteHash();
+
+  @$internal
+  @override
+  $ProviderElement<GetQtAposMaiaNoite> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  GetQtAposMaiaNoite create(Ref ref) {
+    return getQtAposMaiaNoite(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GetQtAposMaiaNoite value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GetQtAposMaiaNoite>(value),
+    );
+  }
+}
+
+String _$getQtAposMaiaNoiteHash() =>
+    r'397624006be2d7837ce4c794f15f835370fd70b9';

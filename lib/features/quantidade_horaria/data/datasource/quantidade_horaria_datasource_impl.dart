@@ -81,6 +81,7 @@ class QuantidadeHorariaDatasourceImpl implements QuantidadeHorariaDatasource {
 
   @override
   Future<List<QuantidadeHorariaModel>> getAllQtHorariaOfProducao(String producaoId) async {
+
     try {
       final snapshot = await _firestore
           .collection(_qtHorariaCollection)

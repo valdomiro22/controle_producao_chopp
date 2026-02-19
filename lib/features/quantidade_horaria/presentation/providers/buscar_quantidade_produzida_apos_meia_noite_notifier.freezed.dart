@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'buscar_quantidade_produzida_turno_notifier.dart';
+part of 'buscar_quantidade_produzida_apos_meia_noite_notifier.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,7 +12,7 @@ part of 'buscar_quantidade_produzida_turno_notifier.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$BuscarQtTurnoState {
+mixin _$BuscarQtApos00h {
 
 
 
@@ -20,7 +20,7 @@ mixin _$BuscarQtTurnoState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is BuscarQtTurnoState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BuscarQtApos00h);
 }
 
 
@@ -29,20 +29,20 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'BuscarQtTurnoState()';
+  return 'BuscarQtApos00h()';
 }
 
 
 }
 
 /// @nodoc
-class $BuscarQtTurnoStateCopyWith<$Res>  {
-$BuscarQtTurnoStateCopyWith(BuscarQtTurnoState _, $Res Function(BuscarQtTurnoState) __);
+class $BuscarQtApos00hCopyWith<$Res>  {
+$BuscarQtApos00hCopyWith(BuscarQtApos00h _, $Res Function(BuscarQtApos00h) __);
 }
 
 
-/// Adds pattern-matching-related methods to [BuscarQtTurnoState].
-extension BuscarQtTurnoStatePatterns on BuscarQtTurnoState {
+/// Adds pattern-matching-related methods to [BuscarQtApos00h].
+extension BuscarQtApos00hPatterns on BuscarQtApos00h {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -198,7 +198,7 @@ return erro(_that.failure);case _:
 /// @nodoc
 
 
-class _Inicial implements BuscarQtTurnoState {
+class _Inicial implements BuscarQtApos00h {
   const _Inicial();
   
 
@@ -218,7 +218,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'BuscarQtTurnoState.inicial()';
+  return 'BuscarQtApos00h.inicial()';
 }
 
 
@@ -230,7 +230,7 @@ String toString() {
 /// @nodoc
 
 
-class _Carregando implements BuscarQtTurnoState {
+class _Carregando implements BuscarQtApos00h {
   const _Carregando();
   
 
@@ -250,7 +250,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'BuscarQtTurnoState.carregando()';
+  return 'BuscarQtApos00h.carregando()';
 }
 
 
@@ -262,13 +262,13 @@ String toString() {
 /// @nodoc
 
 
-class _SucessoComDados implements BuscarQtTurnoState {
+class _SucessoComDados implements BuscarQtApos00h {
   const _SucessoComDados(this.qtHoraria);
   
 
  final  int qtHoraria;
 
-/// Create a copy of BuscarQtTurnoState
+/// Create a copy of BuscarQtApos00h
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
@@ -287,14 +287,14 @@ int get hashCode => Object.hash(runtimeType,qtHoraria);
 
 @override
 String toString() {
-  return 'BuscarQtTurnoState.sucessoComDado(qtHoraria: $qtHoraria)';
+  return 'BuscarQtApos00h.sucessoComDado(qtHoraria: $qtHoraria)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$SucessoComDadosCopyWith<$Res> implements $BuscarQtTurnoStateCopyWith<$Res> {
+abstract mixin class _$SucessoComDadosCopyWith<$Res> implements $BuscarQtApos00hCopyWith<$Res> {
   factory _$SucessoComDadosCopyWith(_SucessoComDados value, $Res Function(_SucessoComDados) _then) = __$SucessoComDadosCopyWithImpl;
 @useResult
 $Res call({
@@ -313,7 +313,7 @@ class __$SucessoComDadosCopyWithImpl<$Res>
   final _SucessoComDados _self;
   final $Res Function(_SucessoComDados) _then;
 
-/// Create a copy of BuscarQtTurnoState
+/// Create a copy of BuscarQtApos00h
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? qtHoraria = null,}) {
   return _then(_SucessoComDados(
@@ -328,7 +328,7 @@ as int,
 /// @nodoc
 
 
-class _Sucesso implements BuscarQtTurnoState {
+class _Sucesso implements BuscarQtApos00h {
   const _Sucesso();
   
 
@@ -348,7 +348,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'BuscarQtTurnoState.sucesso()';
+  return 'BuscarQtApos00h.sucesso()';
 }
 
 
@@ -360,13 +360,13 @@ String toString() {
 /// @nodoc
 
 
-class _Erro implements BuscarQtTurnoState {
+class _Erro implements BuscarQtApos00h {
   const _Erro(this.failure);
   
 
  final  Failure failure;
 
-/// Create a copy of BuscarQtTurnoState
+/// Create a copy of BuscarQtApos00h
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
@@ -385,14 +385,14 @@ int get hashCode => Object.hash(runtimeType,failure);
 
 @override
 String toString() {
-  return 'BuscarQtTurnoState.erro(failure: $failure)';
+  return 'BuscarQtApos00h.erro(failure: $failure)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$ErroCopyWith<$Res> implements $BuscarQtTurnoStateCopyWith<$Res> {
+abstract mixin class _$ErroCopyWith<$Res> implements $BuscarQtApos00hCopyWith<$Res> {
   factory _$ErroCopyWith(_Erro value, $Res Function(_Erro) _then) = __$ErroCopyWithImpl;
 @useResult
 $Res call({
@@ -411,7 +411,7 @@ class __$ErroCopyWithImpl<$Res>
   final _Erro _self;
   final $Res Function(_Erro) _then;
 
-/// Create a copy of BuscarQtTurnoState
+/// Create a copy of BuscarQtApos00h
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? failure = null,}) {
   return _then(_Erro(

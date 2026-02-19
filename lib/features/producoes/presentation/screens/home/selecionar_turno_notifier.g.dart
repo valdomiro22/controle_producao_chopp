@@ -42,7 +42,7 @@ final class SelecionarTurnoNotifierProvider
 }
 
 String _$selecionarTurnoNotifierHash() =>
-    r'e2c995ea6e7816fbb176bcee7783b1764583740c';
+    r'b6a104a7c79917bfdb7f34827e4b40d4040ffc66';
 
 abstract class _$SelecionarTurnoNotifier
     extends $Notifier<SelecionarTurnoState> {

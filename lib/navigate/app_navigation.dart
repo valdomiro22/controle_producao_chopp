@@ -51,9 +51,9 @@ final appNavigation = Provider<GoRouter>((ref) {
     routes: AppRoutes.routes,
   );
 
-  // 🔥 Isso aqui é o pulo do gato: manda o GoRouter recalcular o redirect
-  ref.listen(navAuthState, (_, __) => router.refresh());
-  ref.listen(delaySplashScreen, (_, __) => router.refresh());
+  // Isso aqui é o pulo do gato: manda o GoRouter recalcular o redirect
+  ref.listen(navAuthState, (_, _) => router.refresh());
+  ref.listen(delaySplashScreen, (_, _) => router.refresh());
 
   return router;
 });
