@@ -130,7 +130,15 @@ class _AppDrawerState extends ConsumerState<AppDrawer> {
           ),
           ListTile(
             leading: const Icon(Icons.list, color: AppColors.red900),
-            title: const Text('Caculadora de Horas'),
+            title: const Text('Cacular tempo parada'),
+            onTap: () {
+              context.pop();
+              context.push(AppRoutesNames.calculadoraTempoParadas);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.list, color: AppColors.red900),
+            title: const Text('Caculadora de horas'),
             onTap: () {
               context.pop();
               context.push(AppRoutesNames.calculadoraHoras);

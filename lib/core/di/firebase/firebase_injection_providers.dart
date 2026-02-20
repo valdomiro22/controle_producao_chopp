@@ -25,6 +25,10 @@ import 'package:gestao_producao_chopp/features/quantidade_horaria/data/datasourc
 import 'package:gestao_producao_chopp/features/quantidade_horaria/data/datasource/quantidade_horaria_datasource_impl.dart';
 import 'package:gestao_producao_chopp/features/quantidade_horaria/data/repositories/quantidade_horaria_repository_impl.dart';
 import 'package:gestao_producao_chopp/features/quantidade_horaria/domain/repositories/quantidade_horaria_repository.dart';
+import 'package:gestao_producao_chopp/features/tipobarril/data/datasource/tipo_barril_datasource.dart';
+import 'package:gestao_producao_chopp/features/tipobarril/data/datasource/tipo_barril_datasource_impl.dart';
+import 'package:gestao_producao_chopp/features/tipobarril/data/repositories/tipo_barril_repository_impl.dart';
+import 'package:gestao_producao_chopp/features/tipobarril/domain/repositories/tipo_barril_repository.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -113,6 +117,12 @@ ConfiguracoesRemoteDatasource configuracoesRemoteDatasource(Ref ref) {
   return ConfiguracoesRemoteDatasourceImpl(firestore);
 }
 
+@riverpod
+TipoBarrilDatasource tipoBarrilDatasource(Ref ref) {
+  final firestore = ref.watch(firebaseFirestoreProvider);
+  return TipoBarrilDatasourceImpl(firestore);
+}
+
 // repository ------------------------------------------------------------------
 @riverpod
 UsuarioRepository usuarioRepository(Ref ref) {
@@ -156,4 +166,10 @@ ConfiguracoesRepository configuracoesRepository(Ref ref) {
   final remote = ref.watch(configuracoesRemoteDatasourceProvider);
   final local = ref.watch(configuracoesLocalDatasourceProvider);
   return ConfiguracoesRepositoryImpl(remote, local);
+}
+
+@riverpod
+TipoBarrilRepository tipoBarrilRepository(Ref ref) {
+  final ds = ref.watch(tipoBarrilDatasourceProvider);
+  return TipoBarrilRepositoryImpl(ds);
 }

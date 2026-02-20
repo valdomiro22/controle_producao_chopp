@@ -20,5 +20,6 @@ class AppRoutesNames {
   static const String simularFimProducao = '/simular-fim-producao';
   static const String configuracoesApp = '/configuracoes-app';
   static const String nivelBuffer = '/nivel-buffer';
+  static const String calculadoraTempoParadas = '/calculadora-tempo-paradas';
   static const String calculadoraHoras = '/calculadora-horas';
 }

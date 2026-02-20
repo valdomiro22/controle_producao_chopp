@@ -6,7 +6,6 @@ import 'package:gestao_producao_chopp/features/auth/presentation/screens/configu
 import 'package:gestao_producao_chopp/features/auth/presentation/screens/login/login_screen.dart';
 import 'package:gestao_producao_chopp/features/configuracoes/presentation/screens/alterarnivel/alterar_nivel_screen.dart';
 import 'package:gestao_producao_chopp/features/configuracoes/presentation/screens/configuracoesapp/configuracoes_app_screen.dart';
-import 'package:gestao_producao_chopp/features/producoes/presentation/screens/calculadoraparadas/calcular_tempo_parada_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/producaoporturno/producao_por_turno_screen.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/relatorio_producao/relatorio_screen.dart';
@@ -15,6 +14,7 @@ import 'package:gestao_producao_chopp/features/producoes/presentation/screens/st
 import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/selecionar_producao_widget.dart';
 import 'package:go_router/go_router.dart';
 
+import '../core/common/screens/calculadoraparadas/calcular_tempo_parada_screen.dart';
 import '../features/auth/presentation/screens/alteraremail/Alterar_email_screen.dart';
 import '../features/auth/presentation/screens/alterarsenha/alterar_senha_screen.dart';
 import '../features/auth/presentation/screens/deletarconta/deletar_conta_screen.dart';
@@ -35,13 +35,22 @@ class AppRoutes {
 
     GoRoute(path: AppRoutesNames.login, builder: (context, state) => LoginScreen()),
 
-    GoRoute(path: AppRoutesNames.configuracoesApp, builder: (context, state) => ConfiguracoesAppScreen()),
+    GoRoute(
+      path: AppRoutesNames.configuracoesApp,
+      builder: (context, state) => ConfiguracoesAppScreen(),
+    ),
 
     GoRoute(path: AppRoutesNames.nivelBuffer, builder: (context, state) => AlterarNivelScreen()),
 
-    GoRoute(  path: AppRoutesNames.recuperarSenha, builder: (context, state) => RecuperarSenhaScreen()),
+    GoRoute(
+      path: AppRoutesNames.recuperarSenha,
+      builder: (context, state) => RecuperarSenhaScreen(),
+    ),
 
-    GoRoute(  path: AppRoutesNames.calculadoraHoras ,builder: (context, state) => CalcularTempoParadaScreen()),
+    GoRoute(
+      path: AppRoutesNames.calculadoraTempoParadas,
+      builder: (context, state) => CalcularTempoParadaScreen(),
+    ),
 
     GoRoute(
       path: AppRoutesNames.home,
@@ -68,16 +77,19 @@ class AppRoutes {
 
     GoRoute(path: AppRoutesNames.listaGrades, builder: (context, state) => ListaGradesScreen()),
 
-    GoRoute(path: AppRoutesNames.relatorioProducao, builder: (context, state) {
-      final gradeId = state.extra as String?;
-      if (gradeId == null) {
-        return const Scaffold(
-          body: Center(child: Text('Item não encontrado - [adicionar grade]')),
-        );
-      }
+    GoRoute(
+      path: AppRoutesNames.relatorioProducao,
+      builder: (context, state) {
+        final gradeId = state.extra as String?;
+        if (gradeId == null) {
+          return const Scaffold(
+            body: Center(child: Text('Item não encontrado - [adicionar grade]')),
+          );
+        }
 
-      return RelatorioScreen(gradeId: gradeId,);
-    }),
+        return RelatorioScreen(gradeId: gradeId);
+      },
+    ),
 
     GoRoute(
       path: AppRoutesNames.producaoPorTurno,

@@ -14,6 +14,7 @@ class _CalcularTempoParadaScreenState extends ConsumerState<CalcularTempoParadaS
   TimeOfDay? _fim;
   Duration? _diferenca;
 
+
   Future<void> selecionarInicio() async {
     final picked = await showTimePicker(context: context, initialTime: TimeOfDay.now());
 
@@ -74,11 +75,10 @@ class _CalcularTempoParadaScreenState extends ConsumerState<CalcularTempoParadaS
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Calculadora horas'), backgroundColor: Colors.deepPurple,),
-      body: Container(
+      appBar: AppBar(title: Text('Calculadora horas'), backgroundColor: Colors.deepPurple),
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
               children: [
