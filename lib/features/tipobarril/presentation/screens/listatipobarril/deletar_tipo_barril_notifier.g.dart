@@ -13,7 +13,7 @@ part of 'deletar_tipo_barril_notifier.dart';
 final deletarTipoBarrilProvider = DeletarTipoBarrilNotifierProvider._();
 
 final class DeletarTipoBarrilNotifierProvider
-    extends $NotifierProvider<DeletarTipoBarrilNotifier, TipoBarrilState> {
+    extends $NotifierProvider<DeletarTipoBarrilNotifier, AsyncValue<void>> {
   DeletarTipoBarrilNotifierProvider._()
     : super(
         from: null,
@@ -33,28 +33,28 @@ final class DeletarTipoBarrilNotifierProvider
   DeletarTipoBarrilNotifier create() => DeletarTipoBarrilNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(TipoBarrilState value) {
+  Override overrideWithValue(AsyncValue<void> value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<TipoBarrilState>(value),
+      providerOverride: $SyncValueProvider<AsyncValue<void>>(value),
     );
   }
 }
 
 String _$deletarTipoBarrilNotifierHash() =>
-    r'116f6999dbee34319d0cf50893240a956ae88d9e';
+    r'28a0949d9882130ffc61023de970ae288097f412';
 
-abstract class _$DeletarTipoBarrilNotifier extends $Notifier<TipoBarrilState> {
-  TipoBarrilState build();
+abstract class _$DeletarTipoBarrilNotifier extends $Notifier<AsyncValue<void>> {
+  AsyncValue<void> build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<TipoBarrilState, TipoBarrilState>;
+    final ref = this.ref as $Ref<AsyncValue<void>, AsyncValue<void>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<TipoBarrilState, TipoBarrilState>,
-              TipoBarrilState,
+              AnyNotifier<AsyncValue<void>, AsyncValue<void>>,
+              AsyncValue<void>,
               Object?,
               Object?
             >;

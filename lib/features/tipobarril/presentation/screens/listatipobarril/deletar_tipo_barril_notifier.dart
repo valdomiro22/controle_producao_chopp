@@ -3,23 +3,27 @@ import 'package:gestao_producao_chopp/core/di/usecases/tipo_barril_use_cases_pro
 import 'package:gestao_producao_chopp/features/tipobarril/presentation/screens/listatipobarril/tipo_barril_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:gestao_producao_chopp/core/di/usecases/tipo_barril_use_cases_provider.dart';
+
 part 'deletar_tipo_barril_notifier.g.dart';
 
 @riverpod
 class DeletarTipoBarrilNotifier extends _$DeletarTipoBarrilNotifier {
   @override
-  TipoBarrilState build() => TipoBarrilState.inicial();
+  AsyncValue<void> build() => const AsyncValue.data(null);
 
   Future<void> deletar(String tpId) async {
-    state = TipoBarrilState.carregando();
+    state = const AsyncValue.loading();
 
-    final useCase = ref.read(deleteTipoBarrilUseCaseProvider);
-    final result = await useCase(tpId);
+    state = await AsyncValue.guard(() async {
+      final useCase = ref.read(deleteTipoBarrilUseCaseProvider);
+      final result = await useCase(tpId);
 
-    result.fold(
-      (failure) => state = TipoBarrilState.erro(failure),
-      (_) => state = TipoBarrilState.sucesso(),
-    );
+      return result.fold(
+        (failure) => throw failure, // cai em AsyncError
+        (_) => null, // sucesso
+      );
+    });
   }
 }
-
