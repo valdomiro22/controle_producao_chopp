@@ -10,7 +10,7 @@ sealed class TipoBarrilModel with _$TipoBarrilModel {
     String? id,
     required String nome,
     required int volume,
-    @Default(false) bool isRetornavel,
+    required bool isDescartavel,
   }) = _TipoBarrilModel;
 
   factory TipoBarrilModel.fromJson(Map<String, dynamic> json) => _$TipoBarrilModelFromJson(json);

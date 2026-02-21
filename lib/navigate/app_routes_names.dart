@@ -21,5 +21,5 @@ class AppRoutesNames {
   static const String configuracoesApp = '/configuracoes-app';
   static const String nivelBuffer = '/nivel-buffer';
   static const String calculadoraTempoParadas = '/calculadora-tempo-paradas';
-  static const String calculadoraHoras = '/calculadora-horas';
+  static const String addTipoBarril = '/adicionar-tipo-barril';
 }

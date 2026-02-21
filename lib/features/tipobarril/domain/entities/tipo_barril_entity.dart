@@ -2,26 +2,26 @@ class TipoBarrilEntity {
   final String? id;
   final String nome;
   final int volume;
-  final bool isRetornavel;
+  final bool isDescartavel;
 
   const TipoBarrilEntity({
     this.id,
     required this.nome,
     required this.volume,
-    this.isRetornavel = true,
+    required this.isDescartavel,
   });
 
   TipoBarrilEntity copyWith({
     String? id,
     String? nome,
     int? volume,
-    bool? isRetornavel,
+    bool? isDescartavel,
   }) {
     return TipoBarrilEntity(
       id: id ?? this.id,
       nome: nome ?? this.nome,
       volume: volume ?? this.volume,
-      isRetornavel: isRetornavel ?? this.isRetornavel,
+      isDescartavel: isDescartavel ?? this.isDescartavel,
     );
   }
 }

@@ -3,12 +3,12 @@ import 'package:gestao_producao_chopp/features/tipobarril/domain/entities/tipo_b
 
 extension TipoBarrilModelToEntity on TipoBarrilModel {
   TipoBarrilEntity toEntity() {
-    return TipoBarrilEntity(id: id, nome: nome, volume: volume, isRetornavel: isRetornavel);
+    return TipoBarrilEntity(id: id, nome: nome, volume: volume, isDescartavel: isDescartavel);
   }
 }
 
 extension TipoBarrilEntityToModel on TipoBarrilEntity {
   TipoBarrilModel toModel() {
-    return TipoBarrilModel(id: id, nome: nome, volume: volume, isRetornavel: isRetornavel);
+    return TipoBarrilModel(id: id, nome: nome, volume: volume, isDescartavel: isDescartavel);
   }
 }

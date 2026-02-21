@@ -11,7 +11,7 @@ _TipoBarrilModel _$TipoBarrilModelFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       nome: json['nome'] as String,
       volume: (json['volume'] as num).toInt(),
-      isRetornavel: json['isRetornavel'] as bool? ?? false,
+      isDescartavel: json['isDescartavel'] as bool,
     );
 
 Map<String, dynamic> _$TipoBarrilModelToJson(_TipoBarrilModel instance) =>
@@ -19,5 +19,5 @@ Map<String, dynamic> _$TipoBarrilModelToJson(_TipoBarrilModel instance) =>
       'id': instance.id,
       'nome': instance.nome,
       'volume': instance.volume,
-      'isRetornavel': instance.isRetornavel,
+      'isDescartavel': instance.isDescartavel,
     };

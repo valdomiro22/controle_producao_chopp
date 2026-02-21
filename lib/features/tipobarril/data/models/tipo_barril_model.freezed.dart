@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TipoBarrilModel implements DiagnosticableTreeMixin {
 
- String? get id; String get nome; int get volume; bool get isRetornavel;
+ String? get id; String get nome; int get volume; bool get isDescartavel;
 /// Create a copy of TipoBarrilModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,21 +29,21 @@ $TipoBarrilModelCopyWith<TipoBarrilModel> get copyWith => _$TipoBarrilModelCopyW
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'TipoBarrilModel'))
-    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('nome', nome))..add(DiagnosticsProperty('volume', volume))..add(DiagnosticsProperty('isRetornavel', isRetornavel));
+    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('nome', nome))..add(DiagnosticsProperty('volume', volume))..add(DiagnosticsProperty('isDescartavel', isDescartavel));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TipoBarrilModel&&(identical(other.id, id) || other.id == id)&&(identical(other.nome, nome) || other.nome == nome)&&(identical(other.volume, volume) || other.volume == volume)&&(identical(other.isRetornavel, isRetornavel) || other.isRetornavel == isRetornavel));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TipoBarrilModel&&(identical(other.id, id) || other.id == id)&&(identical(other.nome, nome) || other.nome == nome)&&(identical(other.volume, volume) || other.volume == volume)&&(identical(other.isDescartavel, isDescartavel) || other.isDescartavel == isDescartavel));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,nome,volume,isRetornavel);
+int get hashCode => Object.hash(runtimeType,id,nome,volume,isDescartavel);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'TipoBarrilModel(id: $id, nome: $nome, volume: $volume, isRetornavel: $isRetornavel)';
+  return 'TipoBarrilModel(id: $id, nome: $nome, volume: $volume, isDescartavel: $isDescartavel)';
 }
 
 
@@ -54,7 +54,7 @@ abstract mixin class $TipoBarrilModelCopyWith<$Res>  {
   factory $TipoBarrilModelCopyWith(TipoBarrilModel value, $Res Function(TipoBarrilModel) _then) = _$TipoBarrilModelCopyWithImpl;
 @useResult
 $Res call({
- String? id, String nome, int volume, bool isRetornavel
+ String? id, String nome, int volume, bool isDescartavel
 });
 
 
@@ -71,12 +71,12 @@ class _$TipoBarrilModelCopyWithImpl<$Res>
 
 /// Create a copy of TipoBarrilModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? nome = null,Object? volume = null,Object? isRetornavel = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? nome = null,Object? volume = null,Object? isDescartavel = null,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,nome: null == nome ? _self.nome : nome // ignore: cast_nullable_to_non_nullable
 as String,volume: null == volume ? _self.volume : volume // ignore: cast_nullable_to_non_nullable
-as int,isRetornavel: null == isRetornavel ? _self.isRetornavel : isRetornavel // ignore: cast_nullable_to_non_nullable
+as int,isDescartavel: null == isDescartavel ? _self.isDescartavel : isDescartavel // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -159,10 +159,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String nome,  int volume,  bool isRetornavel)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String nome,  int volume,  bool isDescartavel)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TipoBarrilModel() when $default != null:
-return $default(_that.id,_that.nome,_that.volume,_that.isRetornavel);case _:
+return $default(_that.id,_that.nome,_that.volume,_that.isDescartavel);case _:
   return orElse();
 
 }
@@ -180,10 +180,10 @@ return $default(_that.id,_that.nome,_that.volume,_that.isRetornavel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String nome,  int volume,  bool isRetornavel)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String nome,  int volume,  bool isDescartavel)  $default,) {final _that = this;
 switch (_that) {
 case _TipoBarrilModel():
-return $default(_that.id,_that.nome,_that.volume,_that.isRetornavel);}
+return $default(_that.id,_that.nome,_that.volume,_that.isDescartavel);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -197,10 +197,10 @@ return $default(_that.id,_that.nome,_that.volume,_that.isRetornavel);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String nome,  int volume,  bool isRetornavel)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String nome,  int volume,  bool isDescartavel)?  $default,) {final _that = this;
 switch (_that) {
 case _TipoBarrilModel() when $default != null:
-return $default(_that.id,_that.nome,_that.volume,_that.isRetornavel);case _:
+return $default(_that.id,_that.nome,_that.volume,_that.isDescartavel);case _:
   return null;
 
 }
@@ -212,13 +212,13 @@ return $default(_that.id,_that.nome,_that.volume,_that.isRetornavel);case _:
 @JsonSerializable()
 
 class _TipoBarrilModel extends TipoBarrilModel with DiagnosticableTreeMixin {
-  const _TipoBarrilModel({this.id, required this.nome, required this.volume, this.isRetornavel = false}): super._();
+  const _TipoBarrilModel({this.id, required this.nome, required this.volume, required this.isDescartavel}): super._();
   factory _TipoBarrilModel.fromJson(Map<String, dynamic> json) => _$TipoBarrilModelFromJson(json);
 
 @override final  String? id;
 @override final  String nome;
 @override final  int volume;
-@override@JsonKey() final  bool isRetornavel;
+@override final  bool isDescartavel;
 
 /// Create a copy of TipoBarrilModel
 /// with the given fields replaced by the non-null parameter values.
@@ -234,21 +234,21 @@ Map<String, dynamic> toJson() {
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'TipoBarrilModel'))
-    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('nome', nome))..add(DiagnosticsProperty('volume', volume))..add(DiagnosticsProperty('isRetornavel', isRetornavel));
+    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('nome', nome))..add(DiagnosticsProperty('volume', volume))..add(DiagnosticsProperty('isDescartavel', isDescartavel));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TipoBarrilModel&&(identical(other.id, id) || other.id == id)&&(identical(other.nome, nome) || other.nome == nome)&&(identical(other.volume, volume) || other.volume == volume)&&(identical(other.isRetornavel, isRetornavel) || other.isRetornavel == isRetornavel));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TipoBarrilModel&&(identical(other.id, id) || other.id == id)&&(identical(other.nome, nome) || other.nome == nome)&&(identical(other.volume, volume) || other.volume == volume)&&(identical(other.isDescartavel, isDescartavel) || other.isDescartavel == isDescartavel));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,nome,volume,isRetornavel);
+int get hashCode => Object.hash(runtimeType,id,nome,volume,isDescartavel);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'TipoBarrilModel(id: $id, nome: $nome, volume: $volume, isRetornavel: $isRetornavel)';
+  return 'TipoBarrilModel(id: $id, nome: $nome, volume: $volume, isDescartavel: $isDescartavel)';
 }
 
 
@@ -259,7 +259,7 @@ abstract mixin class _$TipoBarrilModelCopyWith<$Res> implements $TipoBarrilModel
   factory _$TipoBarrilModelCopyWith(_TipoBarrilModel value, $Res Function(_TipoBarrilModel) _then) = __$TipoBarrilModelCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String nome, int volume, bool isRetornavel
+ String? id, String nome, int volume, bool isDescartavel
 });
 
 
@@ -276,12 +276,12 @@ class __$TipoBarrilModelCopyWithImpl<$Res>
 
 /// Create a copy of TipoBarrilModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? nome = null,Object? volume = null,Object? isRetornavel = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? nome = null,Object? volume = null,Object? isDescartavel = null,}) {
   return _then(_TipoBarrilModel(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,nome: null == nome ? _self.nome : nome // ignore: cast_nullable_to_non_nullable
 as String,volume: null == volume ? _self.volume : volume // ignore: cast_nullable_to_non_nullable
-as int,isRetornavel: null == isRetornavel ? _self.isRetornavel : isRetornavel // ignore: cast_nullable_to_non_nullable
+as int,isDescartavel: null == isDescartavel ? _self.isDescartavel : isDescartavel // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

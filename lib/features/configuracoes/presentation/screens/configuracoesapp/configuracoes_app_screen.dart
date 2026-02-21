@@ -8,12 +8,12 @@ class ConfiguracoesAppScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     return Scaffold(
       appBar: AppBar(title: const Text('Configurações')),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
               color: Colors.white70,
@@ -26,7 +26,7 @@ class ConfiguracoesAppScreen extends ConsumerWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 8,),
+            const SizedBox(height: 8),
 
             Container(
               color: Colors.white70,
@@ -38,11 +38,31 @@ class ConfiguracoesAppScreen extends ConsumerWidget {
                   IconButton(
                     onPressed: () => context.push(AppRoutesNames.nivelBuffer),
                     icon: Icon(Icons.arrow_forward_outlined),
-                  )
+                  ),
                 ],
               ),
             ),
-            const SizedBox(height: 16,),
+            const SizedBox(height: 16),
+
+            Container(
+              color: Colors.white70,
+              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 12),
+              child: GestureDetector(
+                onTap: () => context.push(AppRoutesNames.addTipoBarril),
+                child: Text('Aticionar Tipo de Barril'),
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            Container(
+              color: Colors.white70,
+              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 12),
+              child: GestureDetector(
+                onTap: () => context.push(AppRoutesNames.nivelBuffer),
+                child: Text('Aticionar Tipo de Produto'),
+              ),
+            ),
+            const SizedBox(height: 16),
           ],
         ),
       ),
