@@ -1,15 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gestao_producao_chopp/features/grades/domain/enums/barril.dart';
-import 'package:gestao_producao_chopp/features/grades/domain/enums/produto.dart';
 
 part 'form_adicionar_producao_state.freezed.dart';
+
 part 'form_adicionar_producao_state.g.dart';
 
 @freezed
 sealed class FormAdicionarProducaoState with _$FormAdicionarProducaoState {
   const factory FormAdicionarProducaoState({
-    Produto? produto,
-    Barril? barril,
+    String? produtoId,
+    String? tipoBarrilId,
     String? quantidade,
     @Default(-1) int ordem,
     @Default(-1) int codigo,

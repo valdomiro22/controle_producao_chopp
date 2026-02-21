@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FormAdicionarProducaoState {
 
- Produto? get produto; Barril? get barril; String? get quantidade; int get ordem; int get codigo; String get horarioReferente; DateTime? get data; String? get erro; String? get erroProduto; String? get erroBarril; String? get erroQuantidade; String? get erroOrdem; String? get erroCodigo; String? get erroGeral; String? get erroData; bool get isLoading; bool get isSucess; bool get camposValidos;
+ String? get produtoId; String? get tipoBarrilId; String? get quantidade; int get ordem; int get codigo; String get horarioReferente; DateTime? get data; String? get erro; String? get erroProduto; String? get erroBarril; String? get erroQuantidade; String? get erroOrdem; String? get erroCodigo; String? get erroGeral; String? get erroData; bool get isLoading; bool get isSucess; bool get camposValidos;
 /// Create a copy of FormAdicionarProducaoState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $FormAdicionarProducaoStateCopyWith<FormAdicionarProducaoState> get copyWith => 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FormAdicionarProducaoState&&(identical(other.produto, produto) || other.produto == produto)&&(identical(other.barril, barril) || other.barril == barril)&&(identical(other.quantidade, quantidade) || other.quantidade == quantidade)&&(identical(other.ordem, ordem) || other.ordem == ordem)&&(identical(other.codigo, codigo) || other.codigo == codigo)&&(identical(other.horarioReferente, horarioReferente) || other.horarioReferente == horarioReferente)&&(identical(other.data, data) || other.data == data)&&(identical(other.erro, erro) || other.erro == erro)&&(identical(other.erroProduto, erroProduto) || other.erroProduto == erroProduto)&&(identical(other.erroBarril, erroBarril) || other.erroBarril == erroBarril)&&(identical(other.erroQuantidade, erroQuantidade) || other.erroQuantidade == erroQuantidade)&&(identical(other.erroOrdem, erroOrdem) || other.erroOrdem == erroOrdem)&&(identical(other.erroCodigo, erroCodigo) || other.erroCodigo == erroCodigo)&&(identical(other.erroGeral, erroGeral) || other.erroGeral == erroGeral)&&(identical(other.erroData, erroData) || other.erroData == erroData)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isSucess, isSucess) || other.isSucess == isSucess)&&(identical(other.camposValidos, camposValidos) || other.camposValidos == camposValidos));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FormAdicionarProducaoState&&(identical(other.produtoId, produtoId) || other.produtoId == produtoId)&&(identical(other.tipoBarrilId, tipoBarrilId) || other.tipoBarrilId == tipoBarrilId)&&(identical(other.quantidade, quantidade) || other.quantidade == quantidade)&&(identical(other.ordem, ordem) || other.ordem == ordem)&&(identical(other.codigo, codigo) || other.codigo == codigo)&&(identical(other.horarioReferente, horarioReferente) || other.horarioReferente == horarioReferente)&&(identical(other.data, data) || other.data == data)&&(identical(other.erro, erro) || other.erro == erro)&&(identical(other.erroProduto, erroProduto) || other.erroProduto == erroProduto)&&(identical(other.erroBarril, erroBarril) || other.erroBarril == erroBarril)&&(identical(other.erroQuantidade, erroQuantidade) || other.erroQuantidade == erroQuantidade)&&(identical(other.erroOrdem, erroOrdem) || other.erroOrdem == erroOrdem)&&(identical(other.erroCodigo, erroCodigo) || other.erroCodigo == erroCodigo)&&(identical(other.erroGeral, erroGeral) || other.erroGeral == erroGeral)&&(identical(other.erroData, erroData) || other.erroData == erroData)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isSucess, isSucess) || other.isSucess == isSucess)&&(identical(other.camposValidos, camposValidos) || other.camposValidos == camposValidos));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,produto,barril,quantidade,ordem,codigo,horarioReferente,data,erro,erroProduto,erroBarril,erroQuantidade,erroOrdem,erroCodigo,erroGeral,erroData,isLoading,isSucess,camposValidos);
+int get hashCode => Object.hash(runtimeType,produtoId,tipoBarrilId,quantidade,ordem,codigo,horarioReferente,data,erro,erroProduto,erroBarril,erroQuantidade,erroOrdem,erroCodigo,erroGeral,erroData,isLoading,isSucess,camposValidos);
 
 @override
 String toString() {
-  return 'FormAdicionarProducaoState(produto: $produto, barril: $barril, quantidade: $quantidade, ordem: $ordem, codigo: $codigo, horarioReferente: $horarioReferente, data: $data, erro: $erro, erroProduto: $erroProduto, erroBarril: $erroBarril, erroQuantidade: $erroQuantidade, erroOrdem: $erroOrdem, erroCodigo: $erroCodigo, erroGeral: $erroGeral, erroData: $erroData, isLoading: $isLoading, isSucess: $isSucess, camposValidos: $camposValidos)';
+  return 'FormAdicionarProducaoState(produtoId: $produtoId, tipoBarrilId: $tipoBarrilId, quantidade: $quantidade, ordem: $ordem, codigo: $codigo, horarioReferente: $horarioReferente, data: $data, erro: $erro, erroProduto: $erroProduto, erroBarril: $erroBarril, erroQuantidade: $erroQuantidade, erroOrdem: $erroOrdem, erroCodigo: $erroCodigo, erroGeral: $erroGeral, erroData: $erroData, isLoading: $isLoading, isSucess: $isSucess, camposValidos: $camposValidos)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $FormAdicionarProducaoStateCopyWith<$Res>  {
   factory $FormAdicionarProducaoStateCopyWith(FormAdicionarProducaoState value, $Res Function(FormAdicionarProducaoState) _then) = _$FormAdicionarProducaoStateCopyWithImpl;
 @useResult
 $Res call({
- Produto? produto, Barril? barril, String? quantidade, int ordem, int codigo, String horarioReferente, DateTime? data, String? erro, String? erroProduto, String? erroBarril, String? erroQuantidade, String? erroOrdem, String? erroCodigo, String? erroGeral, String? erroData, bool isLoading, bool isSucess, bool camposValidos
+ String? produtoId, String? tipoBarrilId, String? quantidade, int ordem, int codigo, String horarioReferente, DateTime? data, String? erro, String? erroProduto, String? erroBarril, String? erroQuantidade, String? erroOrdem, String? erroCodigo, String? erroGeral, String? erroData, bool isLoading, bool isSucess, bool camposValidos
 });
 
 
@@ -65,11 +65,11 @@ class _$FormAdicionarProducaoStateCopyWithImpl<$Res>
 
 /// Create a copy of FormAdicionarProducaoState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? produto = freezed,Object? barril = freezed,Object? quantidade = freezed,Object? ordem = null,Object? codigo = null,Object? horarioReferente = null,Object? data = freezed,Object? erro = freezed,Object? erroProduto = freezed,Object? erroBarril = freezed,Object? erroQuantidade = freezed,Object? erroOrdem = freezed,Object? erroCodigo = freezed,Object? erroGeral = freezed,Object? erroData = freezed,Object? isLoading = null,Object? isSucess = null,Object? camposValidos = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? produtoId = freezed,Object? tipoBarrilId = freezed,Object? quantidade = freezed,Object? ordem = null,Object? codigo = null,Object? horarioReferente = null,Object? data = freezed,Object? erro = freezed,Object? erroProduto = freezed,Object? erroBarril = freezed,Object? erroQuantidade = freezed,Object? erroOrdem = freezed,Object? erroCodigo = freezed,Object? erroGeral = freezed,Object? erroData = freezed,Object? isLoading = null,Object? isSucess = null,Object? camposValidos = null,}) {
   return _then(_self.copyWith(
-produto: freezed == produto ? _self.produto : produto // ignore: cast_nullable_to_non_nullable
-as Produto?,barril: freezed == barril ? _self.barril : barril // ignore: cast_nullable_to_non_nullable
-as Barril?,quantidade: freezed == quantidade ? _self.quantidade : quantidade // ignore: cast_nullable_to_non_nullable
+produtoId: freezed == produtoId ? _self.produtoId : produtoId // ignore: cast_nullable_to_non_nullable
+as String?,tipoBarrilId: freezed == tipoBarrilId ? _self.tipoBarrilId : tipoBarrilId // ignore: cast_nullable_to_non_nullable
+as String?,quantidade: freezed == quantidade ? _self.quantidade : quantidade // ignore: cast_nullable_to_non_nullable
 as String?,ordem: null == ordem ? _self.ordem : ordem // ignore: cast_nullable_to_non_nullable
 as int,codigo: null == codigo ? _self.codigo : codigo // ignore: cast_nullable_to_non_nullable
 as int,horarioReferente: null == horarioReferente ? _self.horarioReferente : horarioReferente // ignore: cast_nullable_to_non_nullable
@@ -167,10 +167,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Produto? produto,  Barril? barril,  String? quantidade,  int ordem,  int codigo,  String horarioReferente,  DateTime? data,  String? erro,  String? erroProduto,  String? erroBarril,  String? erroQuantidade,  String? erroOrdem,  String? erroCodigo,  String? erroGeral,  String? erroData,  bool isLoading,  bool isSucess,  bool camposValidos)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? produtoId,  String? tipoBarrilId,  String? quantidade,  int ordem,  int codigo,  String horarioReferente,  DateTime? data,  String? erro,  String? erroProduto,  String? erroBarril,  String? erroQuantidade,  String? erroOrdem,  String? erroCodigo,  String? erroGeral,  String? erroData,  bool isLoading,  bool isSucess,  bool camposValidos)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FormAdicionarProducaoState() when $default != null:
-return $default(_that.produto,_that.barril,_that.quantidade,_that.ordem,_that.codigo,_that.horarioReferente,_that.data,_that.erro,_that.erroProduto,_that.erroBarril,_that.erroQuantidade,_that.erroOrdem,_that.erroCodigo,_that.erroGeral,_that.erroData,_that.isLoading,_that.isSucess,_that.camposValidos);case _:
+return $default(_that.produtoId,_that.tipoBarrilId,_that.quantidade,_that.ordem,_that.codigo,_that.horarioReferente,_that.data,_that.erro,_that.erroProduto,_that.erroBarril,_that.erroQuantidade,_that.erroOrdem,_that.erroCodigo,_that.erroGeral,_that.erroData,_that.isLoading,_that.isSucess,_that.camposValidos);case _:
   return orElse();
 
 }
@@ -188,10 +188,10 @@ return $default(_that.produto,_that.barril,_that.quantidade,_that.ordem,_that.co
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Produto? produto,  Barril? barril,  String? quantidade,  int ordem,  int codigo,  String horarioReferente,  DateTime? data,  String? erro,  String? erroProduto,  String? erroBarril,  String? erroQuantidade,  String? erroOrdem,  String? erroCodigo,  String? erroGeral,  String? erroData,  bool isLoading,  bool isSucess,  bool camposValidos)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? produtoId,  String? tipoBarrilId,  String? quantidade,  int ordem,  int codigo,  String horarioReferente,  DateTime? data,  String? erro,  String? erroProduto,  String? erroBarril,  String? erroQuantidade,  String? erroOrdem,  String? erroCodigo,  String? erroGeral,  String? erroData,  bool isLoading,  bool isSucess,  bool camposValidos)  $default,) {final _that = this;
 switch (_that) {
 case _FormAdicionarProducaoState():
-return $default(_that.produto,_that.barril,_that.quantidade,_that.ordem,_that.codigo,_that.horarioReferente,_that.data,_that.erro,_that.erroProduto,_that.erroBarril,_that.erroQuantidade,_that.erroOrdem,_that.erroCodigo,_that.erroGeral,_that.erroData,_that.isLoading,_that.isSucess,_that.camposValidos);}
+return $default(_that.produtoId,_that.tipoBarrilId,_that.quantidade,_that.ordem,_that.codigo,_that.horarioReferente,_that.data,_that.erro,_that.erroProduto,_that.erroBarril,_that.erroQuantidade,_that.erroOrdem,_that.erroCodigo,_that.erroGeral,_that.erroData,_that.isLoading,_that.isSucess,_that.camposValidos);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -205,10 +205,10 @@ return $default(_that.produto,_that.barril,_that.quantidade,_that.ordem,_that.co
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Produto? produto,  Barril? barril,  String? quantidade,  int ordem,  int codigo,  String horarioReferente,  DateTime? data,  String? erro,  String? erroProduto,  String? erroBarril,  String? erroQuantidade,  String? erroOrdem,  String? erroCodigo,  String? erroGeral,  String? erroData,  bool isLoading,  bool isSucess,  bool camposValidos)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? produtoId,  String? tipoBarrilId,  String? quantidade,  int ordem,  int codigo,  String horarioReferente,  DateTime? data,  String? erro,  String? erroProduto,  String? erroBarril,  String? erroQuantidade,  String? erroOrdem,  String? erroCodigo,  String? erroGeral,  String? erroData,  bool isLoading,  bool isSucess,  bool camposValidos)?  $default,) {final _that = this;
 switch (_that) {
 case _FormAdicionarProducaoState() when $default != null:
-return $default(_that.produto,_that.barril,_that.quantidade,_that.ordem,_that.codigo,_that.horarioReferente,_that.data,_that.erro,_that.erroProduto,_that.erroBarril,_that.erroQuantidade,_that.erroOrdem,_that.erroCodigo,_that.erroGeral,_that.erroData,_that.isLoading,_that.isSucess,_that.camposValidos);case _:
+return $default(_that.produtoId,_that.tipoBarrilId,_that.quantidade,_that.ordem,_that.codigo,_that.horarioReferente,_that.data,_that.erro,_that.erroProduto,_that.erroBarril,_that.erroQuantidade,_that.erroOrdem,_that.erroCodigo,_that.erroGeral,_that.erroData,_that.isLoading,_that.isSucess,_that.camposValidos);case _:
   return null;
 
 }
@@ -220,11 +220,11 @@ return $default(_that.produto,_that.barril,_that.quantidade,_that.ordem,_that.co
 @JsonSerializable()
 
 class _FormAdicionarProducaoState implements FormAdicionarProducaoState {
-  const _FormAdicionarProducaoState({this.produto, this.barril, this.quantidade, this.ordem = -1, this.codigo = -1, this.horarioReferente = '', this.data, this.erro, this.erroProduto, this.erroBarril, this.erroQuantidade, this.erroOrdem, this.erroCodigo, this.erroGeral, this.erroData, this.isLoading = false, this.isSucess = false, this.camposValidos = false});
+  const _FormAdicionarProducaoState({this.produtoId, this.tipoBarrilId, this.quantidade, this.ordem = -1, this.codigo = -1, this.horarioReferente = '', this.data, this.erro, this.erroProduto, this.erroBarril, this.erroQuantidade, this.erroOrdem, this.erroCodigo, this.erroGeral, this.erroData, this.isLoading = false, this.isSucess = false, this.camposValidos = false});
   factory _FormAdicionarProducaoState.fromJson(Map<String, dynamic> json) => _$FormAdicionarProducaoStateFromJson(json);
 
-@override final  Produto? produto;
-@override final  Barril? barril;
+@override final  String? produtoId;
+@override final  String? tipoBarrilId;
 @override final  String? quantidade;
 @override@JsonKey() final  int ordem;
 @override@JsonKey() final  int codigo;
@@ -255,16 +255,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FormAdicionarProducaoState&&(identical(other.produto, produto) || other.produto == produto)&&(identical(other.barril, barril) || other.barril == barril)&&(identical(other.quantidade, quantidade) || other.quantidade == quantidade)&&(identical(other.ordem, ordem) || other.ordem == ordem)&&(identical(other.codigo, codigo) || other.codigo == codigo)&&(identical(other.horarioReferente, horarioReferente) || other.horarioReferente == horarioReferente)&&(identical(other.data, data) || other.data == data)&&(identical(other.erro, erro) || other.erro == erro)&&(identical(other.erroProduto, erroProduto) || other.erroProduto == erroProduto)&&(identical(other.erroBarril, erroBarril) || other.erroBarril == erroBarril)&&(identical(other.erroQuantidade, erroQuantidade) || other.erroQuantidade == erroQuantidade)&&(identical(other.erroOrdem, erroOrdem) || other.erroOrdem == erroOrdem)&&(identical(other.erroCodigo, erroCodigo) || other.erroCodigo == erroCodigo)&&(identical(other.erroGeral, erroGeral) || other.erroGeral == erroGeral)&&(identical(other.erroData, erroData) || other.erroData == erroData)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isSucess, isSucess) || other.isSucess == isSucess)&&(identical(other.camposValidos, camposValidos) || other.camposValidos == camposValidos));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FormAdicionarProducaoState&&(identical(other.produtoId, produtoId) || other.produtoId == produtoId)&&(identical(other.tipoBarrilId, tipoBarrilId) || other.tipoBarrilId == tipoBarrilId)&&(identical(other.quantidade, quantidade) || other.quantidade == quantidade)&&(identical(other.ordem, ordem) || other.ordem == ordem)&&(identical(other.codigo, codigo) || other.codigo == codigo)&&(identical(other.horarioReferente, horarioReferente) || other.horarioReferente == horarioReferente)&&(identical(other.data, data) || other.data == data)&&(identical(other.erro, erro) || other.erro == erro)&&(identical(other.erroProduto, erroProduto) || other.erroProduto == erroProduto)&&(identical(other.erroBarril, erroBarril) || other.erroBarril == erroBarril)&&(identical(other.erroQuantidade, erroQuantidade) || other.erroQuantidade == erroQuantidade)&&(identical(other.erroOrdem, erroOrdem) || other.erroOrdem == erroOrdem)&&(identical(other.erroCodigo, erroCodigo) || other.erroCodigo == erroCodigo)&&(identical(other.erroGeral, erroGeral) || other.erroGeral == erroGeral)&&(identical(other.erroData, erroData) || other.erroData == erroData)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isSucess, isSucess) || other.isSucess == isSucess)&&(identical(other.camposValidos, camposValidos) || other.camposValidos == camposValidos));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,produto,barril,quantidade,ordem,codigo,horarioReferente,data,erro,erroProduto,erroBarril,erroQuantidade,erroOrdem,erroCodigo,erroGeral,erroData,isLoading,isSucess,camposValidos);
+int get hashCode => Object.hash(runtimeType,produtoId,tipoBarrilId,quantidade,ordem,codigo,horarioReferente,data,erro,erroProduto,erroBarril,erroQuantidade,erroOrdem,erroCodigo,erroGeral,erroData,isLoading,isSucess,camposValidos);
 
 @override
 String toString() {
-  return 'FormAdicionarProducaoState(produto: $produto, barril: $barril, quantidade: $quantidade, ordem: $ordem, codigo: $codigo, horarioReferente: $horarioReferente, data: $data, erro: $erro, erroProduto: $erroProduto, erroBarril: $erroBarril, erroQuantidade: $erroQuantidade, erroOrdem: $erroOrdem, erroCodigo: $erroCodigo, erroGeral: $erroGeral, erroData: $erroData, isLoading: $isLoading, isSucess: $isSucess, camposValidos: $camposValidos)';
+  return 'FormAdicionarProducaoState(produtoId: $produtoId, tipoBarrilId: $tipoBarrilId, quantidade: $quantidade, ordem: $ordem, codigo: $codigo, horarioReferente: $horarioReferente, data: $data, erro: $erro, erroProduto: $erroProduto, erroBarril: $erroBarril, erroQuantidade: $erroQuantidade, erroOrdem: $erroOrdem, erroCodigo: $erroCodigo, erroGeral: $erroGeral, erroData: $erroData, isLoading: $isLoading, isSucess: $isSucess, camposValidos: $camposValidos)';
 }
 
 
@@ -275,7 +275,7 @@ abstract mixin class _$FormAdicionarProducaoStateCopyWith<$Res> implements $Form
   factory _$FormAdicionarProducaoStateCopyWith(_FormAdicionarProducaoState value, $Res Function(_FormAdicionarProducaoState) _then) = __$FormAdicionarProducaoStateCopyWithImpl;
 @override @useResult
 $Res call({
- Produto? produto, Barril? barril, String? quantidade, int ordem, int codigo, String horarioReferente, DateTime? data, String? erro, String? erroProduto, String? erroBarril, String? erroQuantidade, String? erroOrdem, String? erroCodigo, String? erroGeral, String? erroData, bool isLoading, bool isSucess, bool camposValidos
+ String? produtoId, String? tipoBarrilId, String? quantidade, int ordem, int codigo, String horarioReferente, DateTime? data, String? erro, String? erroProduto, String? erroBarril, String? erroQuantidade, String? erroOrdem, String? erroCodigo, String? erroGeral, String? erroData, bool isLoading, bool isSucess, bool camposValidos
 });
 
 
@@ -292,11 +292,11 @@ class __$FormAdicionarProducaoStateCopyWithImpl<$Res>
 
 /// Create a copy of FormAdicionarProducaoState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? produto = freezed,Object? barril = freezed,Object? quantidade = freezed,Object? ordem = null,Object? codigo = null,Object? horarioReferente = null,Object? data = freezed,Object? erro = freezed,Object? erroProduto = freezed,Object? erroBarril = freezed,Object? erroQuantidade = freezed,Object? erroOrdem = freezed,Object? erroCodigo = freezed,Object? erroGeral = freezed,Object? erroData = freezed,Object? isLoading = null,Object? isSucess = null,Object? camposValidos = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? produtoId = freezed,Object? tipoBarrilId = freezed,Object? quantidade = freezed,Object? ordem = null,Object? codigo = null,Object? horarioReferente = null,Object? data = freezed,Object? erro = freezed,Object? erroProduto = freezed,Object? erroBarril = freezed,Object? erroQuantidade = freezed,Object? erroOrdem = freezed,Object? erroCodigo = freezed,Object? erroGeral = freezed,Object? erroData = freezed,Object? isLoading = null,Object? isSucess = null,Object? camposValidos = null,}) {
   return _then(_FormAdicionarProducaoState(
-produto: freezed == produto ? _self.produto : produto // ignore: cast_nullable_to_non_nullable
-as Produto?,barril: freezed == barril ? _self.barril : barril // ignore: cast_nullable_to_non_nullable
-as Barril?,quantidade: freezed == quantidade ? _self.quantidade : quantidade // ignore: cast_nullable_to_non_nullable
+produtoId: freezed == produtoId ? _self.produtoId : produtoId // ignore: cast_nullable_to_non_nullable
+as String?,tipoBarrilId: freezed == tipoBarrilId ? _self.tipoBarrilId : tipoBarrilId // ignore: cast_nullable_to_non_nullable
+as String?,quantidade: freezed == quantidade ? _self.quantidade : quantidade // ignore: cast_nullable_to_non_nullable
 as String?,ordem: null == ordem ? _self.ordem : ordem // ignore: cast_nullable_to_non_nullable
 as int,codigo: null == codigo ? _self.codigo : codigo // ignore: cast_nullable_to_non_nullable
 as int,horarioReferente: null == horarioReferente ? _self.horarioReferente : horarioReferente // ignore: cast_nullable_to_non_nullable

@@ -1,15 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../../grades/domain/enums/barril.dart';
-import '../../../grades/domain/enums/produto.dart';
 import '../../domain/enums/status_producao.dart';
 
 class ProducaoModel {
   final String? id;
   final String gradeId;
   final StatusProducao status;
-  final Barril tipoBarril;
-  final Produto produto;
+  final String tipoBarrilId;
+  final String produtoId;
   final int quantidadeProgramada;
   final int quantidadeProduzida;
   final int quantidadePendente;
@@ -20,8 +18,8 @@ class ProducaoModel {
     this.id,
     required this.gradeId,
     required this.status,
-    required this.tipoBarril,
-    required this.produto,
+    required this.tipoBarrilId,
+    required this.produtoId,
     required this.quantidadeProgramada,
     this.quantidadeProduzida = 0,
     this.quantidadePendente = 0,
@@ -34,8 +32,8 @@ class ProducaoModel {
       'id': id,
       'gradeId': gradeId,
       'status': status.id,
-      'tipoBarril': tipoBarril.id,
-      'produto': produto.id,
+      'tipoBarrilIdId': tipoBarrilId,
+      'produtoId': produtoId,
       'quantidade': quantidadeProgramada,
       'qtProduzida': quantidadeProduzida,
       'qtPendente': quantidadePendente,
@@ -49,8 +47,8 @@ class ProducaoModel {
       id: map['id'] as String?,
       gradeId: map['gradeId'] as String,
       status: StatusProducao.fronId(map['status'] as int),
-      tipoBarril: Barril.fronId(map['tipoBarril'] as int),
-      produto: Produto.fronId(map['produto'] as int),
+      tipoBarrilId: map['tipoBarrilId'] as String,
+      produtoId: map['produtoId'] as String,
       quantidadeProgramada: map['quantidade'] as int,
       quantidadeProduzida: map['qtProduzida'] as int,
       quantidadePendente: map['qtPendente'] as int,
@@ -63,8 +61,8 @@ class ProducaoModel {
     String? id,
     String? gradeId,
     StatusProducao? status,
-    Barril? tipoBarril,
-    Produto? produto,
+    String? tipoBarrilId,
+    String? produtoId,
     int? quantidadeProgramada,
     int? quantidadeProduzida,
     int? quantidadePendente,
@@ -75,8 +73,8 @@ class ProducaoModel {
       id: id ?? this.id,
       gradeId: gradeId ?? this.gradeId,
       status: status ?? this.status,
-      tipoBarril: tipoBarril ?? this.tipoBarril,
-      produto: produto ?? this.produto,
+      tipoBarrilId: tipoBarrilId ?? this.tipoBarrilId,
+      produtoId: produtoId ?? this.produtoId,
       quantidadeProgramada: quantidadeProgramada ?? this.quantidadeProgramada,
       quantidadeProduzida: quantidadeProduzida ?? this.quantidadeProduzida,
       quantidadePendente: quantidadePendente ?? this.quantidadePendente,

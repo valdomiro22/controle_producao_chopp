@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/utils/string_util.dart';
 import 'package:gestao_producao_chopp/features/grades/domain/entities/grade_entity.dart';
-import 'package:gestao_producao_chopp/features/grades/domain/enums/barril.dart';
-import 'package:gestao_producao_chopp/features/grades/domain/enums/produto.dart';
 import 'package:gestao_producao_chopp/features/grades/presentation/screens/lista_grades/buscar_grade_notifier.dart';
 import 'package:gestao_producao_chopp/features/grades/presentation/screens/lista_grades/buscar_grade_state.dart';
+import 'package:gestao_producao_chopp/features/producoes/domain/enums/status_producao.dart';
+import 'package:gestao_producao_chopp/features/tipobarril/domain/entities/tipo_barril_entity.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../../tipobarril/presentation/screens/buscartipobarril/buscar_lista_tipo_barril_notifier.dart';
 import '../../../domain/entities/producao_entity.dart';
-
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../lista_producoes/lista_producoes_notifier.dart';
 import '../lista_producoes/lista_producoes_state.dart';
 
@@ -35,21 +34,21 @@ class _RelatorioScreenState extends ConsumerState<RelatorioScreen> {
     });
   }
 
-  void _escreverBlocoProducao(StringBuffer buffer, Barril baril, ProducaoEntity p) {
+  void _escreverBlocoProducao(StringBuffer buffer, TipoBarrilEntity baril, ProducaoEntity p) {
     final programada = p.quantidadeProgramada;
     final produzida = p.quantidadeProduzida;
     final pendente = p.quantidadePendente;
     final icone = produzida < programada ? "❌" : "✅";
 
-    buffer.writeln('*${baril.label}*');
+    buffer.writeln('*${baril.nome}*');
     buffer.writeln('Programado: $programada ✅');
     buffer.writeln('Produzido: $produzida $icone');
     buffer.writeln('Pendente: $pendente $icone');
     buffer.writeln('');
   }
 
-  void _blocoProducaoZerado(StringBuffer buffer, Barril baril) {
-    buffer.writeln('*${baril.label}*');
+  void _blocoProducaoZerado(StringBuffer buffer, TipoBarrilEntity baril) {
+    buffer.writeln('*${baril.nome}*');
     buffer.writeln('Programado: 0 ✅');
     buffer.writeln('');
   }
@@ -60,13 +59,16 @@ class _RelatorioScreenState extends ConsumerState<RelatorioScreen> {
 
     final porProduto = <String, Map<String, ProducaoEntity>>{};
     for (final p in lista) {
-      porProduto.putIfAbsent(p.produto.labelMaiusculas, () => {});
-      porProduto[p.produto.labelMaiusculas]![p.tipoBarril.label] = p;
+      porProduto.putIfAbsent(p.produtoId, () => {});
+      porProduto[p.produtoId]!['p.tipoBarril.nome'] = p;
+      // porProduto[p.produto.labelMaiusculas]![p.tipoBarril.nome] = p;
     }
 
-    final produtos = Produto.values.toList();
-    final tipos = Barril.values.toList();
+    // final produtos = Produto.values.toList();
+    final produtos = ['petra', 'itaipava'];
+    final barris = ref.read(buscarListaTipoBarrilProvider).value ?? [];
 
+    // final barris = Barril.values.toList();
     buffer.writeln('*PRODUÇÃO - $data*');
     buffer.writeln('Grade: ${grade.numeroGrade}');
     buffer.writeln('');
@@ -74,17 +76,19 @@ class _RelatorioScreenState extends ConsumerState<RelatorioScreen> {
     for (var i = 0; i < produtos.length; i++) {
       final produto = produtos[i];
 
-      buffer.writeln(produto.labelMaiusculas);
+      // buffer.writeln(produto.labelMaiusculas);
+      buffer.writeln('itaipava');
       buffer.writeln('Estabilidade ✅'); // TODO - tornar isso dinamico e editavel
       buffer.writeln('');
 
-      for (final tipo in tipos) {
-        final p = porProduto[produto.labelMaiusculas]?[tipo.label];
+      for (final tipo in barris) {
+        // final p = porProduto[produto.labelMaiusculas]?[tipo.nome];
+        final p = ProducaoEntity(gradeId: '11', status: StatusProducao.naoConcluido, tipoBarrilId: 'tipoBarrilId', produtoId: 'produto', quantidadeProgramada: 98899, dataCriacao: DateTime.now());
 
         if (p != null) {
           _escreverBlocoProducao(buffer, tipo, p);
         } else {
-            _blocoProducaoZerado(buffer, tipo);
+          _blocoProducaoZerado(buffer, tipo);
         }
       }
 

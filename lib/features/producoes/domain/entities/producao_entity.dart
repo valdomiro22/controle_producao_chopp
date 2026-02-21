@@ -1,13 +1,13 @@
-import '../../../grades/domain/enums/barril.dart';
-import '../../../grades/domain/enums/produto.dart';
+import 'package:gestao_producao_chopp/features/tipobarril/domain/entities/tipo_barril_entity.dart';
+
 import '../enums/status_producao.dart';
 
 class ProducaoEntity {
   final String? id;
   final String gradeId;
   final StatusProducao status;
-  final Barril tipoBarril;
-  final Produto produto;
+  final String tipoBarrilId;
+  final String produtoId;
   final int quantidadeProgramada;
   final int quantidadeProduzida;
   final DateTime? dataCriacao;
@@ -17,8 +17,8 @@ class ProducaoEntity {
     this.id,
     required this.gradeId,
     required this.status,
-    required this.tipoBarril,
-    required this.produto,
+    required this.tipoBarrilId,
+    required this.produtoId,
     required this.quantidadeProgramada,
     this.quantidadeProduzida = 0,
     required this.dataCriacao,
@@ -26,19 +26,21 @@ class ProducaoEntity {
   });
 
   int get quantidadePendente {
-    return quantidadeProgramada - quantidadeProduzida > 0 ? quantidadeProgramada - quantidadeProduzida : 0;
+    return quantidadeProgramada - quantidadeProduzida > 0
+        ? quantidadeProgramada - quantidadeProduzida
+        : 0;
   }
 
-  double get volumeNecessarioHl {
-    return quantidadePendente * tipoBarril.volume / 100;
-  }
+  // double get volumeNecessarioHl {
+  //   return quantidadePendente * tipoBarrilId.volume / 100;
+  // }
 
   ProducaoEntity copyWith({
     String? id,
     String? gradeId,
     StatusProducao? status,
-    Barril? tipoBarril,
-    Produto? produto,
+    String? tipoBarrilId,
+    String? produtoId,
     int? quantidadeProgramada,
     int? quantidadeProduzida,
     DateTime? dataCriacao,
@@ -48,8 +50,8 @@ class ProducaoEntity {
       id: id ?? this.id,
       gradeId: gradeId ?? this.gradeId,
       status: status ?? this.status,
-      tipoBarril: tipoBarril ?? this.tipoBarril,
-      produto: produto ?? this.produto,
+      tipoBarrilId: tipoBarrilId ?? this.tipoBarrilId,
+      produtoId: produtoId ?? this.produtoId,
       quantidadeProgramada: quantidadeProgramada ?? this.quantidadeProgramada,
       quantidadeProduzida: quantidadeProduzida ?? this.quantidadeProduzida,
       dataCriacao: dataCriacao ?? this.dataCriacao,
@@ -63,11 +65,12 @@ class ProducaoEntity {
         'id: $id, '
         'gradeId: $gradeId, '
         'status: $status, '
-        'tipoBarril: $tipoBarril, '
-        'produto: $produto, '
+        'tipoBarrilId: $tipoBarrilId, '
+        'produtoId: $produtoId, '
         'quantidadeProgramada: $quantidadeProgramada, '
         'quantidadeProduzida: $quantidadeProduzida, '
-        'volumeNecessarioHl: $volumeNecessarioHl, '
+        // 'volumeNecessarioHl: $volumeNecessarioHl, '
+        'volumeNecessarioHl: ${-0.01}, '
         'iniciadaProducao: $dataCriacao, '
         'dataFimDeProducao: $dataFimDeProducao'
         ')';

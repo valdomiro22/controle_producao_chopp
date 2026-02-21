@@ -33,7 +33,7 @@ final class BuscarProducaoProvider
   BuscarProducao create() => BuscarProducao();
 }
 
-String _$buscarProducaoHash() => r'abf43c726986d05bf54cf84ebc60409d7402b69c';
+String _$buscarProducaoHash() => r'e4d66c88f4914e1aa7e78579d035d5cbb46be0da';
 
 abstract class _$BuscarProducao extends $AsyncNotifier<ProducaoEntity?> {
   FutureOr<ProducaoEntity?> build();

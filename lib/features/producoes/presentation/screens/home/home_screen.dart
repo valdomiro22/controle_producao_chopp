@@ -38,15 +38,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     'Opções',
   ];
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref
-          .read(buscarProducaoProvider.notifier)
-          .buscar(gradeId: widget.gradeId, producaoId: widget.producaoId);
-    });
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {
+  //     ref
+  //         .read(buscarProducaoProvider.notifier)
+  //         .buscar(gradeId: widget.gradeId, producaoId: widget.producaoId);
+  //   });
+  // }
 
   // Opções do PopUp Menu
   void _opcoesPopUpMenu(String itemEscolhido) {
@@ -141,7 +141,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Text(
-                '${producao.produto.label} ${producao.tipoBarril.label}',
+                'producao.produto.label producao.tipoBarril.nome',
+                // '${producao.produto.label} ${producao.tipoBarril.nome}',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

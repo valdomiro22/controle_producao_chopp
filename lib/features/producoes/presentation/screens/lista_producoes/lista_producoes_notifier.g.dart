@@ -42,7 +42,7 @@ final class ListaProducoesNotifierProvider
 }
 
 String _$listaProducoesNotifierHash() =>
-    r'cb7e20c333257c79288e7e6da9669deba69224f0';
+    r'0df3592497b0b0f31b6b0535c53b8a5c63e34d85';
 
 abstract class _$ListaProducoesNotifier extends $Notifier<ListaProducaoState> {
   ListaProducaoState build();

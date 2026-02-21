@@ -61,14 +61,14 @@ class _AdicionarTipoBarrilScreenState extends ConsumerState<AdicionarTipoBarrilS
               value: state.isDescartavel,
               onChanged: (v) => notifier.insertIsDescartavel(v),
               title: Text(
-                  state.isDescartavel ? 'Retornavel' : 'Descartavel'
+                  state.isDescartavel ? 'Descartavel' : 'Retornavel'
               ),
             ),
             const SizedBox(height: 16),
 
             if (state.isLoading == true)
               Padding(
-                padding: EdgeInsets.only(top: 16),
+                padding: EdgeInsets.only(bottom: 16),
                 child: Center(child: CircularProgressIndicator()),
               ),
 

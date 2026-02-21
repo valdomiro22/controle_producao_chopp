@@ -25,6 +25,8 @@ class ItemProducaoWidget extends ConsumerWidget {
       sucesso: () => const SizedBox(),
       erro: (Failure failure) => Center(child: Text(failure.message),),
       sucessoComLista: (List<ProducaoEntity> lista) {
+        // final id
+
         return Card(
           color: AppColors.lightSurface,
           child: Padding(
@@ -34,12 +36,13 @@ class ItemProducaoWidget extends ConsumerWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // LinhaFormatada(
+                    //   valor: producao.produto.label,
+                    //   valorStyle: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold),
+                    // ),
                     LinhaFormatada(
-                      valor: producao.produto.label,
-                      valorStyle: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold),
-                    ),
-                    LinhaFormatada(
-                      valor: 'Barril de ${producao.tipoBarril.label}',
+                      // valor: 'Barril de ${producao.tipoBarril.nome}',
+                      valor: 'Barril de nome',
                       valorStyle: TextStyle(fontSize: 14, color: Colors.black),
                     ),
                   ],
@@ -63,17 +66,18 @@ class ItemProducaoWidget extends ConsumerWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  LinhaChaveValor(
-                                    chave: 'Produto',
-                                    chaveStyle: TextStyle(fontSize: 14),
-                                    valor: producao.produto.label,
-                                    valorStyle: TextStyle(fontSize: 14),
-                                  ),
+                                  // LinhaChaveValor(
+                                  //   chave: 'Produto',
+                                  //   chaveStyle: TextStyle(fontSize: 14),
+                                  //   valor: producao.produto.label,
+                                  //   valorStyle: TextStyle(fontSize: 14),
+                                  // ),
                                   Divider(),
                                   LinhaChaveValor(
                                     chave: 'Barril',
                                     chaveStyle: TextStyle(fontSize: 14),
-                                    valor: producao.tipoBarril.label,
+                                    valor: 'producao.tipoBarril.nome',
+                                    // valor: producao.tipoBarril.nome,
                                     valorStyle: TextStyle(fontSize: 14),
                                   ),
                                   Divider(),
@@ -108,7 +112,8 @@ class ItemProducaoWidget extends ConsumerWidget {
                                   LinhaChaveValor(
                                     chave: 'Volume necessário',
                                     chaveStyle: TextStyle(fontSize: 14),
-                                    valor: '${producao.volumeNecessarioHl} hl',
+                                    valor: 'producao.volumeNecessarioHl hl',
+                                    // valor: '${producao.volumeNecessarioHl} hl',
                                     valorStyle: TextStyle(fontSize: 14),
                                   ),
                                 ],
@@ -140,7 +145,7 @@ class ItemProducaoWidget extends ConsumerWidget {
                       onPressed: () {
                         debugPrint('Deletar grade');
                         if (producao.id != null) {
-                          notifier.deletarProducao(gradeId: producao.gradeId, producaoId: producao.id!);
+                          // notifier.deletarProducao(gradeId: producao.gradeId, producaoId: producao.id!);
                           
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(

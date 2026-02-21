@@ -16,22 +16,22 @@ class BuscarProducao extends _$BuscarProducao {
   @override
   BuscarProducaoState build() => BuscarProducaoState.inicial();
 
-  Future<void> busca({required String gradeId, required String producaoId}) async {
-    state = BuscarProducaoState.carregando();
-
-    final useCase = ref.read(gerProducaoUseCaseProvider);
-    final result = await useCase(gradeId: gradeId, producaoId: producaoId);
-
-    // 2. CORREÇÃO: Você deve atribuir o resultado ao 'state ='
-    result.fold((failure) => state = BuscarProducaoState.erro(failure), (producao) {
-      if (producao == null) {
-        // Ajuste conforme seu Failure
-        state = BuscarProducaoState.erro(UnexpectedFailure('Produção não encontrada'));
-        return;
-      }
-      state = BuscarProducaoState.sucessoComDados(producao);
-    });
-  }
+  // Future<void> busca({required String gradeId, required String producaoId}) async {
+  //   state = BuscarProducaoState.carregando();
+  //
+  //   final useCase = ref.read(gerProducaoUseCaseProvider);
+  //   final result = await useCase(gradeId: gradeId, producaoId: producaoId);
+  //
+  //   // 2. CORREÇÃO: Você deve atribuir o resultado ao 'state ='
+  //   result.fold((failure) => state = BuscarProducaoState.erro(failure), (producao) {
+  //     if (producao == null) {
+  //       // Ajuste conforme seu Failure
+  //       state = BuscarProducaoState.erro(UnexpectedFailure('Produção não encontrada'));
+  //       return;
+  //     }
+  //     state = BuscarProducaoState.sucessoComDados(producao);
+  //   });
+  // }
 
   // Agora este método estará acessível via .notifier
   void atualizarEstadoLocal(ProducaoEntity producaoAtualizada) {

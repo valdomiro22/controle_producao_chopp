@@ -9,8 +9,8 @@ part of 'form_adicionar_producao_state.dart';
 _FormAdicionarProducaoState _$FormAdicionarProducaoStateFromJson(
   Map<String, dynamic> json,
 ) => _FormAdicionarProducaoState(
-  produto: $enumDecodeNullable(_$ProdutoEnumMap, json['produto']),
-  barril: $enumDecodeNullable(_$BarrilEnumMap, json['barril']),
+  produtoId: json['produtoId'] as String?,
+  tipoBarrilId: json['tipoBarrilId'] as String?,
   quantidade: json['quantidade'] as String?,
   ordem: (json['ordem'] as num?)?.toInt() ?? -1,
   codigo: (json['codigo'] as num?)?.toInt() ?? -1,
@@ -32,8 +32,8 @@ _FormAdicionarProducaoState _$FormAdicionarProducaoStateFromJson(
 Map<String, dynamic> _$FormAdicionarProducaoStateToJson(
   _FormAdicionarProducaoState instance,
 ) => <String, dynamic>{
-  'produto': _$ProdutoEnumMap[instance.produto],
-  'barril': _$BarrilEnumMap[instance.barril],
+  'produtoId': instance.produtoId,
+  'tipoBarrilId': instance.tipoBarrilId,
   'quantidade': instance.quantidade,
   'ordem': instance.ordem,
   'codigo': instance.codigo,
@@ -50,16 +50,4 @@ Map<String, dynamic> _$FormAdicionarProducaoStateToJson(
   'isLoading': instance.isLoading,
   'isSucess': instance.isSucess,
   'camposValidos': instance.camposValidos,
-};
-
-const _$ProdutoEnumMap = {
-  Produto.itaipava: 'itaipava',
-  Produto.itaipavaE: 'itaipavaE',
-  Produto.petra: 'petra',
-};
-
-const _$BarrilEnumMap = {
-  Barril.barril50L: 'barril50L',
-  Barril.barril30L: 'barril30L',
-  Barril.barril15L: 'barril15L',
 };

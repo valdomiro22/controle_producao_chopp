@@ -1,5 +1,3 @@
-import 'package:gestao_producao_chopp/features/grades/domain/enums/produto.dart';
-
 import '../../error/failure.dart';
 
 class AppState<T> {
@@ -26,7 +24,7 @@ class AppState<T> {
     bool? carregando,
     T? dados,
     List<T>? lista,
-    Failure? erro, Produto? produto,
+    Failure? erro, String? produtoId,
   }) {
     return AppState._(
       carregando: carregando ?? this.carregando,

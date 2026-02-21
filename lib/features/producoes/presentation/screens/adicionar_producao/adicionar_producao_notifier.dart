@@ -2,10 +2,10 @@ import 'package:gestao_producao_chopp/core/di/usecases/producao_use_cases_provid
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/adicionar_producao/form_adicionar_producao_state.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_notifier.dart';
+import 'package:gestao_producao_chopp/features/tipobarril/presentation/screens/buscartipobarril/buscar_lista_tipo_barril_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../grades/domain/enums/barril.dart';
-import '../../../../grades/domain/enums/produto.dart';
+import '../../../../tipobarril/domain/entities/tipo_barril_entity.dart';
 import '../../../domain/enums/status_producao.dart';
 
 part 'adicionar_producao_notifier.g.dart';
@@ -15,52 +15,55 @@ class AdicionarProducaoNotifier extends _$AdicionarProducaoNotifier {
   @override
   FormAdicionarProducaoState build() => FormAdicionarProducaoState.inicial();
 
-  void selecionarProduto(Produto? produto) => state = state.copyWith(produto: produto);
-  void selecionarBarril(Barril? barril) => state = state.copyWith(barril: barril);
+  void selecionarProduto(String? produto) => state = state.copyWith(produtoId: produto);
+
+  void selecionarBarril(TipoBarrilEntity? barril) => state = state.copyWith(tipoBarrilId: barril?.id);
 
   void atualizaQuantidade(String value) {
     // Mantém o valor como string no estado para validação posterior
     final valorRecebido = value.trim();
-    state = state.copyWith(
-        quantidade: valorRecebido.isEmpty ? null : valorRecebido
-    );
+    state = state.copyWith(quantidade: valorRecebido.isEmpty ? null : valorRecebido);
   }
 
-  Future<void> adicionarProducao(String gradeId) async {
-    // 1. Valida antes de tudo
-    if (!_validarCampos()) return;
-
-    state = state.copyWith(isLoading: true);
-
-    try {
-      final usecase = ref.read(insertProducaoUseCaseProvider);
-
-      // Aqui é seguro usar '!' pois o _validarCampos garantiu que não é nulo e é numérico
-      final quantidade = int.parse(state.quantidade!);
-
-      final producao = ProducaoEntity(
-        gradeId: gradeId,
-        status: StatusProducao.naoConcluido,
-        tipoBarril: state.barril!,
-        produto: state.produto!,
-        quantidadeProgramada: quantidade,
-        dataCriacao: DateTime.now(),
-      );
-
-      final result = await usecase(producao: producao, gradeId: gradeId);
-
-      result.fold(
-            (failure) => state = state.copyWith(isLoading: false, erro: failure.message),
-            (_) {
-          // Atualiza a lista na outra tela
-          ref.read(listaProducoesProvider.notifier).listarProducoes(gradeId);
-          state = state.copyWith(isLoading: false, isSucess: true);
-        },
-      );
-    } catch (e) {
-      state = state.copyWith(isLoading: false, erro: 'Erro inesperado: $e');
-    }
-  }
+  // Future<void> adicionarProducao(String gradeId) async {
+  //   final barris = ref.read(buscarListaTipoBarrilProvider).value ?? [];
+  //   // 1. Valida antes de tudo
+  //   if (!_validarCampos()) return;
+  //
+  //   state = state.copyWith(isLoading: true);
+  //
+  //   try {
+  //     final usecase = ref.read(insertProducaoUseCaseProvider);
+  //
+  //     // Aqui é seguro usar '!' pois o _validarCampos garantiu que não é nulo e é numérico
+  //     final quantidade = int.parse(state.quantidade!);
+  //     final barril = barris.firstWhere(
+  //         (b) => b.id == state.tipoBarrilId,
+  //     );
+  //
+  //     final producao = ProducaoEntity(
+  //       gradeId: gradeId,
+  //       status: StatusProducao.naoConcluido,
+  //       // tipoBarril: barril,
+  //       produto: state.produto!,
+  //       quantidadeProgramada: quantidade,
+  //       dataCriacao: DateTime.now(),
+  //       tipoBarrilId: '',
+  //     );
+  //
+  //     final result = await usecase(producao: producao, gradeId: gradeId);
+  //
+  //     result.fold((failure) => state = state.copyWith(isLoading: false, erro: failure.message), (
+  //       _,
+  //     ) {
+  //       // Atualiza a lista na outra tela
+  //       ref.read(listaProducoesProvider.notifier).listarProducoes(gradeId);
+  //       state = state.copyWith(isLoading: false, isSucess: true);
+  //     });
+  //   } catch (e) {
+  //     state = state.copyWith(isLoading: false, erro: 'Erro inesperado: $e');
+  //   }
+  // }
 
   bool _validarCampos() {
     bool camposValidos = true;
@@ -69,18 +72,17 @@ class AdicionarProducaoNotifier extends _$AdicionarProducaoNotifier {
     String? erroQuantidade;
 
     // Validação Produto
-    if (state.produto == null) {
+    if (state.produtoId == null) {
       erroProduto = 'Selecione um produto';
       camposValidos = false;
     }
 
     // Validação Barril
-    if (state.barril == null) {
+    if (state.tipoBarrilId == null) {
       erroBarril = 'Selecione um tipo de barril';
       camposValidos = false;
     }
 
-    // Validação Quantidade (CORRIGIDA)
     if (state.quantidade == null || state.quantidade!.isEmpty) {
       erroQuantidade = 'Digite a quantidade';
       camposValidos = false;

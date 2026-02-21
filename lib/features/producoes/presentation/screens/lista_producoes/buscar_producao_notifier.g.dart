@@ -41,7 +41,7 @@ final class BuscarProducaoProvider
   }
 }
 
-String _$buscarProducaoHash() => r'f081502872a408af948234390b4b3a90146dde2c';
+String _$buscarProducaoHash() => r'4c516d9bdf270da4b869c80e3153a09debd97b63';
 
 abstract class _$BuscarProducao extends $Notifier<BuscarProducaoState> {
   BuscarProducaoState build();

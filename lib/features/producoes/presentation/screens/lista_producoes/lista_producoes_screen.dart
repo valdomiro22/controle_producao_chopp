@@ -17,13 +17,13 @@ class ListaProducoesScreen extends ConsumerStatefulWidget {
 }
 
 class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(listaProducoesProvider.notifier).listarProducoes(widget.gradeId);
-    });
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {
+  //     ref.read(listaProducoesProvider.notifier).listarProducoes(widget.gradeId);
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
           padding: const EdgeInsets.all(10),
           child: RefreshIndicator(
             onRefresh: () async {
-              await listaNotifier.listarProducoes(widget.gradeId);
+              // await listaNotifier.listarProducoes(widget.gradeId);
             },
             // Aqui começa a mágica do Freezed
             child: listaState.when(

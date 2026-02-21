@@ -53,7 +53,8 @@ class _StatusProducaoScreenState extends ConsumerState<FinalProducaoScreen> {
                     borderRadius: BorderRadius.circular(4)
                   ),
                   child: Text(
-                    '${data!.produto.label} ${data.tipoBarril.label}',
+                    'data!.produto.label data.tipoBarril.nome',
+                    // '${data!.produto.label} ${data.tipoBarril.nome}',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                 ),

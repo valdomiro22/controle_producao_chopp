@@ -35,7 +35,8 @@ class _StatusProducaoScreenState extends ConsumerState<SimularFimProducaoScreen>
         data: (data) {
           final volume = formState.isSucess
               ? formState.vlNecessario
-              : data!.volumeNecessarioHl;
+              // : data!.volumeNecessarioHl;
+              : -9985;
 
           return SingleChildScrollView(
             padding: EdgeInsets.all(10),
@@ -52,7 +53,8 @@ class _StatusProducaoScreenState extends ConsumerState<SimularFimProducaoScreen>
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
-                    '${data!.produto.label} ${data.tipoBarril.label}',
+                    'data!.produto.label data.tipoBarril.nome',
+                    // '${data!.produto.label} ${data.tipoBarril.nome}',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -100,7 +102,8 @@ class _StatusProducaoScreenState extends ConsumerState<SimularFimProducaoScreen>
                       final programado = int.tryParse(_qtProgramadaController.text.trim()) ?? 0;
                       final produzido = int.tryParse(_qtProduzidaController.text.trim()) ?? 0;
                       final nivelMax = int.tryParse(_nivelController.text.trim()) ?? 0;
-                      final vlBarril = data.tipoBarril.volume;
+                      // final vlBarril = data.tipoBarril.volume;
+                      final vlBarril = -988;
 
                       formNotifier.calcular(
                         programado: programado,
@@ -116,7 +119,8 @@ class _StatusProducaoScreenState extends ConsumerState<SimularFimProducaoScreen>
 
                 LinhaNomeValor(
                   texto: 'Tipo do barril',
-                  quantidade: data.tipoBarril.label,
+                  // quantidade: data.tipoBarril.nome,
+                  quantidade: 'data.tipoBarril.nome',
                   corDeFundo: AppColors.blueStrong,
                   corValor: Colors.white,
                   corTexto: Colors.white,
@@ -135,7 +139,8 @@ class _StatusProducaoScreenState extends ConsumerState<SimularFimProducaoScreen>
                 Center(
                   child: MensagemAvisoBuffer(
                     // vlNecessario: formState.vlNecessario,
-                    vlNecessario: volume,
+                    vlNecessario: -999,
+                    // vlNecessario: volume,
                     vlMaximoTanque: formState.nivelMax,
                   ),
                 ),

@@ -37,7 +37,8 @@ class _ControleNivelBufferWidgetState
       sucesso: () => const SizedBox(),
       erro: (e) => Center(child: Text(e.message)),
       sucessoComDados: (config) {
-        final nivelOk = producao.volumeNecessarioHl <= config!.nivelBuffer;
+        // final nivelOk = producao.volumeNecessarioHl <= config!.nivelBuffer;
+        final nivelOk =  config!.nivelBuffer;
 
         return Column(
           children: [
@@ -62,7 +63,8 @@ class _ControleNivelBufferWidgetState
                         ),
                       ),
                       Text(
-                        producao.tipoBarril.label,
+                        // producao.tipoBarril.nome,
+                        'producao.tipoBarril.nome',
                         style: TextStyle(
                           fontSize: 16,
                           color: AppColors.blueStrong,
@@ -83,10 +85,12 @@ class _ControleNivelBufferWidgetState
                         ),
                       ),
                       Text(
-                        '${producao.volumeNecessarioHl.toString()} hl',
+                        // '${producao.volumeNecessarioHl.toString()} hl',
+                        '---99 hl',
                         style: TextStyle(
                           fontSize: 16,
-                          color: !nivelOk ? AppColors.blueStrong : AppColors.red900,
+                          // color: !nivelOk ? AppColors.blueStrong : AppColors.red900,
+                          color: AppColors.blueStrong,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -94,7 +98,8 @@ class _ControleNivelBufferWidgetState
                   ),
                   SizedBox(height: 8),
                   MensagemAvisoBuffer(
-                    vlNecessario: producao.volumeNecessarioHl,
+                    // vlNecessario: producao.volumeNecessarioHl,
+                    vlNecessario: -98,
                     vlMaximoTanque: config.nivelBuffer,
                   ),
                 ],
