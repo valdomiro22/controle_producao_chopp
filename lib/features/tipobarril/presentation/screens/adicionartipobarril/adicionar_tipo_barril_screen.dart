@@ -60,7 +60,9 @@ class _AdicionarTipoBarrilScreenState extends ConsumerState<AdicionarTipoBarrilS
             SwitchListTile(
               value: state.isDescartavel,
               onChanged: (v) => notifier.insertIsDescartavel(v),
-              title: const Text('Notificações'),
+              title: Text(
+                  state.isDescartavel ? 'Retornavel' : 'Descartavel'
+              ),
             ),
             const SizedBox(height: 16),
 
@@ -71,9 +73,7 @@ class _AdicionarTipoBarrilScreenState extends ConsumerState<AdicionarTipoBarrilS
               ),
 
             ElevatedButton(
-              onPressed: () {
-                notifier.adicionar();
-              },
+              onPressed: () => notifier.adicionar(),
               child: const Text('Salvar'),
             ),
           ],

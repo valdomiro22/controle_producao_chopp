@@ -3,6 +3,7 @@ import 'package:gestao_producao_chopp/features/tipobarril/domain/usecases/delete
 import 'package:gestao_producao_chopp/features/tipobarril/domain/usecases/get_all_tipo_barril_use_case.dart';
 import 'package:gestao_producao_chopp/features/tipobarril/domain/usecases/get_tipo_barril_use_case.dart';
 import 'package:gestao_producao_chopp/features/tipobarril/domain/usecases/insert_tipo_barril_use_case.dart';
+import 'package:gestao_producao_chopp/features/tipobarril/domain/usecases/stream_tipo_barril_use_case.dart';
 import 'package:gestao_producao_chopp/features/tipobarril/domain/usecases/update_tipo_barril_use_case.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -36,4 +37,10 @@ GetTipoBarrilUseCase getTipoBarrilUseCase(Ref ref) {
 GetAllTipoBarrilUseCase getAllTipoBarrilUseCase(Ref ref) {
   final rp = ref.watch(tipoBarrilRepositoryProvider);
   return GetAllTipoBarrilUseCase(rp);
+}
+
+@riverpod
+StreamTipoBarrilUseCase streamTipoBarrilUseCase(Ref ref) {
+  final rp = ref.watch(tipoBarrilRepositoryProvider);
+  return StreamTipoBarrilUseCase(rp);
 }

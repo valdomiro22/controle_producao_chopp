@@ -65,7 +65,7 @@ class TipoBarrilDatasourceImpl implements TipoBarrilDatasource {
   }
 
   @override
-  Future<List<TipoBarrilModel>> getAllTipoBarrils() async {
+  Future<List<TipoBarrilModel>> getAllTipoBarris() async {
     try {
       final snap = await _firestore.collection(_tpBarrilCollection).get();
 
@@ -93,6 +93,39 @@ class TipoBarrilDatasourceImpl implements TipoBarrilDatasource {
         'datasource -> Erro inesperado ao buscar Quantidades Horarias: ${e.toString()}',
       );
     }
+  }
+
+  @override
+  Stream<List<TipoBarrilModel>> streamTipoBarris() {
+    return _firestore
+        .collection(_tpBarrilCollection)
+        .snapshots()
+        .map((querySnap) {
+          // se não tiver docs, isso já vira []
+          return querySnap.docs.map((doc) => TipoBarrilModel.fromJson(doc.data())).toList();
+        })
+        .handleError((error, stack) {
+          if (error is FirebaseException) {
+            switch (error.code) {
+              case 'permission-denied':
+                throw FirestoreException('Permissão negada para ler os tipos de barril');
+              case 'unavailable':
+              case 'deadline-exceeded':
+                throw NetworkException('Problema de conexão ou serviço indisponível');
+              case 'resource-exhausted':
+                throw UnexpectedException('Limite de quota do Firestore excedido');
+              case 'unauthenticated':
+                throw AuthException('Usuário não autenticado');
+              case 'invalid-argument':
+                throw FirestoreException('Argumentos inválidos na consulta');
+              default:
+                throw FirestoreException(error.message ?? 'Erro ao buscar dados: ${error.code}');
+            }
+          }
+          throw UnexpectedException(
+            'datasource -> Erro inesperado ao buscar Tipos de Barril: ${error.toString()}',
+          );
+        });
   }
 
   @override

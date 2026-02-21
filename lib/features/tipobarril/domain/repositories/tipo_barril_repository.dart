@@ -15,4 +15,6 @@ abstract class TipoBarrilRepository {
   Future<Either<Failure, Unit>> deleteTipoBarril(String tpId);
 
   Future<Either<Failure, List<TipoBarrilEntity>>> getAllTipoBarrils();
+
+  Stream<List<TipoBarrilEntity>> streamTipoBarris();
 }

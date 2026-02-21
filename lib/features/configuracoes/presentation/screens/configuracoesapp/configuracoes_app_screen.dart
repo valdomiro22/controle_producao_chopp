@@ -48,7 +48,7 @@ class ConfiguracoesAppScreen extends ConsumerWidget {
               color: Colors.white70,
               padding: EdgeInsets.symmetric(horizontal: 4, vertical: 12),
               child: GestureDetector(
-                onTap: () => context.push(AppRoutesNames.addTipoBarril),
+                onTap: () => context.push(AppRoutesNames.listaTipoBarril),
                 child: Text('Aticionar Tipo de Barril'),
               ),
             ),

@@ -52,7 +52,7 @@ class TipoBarrilRepositoryImpl implements TipoBarrilRepository {
   @override
   Future<Either<Failure, List<TipoBarrilEntity>>> getAllTipoBarrils() async {
     try {
-      final listaModels = await _datasource.getAllTipoBarrils();
+      final listaModels = await _datasource.getAllTipoBarris();
       final listaEntities = listaModels.map((vl) => vl.toEntity()).toList();
 
       return Right(listaEntities);
@@ -89,10 +89,7 @@ class TipoBarrilRepositoryImpl implements TipoBarrilRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> updateTipoBarril({
-    required TipoBarrilEntity tipoBarril,
-    required String tpId,
-  }) async {
+  Future<Either<Failure, Unit>> updateTipoBarril({required TipoBarrilEntity tipoBarril, required String tpId,}) async {
     try {
       if (tipoBarril.id == null) {
         return const Left(UnexpectedFailure('TipoBarrilRepository -> id não pode ser null'));
@@ -115,5 +112,12 @@ class TipoBarrilRepositoryImpl implements TipoBarrilRepository {
     } catch (e) {
       return Left(UnexpectedFailure('Erro inesperado ao salvar Tipo de Barrils: $e'));
     }
+  }
+
+  @override
+  Stream<List<TipoBarrilEntity>> streamTipoBarris() {
+    return _datasource.streamTipoBarris().map(
+          (models) => models.map((m) => m.toEntity()).toList(),
+    );
   }
 }

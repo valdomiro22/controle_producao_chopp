@@ -248,3 +248,51 @@ final class GetAllTipoBarrilUseCaseProvider
 
 String _$getAllTipoBarrilUseCaseHash() =>
     r'b3a92a8632c9ffdc67470a5c5f5f594790516e99';
+
+@ProviderFor(streamTipoBarrilUseCase)
+final streamTipoBarrilUseCaseProvider = StreamTipoBarrilUseCaseProvider._();
+
+final class StreamTipoBarrilUseCaseProvider
+    extends
+        $FunctionalProvider<
+          StreamTipoBarrilUseCase,
+          StreamTipoBarrilUseCase,
+          StreamTipoBarrilUseCase
+        >
+    with $Provider<StreamTipoBarrilUseCase> {
+  StreamTipoBarrilUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'streamTipoBarrilUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$streamTipoBarrilUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<StreamTipoBarrilUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  StreamTipoBarrilUseCase create(Ref ref) {
+    return streamTipoBarrilUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(StreamTipoBarrilUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<StreamTipoBarrilUseCase>(value),
+    );
+  }
+}
+
+String _$streamTipoBarrilUseCaseHash() =>
+    r'33103fadd7b7968bda157abf2ffd7d8ce0b24e67';

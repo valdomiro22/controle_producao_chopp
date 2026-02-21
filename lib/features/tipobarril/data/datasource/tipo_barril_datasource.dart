@@ -9,5 +9,7 @@ abstract class TipoBarrilDatasource {
 
   Future<void> deleteTipoBarril(String tpId);
 
-  Future<List<TipoBarrilModel>> getAllTipoBarrils();
+  Future<List<TipoBarrilModel>> getAllTipoBarris();
+
+  Stream<List<TipoBarrilModel>> streamTipoBarris();
 }
