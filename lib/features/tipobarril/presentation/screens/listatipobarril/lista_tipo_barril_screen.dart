@@ -64,7 +64,7 @@ class ListaTipoBarrilScreen extends ConsumerWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.push(AppRoutesNames.addTipoBarril),
+        onPressed: () => context.push(AppRoutesNames.adicionarTipoBarril),
         child: Icon(Icons.add),
       ),
     );

@@ -616,6 +616,54 @@ final class TipoBarrilDatasourceProvider
 String _$tipoBarrilDatasourceHash() =>
     r'f57bd3d6fe0c372ad5e819905f2365f70a19e683';
 
+@ProviderFor(tipoProdutoDatasource)
+final tipoProdutoDatasourceProvider = TipoProdutoDatasourceProvider._();
+
+final class TipoProdutoDatasourceProvider
+    extends
+        $FunctionalProvider<
+          TipoProdutoDatasource,
+          TipoProdutoDatasource,
+          TipoProdutoDatasource
+        >
+    with $Provider<TipoProdutoDatasource> {
+  TipoProdutoDatasourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'tipoProdutoDatasourceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$tipoProdutoDatasourceHash();
+
+  @$internal
+  @override
+  $ProviderElement<TipoProdutoDatasource> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  TipoProdutoDatasource create(Ref ref) {
+    return tipoProdutoDatasource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(TipoProdutoDatasource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<TipoProdutoDatasource>(value),
+    );
+  }
+}
+
+String _$tipoProdutoDatasourceHash() =>
+    r'06d15535de74c40db9d94d407e4b73646e317a2a';
+
 @ProviderFor(usuarioRepository)
 final usuarioRepositoryProvider = UsuarioRepositoryProvider._();
 
@@ -986,3 +1034,51 @@ final class TipoBarrilRepositoryProvider
 
 String _$tipoBarrilRepositoryHash() =>
     r'182246a4da70f33dd9d7a93ef1fb3bbe3edb5a1a';
+
+@ProviderFor(tipoProdutoRepository)
+final tipoProdutoRepositoryProvider = TipoProdutoRepositoryProvider._();
+
+final class TipoProdutoRepositoryProvider
+    extends
+        $FunctionalProvider<
+          TipoProdutoRepository,
+          TipoProdutoRepository,
+          TipoProdutoRepository
+        >
+    with $Provider<TipoProdutoRepository> {
+  TipoProdutoRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'tipoProdutoRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$tipoProdutoRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<TipoProdutoRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  TipoProdutoRepository create(Ref ref) {
+    return tipoProdutoRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(TipoProdutoRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<TipoProdutoRepository>(value),
+    );
+  }
+}
+
+String _$tipoProdutoRepositoryHash() =>
+    r'7315201cef6c5bccffcabe2132248cc64ecda48a';

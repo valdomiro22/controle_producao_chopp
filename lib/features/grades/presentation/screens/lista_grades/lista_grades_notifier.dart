@@ -30,7 +30,6 @@ class ListaGradesNotifier extends _$ListaGradesNotifier {
     final useCase = ref.read(deleteGradeUseCaseProvider);
     final result = await useCase(id);
 
-    // Use o fold apenas para agir sobre o resultado
     result.fold(
           (failure) => state = ListaGradesState.erro(failure),
           (_) {

@@ -32,7 +32,7 @@ final appNavigation = Provider<GoRouter>((ref) {
       // Quando o delay terminou e ainda está na splash, decide o destino
       if (isGoingToSplash) {
         // return isLogado ? AppRoutesNames.listaGrades : AppRoutesNames.login;
-        return isLogado ? AppRoutesNames.listaTipoBarril : AppRoutesNames.login;
+        return isLogado ? AppRoutesNames.listaTipoProduto : AppRoutesNames.login;
       }
 
       // Regras normais
@@ -43,7 +43,7 @@ final appNavigation = Provider<GoRouter>((ref) {
       } else {
         if (isGoingToLogin || isGoingToCadastro || isGoingToRecuperarSenha) {
           // return AppRoutesNames.listaGrades;
-          return AppRoutesNames.listaTipoBarril;
+          return AppRoutesNames.listaTipoProduto;
         }
       }
 

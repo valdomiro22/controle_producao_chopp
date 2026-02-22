@@ -29,6 +29,10 @@ import 'package:gestao_producao_chopp/features/tipobarril/data/datasource/tipo_b
 import 'package:gestao_producao_chopp/features/tipobarril/data/datasource/tipo_barril_datasource_impl.dart';
 import 'package:gestao_producao_chopp/features/tipobarril/data/repositories/tipo_barril_repository_impl.dart';
 import 'package:gestao_producao_chopp/features/tipobarril/domain/repositories/tipo_barril_repository.dart';
+import 'package:gestao_producao_chopp/features/tipoproduto/data/datasource/tipo_produto_datasource.dart';
+import 'package:gestao_producao_chopp/features/tipoproduto/data/datasource/tipo_produto_datasource_impl.dart';
+import 'package:gestao_producao_chopp/features/tipoproduto/data/repositories/tipo_produto_repository_impl.dart';
+import 'package:gestao_producao_chopp/features/tipoproduto/domain/repositories/tipo_produto_repository.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -123,6 +127,12 @@ TipoBarrilDatasource tipoBarrilDatasource(Ref ref) {
   return TipoBarrilDatasourceImpl(firestore);
 }
 
+@riverpod
+TipoProdutoDatasource tipoProdutoDatasource(Ref ref) {
+  final firestore = ref.watch(firebaseFirestoreProvider);
+  return TipoProdutoDatasourceImpl(firestore);
+}
+
 // repository ------------------------------------------------------------------
 @riverpod
 UsuarioRepository usuarioRepository(Ref ref) {
@@ -172,4 +182,10 @@ ConfiguracoesRepository configuracoesRepository(Ref ref) {
 TipoBarrilRepository tipoBarrilRepository(Ref ref) {
   final ds = ref.watch(tipoBarrilDatasourceProvider);
   return TipoBarrilRepositoryImpl(ds);
+}
+
+@riverpod
+TipoProdutoRepository tipoProdutoRepository(Ref ref) {
+  final ds = ref.watch(tipoProdutoDatasourceProvider);
+  return TipoProdutoRepositoryImpl(ds);
 }

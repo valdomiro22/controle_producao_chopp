@@ -14,6 +14,8 @@ import 'package:gestao_producao_chopp/features/producoes/presentation/screens/st
 import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/selecionar_producao_widget.dart';
 import 'package:gestao_producao_chopp/features/tipobarril/presentation/screens/adicionartipobarril/adicionar_tipo_barril_screen.dart';
 import 'package:gestao_producao_chopp/features/tipobarril/presentation/screens/listatipobarril/lista_tipo_barril_screen.dart';
+import 'package:gestao_producao_chopp/features/tipoproduto/presentation/screens/adicionartipoproduto/adicionar_tipo_produto_screen.dart';
+import 'package:gestao_producao_chopp/features/tipoproduto/presentation/screens/listatipoproduto/lista_tipo_produto_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import '../core/common/screens/calculadoraparadas/calcular_tempo_parada_screen.dart';
@@ -38,6 +40,10 @@ class AppRoutes {
     GoRoute(path: AppRoutesNames.login, builder: (context, state) => LoginScreen()),
 
     GoRoute(path: AppRoutesNames.listaTipoBarril, builder: (context, state) => ListaTipoBarrilScreen()),
+
+    GoRoute(path: AppRoutesNames.listaTipoProduto, builder: (context, state) => ListaTipoProdutoScreen()),
+
+    GoRoute(path: AppRoutesNames.adicionarTipoProduto, builder: (context, state) => AdicionarTipoProdutoScreen()),
 
     GoRoute(
       path: AppRoutesNames.configuracoesApp,
@@ -82,7 +88,7 @@ class AppRoutes {
     GoRoute(path: AppRoutesNames.listaGrades, builder: (context, state) => ListaGradesScreen()),
 
     GoRoute(
-      path: AppRoutesNames.addTipoBarril,
+      path: AppRoutesNames.adicionarTipoBarril,
       builder: (context, state) => AdicionarTipoBarrilScreen(),
     ),
 
