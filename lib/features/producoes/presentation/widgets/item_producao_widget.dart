@@ -5,9 +5,10 @@ import 'package:gestao_producao_chopp/core/common/widgets/linha_formatada.dart';
 import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_notifier.dart';
-import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_state.dart';
-
-import '../../../../core/error/failure.dart';
+import 'package:gestao_producao_chopp/features/tipobarril/domain/entities/tipo_barril_entity.dart';
+import 'package:gestao_producao_chopp/features/tipobarril/presentation/screens/listatipobarril/lista_tipo_barril_notifier.dart';
+import 'package:gestao_producao_chopp/features/tipoproduto/domain/entities/tipo_produto_entity.dart';
+import 'package:gestao_producao_chopp/features/tipoproduto/presentation/screens/listatipoproduto/lista_tipo_produto_notifier.dart';
 
 class ItemProducaoWidget extends ConsumerWidget {
   final ProducaoEntity producao;
@@ -18,14 +19,22 @@ class ItemProducaoWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(listaProducoesProvider);
     final notifier = ref.watch(listaProducoesProvider.notifier);
+    final produtos = ref.watch(listaTipoProdutoProvider).value ?? [];
+    final barris = ref.watch(listaTipoBarrilProvider).value ?? [];
 
     return state.when(
-      inicial: () => const SizedBox(),
-      carregando: () => const Center(child: CircularProgressIndicator(),),
-      sucesso: () => const SizedBox(),
-      erro: (Failure failure) => Center(child: Text(failure.message),),
-      sucessoComLista: (List<ProducaoEntity> lista) {
-        // final id
+      error: (error, stackTrace) => Center(child: Text('Erro: $error')),
+      loading: () => const Center(child: CircularProgressIndicator()),
+      data: (lista) {
+        final produto = produtos.cast<TipoProdutoEntity?>().firstWhere(
+          (p) => p?.id == producao.produtoId,
+          orElse: () => null,
+        );
+
+        final barril = barris.cast<TipoBarrilEntity?>().firstWhere(
+          (p) => p?.id == producao.tipoBarrilId,
+          orElse: () => null,
+        );
 
         return Card(
           color: AppColors.lightSurface,
@@ -36,13 +45,16 @@ class ItemProducaoWidget extends ConsumerWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // LinhaFormatada(
-                    //   valor: producao.produto.label,
-                    //   valorStyle: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold),
-                    // ),
                     LinhaFormatada(
-                      // valor: 'Barril de ${producao.tipoBarril.nome}',
-                      valor: 'Barril de nome',
+                      valor: produto?.nome ?? '',
+                      valorStyle: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    LinhaFormatada(
+                      valor: 'Barril de ${barril?.nome}',
                       valorStyle: TextStyle(fontSize: 14, color: Colors.black),
                     ),
                   ],
@@ -53,7 +65,6 @@ class ItemProducaoWidget extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-
                     // Informações da produção
                     IconButton(
                       icon: Icon(Icons.info, color: Colors.grey, size: 30),
@@ -146,7 +157,7 @@ class ItemProducaoWidget extends ConsumerWidget {
                         debugPrint('Deletar grade');
                         if (producao.id != null) {
                           // notifier.deletarProducao(gradeId: producao.gradeId, producaoId: producao.id!);
-                          
+
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text('Produção excluida'),

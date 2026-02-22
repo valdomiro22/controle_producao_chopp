@@ -8,10 +8,10 @@ class GetProducaoUseCase {
 
   GetProducaoUseCase(this._repository);
 
-  // Future<Either<Failure, ProducaoEntity?>> call({
-  //   required String gradeId,
-  //   required String producaoId,
-  // }) async {
-  //   return await _repository.getProducao(gradeId: gradeId, producaoId: producaoId);
-  // }
+  Future<Either<Failure, ProducaoEntity?>> call({
+    required String gradeId,
+    required String producaoId,
+  }) async {
+    return await _repository.getProducao(gradeId: gradeId, producaoId: producaoId);
+  }
 }

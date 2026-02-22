@@ -4,7 +4,7 @@ import 'package:gestao_producao_chopp/features/producoes/domain/entities/produca
 import '../../../tipobarril/domain/entities/tipo_barril_entity.dart';
 
 extension ProducaoModelToEntity on ProducaoModel {
-  ProducaoEntity toEntity(TipoBarrilEntity tipoBarril) {
+  ProducaoEntity toEntity() {
     return ProducaoEntity(
       id: id,
       gradeId: gradeId,

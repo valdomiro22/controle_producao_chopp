@@ -16,10 +16,10 @@ class ListaGradesNotifier extends _$ListaGradesNotifier {
     final useCase = ref.read(getAllGradesUseCaseProvider);
     final result = await useCase();
 
-    state = result.fold(
-          (failure) => ListaGradesState.erro(failure),
+    result.fold(
+          (failure) => state = ListaGradesState.erro(failure),
           (lista) {
-            return ListaGradesState.sucessoComDados(lista);
+            return state = ListaGradesState.sucessoComDados(lista);
           },
     );
   }

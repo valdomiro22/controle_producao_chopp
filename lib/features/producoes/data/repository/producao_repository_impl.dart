@@ -54,49 +54,49 @@ class ProducaoRepositoryImpl implements ProducaoRepository {
     }
   }
 
-  // @override
-  // Future<Either<Failure, List<ProducaoEntity>>> getAllProducoes(String gradeId) async {
-  //   try {
-  //     final result = await _datasource.getAllProducoesOfGrade(gradeId);
-  //     final listaProducoes = result.map((prod) => prod.toEntity()).toList();
-  //     return Right(listaProducoes);
-  //   } on FirestoreException catch (e) {
-  //     return Left(FirestoreFailure(e.message));
-  //   } on NetworkException catch (e) {
-  //     return Left(NetworkFailure(e.message));
-  //   } on AuthException catch (e) {
-  //     return Left(AuthFailure(e.message));
-  //   } on UnexpectedException catch (e) {
-  //     return Left(UnexpectedFailure(e.message));
-  //   } on CacheException catch (e) {
-  //     return Left(CacheFailure(e.message));
-  //   } catch (e) {
-  //     return Left(UnexpectedFailure('repository -> Erro inesperado ao buscar todas as producoes: $e'));
-  //   }
-  // }
+  @override
+  Future<Either<Failure, List<ProducaoEntity>>> getAllProducoes(String gradeId) async {
+    try {
+      final result = await _datasource.getAllProducoesOfGrade(gradeId);
+      final listaProducoes = result.map((prod) => prod.toEntity()).toList();
+      return Right(listaProducoes);
+    } on FirestoreException catch (e) {
+      return Left(FirestoreFailure(e.message));
+    } on NetworkException catch (e) {
+      return Left(NetworkFailure(e.message));
+    } on AuthException catch (e) {
+      return Left(AuthFailure(e.message));
+    } on UnexpectedException catch (e) {
+      return Left(UnexpectedFailure(e.message));
+    } on CacheException catch (e) {
+      return Left(CacheFailure(e.message));
+    } catch (e) {
+      return Left(UnexpectedFailure('repository -> Erro inesperado ao buscar todas as producoes: $e'));
+    }
+  }
 
-  // @override
-  // Future<Either<Failure, ProducaoEntity?>> getProducao({
-  //   required String gradeId,
-  //   required String producaoId,
-  // }) async {
-  //   try {
-  //     final result = await _datasource.getProducao(gradeId: gradeId, producaoId: producaoId);
-  //
-  //     if (result == null) return const Right(null);
-  //
-  //     final entity = result.toEntity();
-  //     return Right(entity);
-  //   } on FirestoreException catch (e) {
-  //     return Left(FirestoreFailure(e.message));
-  //   } on NetworkException catch (e) {
-  //     return Left(NetworkFailure(e.message));
-  //   } on CacheException catch (e) {
-  //     return Left(CacheFailure(e.message));
-  //   } catch (e) {
-  //     return Left(UnexpectedFailure('Erro inesperado ao buscar producao: $e'));
-  //   }
-  // }
+  @override
+  Future<Either<Failure, ProducaoEntity?>> getProducao({
+    required String gradeId,
+    required String producaoId,
+  }) async {
+    try {
+      final result = await _datasource.getProducao(gradeId: gradeId, producaoId: producaoId);
+
+      if (result == null) return const Right(null);
+
+      final entity = result.toEntity();
+      return Right(entity);
+    } on FirestoreException catch (e) {
+      return Left(FirestoreFailure(e.message));
+    } on NetworkException catch (e) {
+      return Left(NetworkFailure(e.message));
+    } on CacheException catch (e) {
+      return Left(CacheFailure(e.message));
+    } catch (e) {
+      return Left(UnexpectedFailure('Erro inesperado ao buscar producao: $e'));
+    }
+  }
 
   @override
   Future<Either<Failure, Unit>> updateProducao({

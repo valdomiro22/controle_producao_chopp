@@ -46,7 +46,7 @@ final class AdicionarProducaoNotifierProvider
 }
 
 String _$adicionarProducaoNotifierHash() =>
-    r'e4b82be444fcf5804fb35e50cc44a7e88d9b3f75';
+    r'c26de51d2c0166f448d1c0e2dbf4657d077b8abb';
 
 abstract class _$AdicionarProducaoNotifier
     extends $Notifier<FormAdicionarProducaoState> {

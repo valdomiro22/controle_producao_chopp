@@ -42,7 +42,7 @@ final class ListaGradesNotifierProvider
 }
 
 String _$listaGradesNotifierHash() =>
-    r'8cf887bef11f6e1b6ffd13020bcc928b21172f8c';
+    r'886b73bb9b0d03697d2b3a11b2c31471289efc24';
 
 abstract class _$ListaGradesNotifier extends $Notifier<ListaGradesState> {
   ListaGradesState build();

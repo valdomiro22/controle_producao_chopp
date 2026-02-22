@@ -8,8 +8,37 @@ part 'lista_tipo_barril_notifier.g.dart';
 class ListaTipoBarrilNotifier extends _$ListaTipoBarrilNotifier {
 
   @override
-  Stream<List<TipoBarrilEntity>> build() {
-    final usecase = ref.watch(streamTipoBarrilUseCaseProvider);
-    return usecase();
+  AsyncValue<List<TipoBarrilEntity>> build() {
+    _buscar();
+    return const AsyncValue.loading();
+  }
+
+  Future<void> buscar() async => _buscar();
+
+  Future<void> _buscar() async {
+    state = await AsyncValue.guard(() async {
+      final useCase = ref.read(getAllTipoBarrilUseCaseProvider);
+      final result = await useCase();
+
+      return result.fold(
+          (failure) => throw failure,
+          (lista) => lista,
+      );
+    });
+  }
+
+  Future<void> deletar(String tpId) async {
+    state = const AsyncValue.loading();
+
+    final useCase = ref.read(deleteTipoBarrilUseCaseProvider);
+    final result = await useCase(tpId);
+
+    if (!ref.mounted) return;
+
+    if (result.isLeft()) {
+      result.leftMap((failure) => state = AsyncValue.error(failure, StackTrace.current));
+    } else {
+      await _buscar();
+    }
   }
 }

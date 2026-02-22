@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/constants/app_dimens.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/adicionar_producao/adicionar_producao_notifier.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/dropdown_barril_widget.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/dropdown_produto_widget.dart';
 import 'package:gestao_producao_chopp/features/tipobarril/domain/entities/tipo_barril_entity.dart';
 import 'package:gestao_producao_chopp/features/tipobarril/presentation/screens/buscartipobarril/buscar_lista_tipo_barril_notifier.dart';
+import 'package:gestao_producao_chopp/features/tipoproduto/presentation/screens/listatipoproduto/lista_tipo_produto_notifier.dart';
 import 'package:go_router/go_router.dart';
 
 class AdicionarProducaoScreen extends ConsumerStatefulWidget {
@@ -32,6 +35,9 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
     final state = ref.watch(adicionarProducaoProvider);
     final notifier = ref.watch(adicionarProducaoProvider.notifier);
     final listaBarris = ref.watch(buscarListaTipoBarrilProvider);
+    final listaProdutos = ref.watch(listaTipoProdutoProvider);
+
+
 
     final gradeId = widget.gId;
 
@@ -55,7 +61,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
                 if (state.erro != null)
                   Text(
                     state.erro!,
-                    style: TextStyle(color: Colors.red, fontSize: 12),
+                    style: TextStyle(color: Colors.blue, fontSize: 12),
                   ),
 
                 // Produto
@@ -67,24 +73,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
                       borderRadius: BorderRadius.circular(7),
                       color: Colors.teal,
                     ),
-                    // child: DropdownButtonHideUnderline(
-                    //   child: DropdownButton<Produto>(
-                    //     dropdownColor: Colors.brown[200],
-                    //     borderRadius: BorderRadius.circular(10),
-                    //     isDense: false,
-                    //     hint: const Text('Produto', style: TextStyle(color: Colors.white)),
-                    //     value: state.produto,
-                    //     items: Produto.values.map((Produto produto) {
-                    //       return DropdownMenuItem<Produto>(
-                    //         value: produto,
-                    //         child: Text(produto.label, style: TextStyle(color: Colors.black)),
-                    //       );
-                    //     }).toList(),
-                    //     onChanged: (Produto? produto) {
-                    //       notifier.selecionarProduto(produto);
-                    //     },
-                    //   ),
-                    // ),
+                    child: DropdownProdutoWidget(),
                   ),
                 ),
                 SizedBox(width: 16),
@@ -98,31 +87,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
                       borderRadius: BorderRadius.circular(7),
                       color: Colors.teal,
                     ),
-                    child: listaBarris.when(
-                      data: (lista) {
-                        // return DropdownButtonHideUnderline(
-                        //   child: DropdownButton<TipoBarrilEntity>(
-                        //     dropdownColor: Colors.brown[200],
-                        //     borderRadius: BorderRadius.circular(10),
-                        //     isDense: false,
-                        //     hint: const Text('Barril', style: TextStyle(color: Colors.white)),
-                        //     value: state.barril,
-                        //     items: lista.map((barril) {
-                        //       return DropdownMenuItem<Barril>(
-                        //             value: barril,
-                        //             child: Text(barril.label, style: TextStyle(color: Colors.black)),
-                        //           );
-                        //     }).toList(),
-                        //     onChanged: (TipoBarrilEntity? barril) {
-                        //       notifier.selecionarBarril(barril);
-                        //     },
-                        //   ),
-                        // );
-                        return null;
-                      },
-                      loading: () => const Center(child: CircularProgressIndicator()),
-                      error: (e, st) => const Text('Erro ao carregar'),
-                    ),
+                    child: DropdownBarrilWidget(),
                   ),
                 ),
               ],
@@ -138,6 +103,22 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
               keyboardType: TextInputType.number,
               onChanged: (value) => notifier.atualizaQuantidade(value),
             ),
+            if (state.erroQuantidade != null)
+              Text(
+                state.erroQuantidade.toString(),
+                style: TextStyle(color: Colors.red),
+              ),
+            if (state.erroProduto != null)
+              Text(
+                state.erroProduto.toString(),
+                style: TextStyle(color: Colors.red),
+              ),
+            if (state.erroBarril != null)
+              Text(
+                state.erroBarril.toString(),
+                style: TextStyle(color: Colors.red),
+              ),
+
             const SizedBox(height: 8),
 
             if (state.isLoading == true)
@@ -154,7 +135,7 @@ class _AdicionarProducaoScreenState extends ConsumerState<AdicionarProducaoScree
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  // notifier.adicionarProducao(gradeId);
+                  notifier.adicionarProducao(gradeId);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.teal

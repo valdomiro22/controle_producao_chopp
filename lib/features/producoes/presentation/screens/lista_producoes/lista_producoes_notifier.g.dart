@@ -13,7 +13,11 @@ part of 'lista_producoes_notifier.dart';
 final listaProducoesProvider = ListaProducoesNotifierProvider._();
 
 final class ListaProducoesNotifierProvider
-    extends $NotifierProvider<ListaProducoesNotifier, ListaProducaoState> {
+    extends
+        $NotifierProvider<
+          ListaProducoesNotifier,
+          AsyncValue<List<ProducaoEntity>>
+        > {
   ListaProducoesNotifierProvider._()
     : super(
         from: null,
@@ -33,28 +37,39 @@ final class ListaProducoesNotifierProvider
   ListaProducoesNotifier create() => ListaProducoesNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ListaProducaoState value) {
+  Override overrideWithValue(AsyncValue<List<ProducaoEntity>> value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<ListaProducaoState>(value),
+      providerOverride: $SyncValueProvider<AsyncValue<List<ProducaoEntity>>>(
+        value,
+      ),
     );
   }
 }
 
 String _$listaProducoesNotifierHash() =>
-    r'0df3592497b0b0f31b6b0535c53b8a5c63e34d85';
+    r'ee2ab3765476ec123e96b6435c6c3732652ca500';
 
-abstract class _$ListaProducoesNotifier extends $Notifier<ListaProducaoState> {
-  ListaProducaoState build();
+abstract class _$ListaProducoesNotifier
+    extends $Notifier<AsyncValue<List<ProducaoEntity>>> {
+  AsyncValue<List<ProducaoEntity>> build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<ListaProducaoState, ListaProducaoState>;
+    final ref =
+        this.ref
+            as $Ref<
+              AsyncValue<List<ProducaoEntity>>,
+              AsyncValue<List<ProducaoEntity>>
+            >;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<ListaProducaoState, ListaProducaoState>,
-              ListaProducaoState,
+              AnyNotifier<
+                AsyncValue<List<ProducaoEntity>>,
+                AsyncValue<List<ProducaoEntity>>
+              >,
+              AsyncValue<List<ProducaoEntity>>,
               Object?,
               Object?
             >;

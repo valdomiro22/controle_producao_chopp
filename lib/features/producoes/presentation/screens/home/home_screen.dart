@@ -6,6 +6,8 @@ import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/buscar_producao_notifier.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/selecionar_turno_notifier.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_notifier.dart';
+import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/cabecalho_home_widget.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/controle_nivel_buffer_widget.dart';
 import 'package:gestao_producao_chopp/features/quantidade_horaria/presentation/providers/buscar_quantidade_produzida_turno_notifier.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
@@ -38,15 +40,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     'Opções',
   ];
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   WidgetsBinding.instance.addPostFrameCallback((_) {
-  //     ref
-  //         .read(buscarProducaoProvider.notifier)
-  //         .buscar(gradeId: widget.gradeId, producaoId: widget.producaoId);
-  //   });
-  // }
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(buscarProducaoProvider.notifier).buscar(gradeId: widget.gradeId, producaoId: widget.producaoId);
+    });
+  }
 
   // Opções do PopUp Menu
   void _opcoesPopUpMenu(String itemEscolhido) {
@@ -68,7 +68,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final state = ref.watch(homeProvider);
     final producaoState = ref.watch(buscarProducaoProvider);
     final turnoState = ref.watch(selecionarTurnoProvider);
     final turnoNotifier = ref.watch(selecionarTurnoProvider.notifier);
@@ -101,9 +100,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       drawer: AppDrawer(),
       body: producaoState.when(
         loading: () => Center(child: CircularProgressIndicator()),
-        error: (Object error, StackTrace stackTrace) =>
-            Center(child: Text('Erro: ${(error as Failure).message}')),
-        data: (ProducaoEntity? producao) => producao == null
+        error: (error, stackTrace) => Center(child: Text('Erro: ${(error as Failure).message}')),
+        data: (producao) => producao == null
             ? Center(child: Text('Produção não encontrada'))
             : _buildConteudoComProducao(
                 producao,
@@ -130,26 +128,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         children: [
           // Cabeçalho
           GestureDetector(
-            onTap: () =>
-                context.push(AppRoutesNames.finalProducao, extra: producao.id),
-            child: Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(10),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: AppColors.blueStrong,
-                borderRadius: BorderRadius.circular(4),
-              ),
-              child: Text(
-                'producao.produto.label producao.tipoBarril.nome',
-                // '${producao.produto.label} ${producao.tipoBarril.nome}',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+            onTap: () => context.push(AppRoutesNames.finalProducao, extra: producao.id),
+            child: CabecalhoHomeWidget(producao: producao,),
           ),
           const SizedBox(height: 16),
 

@@ -50,7 +50,7 @@ class ListaTipoBarrilScreen extends ConsumerWidget {
                     ),
                     trailing: IconButton(
                       onPressed: () {
-                        ref.read(deletarTipoBarrilProvider.notifier).deletar(item.id!);
+                        ref.read(listaTipoBarrilProvider.notifier).deletar(item.id!);
                       },
                       icon: Icon(Icons.delete, color: Colors.black38,),
                     ),

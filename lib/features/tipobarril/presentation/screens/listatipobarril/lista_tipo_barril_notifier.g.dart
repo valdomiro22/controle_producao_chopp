@@ -14,9 +14,9 @@ final listaTipoBarrilProvider = ListaTipoBarrilNotifierProvider._();
 
 final class ListaTipoBarrilNotifierProvider
     extends
-        $StreamNotifierProvider<
+        $NotifierProvider<
           ListaTipoBarrilNotifier,
-          List<TipoBarrilEntity>
+          AsyncValue<List<TipoBarrilEntity>>
         > {
   ListaTipoBarrilNotifierProvider._()
     : super(
@@ -35,26 +35,39 @@ final class ListaTipoBarrilNotifierProvider
   @$internal
   @override
   ListaTipoBarrilNotifier create() => ListaTipoBarrilNotifier();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AsyncValue<List<TipoBarrilEntity>> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AsyncValue<List<TipoBarrilEntity>>>(
+        value,
+      ),
+    );
+  }
 }
 
 String _$listaTipoBarrilNotifierHash() =>
-    r'0b176d91e7ad82fe8fb7fb8dc8a152900307e4d6';
+    r'd6664617cbe4dbd1c9a0e07f96f8a3da07373fbd';
 
 abstract class _$ListaTipoBarrilNotifier
-    extends $StreamNotifier<List<TipoBarrilEntity>> {
-  Stream<List<TipoBarrilEntity>> build();
+    extends $Notifier<AsyncValue<List<TipoBarrilEntity>>> {
+  AsyncValue<List<TipoBarrilEntity>> build();
   @$mustCallSuper
   @override
   void runBuild() {
     final ref =
         this.ref
-            as $Ref<AsyncValue<List<TipoBarrilEntity>>, List<TipoBarrilEntity>>;
+            as $Ref<
+              AsyncValue<List<TipoBarrilEntity>>,
+              AsyncValue<List<TipoBarrilEntity>>
+            >;
     final element =
         ref.element
             as $ClassProviderElement<
               AnyNotifier<
                 AsyncValue<List<TipoBarrilEntity>>,
-                List<TipoBarrilEntity>
+                AsyncValue<List<TipoBarrilEntity>>
               >,
               AsyncValue<List<TipoBarrilEntity>>,
               Object?,

@@ -8,51 +8,58 @@ part 'lista_producoes_notifier.g.dart';
 @riverpod
 class ListaProducoesNotifier extends _$ListaProducoesNotifier {
   @override
-  ListaProducaoState build() => ListaProducaoState.inicial();
+  AsyncValue<List<ProducaoEntity>> build() {
 
-  // Future<void> listarProducoes(String gradeId) async {
-  //   state = ListaProducaoState.carregando();
-  //
-  //   final useCase = ref.read(getAllProducoesUseCaseProvider);
-  //   final result = await useCase(gradeId);
-  //
-  //   result.fold(
-  //     (failure) => state = ListaProducaoState.erro(failure),
-  //     (lista) => state = ListaProducaoState.sucessoComLista(lista),
-  //   );
-  // }
+    return const AsyncValue.loading();
+  }
 
-  // Future<void> deletarProducao({required String gradeId, required String producaoId}) async {
-  //   state = ListaProducaoState.carregando();
-  //
-  //   final useCase = ref.read(deleteProducaoUseCaseProvider);
-  //   final result = await useCase(producaoId: producaoId, gradeId: gradeId);
-  //
-  //   result.fold(
-  //       (failure) => state = ListaProducaoState.erro(failure),
-  //       (_) {
-  //         listarProducoes(gradeId);
-  //         return state = ListaProducaoState.sucesso();
-  //       },
-  //   );
-  // }
+  Future<void> buscar(String gradeId) async => _buscar(gradeId);
 
-  // Future<void> atualizarProducao({required String gradeId, required String producaoId, required ProducaoEntity producao,}) async {
-  //   state = ListaProducaoState.carregando();
-  //
-  //   final useCase = ref.read(updateProducaoUseCaseProvider);
-  //   final result = await useCase(
-  //     gradeId: gradeId,
-  //     producaoId: producaoId,
-  //     producao: producao
-  //   );
-  //
-  //   result.fold(
-  //       (failure) => state = ListaProducaoState.erro(failure),
-  //       (_) {
-  //         listarProducoes(gradeId);
-  //         return state = ListaProducaoState.sucesso();
-  //       },
-  //   );
-  // }
+  Future<void> _buscar(String gradeId) async {
+    state = await AsyncValue.guard(() async {
+
+      final useCase = ref.read(getAllProducoesUseCaseProvider);
+      final result = await useCase(gradeId);
+
+      return result.fold(
+        (failure) => throw failure,
+        (lista) => lista,
+      );
+    });
+
+  }
+
+  Future<void> deletarProducao({required String gradeId, required String producaoId}) async {
+    state = const AsyncValue.loading();
+
+    final useCase = ref.read(deleteProducaoUseCaseProvider);
+    final result = await useCase(producaoId: producaoId, gradeId: gradeId);
+
+    if (!ref.mounted) return;
+
+    if (result.isLeft()) {
+      result.leftMap((failure) => state = AsyncValue.error(failure, StackTrace.current));
+    } else {
+      await _buscar(gradeId);
+    }
+  }
+
+  Future<void> atualizarProducao({required String gradeId, required String producaoId, required ProducaoEntity producao,}) async {
+    state = const AsyncValue.loading();
+
+    final useCase = ref.read(updateProducaoUseCaseProvider);
+    final result = await useCase(
+      gradeId: gradeId,
+      producaoId: producaoId,
+      producao: producao
+    );
+
+    if (!ref.mounted) return;
+
+    if (result.isLeft()) {
+      result.leftMap((failure) => state = AsyncValue.error(failure, StackTrace.current));
+    } else {
+      await _buscar(gradeId);
+    }
+  }
 }

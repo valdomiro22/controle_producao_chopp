@@ -32,7 +32,7 @@ class ProducaoModel {
       'id': id,
       'gradeId': gradeId,
       'status': status.id,
-      'tipoBarrilIdId': tipoBarrilId,
+      'tipoBarrilId': tipoBarrilId,
       'produtoId': produtoId,
       'quantidade': quantidadeProgramada,
       'qtProduzida': quantidadeProduzida,

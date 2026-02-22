@@ -15,15 +15,15 @@ abstract class ProducaoRepository {
     required String gradeId,
   });
 
-  // Future<Either<Failure, ProducaoEntity?>> getProducao({
-  //   required String gradeId,
-  //   required String producaoId,
-  // });
+  Future<Either<Failure, ProducaoEntity?>> getProducao({
+    required String gradeId,
+    required String producaoId,
+  });
 
   Future<Either<Failure, Unit>> deleteProducao({
     required String gradeId,
     required String producaoId,
   });
 
-  // Future<Either<Failure, List<ProducaoEntity>>> getAllProducoes(String gradeId);
+  Future<Either<Failure, List<ProducaoEntity>>> getAllProducoes(String gradeId);
 }

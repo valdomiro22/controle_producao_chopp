@@ -8,8 +8,7 @@ class GetAllProducoesUseCase {
   
   GetAllProducoesUseCase(this._repository);
   
-  // Future<Either<Failure, List<ProducaoEntity>>> call(String gradeId) async {
-  //   print('Use case chamado');
-  //   return _repository.getAllProducoes(gradeId);
-  // }
+  Future<Either<Failure, List<ProducaoEntity>>> call(String gradeId) async {
+    return _repository.getAllProducoes(gradeId);
+  }
 }

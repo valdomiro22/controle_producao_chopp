@@ -29,13 +29,7 @@ class _AdicionarGradeScreenState extends ConsumerState<AdicionarGradeScreen> {
 
     ref.listen(adicionarGradeProvider, (previous, next) {
       if (next.isSucess) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Grade criada'),
-            duration: Duration(seconds: 2),
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+        _numeroController.clear();
         context.pop();
       }
     });

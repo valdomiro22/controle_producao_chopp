@@ -5,8 +5,6 @@ import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/it
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
 
-import 'lista_producoes_state.dart';
-
 class ListaProducoesScreen extends ConsumerStatefulWidget {
   final String gradeId;
 
@@ -17,13 +15,13 @@ class ListaProducoesScreen extends ConsumerStatefulWidget {
 }
 
 class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   WidgetsBinding.instance.addPostFrameCallback((_) {
-  //     ref.read(listaProducoesProvider.notifier).listarProducoes(widget.gradeId);
-  //   });
-  // }
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(listaProducoesProvider.notifier).buscar(widget.gradeId);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,40 +35,13 @@ class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
           padding: const EdgeInsets.all(10),
           child: RefreshIndicator(
             onRefresh: () async {
-              // await listaNotifier.listarProducoes(widget.gradeId);
+              await listaNotifier.buscar(widget.gradeId);
             },
-            // Aqui começa a mágica do Freezed
+
             child: listaState.when(
-              // 1. Estado Inicial (geralmente exibe loading até o initState buscar os dados)
-              inicial: () => const Center(child: CircularProgressIndicator()),
-
-              // 2. Carregando
-              carregando: () => const Center(child: CircularProgressIndicator()),
-
-              // 3. Sucesso vazio (transição de delete/update)
-              // Como não temos lista aqui, exibimos um loading para não quebrar a tela
-              sucesso: () => const Center(child: CircularProgressIndicator()),
-
-              // 4. Erro
-              erro: (failure) => Center(
-                child: Text(
-                  'Erro: ${failure.message}',
-                  style: const TextStyle(color: Colors.red),
-                ),
-              ),
-
-              // 5. Sucesso com a Lista (Onde a UI real acontece)
-              sucessoComLista: (lista) {
-                if (lista.isEmpty) {
-                  return SingleChildScrollView(
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.7,
-                      child: const Center(child: Text('Adicione uma nova Produção')),
-                    ),
-                  );
-                }
-
+              error: (error, stackTrace) => Center(child: Text('Erro: $error')),
+              loading: () => const Center(child: CircularProgressIndicator()),
+              data: (lista) {
                 return ListView.builder(
                   physics: const AlwaysScrollableScrollPhysics(),
                   itemCount: lista.length,
@@ -85,11 +56,7 @@ class _ListaProducoesScreenState extends ConsumerState<ListaProducoesScreen> {
                           final producaoId = lista[index].id!;
 
                           context.push(
-                            AppRoutesNames.home,
-                            extra: (
-                            producaoId: producaoId,
-                            gradeId: gradeId,
-                            ),
+                            AppRoutesNames.home, extra: (producaoId: producaoId, gradeId: gradeId),
                           );
                         },
                         child: ItemProducaoWidget(producao: producao),

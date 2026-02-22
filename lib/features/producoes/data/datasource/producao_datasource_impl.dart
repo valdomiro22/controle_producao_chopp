@@ -1,3 +1,5 @@
+import 'dart:developer' as deve;
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gestao_producao_chopp/core/error/exceptions.dart';
 import 'package:gestao_producao_chopp/features/producoes/data/datasource/producao_datasource.dart';
@@ -94,6 +96,7 @@ class ProducaoDatasourceImpl implements ProducaoDatasource {
       }
 
       return snapshot.docs.map((doc) {
+        deve.log('datasource: chegou no fromMap');
         return ProducaoModel.fromMap(doc.data());
       }).toList();
 
