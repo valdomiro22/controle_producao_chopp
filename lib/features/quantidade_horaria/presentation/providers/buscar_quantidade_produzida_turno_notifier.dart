@@ -26,6 +26,10 @@ class BuscarQuantidadeProduzidaTurnoNotifier extends _$BuscarQuantidadeProduzida
       producaoId: producao.id ?? '',
     );
 
+
+    // TODO - Esta buscando de todos os turnos juntos
+
+
     return result.fold(
       (f) => throw f,
       (qt) => qt,

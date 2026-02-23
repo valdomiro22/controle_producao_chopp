@@ -6,7 +6,6 @@ class QuantidadeHorariaModel {
   final Turno turno;
   final String producaoId;
   final int? horarioReferente;
-  final int turnoReferente;
   final int quantidade;
   final int quantidadeAcumulada;
   final DateTime horario;
@@ -17,7 +16,6 @@ class QuantidadeHorariaModel {
     required this.turno,
     required this.producaoId,
     this.horarioReferente,
-    required this.turnoReferente,
     required this.quantidade,
     required this.quantidadeAcumulada,
     required this.horario,
@@ -30,7 +28,6 @@ class QuantidadeHorariaModel {
       'turno': turno.id,
       'producaoId': producaoId,
       'horarioReferente': horarioReferente,
-      'turnoReferente': turnoReferente,
       'quantidade': quantidade,
       'quantidadeAcumulada': quantidadeAcumulada,
       'horario': horario,
@@ -44,7 +41,6 @@ class QuantidadeHorariaModel {
       turno: Turno.fronId(map['turno'] as int),
       producaoId: map['producaoId'] as String,
       horarioReferente: map['horarioReferente'] as int,
-      turnoReferente: map['turnoReferente'] as int,
       quantidade: map['quantidade'] as int,
       quantidadeAcumulada: map['quantidadeAcumulada'] as int,
       horario: (map['horario'] as Timestamp).toDate(),
@@ -57,7 +53,6 @@ class QuantidadeHorariaModel {
     Turno? turno,
     String? producaoId,
     int? horarioReferente,
-    int? turnoReferente,
     int? quantidade,
     int? quantidadeAcumulada,
     DateTime? horario,
@@ -68,7 +63,6 @@ class QuantidadeHorariaModel {
       turno: turno ?? this.turno,
       producaoId: producaoId ?? this.producaoId,
       horarioReferente: horarioReferente ?? this.horarioReferente,
-      turnoReferente: turnoReferente ?? this.turnoReferente,
       quantidade: quantidade ?? this.quantidade,
       quantidadeAcumulada: quantidadeAcumulada ?? this.quantidadeAcumulada,
       horario: horario ?? this.horario,

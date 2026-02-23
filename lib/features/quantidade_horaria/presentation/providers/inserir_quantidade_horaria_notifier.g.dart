@@ -14,7 +14,11 @@ final inserirQuantidadeHorariaProvider =
     InserirQuantidadeHorariaNotifierFamily._();
 
 final class InserirQuantidadeHorariaNotifierProvider
-    extends $NotifierProvider<InserirQuantidadeHorariaNotifier, FormQtHoraria> {
+    extends
+        $NotifierProvider<
+          InserirQuantidadeHorariaNotifier,
+          FormQtHorariaState
+        > {
   InserirQuantidadeHorariaNotifierProvider._({
     required InserirQuantidadeHorariaNotifierFamily super.from,
     required String super.argument,
@@ -42,10 +46,10 @@ final class InserirQuantidadeHorariaNotifierProvider
       InserirQuantidadeHorariaNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(FormQtHoraria value) {
+  Override overrideWithValue(FormQtHorariaState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<FormQtHoraria>(value),
+      providerOverride: $SyncValueProvider<FormQtHorariaState>(value),
     );
   }
 
@@ -62,15 +66,15 @@ final class InserirQuantidadeHorariaNotifierProvider
 }
 
 String _$inserirQuantidadeHorariaNotifierHash() =>
-    r'74927a1ca31075f521f8a2a1ba5a36ca08fd3584';
+    r'8863d72bda42a9ce69d19e2a872e7e53e7e204f0';
 
 final class InserirQuantidadeHorariaNotifierFamily extends $Family
     with
         $ClassFamilyOverride<
           InserirQuantidadeHorariaNotifier,
-          FormQtHoraria,
-          FormQtHoraria,
-          FormQtHoraria,
+          FormQtHorariaState,
+          FormQtHorariaState,
+          FormQtHorariaState,
           String
         > {
   InserirQuantidadeHorariaNotifierFamily._()
@@ -93,20 +97,20 @@ final class InserirQuantidadeHorariaNotifierFamily extends $Family
 }
 
 abstract class _$InserirQuantidadeHorariaNotifier
-    extends $Notifier<FormQtHoraria> {
+    extends $Notifier<FormQtHorariaState> {
   late final _$args = ref.$arg as String;
   String get producaoId => _$args;
 
-  FormQtHoraria build(String producaoId);
+  FormQtHorariaState build(String producaoId);
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<FormQtHoraria, FormQtHoraria>;
+    final ref = this.ref as $Ref<FormQtHorariaState, FormQtHorariaState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<FormQtHoraria, FormQtHoraria>,
-              FormQtHoraria,
+              AnyNotifier<FormQtHorariaState, FormQtHorariaState>,
+              FormQtHorariaState,
               Object?,
               Object?
             >;

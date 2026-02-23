@@ -1,3 +1,5 @@
+import 'dart:developer' as dev;
+
 import 'package:gestao_producao_chopp/features/grades/domain/enums/turno.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -10,6 +12,7 @@ class SelecionarTurnoNotifier extends _$SelecionarTurnoNotifier {
   SelecionarTurnoState build() => SelecionarTurnoState.inicial();
 
   void selecionarTurno(Turno turno) {
+    dev.log('notifier: turno setado: $turno');
     state = state.copyWith(turno: turno);
   }
 

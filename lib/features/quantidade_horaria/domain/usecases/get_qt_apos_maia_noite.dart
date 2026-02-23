@@ -22,8 +22,8 @@ class GetQtAposMaiaNoite {
             data.year &&
             item.data.month == data.month &&
             item.data.day == data.day &&
-            item.horarioReferente! > 0 &&
-            item.horarioReferente! <= 600;
+            item.turno.id > 0 &&
+            item.turno.id <= 600;
 
         final mesmoTurno = item.turno == turno;
 

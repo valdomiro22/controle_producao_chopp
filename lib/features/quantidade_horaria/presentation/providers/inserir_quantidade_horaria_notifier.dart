@@ -1,25 +1,32 @@
+import 'dart:developer' as dev;
+
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gestao_producao_chopp/core/di/usecases/quantidade_horaria_use_cases_provider.dart';
 import 'package:gestao_producao_chopp/features/quantidade_horaria/domain/entities/quantidade_horaria_entity.dart';
-import 'package:gestao_producao_chopp/features/quantidade_horaria/presentation/providers/form_qt_horaria.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../grades/domain/enums/turno.dart';
+
+part 'inserir_quantidade_horaria_notifier.freezed.dart';
 
 part 'inserir_quantidade_horaria_notifier.g.dart';
 
 @riverpod
 class InserirQuantidadeHorariaNotifier extends _$InserirQuantidadeHorariaNotifier {
   @override
-  FormQtHoraria build(String producaoId) {
-    return FormQtHoraria(producaoId: producaoId, horarioReferente: '');
+  FormQtHorariaState build(String producaoId) {
+    return FormQtHorariaState.inicial(producaoId: producaoId);
   }
+  void setTurno(Turno v) => state = state.copyWith(turno: v);
 
   Future<void> inserirQuantidade({required String horario, required int quantidade}) async {
-    // 1. Marca como carregando
     state = state.copyWith(isLoading: true);
+
+    dev.log('notifier: turno recebido: ${state.turno.label}');
 
     final qtHoraria = QuantidadeHorariaEntity(
       turno: state.turno,
       producaoId: state.producaoId,
-      turnoReferente: state.turnoReferente,
       quantidade: quantidade,
       quantidadeAcumulada: state.quantidadeAcumulada,
       horario: DateTime.now(),
@@ -28,30 +35,44 @@ class InserirQuantidadeHorariaNotifier extends _$InserirQuantidadeHorariaNotifie
 
     final useCase = ref.read(insertQtHorariaUseCaseProvider);
 
-    // 2. Aguarda o banco de dados...
     final result = await useCase(
       qtHoraria: qtHoraria,
       producaoId: state.producaoId,
       horario: horario,
     );
 
-    // Se o provider foi descartado durante a espera, paramos aqui.
     if (!ref.mounted) return;
 
-    // 3. Só atualiza o estado se o provider ainda estiver vivo
     result.fold(
-            (failure) {
-          state = state.copyWith(
-              isLoading: false,
-              mensagemErro: failure.message
-          );
-        },
-            (_) {
-          state = state.copyWith(
-              isLoading: false,
-              isSuccess: true
-          );
-        }
+      (failure) {
+        state = state.copyWith(erro: failure.message);
+      },
+      (_) {
+        state = state.copyWith(isLoading: false, isSucess: true);
+      },
     );
   }
+}
+
+@freezed
+sealed class FormQtHorariaState with _$FormQtHorariaState {
+  const factory FormQtHorariaState({
+    String? id,
+    @Default(Turno.turnoA) Turno turno,
+    required String producaoId,
+    @Default('') String horarioReferente,
+    @Default(-1) int quantidade,
+    @Default(-1) int quantidadeAcumulada,
+    DateTime? horario,
+    DateTime? data,
+    String? erro,
+    String? erroHorarioReferente,
+    String? erroQuantidade,
+    @Default(false) bool isLoading,
+    @Default(false) bool isSucess,
+    @Default(false) bool camposValidos,
+  }) = _FormQtHorariaState;
+
+  factory FormQtHorariaState.inicial({required String producaoId}) =>
+      FormQtHorariaState(producaoId: producaoId);
 }

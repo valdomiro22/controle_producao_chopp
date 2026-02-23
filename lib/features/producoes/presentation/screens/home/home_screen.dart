@@ -6,10 +6,10 @@ import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/buscar_producao_notifier.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/selecionar_turno_notifier.dart';
-import 'package:gestao_producao_chopp/features/producoes/presentation/screens/lista_producoes/lista_producoes_notifier.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/cabecalho_home_widget.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/widgets/controle_nivel_buffer_widget.dart';
 import 'package:gestao_producao_chopp/features/quantidade_horaria/presentation/providers/buscar_quantidade_produzida_turno_notifier.dart';
+import 'package:gestao_producao_chopp/features/quantidade_horaria/presentation/providers/inserir_quantidade_horaria_notifier.dart';
 import 'package:gestao_producao_chopp/navigate/app_routes_names.dart';
 import 'package:go_router/go_router.dart';
 
@@ -22,29 +22,22 @@ class HomeScreen extends ConsumerStatefulWidget {
   final String gradeId;
   final String producaoId;
 
-  const HomeScreen({
-    super.key,
-    required this.producaoId,
-    required this.gradeId,
-  });
+  const HomeScreen({super.key, required this.producaoId, required this.gradeId});
 
   @override
   ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  final _opcoesMenu = [
-    'Gerar relatorio',
-    'Add Produção',
-    'Produção por turno',
-    'Opções',
-  ];
+  final _opcoesMenu = ['Gerar relatorio', 'Add Produção', 'Produção por turno', 'Opções'];
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(buscarProducaoProvider.notifier).buscar(gradeId: widget.gradeId, producaoId: widget.producaoId);
+      ref
+          .read(buscarProducaoProvider.notifier)
+          .buscar(gradeId: widget.gradeId, producaoId: widget.producaoId);
     });
   }
 
@@ -103,12 +96,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         error: (error, stackTrace) => Center(child: Text('Erro: ${(error as Failure).message}')),
         data: (producao) => producao == null
             ? Center(child: Text('Produção não encontrada'))
-            : _buildConteudoComProducao(
-                producao,
-                turnoNotifier,
-                turnoState,
-                qtTurno,
-              ),
+            : _buildConteudoComProducao(producao, turnoNotifier, turnoState, qtTurno),
       ),
     );
   }
@@ -121,12 +109,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   ) {
     int ultimoTotal = 0;
 
+    final qtNotifier = ref.watch(inserirQuantidadeHorariaProvider(producao.id!).notifier);
+
     return SingleChildScrollView(
       padding: EdgeInsets.all(10),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-
           // Cabeçalho
           GestureDetector(
             onTap: () => context.push(AppRoutesNames.finalProducao, extra: producao.id),
@@ -162,9 +151,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
           // Monitoramento de volume
           GestureDetector(
-            onTap: () => context.push(
-              AppRoutesNames.simularFimProducao, extra: producao.id,
-            ),
+            onTap: () => context.push(AppRoutesNames.simularFimProducao, extra: producao.id),
             child: ControleNivelBufferWidget(producaoRecebida: producao),
           ),
           const SizedBox(height: 16),
@@ -188,11 +175,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                 : Color(0xffd2d6de),
                             overlayColor: Colors.black.withOpacity(0.05),
                             splashFactory: InkRipple.splashFactory,
-                            animationDuration: const Duration(
-                              milliseconds: 120,
-                            ),
+                            animationDuration: const Duration(milliseconds: 120),
                           ),
                           onPressed: () {
+                            qtNotifier.setTurno(Turno.turnoA);
                             turnoNotifier.selecionarTurno(Turno.turnoA);
                           },
                           child: Text(
@@ -217,12 +203,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                 : Color(0xffd2d6de),
                             overlayColor: Colors.black.withOpacity(0.05),
                             splashFactory: InkRipple.splashFactory,
-                            animationDuration: const Duration(
-                              milliseconds: 120,
-                            ),
+                            animationDuration: const Duration(milliseconds: 120),
                           ),
                           onPressed: () {
-                            // _turnoSelecionado = Turno.turnoB;
+                            qtNotifier.setTurno(Turno.turnoB);
                             turnoNotifier.selecionarTurno(Turno.turnoB);
                           },
                           child: Text(
@@ -247,12 +231,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                 : Color(0xffd2d6de),
                             overlayColor: Colors.black.withOpacity(0.05),
                             splashFactory: InkRipple.splashFactory,
-                            animationDuration: const Duration(
-                              milliseconds: 120,
-                            ),
+                            animationDuration: const Duration(milliseconds: 120),
                           ),
                           onPressed: () {
-                            // _turnoSelecionado = Turno.turnoC;
+                            qtNotifier.setTurno(Turno.turnoC);
                             turnoNotifier.selecionarTurno(Turno.turnoC);
                           },
                           child: Text(
@@ -284,13 +266,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
                 itemCount: turnoState.turno.horarios.length,
                 itemBuilder: (context, index) {
-                  final horario = turnoState.turno.horarios.values
-                      .toList()[index];
+                  final horario = turnoState.turno.horarios.values.toList()[index];
 
-                  return CardQuantidadeHoraria(
-                    horario: horario,
-                    producao: producao,
-                  );
+                  return CardQuantidadeHoraria(horario: horario, producao: producao);
                 },
               ),
             ],
@@ -298,7 +276,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           const SizedBox(height: 8),
 
           Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Card(
                 child: IconButton(
@@ -313,7 +290,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               // Quantidade produzida no turno
               qtTurno.when(
                 loading: () => _cardTotal(ultimoTotal),
-                error: (_,  _) => _cardTotal(ultimoTotal),
+                error: (_, _) => _cardTotal(ultimoTotal),
                 data: (total) {
                   ultimoTotal = total;
                   return _cardTotal(total);
@@ -333,10 +310,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         child: Text(
           'Total do Turno: $total',
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w500,
-          ),
+          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
         ),
       ),
     );
