@@ -126,10 +126,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+
           // Cabeçalho
           GestureDetector(
             onTap: () => context.push(AppRoutesNames.finalProducao, extra: producao.id),
-            child: CabecalhoHomeWidget(producao: producao,),
+            child: CabecalhoHomeWidget(producao: producao),
           ),
           const SizedBox(height: 16),
 
@@ -162,14 +163,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           // Monitoramento de volume
           GestureDetector(
             onTap: () => context.push(
-              AppRoutesNames.simularFimProducao,
-              extra: producao.id,
+              AppRoutesNames.simularFimProducao, extra: producao.id,
             ),
             child: ControleNivelBufferWidget(producaoRecebida: producao),
           ),
           const SizedBox(height: 16),
 
-          // Horarios dos turnos
           Column(
             children: [
               // Selecionar turno
@@ -314,7 +313,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               // Quantidade produzida no turno
               qtTurno.when(
                 loading: () => _cardTotal(ultimoTotal),
-                error: (_, __) => _cardTotal(ultimoTotal),
+                error: (_,  _) => _cardTotal(ultimoTotal),
                 data: (total) {
                   ultimoTotal = total;
                   return _cardTotal(total);

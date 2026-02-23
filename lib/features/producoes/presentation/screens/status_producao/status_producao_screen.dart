@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
+import 'package:gestao_producao_chopp/core/utils/produto_barril_helper.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/buscar_producao_notifier.dart';
 
 import '../../widgets/linha_nome_valor.dart';
@@ -24,18 +25,18 @@ class _StatusProducaoScreenState extends ConsumerState<FinalProducaoScreen> {
   Widget build(BuildContext context) {
     final producao = ref.watch(buscarProducaoProvider);
 
-
     return Scaffold(
       appBar: AppBar(title: Text('Status da Produção', style: TextStyle(fontSize: 24))),
-      // drawer: AppDrawer(),
       body: producao.when(
         error: (error, stackTrace) => Center(child: Text('Produção não encontrada')),
         loading: () => Center(child: CircularProgressIndicator()),
         data: (data) {
-            _qtNotas = int.parse(producao.value!.quantidadeProgramada.toString());
-            _produzido = double.parse(producao.value!.quantidadeProduzida.toString());
-            _pendente = double.parse(producao.value!.quantidadePendente.toString());
+          _qtNotas = int.parse(producao.value!.quantidadeProgramada.toString());
+          _produzido = double.parse(producao.value!.quantidadeProduzida.toString());
+          _pendente = double.parse(producao.value!.quantidadePendente.toString());
 
+          final produto = ref.produtoPorId(data!.produtoId);
+          final barril = ref.barrilPorId(data.tipoBarrilId);
 
           return SingleChildScrollView(
             padding: EdgeInsets.all(16),
@@ -46,20 +47,24 @@ class _StatusProducaoScreenState extends ConsumerState<FinalProducaoScreen> {
                 // Cabeçalho
                 Container(
                   width: double.infinity,
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: AppColors.blueStrong,
-                    borderRadius: BorderRadius.circular(4)
+                    borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
-                    'data!.produto.label data.tipoBarril.nome',
-                    // '${data!.produto.label} ${data.tipoBarril.nome}',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                    '${produto?.nome} ${barril?.nome}',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 20),
 
+                // Informações
                 LinhaNomeValor(
                   texto: 'Quantidade Programada',
                   quantidade: _qtNotas.toString(),
@@ -79,6 +84,7 @@ class _StatusProducaoScreenState extends ConsumerState<FinalProducaoScreen> {
                 ),
                 SizedBox(height: 24),
 
+                // Grafico
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -114,6 +120,7 @@ class _StatusProducaoScreenState extends ConsumerState<FinalProducaoScreen> {
                 ),
                 const SizedBox(height: 16),
 
+                // Legenda
                 Container(
                   alignment: Alignment.center,
                   child: Row(

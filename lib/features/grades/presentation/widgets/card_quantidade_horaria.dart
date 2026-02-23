@@ -166,51 +166,51 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
           TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancelar')),
           ElevatedButton(
             onPressed: () async {
-              // // 1. Parse do valor (pode vir positivo ou negativo)
-              // final qtAjuste = int.tryParse(_qtController.text) ?? 0;
-              //
-              // if (qtAjuste == 0) {
-              //   Navigator.pop(context);
-              //   return;
-              // }
-              //
-              // // Opcional: Validação para não deixar o total do horário ficar negativo
-              // final totalAtualNoCard = int.tryParse(qtBuscada) ?? 0;
-              // if (totalAtualNoCard + qtAjuste < 0) {
-              //   // Aqui você pode colocar um SnackBar ou apenas ignorar
-              //   return;
-              // }
-              //
-              // // 2. Gravação no banco (Envia o ajuste, seja +10 ou -5)
-              // await ref
-              //     .read(inserirQuantidadeHorariaProvider(params.producaoId).notifier)
-              //     .inserirQuantidade(horario: widget.horario, quantidade: qtAjuste);
-              //
-              // // 3. Atualizações de estado local (O total da produção também sofre o ajuste)
-              // final novaQuantidadeTotalProducao = widget.producao.quantidadeProduzida + qtAjuste;
-              // final producaoAtualizada = widget.producao.copyWith(
-              //   quantidadeProduzida: novaQuantidadeTotalProducao,
-              // );
-              //
-              // // Atualiza a lista geral
-              // await ref
-              //     .read(listaProducoesProvider.notifier)
-              //     .atualizarProducao(
-              //   gradeId: gradeId,
-              //   producaoId: params.producaoId,
-              //   producao: producaoAtualizada,
-              // );
-              //
-              // // Atualiza o estado da produção que está sendo visualizada
-              // ref.read(buscarProducaoProvider.notifier).atualizarEstadoLocal(producaoAtualizada);
-              //
-              // // 4. Invalida o provider do card específico para forçar o reload do somatório
-              // ref.invalidate(buscarQtHorariaProvider(params));
-              //
-              // // 5. Fecha o Dialog
-              // if (context.mounted) {
-              //   Navigator.of(context).pop();
-              // }
+              // 1. Parse do valor (pode vir positivo ou negativo)
+              final qtAjuste = int.tryParse(_qtController.text) ?? 0;
+
+              if (qtAjuste == 0) {
+                Navigator.pop(context);
+                return;
+              }
+
+              // Opcional: Validação para não deixar o total do horário ficar negativo
+              final totalAtualNoCard = int.tryParse(qtBuscada) ?? 0;
+              if (totalAtualNoCard + qtAjuste < 0) {
+                // Aqui você pode colocar um SnackBar ou apenas ignorar
+                return;
+              }
+
+              // 2. Gravação no banco (Envia o ajuste, seja +10 ou -5)
+              await ref
+                  .read(inserirQuantidadeHorariaProvider(params.producaoId).notifier)
+                  .inserirQuantidade(horario: widget.horario, quantidade: qtAjuste);
+
+              // 3. Atualizações de estado local (O total da produção também sofre o ajuste)
+              final novaQuantidadeTotalProducao = widget.producao.quantidadeProduzida + qtAjuste;
+              final producaoAtualizada = widget.producao.copyWith(
+                quantidadeProduzida: novaQuantidadeTotalProducao,
+              );
+
+              // Atualiza a lista geral
+              await ref
+                  .read(listaProducoesProvider.notifier)
+                  .atualizarProducao(
+                gradeId: gradeId,
+                producaoId: params.producaoId,
+                producao: producaoAtualizada,
+              );
+
+              // Atualiza o estado da produção que está sendo visualizada
+              ref.read(buscarProducaoProvider.notifier).atualizarEstadoLocal(producaoAtualizada);
+
+              // 4. Invalida o provider do card específico para forçar o reload do somatório
+              ref.invalidate(buscarQtHorariaProvider(params));
+
+              // 5. Fecha o Dialog
+              if (context.mounted) {
+                Navigator.of(context).pop();
+              }
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.green,
@@ -218,7 +218,6 @@ class _CardQuantidadeHorariaState extends ConsumerState<CardQuantidadeHoraria> {
             ),
             child: const Text(
               'OK',
-              // style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
             ),
           ),
         ],

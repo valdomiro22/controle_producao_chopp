@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
+import 'package:gestao_producao_chopp/core/utils/producao_util.dart';
+import 'package:gestao_producao_chopp/core/utils/produto_barril_helper.dart';
 import 'package:gestao_producao_chopp/features/grades/presentation/widgets/mensagem_aviso_buffer.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/home/buscar_producao_notifier.dart';
 import 'package:gestao_producao_chopp/features/producoes/presentation/screens/simularfimproducao/simular_fim_producao_notifier.dart';
@@ -33,16 +35,20 @@ class _StatusProducaoScreenState extends ConsumerState<SimularFimProducaoScreen>
         error: (error, stackTrace) => Center(child: Text('Produção não encontrada')),
         loading: () => Center(child: CircularProgressIndicator()),
         data: (data) {
+          final produto = ref.produtoPorId(data!.produtoId);
+          final barril = ref.barrilPorId(data.tipoBarrilId);
+          final volumeNecessario = ProducaoUtil.calcularVolumeNecessario(data.quantidadePendente, barril!.volume);
+
           final volume = formState.isSucess
               ? formState.vlNecessario
-              // : data!.volumeNecessarioHl;
-              : -9985;
+              : volumeNecessario;
 
           return SingleChildScrollView(
             padding: EdgeInsets.all(10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+
                 // Cabeçalho
                 Container(
                   width: double.infinity,
@@ -53,8 +59,7 @@ class _StatusProducaoScreenState extends ConsumerState<SimularFimProducaoScreen>
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
-                    'data!.produto.label data.tipoBarril.nome',
-                    // '${data!.produto.label} ${data.tipoBarril.nome}',
+                    '${produto!.nome} ${barril.nome}',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -102,8 +107,7 @@ class _StatusProducaoScreenState extends ConsumerState<SimularFimProducaoScreen>
                       final programado = int.tryParse(_qtProgramadaController.text.trim()) ?? 0;
                       final produzido = int.tryParse(_qtProduzidaController.text.trim()) ?? 0;
                       final nivelMax = int.tryParse(_nivelController.text.trim()) ?? 0;
-                      // final vlBarril = data.tipoBarril.volume;
-                      final vlBarril = -988;
+                      final vlBarril = barril.volume;
 
                       formNotifier.calcular(
                         programado: programado,
@@ -119,8 +123,7 @@ class _StatusProducaoScreenState extends ConsumerState<SimularFimProducaoScreen>
 
                 LinhaNomeValor(
                   texto: 'Tipo do barril',
-                  // quantidade: data.tipoBarril.nome,
-                  quantidade: 'data.tipoBarril.nome',
+                  quantidade: barril.nome,
                   corDeFundo: AppColors.blueStrong,
                   corValor: Colors.white,
                   corTexto: Colors.white,
@@ -138,9 +141,7 @@ class _StatusProducaoScreenState extends ConsumerState<SimularFimProducaoScreen>
 
                 Center(
                   child: MensagemAvisoBuffer(
-                    // vlNecessario: formState.vlNecessario,
-                    vlNecessario: -999,
-                    // vlNecessario: volume,
+                    vlNecessario: volumeNecessario,
                     vlMaximoTanque: formState.nivelMax,
                   ),
                 ),

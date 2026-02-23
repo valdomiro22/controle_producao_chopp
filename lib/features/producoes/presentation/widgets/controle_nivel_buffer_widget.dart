@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_producao_chopp/core/theme/app_colors.dart';
+import 'package:gestao_producao_chopp/core/utils/producao_util.dart';
+import 'package:gestao_producao_chopp/core/utils/produto_barril_helper.dart';
 import 'package:gestao_producao_chopp/features/configuracoes/presentation/screens/alterarnivel/buscar_configuracao.dart';
 import 'package:gestao_producao_chopp/features/producoes/domain/entities/producao_entity.dart';
 
@@ -8,15 +10,14 @@ import '../../../grades/presentation/widgets/mensagem_aviso_buffer.dart';
 
 class ControleNivelBufferWidget extends ConsumerStatefulWidget {
   final ProducaoEntity producaoRecebida;
+
   const ControleNivelBufferWidget({super.key, required this.producaoRecebida});
 
   @override
-  ConsumerState<ControleNivelBufferWidget> createState() =>
-      _ControleNivelBufferWidgetState();
+  ConsumerState<ControleNivelBufferWidget> createState() => _ControleNivelBufferWidgetState();
 }
 
-class _ControleNivelBufferWidgetState
-    extends ConsumerState<ControleNivelBufferWidget> {
+class _ControleNivelBufferWidgetState extends ConsumerState<ControleNivelBufferWidget> {
   @override
   void initState() {
     super.initState();
@@ -30,6 +31,13 @@ class _ControleNivelBufferWidgetState
     final corFundo = Colors.grey[200];
     final producao = widget.producaoRecebida;
     final confState = ref.watch(buscarConfiguracaoProvider);
+    final produto = ref.produtoPorId(producao.produtoId);
+    final barril = ref.barrilPorId(producao.tipoBarrilId);
+
+    final volumeNecessario = ProducaoUtil.calcularVolumeNecessario(
+      producao.quantidadePendente,
+      barril!.volume,
+    );
 
     return confState.when(
       inicial: () => const SizedBox(),
@@ -37,17 +45,13 @@ class _ControleNivelBufferWidgetState
       sucesso: () => const SizedBox(),
       erro: (e) => Center(child: Text(e.message)),
       sucessoComDados: (config) {
-        // final nivelOk = producao.volumeNecessarioHl <= config!.nivelBuffer;
-        final nivelOk =  config!.nivelBuffer;
+        final nivelOk = volumeNecessario <= config!.nivelBuffer;
 
         return Column(
           children: [
             Container(
               padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-              decoration: BoxDecoration(
-                color: corFundo,
-                borderRadius: BorderRadius.circular(8),
-              ),
+              decoration: BoxDecoration(color: corFundo, borderRadius: BorderRadius.circular(8)),
               width: double.infinity,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -57,14 +61,10 @@ class _ControleNivelBufferWidgetState
                     children: [
                       Text(
                         'Volume do Barril: ',
-                        style: TextStyle(
-                          color: AppColors.secondaryText,
-                          fontSize: 16,
-                        ),
+                        style: TextStyle(color: AppColors.secondaryText, fontSize: 16),
                       ),
                       Text(
-                        // producao.tipoBarril.nome,
-                        'producao.tipoBarril.nome',
+                        '${barril.volume} L',
                         style: TextStyle(
                           fontSize: 16,
                           color: AppColors.blueStrong,
@@ -79,18 +79,13 @@ class _ControleNivelBufferWidgetState
                     children: [
                       Text(
                         'Volume necessarios: ',
-                        style: TextStyle(
-                          color: AppColors.secondaryText,
-                          fontSize: 16,
-                        ),
+                        style: TextStyle(color: AppColors.secondaryText, fontSize: 16),
                       ),
                       Text(
-                        // '${producao.volumeNecessarioHl.toString()} hl',
-                        '---99 hl',
+                        '$volumeNecessario hl',
                         style: TextStyle(
                           fontSize: 16,
-                          // color: !nivelOk ? AppColors.blueStrong : AppColors.red900,
-                          color: AppColors.blueStrong,
+                          color: !nivelOk ? AppColors.blueStrong : AppColors.red900,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -98,8 +93,7 @@ class _ControleNivelBufferWidgetState
                   ),
                   SizedBox(height: 8),
                   MensagemAvisoBuffer(
-                    // vlNecessario: producao.volumeNecessarioHl,
-                    vlNecessario: -98,
+                    vlNecessario: volumeNecessario,
                     vlMaximoTanque: config.nivelBuffer,
                   ),
                 ],

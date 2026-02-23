@@ -13,9 +13,7 @@ class CabecalhoHomeWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final produtosById = {
-      for (final p in (ref.watch(listaTipoProdutoProvider).value ?? [])) p.id!: p,
-    };
+    final produtosById = {for (final p in (ref.watch(listaTipoProdutoProvider).value ?? [])) p.id!: p,};
     final barrisById = {for (final b in (ref.watch(listaTipoBarrilProvider).value ?? [])) b.id!: b};
 
     final produto = produtosById[producao.produtoId];
