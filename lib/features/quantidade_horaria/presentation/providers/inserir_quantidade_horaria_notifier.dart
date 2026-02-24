@@ -22,8 +22,6 @@ class InserirQuantidadeHorariaNotifier extends _$InserirQuantidadeHorariaNotifie
   Future<void> inserirQuantidade({required String horario, required int quantidade}) async {
     state = state.copyWith(isLoading: true);
 
-    dev.log('notifier: turno recebido: ${state.turno.label}');
-
     final qtHoraria = QuantidadeHorariaEntity(
       turno: state.turno,
       producaoId: state.producaoId,
